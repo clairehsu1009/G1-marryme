@@ -12,14 +12,14 @@
         </div>
     </div>
     <ul class="app-menu">
-        <li><a class="app-menu__item" href="${pageContext.request.contextPath}/front-end/vendor/vendorIndex1.jsp"><i
+        <li><a class="app-menu__item" href="${pageContext.request.contextPath}/front-end/vendor/vendorIndex.jsp"><i
                 class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">廠商首頁</span></a></li>
         <li class="treeview"><a class="app-menu__item" href="#"  data-toggle="treeview"><i
                 class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">商品管理</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="<%=request.getContextPath()%>/front-end/vendor/plan/planList.jsp"><i class="icon fa fa-archive"></i>我的商品</a></li>
-                <li><a class="treeview-item" href="<%=request.getContextPath()%>/front-end/vendor/plan/planAdd.jsp"><i class="icon fa fa-edit"></i>新增商品</a></li>
+                <li><a class="treeview-item" href="#"><i class="icon fa fa-archive"></i>我的商品</a></li>
+                <li><a class="treeview-item" href="#"><i class="icon fa fa-edit"></i>新增商品</a></li>
             </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
@@ -42,8 +42,8 @@
                 class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">方案加購項目管理</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-archive"></i>我的加購項目</a></li>
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-edit"></i>新增加購項目</a></li>
+                <li><a class="treeview-item" href="<%=request.getContextPath()%>/plan-item?vendorId=${vendorId}"><i class="icon fa fa-archive"></i>方案加購項目</a></li>
+                <li><a class="treeview-item" href="<%=request.getContextPath()%>/front-end/vendor/plan/addPlanItem.jsp"><i class="icon fa fa-edit"></i>新增加購項目</a></li>
             </ul>
         </li>
 

@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="marryme.activity.service.*"%>
-<%@ page import="marryme.activity.vo.*"%>
+<%@ page import="com.marryme.activity.service.*"%>
+<%@ page import="com.marryme.activity.vo.*"%>
 
 <%
     ActivityServiceImpl service = new ActivityServiceImpl();

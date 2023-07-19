@@ -1,7 +1,7 @@
 /**
  * @Author Jeanny
- * @Create 2023/7/19 21:31
- * @Version 2.0
+ * @Create 2023/7/20 01:01
+ * @Version 3.0
  */
 
 package com.marryme.activity.controller;
@@ -9,6 +9,7 @@ package com.marryme.activity.controller;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -48,9 +49,14 @@ public class AddServlet extends HttpServlet {
 		Timestamp activity_start_time = null;
 		Timestamp activity_end_time = null;
 		try {
-			activity_start_time = Timestamp.valueOf(req.getParameter("activity_start_time").trim());
-			activity_end_time = Timestamp.valueOf(req.getParameter("activity_end_time").trim());
-		} catch (IllegalArgumentException e) {
+			String activity_start_time_string = req.getParameter("activity_start_time").trim();
+			String activity_end_time_string = req.getParameter("activity_end_time").trim();
+			activity_start_time_string = activity_start_time_string.replace("T", " ");  // 將 "T" 替換為空格
+			activity_end_time_string = activity_end_time_string.replace("T", " ");
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			activity_start_time = new Timestamp(dateFormat.parse(activity_start_time_string).getTime());
+			activity_end_time = new Timestamp(dateFormat.parse(activity_end_time_string).getTime());
+		} catch (Exception e) {
 			activity_start_time = new Timestamp(System.currentTimeMillis());
 			activity_end_time = new Timestamp(System.currentTimeMillis());
 		}
@@ -68,7 +74,7 @@ public class AddServlet extends HttpServlet {
 		// Send the use back to the form, if there were errors
 		if (!errorMsgs.isEmpty()) {
 			req.setAttribute("activity", activity); // 含有輸入格式錯誤的activity物件,也存入req
-			RequestDispatcher failureView = req.getRequestDispatcher("/back-end/Activity/addActivity.jsp");
+			RequestDispatcher failureView = req.getRequestDispatcher("/back-end/activity/addActivity.jsp");
 			failureView.forward(req, res);
 			return;
 		}

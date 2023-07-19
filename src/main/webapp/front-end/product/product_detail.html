@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【貓咪系列】可愛貓 造型巧克力💕 - 穎川堂手工巧克力 - 婚禮小物 - Marryme</title> <!--改自己那頁的title-->
+    <link rel="shortcut icon" type="image/x-icon" href="/public/images/front-end/marrymelittle.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="/front-end/product/css/product_rate.css">
+    <link rel="preload" href="/front-end/product/css/product_detail.css" as="style">
+    <link rel="preload" href="/public/js/marryme.js" as="script">
+    <link href="/front-end/product/css/product_detail.css" rel="stylesheet" type="text/css">
+
+    <!-- 載入 Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="/public/js/template/jquery-3.7.0.min.js"></script>
+    <script src="/public/js/template/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <header id="header">
+        <div class="header_tools">
+            <div class="rwd_wrap">
+                <ul class="on_pc left_toolbar">
+                    <li>
+                        <div class="member_welcome">
+                            <p class="member_name">您好 歡迎來到Marryme！置頂公告 - <a href="#"
+                                    title="活動快報📣Marryme挺新人，找命定店家，送你一籮筐好禮嫁妝💖">活動快報📣Marryme挺新人，找命定店家，送你一籮筐好禮嫁妝💖</a><br>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="on_pc right_toolbar">
+                    <li class="pc_list"><a href="#"><i class="fas fa-cart-shopping"></i></a></li>
+                    <li class="pc_list"><a href="#" title="店家入駐" class="no_block">店家入駐</a></li>
+                    <li class="pc_list"><a href="#" title="登入" class="no_block">登入</a></li>
+                    <li class="pc_list"> <a href="#" title="免費註冊" class="no_block">註冊</a></li>
+                </ul>
+                <div style="display:none;" id="header_menu" class="mobile_tools">
+                    <div class="mobile_menu">
+                        <div class="top_bar"><a href="#" title="活動快報📣Marryme挺新人，找命定店家，送你一籮筐好禮嫁妝💖"><img
+                                    src="../../public/images/front-end/2d6788.svg"><span>
+                                    活動快報📣Marryme挺新人，找命定店家，送你一籮筐好禮嫁妝💖</span></a></div>
+                        <div class="member_area">
+                            <div class="profile_pic"><img
+                                    src="../../public/images/front-end/MarryBar_default_avatar_20200827_1.jpg">
+                            </div>
+                            <p class="text">您好，歡迎來到Marryme</p>
+                            <div class="btn_groups">
+                                <a href="#" class="btn_outline" title="免費註冊">免費註冊</a><a href="#" class="btn_contain"
+                                    title="登入">登入</a>
+                            </div>
+                            <a href="#" class="btn_text" title="店家免費駐站">店家免費駐站</a>
+                        </div>
+                        <div data-a_id="9167">
+                        </div>
+                        <ul class="list_area">
+                            <li><a href="#" title="專欄">專欄</a></li>
+                            <li><a href="#" title="論壇">論壇</a></li>
+                            <li><a href="#" title="客服中心">客服中心</a></li>
+                            <li><a href="#" title="關於我們">關於我們</a></li>
+                        </ul>
+                        <ul class="list_area">
+                            <li class="title">找店家
+                            </li>
+                            <li><a href="#" title="婚宴場地">婚宴場地
+                                </a></li>
+                            <li><a href="#" title="婚戒">婚戒</a></li>
+                            <li><a href="#" title="婚禮小物">婚禮小物</a></li>
+                            <li><a href="#" title="婚鞋">高跟鞋/西裝鞋</a></li>
+                            <li><a href="#" title="喜餅">喜餅</a></li>
+                            <li><a href="#" title="婚紗禮服">婚紗禮服</a></li>
+                        </ul>
+                    </div>
+                    <a class="menu_close">
+                        <img src="../../public/images/front-end/popclose.svg">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="rwd_wrap group" app_into_hide="1">
+            <div class="col lg_12 md_12 sm_12">
+                <div class="logo_menu clearfix">
+                    <h2 class="logo"><a href="#" title="Marryme">Marryme</a></h2>
+                    <ul class="pc_menu">
+                        <li class="pc_menu_more">
+                            <a href="" class="onit">找店家<img class="arrow"
+                                    src="../../public/images/front-end/line_black.svg"></a>
+                            <div class="sub_m">
+                                <div data-a_id="9167">
+                                </div>
+                                <div class="sub_m_list">
+                                    <p>辦婚禮</p>
+                                    <ul>
+                                        <li><a href="#">婚宴場地</a></li>
+                                    </ul>
+                                </div>
+                                <div class="sub_m_list">
+                                    <p>婚禮週邊</p>
+                                    <ul>
+                                        <li><a href="#">婚戒</a></li>
+                                        <li><a href="#">喜餅</a></li>
+                                        <li><a href="#">婚禮小物</a>
+                                        </li>
+                                        <li><a href="#">婚紗/禮服</a></li>
+                                        <li><a href="#">高跟鞋/西裝鞋</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li><a href="#" class="">專欄</a></li>
+                        <li><a href="#" class="">論壇</a></li>
+                        <li><a href="#" class="">客服中心</a></li>
+                        <li><a href="#" class="">關於我們</a></li>
+                    </ul>
+                    <span class="mobile_icon radius_3" id="header_menu_main" app_into_hide='1'></span>
+                    <div class="more_tools">
+                        <div id="kwds_rs_bid" class="searchBar acResults">
+                            <input name="kwds_bid" id="kwds_bid" type="text" placeholder="搜尋" class="default">
+                            <span class="btn_search">
+                                <a href="#" app_into_hide='1' id="search_submit_btn">搜尋</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <div class="rwd_wrap group">
+        <div class="col lg_12 md_6 sm_12">
+            <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="bread_list">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="#" title="Marryme首頁">
+                        <span itemprop="name">首頁</span></a>
+                    <meta itemprop="position" content="1">
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">穎川堂手工巧克力 婚禮小物</span></a>
+                    <meta itemprop="position" content="2" />
+                </li>
+                <li><span itemprop="name">【貓咪系列】可愛貓 造型巧克力💕</span>
+                    <meta itemprop="position" content="3" />
+                </li>
+            </ol>
+        </div>
+    </div>
+    <section class="rwd_wrap profile_detail">
+        <div class="info">
+            <div class="detail">
+                <div class="name">
+                    <h2>
+                        <a href="https://www.marry.com.tw/studio-56748" title="穎川堂手工巧克力 婚禮小物">穎川堂手工巧克力 婚禮小物</a>
+                    </h2>
+                </div>
+                <div><a class="evaluate" href="https://www.marry.com.tw/studio-reviews-56748">
+                        <span class="bg_star"></span>
+                        5.0&nbsp;<span class="counts" id="evaluate_counts_basic">(39)</span></a></div>
+            </div>
+        </div>
+        <div class="toolbar">
+            <a class="ask btn_common btn_primary add_ask" href="javascript:;" rel_m_id="MktGdnBZVk82L2U0THMwOGZB"
+                rel_s_id="17411" rel_a_id="760">
+                立即詢問
+            </a>
+        </div>
+    </section>
+
+    <section class="rwd_wrap group">
+        <div class="favor_content">
+            <div class="content_left">
+                <a href="javascript:;" class="album lightbox">
+                    <img src="https://d2uju15hmm6f78.cloudfront.net/image/2018/08/13/56748/2020/04/10/158652282077987300_auto_800x533.jpg"
+                        class="album_img">
+                </a>
+            </div>
+            <div class="content_right">
+                <h1 class="title ">【貓咪系列】可愛貓 造型巧克力💕</h1>
+                <p class="price">平台價 NT$ <span>29</span></p>
+                <p class="price_original">原價 NT$ <span>50 </span></p>
+                <button class="product_report">匿名檢舉商品</button>
+                <div class="d_line"></div>
+                <ul class="good_info clearfix">
+                    <li>
+                        <span>優惠券</span>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                            <button class="btn btn-outline-danger me-md-2" type="button">現打8折</button>
+                            <button class="btn btn-outline-danger" type="button">-10%OFF</button>
+                        </div>
+
+                    </li>
+                    <li><span>銷量</span>
+                        <p>30</p>
+                    </li>
+                    <li><span>評價</span>
+                        <p><img src="/public/images/front-end/selected.svg"> 5.0&nbsp;</p>
+                    </li>
+                    <li><span>數量</span>
+                        <div class="qty-input">
+                            <input class="product-qty" type="number" name="product-qty" min="1" value="1">
+                        </div>
+                    </li>
+                </ul>
+                <div class="action">
+                    <ul>
+                        <li class="btn_wrap"><a class="btn add_ask" href="javascript:;"
+                                rel_m_id="MktGdnBZVk82L2U0THMwOGZB" rel_s_id="17411">加入購物車</a></li>
+                    </ul>
+                </div>
+                </ul>
+            </div>
+            <div class="good_copyright">
+                <div class="d_line"></div>
+                <div class="desc">
+                    【貓咪系列】可愛貓 造型巧克力💕<br />
+                    <br />
+                    太可愛了😍😍<br />
+                    都想帶回家啦<br />
+                    <br />
+                    ♥️💜💛💚💙♥️💜💛💚💙<br />
+                    給您堅持手作的幸福<br />
+                    穎川堂巧克力<br />
+                    一律都是下標並確認結帳後<br />
+                    會依照您指定到貨日排單製作<br />
+                    <br />
+                    🌸精緻包裝<br />
+                    穎川堂巧克力皆獨立包裝<br />
+                    包含透明袋吊牌及蝴蝶結<br />
+                    ★ 照片皆為實品拍攝 ★ <br />
+                    <br />
+                    🌸寄送方式 <br />
+                    黑貓冷藏配送<br />
+                    訂購60支以下，運費160元<br />
+                    訂購61支以上，運費225元<br />
+                    訂購滿3000元以上免運費<br />
+                    (運費$225由穎川堂吸收)<br />
+                    提供自取免運費服務<br />
+                    <br />
+                    🌸訂購滿$6000加贈10支<br />
+                    訂購滿$8000加贈20支<br />
+                    (可任選穎川堂產品種類)<br />
+                    若不需加贈可直接扣除費用回饋<br />
+                    <br />
+                    🌸單一種類訂購至少10支<br />
+                    總訂購至少30支<br />
+                    我們就可以幫您安排囉💕<br />
+                    <br />
+                    ----------------------------------<br />
+                    建議及其它說明:<br />
+                    1.可於室溫26度下置放<br />
+                    2.可冷氣房或空調下置放<br />
+                    3.可冰箱冷藏<br />
+                    4.巧克力賞味期30天,<br />
+                    最佳賞味溫度18℃ <br />
+                    5.遇高溫時有軟化現象為正常<br />
+                    敬請安心食用<br />
+                    ---------------------------------<br />
+                    <br />
+                    ❤️已投保富邦產物保險食品責任險一千萬<br />
+                    ❤️ 純手工製作了/健康天然食材/<br />
+                    若有素食考量<br />
+                    可避開棉花糖及草莓巧克力<br />
+                    其他產品皆奶素可食
+                </div>
+            </div>
+    </section>
+    <section id="studio_reviews_main" class="rwd_wrap group">
+        <div class="title_studio_main">
+            <h2><a name="studio_reviews"></a>
+                評價</h2><span class="title_count" id="evaluate_count_main" style="">
+                <b id="evaluate_count"><a href="https://www.marry.com.tw/studio-reviews-56748">39</a></b> 則</span><span
+                class="d_line"></span>
+        </div>
+        <div id="evaluate_list_html">
+            <div class="rate_box clearfix"><a name="reviews_1124724"></a>
+                <div class="rate_basic clearfix">
+                    <div class="rate_pic"><img
+                            src="https://statics.marry.com.tw/img/public/MarryBar_default_avatar_20200827_4.jpg"
+                            class="review_profile_photo"
+                            data-real-src="https://statics.marry.com.tw/img/public/MarryBar_default_avatar_20200827_4.jpg">
+                    </div>
+                    <div class="rate_what">
+                        <div class="rate_who">
+                            <b>蔡宗烜</b>
+                        </div>
+                        <div class="evaluate"><span class=""></span><span class=""></span><span class=""></span><span
+                                class=""></span><span class=""></span></div>
+                    </div>
+                </div>
+                <div class="rate_info">
+                    <div id="descri_evaluate_all_temp_1124724"><a
+                            href="https://www.marry.com.tw/studio-reviews_detail-kwmi56748mmri1124724mm.html" title=""
+                            style="color: #333; text-decoration: none;">首先，很謝謝店家願意花這時間、花這精神去設計我想要的糖果。這在我婚禮達到的效果爆炸好！店家每一隻手工的巧克力都非常巧手、美味（賓客的回饋），甚至是貨物的包裝上都能感受到店家用心！我也非常開心找到這間用...</a><a
+                            href="https://www.marry.com.tw/studio-reviews_detail-kwmi56748mmri1124724mm.html"><span>繼續閱讀</span></a>
+                    </div>
+                    <div class="descri_all" style="display:none" id="descri_evaluate_all_1124724"><a
+                            href="https://www.marry.com.tw/studio-reviews_detail-kwmi56748mmri1124724mm.html" title=""
+                            style="color: #333; text-decoration: none;">首先，很謝謝店家願意花這時間、花這精神去設計我想要的糖果。這在我婚禮達到的效果爆炸好！店家每一隻手工的巧克力都非常巧手、美味（賓客的回饋），甚至是貨物的包裝上都能感受到店家用心！我也非常開心找到這間用心的店家！</a>
+                    </div>
+                </div>
+            </div>
+            <div class="rate_box clearfix"><a name="reviews_1121695"></a>
+                <div class="rate_basic clearfix">
+                    <div class="rate_pic"><img
+                            src="https://statics.marry.com.tw/img/public/MarryBar_default_avatar_20200827_0.jpg"
+                            class="review_profile_photo"
+                            data-real-src="https://statics.marry.com.tw/img/public/MarryBar_default_avatar_20200827_0.jpg">
+                    </div>
+                    <div class="rate_what">
+                        <div class="rate_who">
+                            <b>Abby Yu</b>
+                        </div>
+                        <div class="evaluate"><span class=""></span><span class=""></span><span class=""></span><span
+                                class=""></span><span class=""></span></div>
+                    </div>
+                </div>
+                <div class="rate_info">
+                    <div id="descri_evaluate_all_temp_1121695"><a
+                            href="https://www.marry.com.tw/studio-reviews_detail-kwmi56748mmri1121695mm.html" title=""
+                            style="color: #333; text-decoration: none;">去年結婚時就是訂購了穎川堂手工巧克力<br>
+                            有狗狗有貓貓<br>
+                            每隻都好可愛<br>
+                            老闆娘還很貼心的幫我準備了女生柴犬及男生柴犬<br>
+                            溝通過程也都很積極<br>
+                            好後悔當時自己沒有留一些下來🥲<br>
+                            超級推薦👍👍👍</a></div>
+                    <div class="descri_all" style="display:none" id="descri_evaluate_all_1121695"><a
+                            href="https://www.marry.com.tw/studio-reviews_detail-kwmi56748mmri1121695mm.html" title=""
+                            style="color: #333; text-decoration: none;">去年結婚時就是訂購了穎川堂手工巧克力<br>
+                            有狗狗有貓貓<br>
+                            每隻都好可愛<br>
+                            老闆娘還很貼心的幫我準備了女生柴犬及男生柴犬<br>
+                            溝通過程也都很積極<br>
+                            好後悔當時自己沒有留一些下來🥲<br>
+                            超級推薦👍👍👍</a></div>
+                </div>
+            </div>
+            <div class="rate_box clearfix"><a name="reviews_1121301"></a>
+                <div class="rate_basic clearfix">
+                    <div class="rate_pic"><img
+                            src="https://statics.marry.com.tw/img/public/MarryBar_default_avatar_20200827_1.jpg"
+                            class="review_profile_photo"
+                            data-real-src="https://statics.marry.com.tw/img/public/MarryBar_default_avatar_20200827_1.jpg">
+                    </div>
+                    <div class="rate_what">
+                        <div class="rate_who">
+                            <b>Yayin Chen</b>
+                        </div>
+                        <div class="evaluate"><span class=""></span><span class=""></span><span class=""></span><span
+                                class=""></span><span class=""></span></div>
+                    </div>
+                </div>
+                <div class="rate_info">
+                    <div id="descri_evaluate_all_temp_1121301"><a
+                            href="https://www.marry.com.tw/studio-reviews_detail-kwmi56748mmri1121301mm.html" title=""
+                            style="color: #333; text-decoration: none;">超可愛的，結婚拿來發大家都搶著要<br>
+                            <br>
+                            我自己只留下了幾隻做紀念，非常感謝</a></div>
+                    <div class="descri_all" style="display:none" id="descri_evaluate_all_1121301"><a
+                            href="https://www.marry.com.tw/studio-reviews_detail-kwmi56748mmri1121301mm.html" title=""
+                            style="color: #333; text-decoration: none;">超可愛的，結婚拿來發大家都搶著要<br>
+                            <br>
+                            我自己只留下了幾隻做紀念，非常感謝</a></div>
+                </div>
+            </div>
+            <br>
+            <div class="load_more" id="load_more">
+                <input type="hidden" id="now_evaluate_c" value="20">
+                <input type="hidden" id="now_page_c" value="2"><input type="hidden" id="evaluate_page_c" value="10">
+                <a id="evaluate_next" href="#" class="radius_2">載入更多(尚有19則評價)</a>
+                <input type="hidden" id="m_id" value="56748">
+            </div>
+        </div>
+    </section>
+    <footer id="footer" app_into_hide='1'>
+
+        <div class="rwd_wrap group">
+            <div class="col lg_12 md_12 sm_12">
+                <div class="marry_footer clearfix">
+                    <ul class="footer_list">
+                        <li><a href="#">關於Marryme</a>│</li>
+                        <li><a href="#">網站公告</a>│</li>
+                        <li><a href="#">網站地圖</a>│</li>
+                        <li><a href="#" target="_blank">工作機會</a>│</li>
+                        <li><a href="#">聯絡客服</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="webLink" class="">
+            <p align="center" id="footer_award">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img src="../../public/images/front-end/marrymebig.png" class="marrymeBig" alt="Marryme"
+                        width="10%">
+                    <!--自己改src連結及class跟alt還有width-->
+                </a>
+            <p>Copyright © 2023 by Marryme. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="/public/js/marryme.js"></script>
+</body>
+
+</html>

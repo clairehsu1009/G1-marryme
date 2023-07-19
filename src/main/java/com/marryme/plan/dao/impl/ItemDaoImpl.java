@@ -34,7 +34,7 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
-    public boolean update(Integer id, Item vo) {
+    public void update(Integer id, Item vo) {
         Item item = getSession().get(Item.class, id);
         // 只set 可以修改的欄位
         item.setItemType(vo.getItemType());
@@ -44,7 +44,7 @@ public class ItemDaoImpl implements ItemDao {
         item.setItemTotal(vo.getItemTotal());
 
         getSession().merge(item);
-        return true;
+
     }
 
     @Override
@@ -52,6 +52,7 @@ public class ItemDaoImpl implements ItemDao {
         Session session = getSession();
         Item item = session.load(Item.class, id);
         session.remove(item);
+
     }
 
     @Override

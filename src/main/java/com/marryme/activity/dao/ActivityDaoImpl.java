@@ -1,4 +1,10 @@
-package marryme.activity.dao;
+/**
+ * @Author Jeanny
+ * @Create 2023/7/19 21:31
+ * @Version 2.0
+ */
+
+package com.marryme.activity.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +16,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import marryme.activity.vo.Activity;
+import com.marryme.activity.vo.Activity;
 
 public class ActivityDaoImpl implements ActivityDao {
 	private DataSource ds;

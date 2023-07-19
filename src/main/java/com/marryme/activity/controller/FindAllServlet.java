@@ -1,4 +1,10 @@
-package marryme.activity.controller;
+/**
+ * @Author Jeanny
+ * @Create 2023/7/19 21:31
+ * @Version 2.0
+ */
+
+package com.marryme.activity.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import marryme.activity.service.ActivityService;
-import marryme.activity.service.ActivityServiceImpl;
+import com.marryme.activity.service.ActivityService;
+import com.marryme.activity.service.ActivityServiceImpl;
 
 @WebServlet("/activity/findAll")
 public class FindAllServlet extends HttpServlet {

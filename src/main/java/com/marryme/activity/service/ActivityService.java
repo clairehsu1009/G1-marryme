@@ -1,10 +1,16 @@
-package marryme.activity.service;
+/**
+ * @Author Jeanny
+ * @Create 2023/7/19 21:31
+ * @Version 2.0
+ */
+
+package com.marryme.activity.service;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 
-import marryme.activity.vo.Activity;
+import com.marryme.activity.vo.Activity;
 
 public interface ActivityService {
 

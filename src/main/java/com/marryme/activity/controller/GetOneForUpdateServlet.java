@@ -1,4 +1,10 @@
-package marryme.activity.controller;
+/**
+ * @Author Jeanny
+ * @Create 2023/7/19 21:31
+ * @Version 2.0
+ */
+
+package com.marryme.activity.controller;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -11,8 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import marryme.activity.service.ActivityServiceImpl;
-import marryme.activity.vo.Activity;
+import com.marryme.activity.service.ActivityServiceImpl;
+import com.marryme.activity.vo.Activity;
 
 @WebServlet("/activity/getOneForUpdate")
 public class GetOneForUpdateServlet extends HttpServlet {

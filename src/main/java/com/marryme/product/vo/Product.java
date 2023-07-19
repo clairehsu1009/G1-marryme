@@ -1,10 +1,10 @@
 /**
  * @Author Jeanny
- * @Create 2023/7/15 13:31
- * @Version 1.0
+ * @Create 2023/7/19 21:31
+ * @Version 2.0
  */
 
-package marryme.product.vo;
+package com.marryme.product.vo;
 
 import java.sql.Timestamp;
 

@@ -19,4 +19,8 @@ public interface ReservationService extends CoreService {
 	public void deleteReservation(Integer reservationID);
 	
 	
+	//更新預約資料
+	
+	
+	
 }

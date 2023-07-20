@@ -2,6 +2,7 @@ package wedding.service.impl;
 
 
 import java.util.List;
+
 import wedding.dao.ReservationDao;
 import wedding.dao.impl.ReservationDaoImpl;
 import wedding.service.ReservationService;
@@ -28,6 +29,21 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 	
 	
+	
+	//更新預約資訊
+	public Reservation edit(Reservation reservation) {
+		final Reservation oReservation = reservationDao.selectById(reservation.getReservationId());
+		reservation.setContactName(oReservation.getContactName());
+		reservation.setContactNumber(oReservation.getContactNumber());
+		reservation.setEventDate(oReservation.getEventDate());
+		reservation.setReservationDate(oReservation.getReservationDate());
+		reservation.setReservationNotes(oReservation.getReservationNotes());
+//		final int resultCount = reservationDao.update(reservation);
+//		reservation.setSuccessful(resultCount > 0 );
+//		reservation.setMessage(resultCount > 0 ? "修改成功" : "修改失敗");
+		return reservation;
+			
+	}
 	
 	
 	public ReservationDao getReservationDao() {

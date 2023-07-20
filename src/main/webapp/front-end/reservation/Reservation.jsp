@@ -112,9 +112,7 @@
 									<span>備註</span>
 									<textarea class="form_input input_note" type="text" name="reservation_notes"
 										id="reservation_notes" placeholder="其他事項" autocomplete="off"></textarea>
-									<!-- <input type="hidden" name="reserve_t_id" value="MjZRNTh0Tk52ZnU2SU1JeA">
-                        <input type="hidden" name="reserve_v_id" value="">
-                        <input type="hidden" name="r_type" value="insert"> -->
+							
 								</form>
 							</div>
 							<div class="btnArea">

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.dialect.pagination.SQL2008StandardLimitHandler;
 
 
@@ -43,18 +44,14 @@ public class ReservationDaoImpl implements ReservationDao {
 		return -1;
 	}
 
-//	@Override
-//	public List<Reservation> selectAll() {
-//		final String hql = "FROM Reservation ORDER BY id";
-//		return getSession().createQuery(hql, Member.class).getResultList();
-//	}
+
 	
 	
 	@Override
 	public List<Reservation> selectAll() {
 		final String sql = "select * from RESERVATION";
 		try (
-			Connection conn = CommonUtil.getConnection();
+			Connection conn = CommonUtil.getConnectionLily();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery()){
 			var list = new ArrayList<Reservation>();
@@ -82,7 +79,7 @@ public class ReservationDaoImpl implements ReservationDao {
 	public int deleteById(Integer id) {
 		final String sql = "delete from RESERVATION where RESERVATION_ID = ?";
 		try(
-			Connection conn = CommonUtil.getConnection();
+			Connection conn = CommonUtil.getConnectionLily();
 			PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setInt(1, id);
 			return pstmt.executeUpdate();
@@ -92,9 +89,32 @@ public class ReservationDaoImpl implements ReservationDao {
 		return -1;
 	}
 
+	
+	
 	@Override
-	public Reservation selectById(Integer id) {
-		// TODO Auto-generated method stub
+	public Reservation selectById(Integer reservationId) {
+		final String sql = "delete from RESERVATION where RESERVATION_ID = ?";
+		try (
+			Connection conn = CommonUtil.getConnectionLily();
+			PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, reservationId);
+			try(
+					ResultSet rSet = pstmt.executeQuery()){
+				if(rSet.next()) {
+					Reservation reservation = new Reservation();
+					reservation.setContactName(rSet.getString("contact_Name"));
+					reservation.setContactNumber(rSet.getString("CONTACT_NUMBER"));
+					reservation.setEventDate(rSet.getTimestamp("EVENT_DATE"));
+					reservation.setReservationDate(rSet.getTimestamp("RESERVATION_DATE"));
+					reservation.setReservationNotes(rSet.getString("RESERVATION_NOTES"));													
+					return reservation;
+					
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
 		return null;
 	}
 
@@ -103,10 +123,29 @@ public class ReservationDaoImpl implements ReservationDao {
 	
 	
 	@Override
-	public int update(Reservation pojo) {
-		// TODO Auto-generated method stub
+	public int update(Reservation reservation) {
+		final String sql = "update RESERVATION set CONTACT_NAME=?,CONTACT_NUMBER=?,EVENT_DATE=?,"
+				+ "RESERVATION_DATE=?,RESERVATION_NOTES=?";
+		try (
+				Connection connection = CommonUtil.getConnectionLily(); 
+				PreparedStatement pstmt = connection.prepareStatement(sql)){
+			pstmt.setString(1, reservation.getContactName());
+			pstmt.setString(2, reservation.getContactNumber());
+			pstmt.setTimestamp(3, reservation.getEventDate());
+			pstmt.setTimestamp(4, reservation.getReservationDate());
+			pstmt.setString(5, reservation.getReservationNotes());
+			return pstmt.executeUpdate();
+								
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
+
+
+
+
+
 
 
 

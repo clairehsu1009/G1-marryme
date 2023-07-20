@@ -22,11 +22,11 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-archive">&nbsp;</i>ææç´å®åå</h1>
+                <h1><i class="fa fa-archive">&nbsp;</i>所有直售商品</h1>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item"><a href="#">ç´å®ååç®¡ç</a></li>
+                <li class="breadcrumb-item"><a href="#">直售商品管理</a></li>
             </ul>
         </div>
         <div class="row ProductList">
@@ -37,14 +37,14 @@
                             <a class="active" data-toggle="tab" href="#tab-1" role="tab">æªä¸æ¶åå</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#tab-2" role="tab">ç´å®åå</a>
+                            <a data-toggle="tab" href="#tab-2" role="tab">直售商品</a>
                         </li>
 
                         <li>
-                            <a data-toggle="tab" href="#tab-3" role="tab">å·²å®åº</a>
+                            <a data-toggle="tab" href="#tab-3" role="tab">已售出</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#tab-4" role="tab">éè¦ä¸æ¶</a>
+                            <a data-toggle="tab" href="#tab-4" role="tab">違規下架</a>
                         </li>
                     </ul>
                 </div>
@@ -54,14 +54,14 @@
                             <table class="table">
                                 <thead class="thead">
                                     <tr>
-                                        <th scope="col">å®¢æ¶åç¨±</th>
-                                        <th scope="col">è¯ç¹«é»è©±</th>
-                                        <th scope="col">å®´å®¢æ¥æ</th>
-                                        <th scope="col">é ç´æ¥æ</th>
-                                        <th scope="col">åè¨»</th>
+                                        <th scope="col">客戶名稱</th>
+		                                <th scope="col">聯繫電話</th>
+		                                <th scope="col">宴客日期</th>
+		                                <th scope="col">預約日期</th>
+		                                <th scope="col">備註</th>
 
                                     </tr>
-                                    <!--                               -->
+                                  
                                 </thead>
                                 <tbody>
                                     <c:forEach var="reservation" items="${list}" begin="0" end="${list.size()}">
@@ -81,9 +81,9 @@
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" name="RUupdate"
-                                                    id="RUupdate">æ´æ°</button>
-                                                <button type="button" class="btn btn-dark" name="RUupdate"
-                                                    id="RUupdate">åªé¤</button>
+                                                    id="RUupdate">更新</button>
+                                                <button type="button" class="btn btn-dark" name="RDelete"
+                                                    id="RDelete">刪除</button>
                                             </td>
                                         </tr>
 

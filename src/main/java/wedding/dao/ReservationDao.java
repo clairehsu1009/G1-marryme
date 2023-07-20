@@ -12,4 +12,14 @@ public interface ReservationDao extends CoreDao<Reservation, Integer>{
 	List<Reservation> selectAll();
 	
 	int deleteById(Integer id);
+	
+	int update(Reservation reservation);
+	
+	Reservation selectById(Integer reservationId);
+
+	
+
+	
+
+	
 }

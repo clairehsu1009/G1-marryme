@@ -42,8 +42,7 @@ public class ReservationController extends HttpServlet{
 	public void setReservationService(ReservationService reservationService) {
 		this.reservationService = reservationService;
 	}
-	
-	
+
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
@@ -54,12 +53,7 @@ public class ReservationController extends HttpServlet{
 	    	this.reservationService.addReservation(reservation);
 	    	writePojo2Json(response, reservation);
 	    }
-//	    	else if(null!=reservation.getFuncName() && reservation.getFuncName().equals("BBB")){
-//	    	final var list = reservationService.findAll();
-//			request.setAttribute("reservationlist", list);
-//			request.getRequestDispatcher("/WEB-INF/ReservationResult.jsp").forward(request, response);
-//			
-//	    }
+
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{

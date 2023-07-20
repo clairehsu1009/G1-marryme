@@ -11789,9 +11789,9 @@ h5::before {
     margin-right: 56px
 }
 
-/* 44%會跑版改43.7%*/
+/* 44%會跑版改43.68%*/
 .content_right {
-    width: calc(calc(43.7% - 56px))
+    width: calc(calc(43.68% - 56px))
 }
 
 .album {

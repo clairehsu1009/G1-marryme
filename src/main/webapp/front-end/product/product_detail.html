@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>【貓咪系列】可愛貓 造型巧克力💕 - 穎川堂手工巧克力 - 婚禮小物 - Marryme</title> <!--改自己那頁的title-->
     <link rel="shortcut icon" type="image/x-icon" href="/public/images/front-end/marrymelittle.ico">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <link rel="stylesheet" href="/front-end/product/css/product_rate.css">
     <link rel="preload" href="/front-end/product/css/product_detail.css" as="style">
     <link rel="preload" href="/public/js/marryme.js" as="script">
     <link href="/front-end/product/css/product_detail.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 
     <!-- 載入 Font Awesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
@@ -180,9 +180,9 @@
                 <h1 class="title ">【貓咪系列】可愛貓 造型巧克力💕</h1>
                 <p class="price">平台價 NT$ <span>29</span></p>
                 <p class="price_original">原價 NT$ <span>50 </span></p>
-                <button class="product_report">匿名檢舉商品</button>
+                <button class="product_report" data-bs-toggle="modal" data-bs-target="#reportModal">匿名檢舉商品</button>
                 <div class="d_line"></div>
-                <ul class="good_info clearfix">
+                <ul class="good_info clearfix" style="padding-left: 0px">
                     <li>
                         <span>優惠券</span>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
@@ -204,7 +204,7 @@
                     </li>
                 </ul>
                 <div class="action">
-                    <ul>
+                    <ul style="padding-left: 0">
                         <li class="btn_wrap"><a class="btn add_ask" href="javascript:;"
                                 rel_m_id="MktGdnBZVk82L2U0THMwOGZB" rel_s_id="17411">加入購物車</a></li>
                     </ul>
@@ -266,6 +266,24 @@
                 </div>
             </div>
     </section>
+    <!-- Modal -->
+    <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reportModalLabel">匿名檢舉商品</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <textarea class="form-control" rows="4" placeholder="請輸入檢舉內容"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-primary">儲存</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <section id="studio_reviews_main" class="rwd_wrap group">
         <div class="title_studio_main">
             <h2><a name="studio_reviews"></a>
@@ -401,6 +419,10 @@
     </footer>
 
     <script type="text/javascript" src="/public/js/marryme.js"></script>
+    <!-- 載入 Bootstrap 5 的 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

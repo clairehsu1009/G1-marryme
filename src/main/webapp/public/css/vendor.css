@@ -15372,12 +15372,14 @@ max-height:100%;
 	text-align:center;
 }
 .productsAdd {
-	margin-left:70px;
-	box-sizing: border-box;
+	/*margin-left:70px;*/
+  padding: 0px 80px 0px 80px;
+  box-sizing: border-box;
 }
-/* .productsAdd label#upload-img { */
-/*     border-style: none; */
-/* } */
+
+.productsAdd .errorMsg {
+  color: red;
+}
 
 
 								/*productAddFinsh*/
@@ -15414,11 +15416,8 @@ max-height:100%;
   font-weight: 700;
   color: #b2b2b2;
   text-transform: uppercase;
-  padding: 18px 61px;
+  padding: 18px 53px;
   position: relative;
-/*   border-top: 1px solid #ebebeb; */
-/*   border-left: 1px solid #ebebeb; */
-/*   border-bottom: 1px solid #ebebeb; */
   text-decoration:none;
   border-radius: 10px;
   box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
@@ -15442,6 +15441,11 @@ max-height:100%;
   content: "";
   opacity: 0;
 }
+
+.productList .product-tab .tab-content .table td {
+  vertical-align: middle;
+}
+
 /*textarea表格寬高*/
 /* .productList .productInfo { */
 /* 	width:300px; */
@@ -15568,11 +15572,11 @@ max-height:100%;
 }
 .productList .btn.btn-warning {
    color: white;
-   margin-left: 30px;
+   /*margin-left: 30px;*/
 }
-.productList .btn.btn-info{
-	margin-top:10px;
-}
+/*.productList .btn.btn-info{*/
+/*	margin-top:10px;*/
+/*}*/
 								
 								/*productListFinsh*/
 /*userIndex*/

@@ -12,10 +12,10 @@
         </div>
     </div>
     <ul class="app-menu">
-        <li><a class="app-menu__item" href="${pageContext.request.contextPath}/front-end/vendor/vendorIndex.jsp"><i
-                class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">廠商首頁</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="#"  data-toggle="treeview"><i
-                class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">商品管理</span><i
+        <li><a class="app-menu__item" href="${pageContext.request.contextPath}/front-end/user/userIndex.jsp"><i
+                class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">會員首頁</span></a></li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+                class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">會員資料管理</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="#"><i class="icon fa fa-archive"></i>我的商品</a></li>
@@ -23,36 +23,41 @@
             </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
-                class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">方案管理</span><i
+                class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">商品管理</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-archive"></i>我的方案</a></li>
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-edit"></i>新增方案</a></li>
-            </ul>
-        </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
-                class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">方案場地管理</span><i
-                class="treeview-indicator fa fa-angle-right"></i></a>
-            <ul class="treeview-menu">
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-archive"></i>我的場地</a></li>
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-edit"></i>新增場地</a></li>
-            </ul>
-        </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
-                class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">方案加購項目管理</span><i
-                class="treeview-indicator fa fa-angle-right"></i></a>
-            <ul class="treeview-menu">
-                <li><a class="treeview-item" href="<%=request.getContextPath()%>/plan-item?vendorId=${vendorId}"><i class="icon fa fa-archive"></i>方案加購項目</a></li>
-                <li><a class="treeview-item" href="<%=request.getContextPath()%>/front-end/vendor/plan/addPlanItem.jsp"><i class="icon fa fa-edit"></i>新增加購項目</a></li>
+                <li><a class="treeview-item" href="#"><i class="icon fa fa-archive"></i>我的商品</a></li>
+                <li><a class="treeview-item" href="#"><i class="icon fa fa-edit"></i>新增商品</a></li>
             </ul>
         </li>
 
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
-                class="app-menu__icon fa fa-cogs"></i><span class="app-menu__label">訂單管理</span><i
+                class="app-menu__icon fa fa-cogs"></i><span class="app-menu__label">直售訂單管理</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-th-list"></i>商品訂單</a></li>
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-th-list"></i>方案訂單</a></li>
+                <li><a class="treeview-item" href="#"><i class="icon fa fa-th-list"></i>我的購買訂單</a></li>
+                <li><a class="treeview-item" href="#"><i class="icon fa fa-th-list"></i>我的販賣訂單</a></li>
+            </ul>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+                class="app-menu__icon fa fa-cogs"></i><span class="app-menu__label">直播訂單管理</span><i
+                class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+                <li><a class="treeview-item" href="#"><i class="icon fa fa-th-list"></i>我的購買訂單</a></li>
+                <li><a class="treeview-item" href="#"><i class="icon fa fa-th-list"></i>我的販賣訂單</a></li>
+            </ul>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+                class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">直播專案管理</span><i
+                class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="treeview-item" href="#"><i class="icon fa fa-edit"></i>新增直播專案</a>
+                <li>
+                <li><a class="treeview-item" href="#"><i class="icon fa fa-th-list"></i>我的直播專案</a></li>
+                <li>
+                    <a class="treeview-item" href="#"><i class="icon fa fa-archive"></i>我的歷史專案</a>
+                <li>
             </ul>
         </li>
         <li class="treeview">

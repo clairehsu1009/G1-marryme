@@ -1,13 +1,13 @@
 /**
  * @Author Jeanny
- * @Create 2023/7/19 21:31
- * @Version 2.0
+ * @Create 2023/7/21 22:33
+ * @Version 3.0
+ *
  */
 
 package com.marryme.activity.service;
 
-import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.marryme.activity.dao.ActivityDao;
@@ -24,56 +24,105 @@ public class ActivityServiceImpl implements ActivityService {
 	// 取得所有活動
 	@Override
 	public List<Activity> findAll() {
-		return dao.selectAll();
+		List<Activity> activityList = new ArrayList<>();
+		try {
+			beginTransaction();
+			activityList = dao.selectAll();
+			commit();
+		} catch (Exception e) {
+			rollback();
+			e.printStackTrace();
+		}
+		return activityList;
 	}
 
 	// 新增活動
 	@Override
-	public Activity addActivity(String discount_code, String vendor_id, String activity_name, BigDecimal discount,
-			Timestamp activity_start_time, Timestamp activity_end_time, String activity_detail) {
+	public Integer add(Activity activity) {
+		Integer id = null;
+		try {
+			beginTransaction();
+			id = dao.insert(activity);
+			commit();
+		} catch (Exception e) {
+			rollback();
+			e.printStackTrace();
+		}
+		return id;
+	}
 
-		Activity activity = new Activity();
+	// 更新活動(已結束活動的不能修改, 進行中的優惠只能修改活動名稱、結束時間、活動細項, 尚未進行的除了折扣代碼外其餘皆可修改)
+	@Override
+	public boolean edit(String discountCode, Activity active) {
+		boolean result = false;
+		try {
+			beginTransaction();
+			dao.update(discountCode, active);
+			commit();
+			result = true;
+		} catch (Exception e) {
+			rollback();
+			e.printStackTrace();
+		}
+		return result;
+	}
 
-		activity.setDiscount_code(discount_code);
-		activity.setVendor_id(vendor_id);
-		activity.setActivity_name(activity_name);
-		activity.setDiscount(discount);
-		activity.setActivity_start_time(activity_start_time);
-		activity.setActivity_end_time(activity_end_time);
-		activity.setActivity_detail(activity_detail);
-		dao.insert(activity);
-
+	@Override
+	public Activity getOne(String discountCode) {
+		Activity activity = null;
+		try {
+			beginTransaction();
+			activity = dao.selectById(discountCode);
+			commit();
+		} catch (Exception e) {
+			rollback();
+			e.printStackTrace();
+		}
 		return activity;
 	}
 
-	// 刪除活動
 	@Override
-	public void deleteActivity(String discount_code) {
-		dao.delete(discount_code);
+	public boolean remove(String discountCode) {
+		boolean result = false;
+		try {
+			beginTransaction();
+			dao.deleteById(discountCode);
+			commit();
+			result = true;
+		} catch (Exception e) {
+			rollback();
+			e.printStackTrace();
+		}
+		return result;
 	}
 
-	// 更新活動
 	@Override
-	public Activity updateActivity(String discount_code, String vendor_id, String activity_name, BigDecimal discount,
-			Timestamp activity_start_time, Timestamp activity_end_time, String activity_detail) {
-
-		Activity activity = new Activity();
-
-		activity.setDiscount_code(discount_code);
-		activity.setVendor_id(vendor_id);
-		activity.setActivity_name(activity_name);
-		activity.setDiscount(discount);
-		activity.setActivity_start_time(activity_start_time);
-		activity.setActivity_end_time(activity_end_time);
-		activity.setActivity_detail(activity_detail);
-		dao.update(activity);
-
-		return activity;
+	public List<Activity> findAllByVendorIdAndStatus(String vendorId, String statusType) {
+		List<Activity> activityList = new ArrayList<>();
+		try {
+			beginTransaction();
+			activityList = dao.selectAllByVendorIdAndStatus(vendorId, statusType);
+			commit();
+		} catch (Exception e) {
+			rollback();
+			e.printStackTrace();
+		}
+		return activityList;
 	}
-
-	// 根據折扣代碼獲取活動
+	
+	// 調整狀態為下架
 	@Override
-	public Activity getOneActivity(String discount_code) {
-		return dao.findByPrimaryKey(discount_code);
-	}
+    public boolean changeStatusToInactive(String discountCode) {
+        boolean result = false;
+        try {
+            beginTransaction();
+            dao.changeStatusToInactive(discountCode);
+            commit();
+            result = true;
+        } catch (Exception e) {
+            rollback();
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

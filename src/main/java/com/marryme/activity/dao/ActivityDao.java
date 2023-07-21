@@ -1,7 +1,7 @@
 /**
  * @Author Jeanny
- * @Create 2023/7/19 21:31
- * @Version 2.0
+ * @Create 2023/7/21 22:06
+ * @Version 3.0
  */
 
 package com.marryme.activity.dao;
@@ -9,24 +9,14 @@ package com.marryme.activity.dao;
 import java.util.List;
 
 import com.marryme.activity.vo.Activity;
+import com.marryme.core.dao.CoreDao;
 
-public interface ActivityDao {
+public interface ActivityDao extends CoreDao<Activity, String>{
 
-	// select * from activity
-	List<Activity> selectAll();
+	/** 取得廠商符合狀態的資料 */
+	List<Activity> selectAllByVendorIdAndStatus(String vendorId, String statusType);
 
-	// insert into activity
-	void insert(Activity activity);
-
-	// delete from activity where discount_code = ?
-	void delete(String discountCode);
-
-	// update activity set vendor_id = ?, activity_name = ?, discount = ?,
-	// activity_start_time = ?, activity_end_time = ?, activity_detail = ? where
-	// discount_code = ?
-	void update(Activity activity);
-
-	// select * from activity where discount_code = ?
-	Activity findByPrimaryKey(String discountCode);
-
+	/** 修改優惠券狀態為下架 */
+	void changeStatusToInactive(String discountCode);
+	
 }

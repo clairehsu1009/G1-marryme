@@ -1,135 +1,78 @@
 /**
  * @Author Jeanny
- * @Create 2023/7/19 21:31
- * @Version 2.0
+ * @Create 2023/7/21 22:06
+ * @Version 3.0
  */
 
 package com.marryme.activity.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+import static com.marryme.common.CommonString.ACTIVE;
+
 import java.util.List;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import com.marryme.activity.vo.Activity;
 
+
 public class ActivityDaoImpl implements ActivityDao {
-	private DataSource ds;
 
-	public ActivityDaoImpl() {
-		try {
-			ds = (DataSource) new InitialContext().lookup("java:comp/env/jdbc/marryme");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
-
-	// select * from activity
 	@Override
 	public List<Activity> selectAll() {
-		try (Connection conn = ds.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement("select * from activity");
-				ResultSet rs = pstmt.executeQuery();) {
-			List<Activity> list = new ArrayList<>();
-			while (rs.next()) {
-				Activity activity = new Activity();
-				activity.setDiscount_code(rs.getString("discount_code"));
-				activity.setVendor_id(rs.getString("vendor_id"));
-				activity.setActivity_name(rs.getString("activity_name"));
-				activity.setDiscount(rs.getBigDecimal("discount"));
-				activity.setActivity_start_time(rs.getTimestamp("activity_start_time"));
-				activity.setActivity_end_time(rs.getTimestamp("activity_end_time"));
-				activity.setActivity_detail(rs.getString("activity_detail"));
-				list.add(activity);
-			}
-			return list;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+		String hql = "FROM Activity";
+		return getSession().createQuery(hql, Activity.class).list();
 	}
 
-	// insert into activity
 	@Override
-	public void insert(Activity activity) {
-		try (Connection conn = ds.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(
-						"insert into activity (discount_code, vendor_id, activity_name, discount, activity_start_time, activity_end_time, activity_detail) "
-								+ "values (?, ?, ?, ?, ?, ?, ?)")) {
-			pstmt.setString(1, activity.getDiscount_code());
-			pstmt.setString(2, activity.getVendor_id());
-			pstmt.setString(3, activity.getActivity_name());
-			pstmt.setBigDecimal(4, activity.getDiscount());
-			pstmt.setTimestamp(5, activity.getActivity_start_time());
-			pstmt.setTimestamp(6, activity.getActivity_end_time());
-			pstmt.setString(7, activity.getActivity_detail());
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public Activity selectById(String discountCode) {
+		return getSession().get(Activity.class, discountCode);
 	}
 
-	// delete from activity where discount_code = ?
 	@Override
-	public void delete(String discountCode) {
-		try (Connection conn = ds.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement("delete from activity where discount_code = ?")) {
-			pstmt.setString(1, discountCode);
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public Integer insert(Activity vo) {
+		vo.setStatus(vo.getStatus() == null ? 1 : vo.getStatus());
+		vo.setEditStatus(vo.getEditStatus() == null ? 0 : 1);
+		return (Integer) getSession().save(vo);
 	}
 
-	// update activity set vendor_id = ?, activity_name = ?, discount = ?,
-	// activity_start_time = ?, activity_end_time = ?, activity_detail = ? where
-	// discount_code = ?
 	@Override
-	public void update(Activity activity) {
-		try (Connection conn = ds.getConnection();
-				PreparedStatement pstmt = conn
-						.prepareStatement("update activity set vendor_id = ?, activity_name = ?, discount = ?, "
-								+ "activity_start_time = ?, activity_end_time = ?, activity_detail = ? where discount_code = ?")) {
-			pstmt.setString(1, activity.getVendor_id());
-			pstmt.setString(2, activity.getActivity_name());
-			pstmt.setBigDecimal(3, activity.getDiscount());
-			pstmt.setTimestamp(4, activity.getActivity_start_time());
-			pstmt.setTimestamp(5, activity.getActivity_end_time());
-			pstmt.setString(6, activity.getActivity_detail());
-			pstmt.setString(7, activity.getDiscount_code());
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void update(String discountCode, Activity vo) {
+		Activity activity = getSession().get(Activity.class, discountCode);
+		// 只set 可以修改的欄位
+		activity.setDiscountCode(vo.getDiscountCode());
+		activity.setActivityName(vo.getActivityName());
+		activity.setDiscount(vo.getDiscount());
+		activity.setActivityStartTime(vo.getActivityStartTime());
+		activity.setActivityEndTime(vo.getActivityEndTime());
+		activity.setStatus(vo.getStatus());
+		activity.setEditStatus(vo.getEditStatus());
+		getSession().merge(activity);
+
 	}
 
-	// select * from activity where discount_code = ?
 	@Override
-	public Activity findByPrimaryKey(String discountCode) {
-		try (Connection conn = ds.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement("select * from activity where discount_code = ?")) {
-			pstmt.setString(1, discountCode);
-			try (ResultSet rs = pstmt.executeQuery()) {
-				if (rs.next()) {
-					Activity activity = new Activity();
-					activity.setDiscount_code(rs.getString("discount_code"));
-					activity.setVendor_id(rs.getString("vendor_id"));
-					activity.setActivity_name(rs.getString("activity_name"));
-					activity.setDiscount(rs.getBigDecimal("discount"));
-					activity.setActivity_start_time(rs.getTimestamp("activity_start_time"));
-					activity.setActivity_end_time(rs.getTimestamp("activity_end_time"));
-					activity.setActivity_detail(rs.getString("activity_detail"));
-					return activity;
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+	public void deleteById(String discountCode) {
+		Session session = getSession();
+		Activity activity = session.load(Activity.class, discountCode);
+		session.remove(activity);
+	}
+
+	@Override
+	public List<Activity> selectAllByVendorIdAndStatus(String vendorId, String statusType) {
+		// 狀態 0下架 INACTIVE / 1上架 ACTIVE
+		int status = ACTIVE.equals(statusType) ? 1 : 0;
+		String hql = "FROM Activity WHERE vendorId = :vendorId AND status = :status";
+		Query<Activity> query = getSession().createQuery(hql, Activity.class);
+		query.setParameter("vendorId", vendorId);
+		query.setParameter("status", status);
+		return query.list();
+	}
+
+	@Override
+	public void changeStatusToInactive(String discountCode) {
+		Activity activity = getSession().get(Activity.class, discountCode);
+		activity.setStatus(0); // 狀態改為下架
+		getSession().merge(activity);
 	}
 }

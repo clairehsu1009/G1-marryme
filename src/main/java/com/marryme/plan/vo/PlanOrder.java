@@ -83,7 +83,7 @@ public class PlanOrder {
     @Column(name = "discount_code")
     private Integer discountCode;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "plan_order_id")
+    @JoinColumn(name = "plan_order_id", referencedColumnName = "plan_order_id")
     private List<PlanOrderDetail> PlanOrderDetail = new ArrayList<>();
 
 

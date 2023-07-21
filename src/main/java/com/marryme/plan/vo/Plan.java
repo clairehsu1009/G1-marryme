@@ -68,7 +68,7 @@ public class Plan {
     private byte[] planPictures3;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "plan_product_id")
+    @JoinColumn(name = "plan_product_id", referencedColumnName = "plan_product_id")
     private List<PlanDetail> PlanDetail = new ArrayList<>();
 
 }

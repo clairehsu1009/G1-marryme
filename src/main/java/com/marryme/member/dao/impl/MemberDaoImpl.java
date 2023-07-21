@@ -83,10 +83,24 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
+	public Member selectById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteById(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public void update(Integer id, Member pojo) {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 	
 	

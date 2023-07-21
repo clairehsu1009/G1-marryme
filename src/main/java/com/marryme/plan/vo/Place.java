@@ -31,25 +31,25 @@ public class Place {
     @Column(name = "place_picture")
     private byte[] placePicture;
     /** 場地標題 */
-    @Column(name = "placeTitle")
-    private String place_title;
+    @Column(name = "place_title")
+    private String placeTitle;
     /** 建議桌數區間 */
     private String numbeOfTables;
     /** 場地介紹 */
     @Column(name = "place_Introduction")
     private String placeIntroduction;
     /**  場地圖片2 */
-    @Column(name = "placePictures2")
-    private byte[] place_pictures2;
+    @Column(name = "place_pictures2")
+    private byte[] placePictures2;
     /**  場地圖片3 */
-    @Column(name = "placePictures3")
-    private byte[] place_pictures3;
+    @Column(name = "place_pictures3")
+    private byte[] placePictures3;
     /**  場地圖片4 */
-    @Column(name = "placePictures4")
-    private byte[] place_pictures4;
+    @Column(name = "place_pictures4")
+    private byte[] placePictures4;
     /**  場地圖片5 */
-    @Column(name = "placePictures5")
-    private byte[] place_pictures5;
+    @Column(name = "place_pictures5")
+    private byte[] placePictures5;
     /**
      * 狀態 0下架 1上架 <br>
      * 預設1 上架 <br>

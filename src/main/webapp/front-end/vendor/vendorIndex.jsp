@@ -55,10 +55,10 @@
             <div class="col-md-6">
                 <div class="tile">
                     <h3 class="tile-title">商品概況
-                        <a class="btn btn-primary" type="button" style="background-color : #F9F900; color : black;padding: 1;" href="#">未上架</a>
-                        <a class="btn btn-primary" type="button" style="background-color : #46BFBD; color : black;padding: 1;" href="#">直售商品</a>
-                        <a class="btn btn-primary" type="button" style="background-color : #B766AD; color : black;padding: 1;" href="#">已售出</a>
-                        <a class="btn btn-primary" type="button" style="background-color : #F7464A; color : black;padding: 1;" href="#">違規下架</a>
+                        <a class="btn btn-primary" type="button" style="background-color : #F9F900; color : black;padding: 1px;" href="#">未上架</a>
+                        <a class="btn btn-primary" type="button" style="background-color : #46BFBD; color : black;padding: 1px;" href="#">直售商品</a>
+                        <a class="btn btn-primary" type="button" style="background-color : #B766AD; color : black;padding: 1px;" href="#">已售出</a>
+                        <a class="btn btn-primary" type="button" style="background-color : #F7464A; color : black;padding: 1px;" href="#">違規下架</a>
                     </h3>
                     <div class="embed-responsive embed-responsive-16by9">
                         <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>

@@ -1,66 +1,105 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.*"%>
-<%@ page import="com.marryme.activity.service.*"%>
-<%@ page import="com.marryme.activity.vo.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<%
-    ActivityServiceImpl service = new ActivityServiceImpl();
-    List<Activity> activityList = service.findAll();
-    pageContext.setAttribute("activityList",activityList);
-%>
+<jsp:useBean id="activityList" scope="request"
+	class="java.util.ArrayList" />
 
-<!DOCTYPE html>
+
 <html>
-<head>
-<meta charset="UTF-8">
-<title>查詢單筆活動 - Marryme</title>
-</head>
-<body>
-	<h1>所有活動列表</h1>
-	<table border="1">
-		<thead>
-			<tr>
-				<th>優惠代碼</th>
-				<th>廠商帳號</th>
-				<th>優惠活動名稱</th>
-				<th>折扣額度</th>
-				<th>活動開始時間</th>
-				<th>活動結束時間</th>
-				<th>活動內容</th>
-				<th>修改</th>
-				<th>刪除</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="activity" items="${activityList}">
+<%@include file="/front-end/vendor/common/vendorHead.jsp"%>
 
-				<tr>
-					<td>${activity.discount_code}</td>
-					<td>${activity.vendor_id}</td>
-					<td>${activity.activity_name}</td>
-					<td>${activity.discount}</td>
-					<td>${activity.activity_start_time}</td>
-					<td>${activity.activity_end_time}</td>
-					<td>${activity.activity_detail}</td>
-					<td>
-						<form method="post" action="/marryme/activity/getOneForUpdate">
-							<input type="hidden" name="discount_code"
-								value="${activity.discount_code}"> 
-								<input type="submit" value="修改">
-						</form>
-					</td>
-					<td>
-						<form method="post" action="/marryme/activity/delete">
-							<input type="hidden" name="discount_code"
-								value="${activity.discount_code}"> 
-								<input type="submit" value="刪除">
-						</form>
-					</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+<body class="app sidebar-mini rtl">
+	<%@include file="/front-end/header.jsp"%>
+	<%@include file="/front-end/vendor/common/vendorSidebar.jsp"%>
+
+	<main class="app-content">
+		<div class="app-title">
+			<div>
+				<h1>
+					<i class="fa fa-archive">&nbsp;</i>優惠券管理
+				</h1>
+			</div>
+			<form method="post"
+				action="<%=request.getContextPath()%>/activity/findAll"
+				style="margin-bottom: 0px;">
+				<input type="hidden" name="vendorId" value="${vendorId}" />
+				<ul class="app-breadcrumb breadcrumb">
+					<!--             <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已下架方案加購項目</button></li> -->
+					<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+					<li class="breadcrumb-item"><a
+						href="<%=request.getContextPath()%>/activity/findAll?vendorId=${vendorId}">優惠券管理</a></li>
+				</ul>
+			</form>
+		</div>
+		<div class="row productList" id="productList">
+			<div class="product-tab col-lg-12 col-12">
+				<div class="tab-item">
+					<ul class="nav" role="tablist">
+						<li><a class="active" data-toggle="tab" href="#tab-0"
+							role="tab">全部</a></li>
+						<li><a data-toggle="tab" href="#tab-1" role="tab">進行中的活動</a></li>
+						<li><a data-toggle="tab" href="#tab-2" role="tab">接下來的活動</a></li>
+						<li><a data-toggle="tab" href="#tab-3" role="tab">已結束</a></li>
+					</ul>
+				</div>
+				<div class="tab-item-content">
+					<div class="tab-content">
+						<c:forEach begin="0" end="6" varStatus="loop">
+							<c:set var="activeClass"
+								value="${loop.index == 0 ? 'active' : ''}" />
+							<div class="tab-pane fade-in ${activeClass}"
+								id="tab-${loop.index}" role="tabpanel">
+								<table class="table">
+									<thead class="thead">
+										<tr>
+											<th scope="col">優惠代碼</th>
+											<th scope="col">優惠活動名稱</th>
+											<th scope="col">折扣額度</th>
+											<th scope="col">活動開始時間</th>
+											<th scope="col">活動結束時間</th>
+											<th scope="col">活動內容</th>
+											<th scope="col">操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="activity" items="${activityList}" begin="0"
+											end="${activityList.size()}">
+<%-- 											<c:if test="${activity.status == loop.index}"> --%>
+											<tr>
+												<td>${activity.discountCode}</td>
+												<td>${activity.activityName}</td>
+												<td>${activity.discount}</td>
+												<td>${activity.activityStartTime}</td>
+												<td>${activity.activityEndTime}</td>
+												<td>${activity.activityDetail}</td>
+												<td>
+													<form method="post" action="<%=request.getContextPath()%>/activity/findAll" style="margin-bottom: 0px;">
+														 <input type="hidden" name="discountCode" value="${activity.discountCode}">
+														 <c:if test="${activity.editStatus == 0}">
+															<button type="submit" class="btn btn-info" 
+																formaction="<%=request.getContextPath()%>/marryme/activity/getOneForUpdate">編輯</button>
+														</c:if>
+														<button type="submit" class="btn btn-warning"
+															formaction="<%=request.getContextPath()%>/marryme/activity/delete">下架</button>
+													</form>
+												</td>
+											</tr>
+<%-- 											</c:if> --%>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</main>
+	<%@include file="/front-end/vendor/common/vendorFooterScript.jsp"%>
+
+
 </body>
 </html>

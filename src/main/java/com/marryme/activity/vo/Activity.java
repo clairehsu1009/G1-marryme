@@ -1,7 +1,7 @@
 /**
  * @Author Jeanny
- * @Create 2023/7/19 21:31
- * @Version 2.0
+ * @Create 2023/7/20 12:34
+ * @Version 3.0
  */
 
 package com.marryme.activity.vo;
@@ -9,72 +9,56 @@ package com.marryme.activity.vo;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(schema = "marryme")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Activity {
-	private String discount_code;
-	private String vendor_id;
-	private String activity_name;
+	@Id
+	// 優惠代碼
+	@Column(name = "discount_code")
+	private String discountCode;
+	// 廠商ID
+	@Column(name = "vendor_id", insertable = false)
+	private String vendorId;
+	// 活動名稱
+	@Column(name = "activity_name")
+	private String activityName;
+	// 折扣
 	private BigDecimal discount;
-	private Timestamp activity_start_time;
-	private Timestamp activity_end_time;
-	private String activity_detail;
-
-	public Activity() {
-	}
-	
-	// Getters and Setters
-	public String getDiscount_code() {
-		return discount_code;
-	}
-
-	public void setDiscount_code(String discount_code) {
-		this.discount_code = discount_code;
-	}
-
-	public String getVendor_id() {
-		return vendor_id;
-	}
-
-	public void setVendor_id(String vendor_id) {
-		this.vendor_id = vendor_id;
-	}
-
-	public String getActivity_name() {
-		return activity_name;
-	}
-
-	public void setActivity_name(String activity_name) {
-		this.activity_name = activity_name;
-	}
-
-	public BigDecimal getDiscount() {
-		return discount;
-	}
-
-	public void setDiscount(BigDecimal discount) {
-		this.discount = discount;
-	}
-
-	public Timestamp getActivity_start_time() {
-		return activity_start_time;
-	}
-
-	public void setActivity_start_time(Timestamp activity_start_time) {
-		this.activity_start_time = activity_start_time;
-	}
-
-	public Timestamp getActivity_end_time() {
-		return activity_end_time;
-	}
-
-	public void setActivity_end_time(Timestamp activity_end_time) {
-		this.activity_end_time = activity_end_time;
-	}
-
-	public String getActivity_detail() {
-		return activity_detail;
-	}
-
-	public void setActivity_detail(String activity_detail) {
-		this.activity_detail = activity_detail;
-	}
+	// 活動開始時間
+	@Column(name = "activity_start_time")
+	private Timestamp activityStartTime;
+	// 活動結束時間
+	@Column(name = "activity_end_time")
+	private Timestamp activityEndTime;
+	// 活動細項
+	@Column(name = "activity_detail")
+	private String activityDetail;
+	 /**
+     * 狀態 0下架 1上架
+     * 預設1 上架
+     * 改為0 下架，就不能再改上架，需要重新新增
+     * */
+    @Column(name = "status")
+    private Integer status;
+    /**
+     * 可否編輯內容 <br>
+     * 預設 0可修改 (若有已上架的優惠券，需提醒是否確認修改，仍可修改、優惠券帶出的資料會同步變更）
+     * 1不可修改 (已有已成立之訂單使用該優惠券，不可更改優惠券內容，只能下架）
+     * */
+    @Column(name = "edit_status")
+    private Integer editStatus;
 }

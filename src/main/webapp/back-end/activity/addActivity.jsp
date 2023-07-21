@@ -23,18 +23,18 @@
                         <li class="form_item">
                             <span class="item_name"><i>*</i>優惠代碼</span>
                             <input type="text" pattern="[0-9a-zA-Z]+" size="10" maxlength="10" value=""
-                                id="discountCode" name="discount_code"
+                                id="discountCode" name="discountCode"
                                 class="basic_input input_code title_count_input_js" required>
                             <span class="status" style="display:none"><i></i></span>
                         </li>
-                        <li class="form_item">
-                            <span class="item_name">廠商帳號</span>
-                            <input type="text" value="" id="vendorId" name="vendor_id"
-                                class="basic_input input_code title_count_input_js">
-                        </li>
+<!--                         <li class="form_item"> -->
+<!--                             <span class="item_name">廠商帳號</span> -->
+<!--                             <input type="text" value="" id="vendorId" name="vendorId" -->
+<!--                                 class="basic_input input_code title_count_input_js"> -->
+<!--                         </li> -->
                         <li class="form_item">
                             <span class="item_name"><i>*</i>優惠活動名稱</span>
-                            <input type="text" size="10" maxlength="50" value="" id="activityName" name="activity_name"
+                            <input type="text" size="10" maxlength="50" value="" id="activityName" name="activityName"
                                 class="basic_input input_code title_count_input_js" required>
                         </li>
                         <li class="form_item">
@@ -44,18 +44,18 @@
                         </li>
                         <li class="form_item">
                             <span class="item_name"><i>*</i>活動開始時間</span>
-                            <input type="datetime-local" size="20" value="" id="startTime" name="activity_start_time"
+                            <input type="datetime-local" size="20" value="" id="activityStartTime" name="activityStartTime"
                                 placeholder="" class="basic_input input_code" required>
                         </li>
                         <li class="form_item">
                             <span class="item_name"><i>*</i>活動結束時間</span>
-                            <input type="datetime-local" size="20" value="" id="endTime" name="activity_end_time" placeholder=""
+                            <input type="datetime-local" size="20" value="" id="activityEndTime" name="activityEndTime" placeholder=""
                                 class="basic_input input_code" required>
                         </li>
                         <li class="form_item">
                             <span class="item_name"><i>*</i>活動內容</span>
                             <div class="item_content">
-                                <textarea id="activityDetail" name="activity_detail" rows="" cols=""
+                                <textarea id="activityDetail" name="activityDetail" rows="" cols=""
                                     class="basic_input input_code story_count_input_js" placeholder=""
                                     style="overflow-y: scroll;height: 180px;"></textarea>
                             </div>

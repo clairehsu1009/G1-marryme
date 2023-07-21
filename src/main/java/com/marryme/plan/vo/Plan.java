@@ -3,6 +3,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ClassName: Plan
@@ -65,5 +67,8 @@ public class Plan {
     @Column(name = "plan_pictures3")
     private byte[] planPictures3;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "plan_product_id")
+    private List<PlanDetail> PlanDetail = new ArrayList<>();
 
 }

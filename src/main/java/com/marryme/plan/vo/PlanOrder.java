@@ -7,7 +7,9 @@ import lombok.Setter;
 import org.checkerframework.checker.units.qual.C;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * ClassName: PlanOrder
@@ -80,7 +82,9 @@ public class PlanOrder {
     /** 優惠代碼 */
     @Column(name = "discount_code")
     private Integer discountCode;
-
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "plan_order_id")
+    private List<PlanOrderDetail> PlanOrderDetail = new ArrayList<>();
 
 
 }

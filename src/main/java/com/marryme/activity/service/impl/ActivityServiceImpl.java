@@ -5,14 +5,15 @@
  *
  */
 
-package com.marryme.activity.service;
+package com.marryme.activity.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.marryme.activity.dao.ActivityDao;
-import com.marryme.activity.dao.ActivityDaoImpl;
-import com.marryme.activity.vo.Activity;
+import com.marryme.activity.dao.impl.ActivityDaoImpl;
+import com.marryme.activity.entity.Activity;
+import com.marryme.activity.service.ActivityService;
 
 public class ActivityServiceImpl implements ActivityService {
 	private ActivityDao dao;
@@ -38,17 +39,18 @@ public class ActivityServiceImpl implements ActivityService {
 
 	// 新增活動
 	@Override
-	public Integer add(Activity activity) {
-		Integer id = null;
+	public Activity add(Activity activity) {
 		try {
 			beginTransaction();
-			id = dao.insert(activity);
+			activity.setStatus(1);
+			activity.setEditStatus(0);
+			final int resultCount = dao.insert(activity);
 			commit();
 		} catch (Exception e) {
 			rollback();
 			e.printStackTrace();
 		}
-		return id;
+		return activity;
 	}
 
 	// 更新活動(已結束活動的不能修改, 進行中的優惠只能修改活動名稱、結束時間、活動細項, 尚未進行的除了折扣代碼外其餘皆可修改)
@@ -109,20 +111,20 @@ public class ActivityServiceImpl implements ActivityService {
 		}
 		return activityList;
 	}
-	
+
 	// 調整狀態為下架
 	@Override
-    public boolean changeStatusToInactive(String discountCode) {
-        boolean result = false;
-        try {
-            beginTransaction();
-            dao.changeStatusToInactive(discountCode);
-            commit();
-            result = true;
-        } catch (Exception e) {
-            rollback();
-            e.printStackTrace();
-        }
-        return result;
-    }
+	public boolean changeStatusToInactive(String discountCode) {
+		boolean result = false;
+		try {
+			beginTransaction();
+			dao.changeStatusToInactive(discountCode);
+			commit();
+			result = true;
+		} catch (Exception e) {
+			rollback();
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

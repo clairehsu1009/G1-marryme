@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.marryme.activity.service.ActivityServiceImpl;
-import com.marryme.activity.vo.Activity;
+import com.marryme.activity.entity.Activity;
+import com.marryme.activity.service.impl.ActivityServiceImpl;
 
 @WebServlet("/activity/getOneForUpdate")
 public class GetOneForUpdateServlet extends HttpServlet {
@@ -37,11 +37,11 @@ public class GetOneForUpdateServlet extends HttpServlet {
 		req.setAttribute("errorMsgs", errorMsgs);
 
 		/*************************** 1.接收請求參數 ****************************************/
-		String discount_code = req.getParameter("discount_code");
+		String discountCode = req.getParameter("discountCode");
 
 		/*************************** 2.開始查詢資料 ****************************************/
 		ActivityServiceImpl service = new ActivityServiceImpl();
-		Activity activity = service.getOneActivity(discount_code);
+		Activity activity = service.getOne(discountCode);
 
 		/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 		req.setAttribute("activity", activity); // 資料庫取出的activity物件,存入req

@@ -8,7 +8,7 @@ package com.marryme.activity.dao;
 
 import java.util.List;
 
-import com.marryme.activity.vo.Activity;
+import com.marryme.activity.entity.Activity;
 import com.marryme.core.dao.CoreDao;
 
 public interface ActivityDao extends CoreDao<Activity, String>{

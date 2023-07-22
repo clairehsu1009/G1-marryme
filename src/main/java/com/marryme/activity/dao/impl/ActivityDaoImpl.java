@@ -4,7 +4,7 @@
  * @Version 3.0
  */
 
-package com.marryme.activity.dao;
+package com.marryme.activity.dao.impl;
 
 import static com.marryme.common.CommonString.ACTIVE;
 
@@ -13,8 +13,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import com.marryme.activity.vo.Activity;
-
+import com.marryme.activity.dao.ActivityDao;
+import com.marryme.activity.entity.Activity;
 
 public class ActivityDaoImpl implements ActivityDao {
 
@@ -30,10 +30,9 @@ public class ActivityDaoImpl implements ActivityDao {
 	}
 
 	@Override
-	public Integer insert(Activity vo) {
-		vo.setStatus(vo.getStatus() == null ? 1 : vo.getStatus());
-		vo.setEditStatus(vo.getEditStatus() == null ? 0 : 1);
-		return (Integer) getSession().save(vo);
+	public Integer insert(Activity activity) {
+		getSession().persist(activity);
+		return 1;
 	}
 
 	@Override

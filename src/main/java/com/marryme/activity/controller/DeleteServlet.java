@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.marryme.activity.service.ActivityServiceImpl;
+import com.marryme.activity.service.impl.ActivityServiceImpl;
 
 @WebServlet("/activity/delete")
 public class DeleteServlet extends HttpServlet {

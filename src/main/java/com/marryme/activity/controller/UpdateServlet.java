@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.marryme.activity.service.ActivityServiceImpl;
-import com.marryme.activity.vo.Activity;
+import com.marryme.activity.entity.Activity;
+import com.marryme.activity.service.impl.ActivityServiceImpl;
 
 @WebServlet("/activity/update")
 public class UpdateServlet extends HttpServlet {

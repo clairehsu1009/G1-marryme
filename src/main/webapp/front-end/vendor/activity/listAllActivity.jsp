@@ -26,10 +26,10 @@
 				style="margin-bottom: 0px;">
 				<input type="hidden" name="vendorId" value="${vendorId}" />
 				<ul class="app-breadcrumb breadcrumb">
-					<li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已下架方案加購項目</button></li>
+					<li><button type="submit" class="btn btn-Success mr-5"
+							name="action" value="getActivityItemInactiveList">查看已下架優惠券</button></li>
 					<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-					<li class="breadcrumb-item">
-					<a href="<%=request.getContextPath()%>/activity/findAll?vendorId=${vendorId}">優惠券管理</a></li>
+					<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/activity/findAll?vendorId=${vendorId}">優惠券管理</a></li>
 				</ul>
 			</form>
 		</div>
@@ -74,14 +74,17 @@
 												<td>${activity.activityEndTime}</td>
 												<td>${activity.activityDetail}</td>
 												<td>
-													<form method="post" action="<%=request.getContextPath()%>/activity/findAll" style="margin-bottom: 0px;">
-														 <input type="hidden" name="discountCode" value="${activity.discountCode}">
-														 <c:if test="${activity.editStatus == 0}">
-															<button type="submit" class="btn btn-info" 
+													<form method="post"
+														action="<%=request.getContextPath()%>/activity/findAll"
+														style="margin-bottom: 0px;">
+														<input type="hidden" name="discountCode"
+															value="${activity.discountCode}">
+														<c:if test="${activity.editStatus == 0}">
+															<button type="submit" class="btn btn-info"
 																formaction="<%=request.getContextPath()%>/marryme/activity/getOneForUpdate">編輯</button>
 														</c:if>
 														<button type="submit" class="btn btn-warning"
-															formaction="<%=request.getContextPath()%>/marryme/activity/delete">下架</button>
+															formaction="<%=request.getContextPath()%>/marryme/activity/changeStatusToInactive">下架</button>
 													</form>
 												</td>
 											</tr>

@@ -17,9 +17,9 @@ import static com.marryme.common.CommonString.ACTIVE;
 import java.io.IOException;
 import java.util.List;
 
+import com.marryme.activity.entity.Activity;
 import com.marryme.activity.service.ActivityService;
-import com.marryme.activity.service.ActivityServiceImpl;
-import com.marryme.activity.vo.Activity;
+import com.marryme.activity.service.impl.ActivityServiceImpl;
 import com.marryme.plan.vo.Item;
 
 @WebServlet("/activity/findAll")

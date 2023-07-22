@@ -8,7 +8,7 @@ package com.marryme.activity.service;
 
 import java.util.List;
 
-import com.marryme.activity.vo.Activity;
+import com.marryme.activity.entity.Activity;
 import com.marryme.core.service.CoreService;
 
 public interface ActivityService extends CoreService {
@@ -18,7 +18,7 @@ public interface ActivityService extends CoreService {
 	
 	Activity getOne(String discountCode);
 	
-	Integer add(Activity activity);
+	Activity add(Activity activity);
 	
 	boolean edit(String discountCode, Activity activity);
 	

@@ -62,5 +62,13 @@ public class Member {
      * */
 	@Column(name = "verifcation_status")
 	private Integer verificationStatus;
+	
+	private boolean successful;
+	private String message;
 
+
+	public Member(boolean successful, String message) {
+		this.successful = successful;
+		this.message = message;
+	}
 }

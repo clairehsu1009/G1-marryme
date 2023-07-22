@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS online_report;
 DROP TABLE IF EXISTS reservation;
 DROP TABLE IF EXISTS redis;
 
-DROP TABLE IF EXISTS wedding_place;
+DROP TABLE IF EXISTS plan_place;
 DROP TABLE IF EXISTS unavailable_dates;
 DROP TABLE IF EXISTS plan_item;
 DROP TABLE IF EXISTS plan_product;
@@ -436,7 +436,7 @@ INSERT INTO orders (member_id, discount_code, order_status,
 		   ('member5@gmail.com',NULL,4,'2023-07-05 18:00:00',1,'2023-07-08 18:00:00',1,'2023-07-05 18:00:00','2023-07-12 18:00:00',120,0,3450);
            
            
-CREATE TABLE wedding_place (
+CREATE TABLE plan_place (
   place_id int primary key not null auto_increment comment'場地_ID',
   vendor_id varchar(50) not null comment '廠商_ID為信箱,{FK}',
   place_picture Blob comment '主圖片',
@@ -447,26 +447,28 @@ CREATE TABLE wedding_place (
   place_pictures3 longblob comment '圖片',
   place_pictures4 longblob comment '圖片',
   place_pictures5 longblob comment '圖片',
+   `status` int not null default 1 comment '0下架, 1上架',
+  edit_status int not null default 0 comment '0可修改, 1不可修改',
   FOREIGN KEY (vendor_id) REFERENCES vendor(vendor_id)
   ) comment '婚宴場地' ;
 
-INSERT INTO wedding_place (vendor_id, place_title, numbeOfTables, place_Introduction)
+INSERT INTO plan_place (vendor_id, place_title, numbeOfTables, place_Introduction, `status`, edit_status)
 VALUES
-('vendor1@gmail.com', '軒景廳', '21-31', '雍容時尚的軒景廳，以沉靜的莫蘭迪藍，擄獲各個女神新娘的目光'),
-('vendor1@gmail.com', '維也納廳', '11-29', '使用金屬鏡面與典雅棕色的宴會廳，呈現出貴族般的富麗堂皇卻又不失細膩溫馨，使幸福婚禮更趨近完美等級。'),
-('vendor1@gmail.com', '凡爾賽廳', '29', '造型水晶燈與典雅佈置妝點婚禮的甜蜜氣氛，象徵兩人幸福的未來，見證兩人美好的愛情開花結果'),
-('vendor1@gmail.com', '星空廳', '6', '絲質絨布落地窗簾在柔和燈光反射下，營造滿室浪漫華麗氛圍'),
-('vendor1@gmail.com', '歐佩拉廳', '25-27', '雅致風格的空間搭配高規格尖端設計感，呈現整體大器感'),
-('vendor1@gmail.com', '薔薇廳', '20-25', '雅致的空間設計，以穩定灰色調搭配白色，適合典雅浪漫的婚禮氛圍。'),
-('vendor1@gmail.com', '凱撒廳', '35-38', '黑鏡烤漆牆面現代感十足，天花板上兩排奢華水晶燈，黑鏡烤漆設計，璀璨燈光如繁星閃爍！'),
-('vendor2@gmail.com', '愛麗絲物語', '11-45', '粉色的玫瑰花語，代表的是美好高貴與純真善良的愛情，在典雅浪漫的花海布置下，完成屬於兩人的幸福盟約'),
-('vendor2@gmail.com', '翡儷廳', '12-19', '廳房主色調莫蘭迪藍，跳色搭配活潑的檸檬黃，輕婚禮的時尚感更成為現在的趨勢'),
-('vendor2@gmail.com', '寶儷廳', '26', '從步入紅毯的那一刻起，彷彿走入王子與公主的舞會，洋溢幸福的樂章'),
-('vendor2@gmail.com', '璀璨', '10-27', '紫色系維多利亞風'),
-('vendor2@gmail.com', '金枝玉葉', '10-27', '金綠色系童話風'),
-('vendor2@gmail.com', '蜷川', '12-19', '【萬眾矚目.全球唯一】跨界聯名打造絕美藝術空間'),
-('vendor3@gmail.com', '仙侶奇緣', '16-30', '白金色系古典精緻風'),
-('vendor3@gmail.com', '星空國際宴會廳', '30-99', '首選高規格大型喜慶宴席');
+('vendor1@gmail.com', '軒景廳', '21-31', '雍容時尚的軒景廳，以沉靜的莫蘭迪藍，擄獲各個女神新娘的目光',1 ,0),
+('vendor1@gmail.com', '維也納廳', '11-29', '使用金屬鏡面與典雅棕色的宴會廳，呈現出貴族般的富麗堂皇卻又不失細膩溫馨，使幸福婚禮更趨近完美等級。',1 ,0),
+('vendor1@gmail.com', '凡爾賽廳', '29', '造型水晶燈與典雅佈置妝點婚禮的甜蜜氣氛，象徵兩人幸福的未來，見證兩人美好的愛情開花結果',1 ,0),
+('vendor1@gmail.com', '星空廳', '6', '絲質絨布落地窗簾在柔和燈光反射下，營造滿室浪漫華麗氛圍',1 ,0),
+('vendor1@gmail.com', '歐佩拉廳', '25-27', '雅致風格的空間搭配高規格尖端設計感，呈現整體大器感',1 ,0),
+('vendor1@gmail.com', '薔薇廳', '20-25', '雅致的空間設計，以穩定灰色調搭配白色，適合典雅浪漫的婚禮氛圍。',1 ,0),
+('vendor1@gmail.com', '凱撒廳', '35-38', '黑鏡烤漆牆面現代感十足，天花板上兩排奢華水晶燈，黑鏡烤漆設計，璀璨燈光如繁星閃爍！',1 ,0),
+('vendor2@gmail.com', '愛麗絲物語', '11-45', '粉色的玫瑰花語，代表的是美好高貴與純真善良的愛情，在典雅浪漫的花海布置下，完成屬於兩人的幸福盟約',1 ,0),
+('vendor2@gmail.com', '翡儷廳', '12-19', '廳房主色調莫蘭迪藍，跳色搭配活潑的檸檬黃，輕婚禮的時尚感更成為現在的趨勢',1 ,0),
+('vendor2@gmail.com', '寶儷廳', '26', '從步入紅毯的那一刻起，彷彿走入王子與公主的舞會，洋溢幸福的樂章',1 ,0),
+('vendor2@gmail.com', '璀璨', '10-27', '紫色系維多利亞風',1 ,0),
+('vendor2@gmail.com', '金枝玉葉', '10-27', '金綠色系童話風',1 ,0),
+('vendor2@gmail.com', '蜷川', '12-19', '【萬眾矚目.全球唯一】跨界聯名打造絕美藝術空間',1 ,0),
+('vendor3@gmail.com', '仙侶奇緣', '16-30', '白金色系古典精緻風',1 ,0),
+('vendor3@gmail.com', '星空國際宴會廳', '30-99', '首選高規格大型喜慶宴席,1 ,0');
 
 
 CREATE TABLE plan_product (
@@ -504,12 +506,12 @@ CREATE TABLE plan_item (
   item_description varchar(500)not null comment'描述',
   item_deposit int not null comment'訂金',
   item_total int not null comment'金額',
-  status int not null default 1 comment '0下架, 1上架',
+  `status` int not null default 1 comment '0下架, 1上架',
   edit_status int not null default 0 comment '0可修改, 1不可修改',
   FOREIGN KEY (vendor_id) REFERENCES vendor(vendor_id)
 )comment = '方案加購項目訂購明細';
 
-INSERT INTO plan_item (vendor_id, item_type, item_select, item_description, item_deposit, item_total, status, edit_status) VALUES
+INSERT INTO plan_item (vendor_id, item_type, item_select, item_description, item_deposit, item_total, `status`, edit_status) VALUES
 ('vendor1@gmail.com', 0, '一桌', '試菜價8折', 4000, 10000, 0, 0),
 ('vendor1@gmail.com', 0, '兩桌', '可討論想試的菜色，第一次試菜完畢後可供二次試菜並定案', 12000, 30000, 0, 0),
 ('vendor1@gmail.com', 1, '基本菜色', '一桌的價格', 6400, 16000, 0, 0),
@@ -607,7 +609,7 @@ CREATE TABLE unavailable_dates (
   unavailable_date date not null comment'不可預約日期',
   unavailable_time int not null comment'不可預約時間,0中午、1晚上',
   unique key UK_unavailable_dateAndTime(place_id,unavailable_date,unavailable_time),
-  FOREIGN KEY (place_id) REFERENCES wedding_place(place_id)
+  FOREIGN KEY (place_id) REFERENCES plan_place(place_id)
   )COMMENT = '不可預約時段'; 
   
   
@@ -647,7 +649,7 @@ CREATE TABLE plan_order (
   discount_code char(10) comment'優惠代碼{FK}',
   FOREIGN KEY (member_id) REFERENCES member(member_id),
   FOREIGN KEY (plan_product_id) REFERENCES plan_product(plan_product_id),
-  FOREIGN KEY (place_id) REFERENCES wedding_place(place_id),
+  FOREIGN KEY (place_id) REFERENCES plan_place(place_id),
   FOREIGN KEY (unavailable_dates_id) REFERENCES unavailable_dates(unavailable_dates_id),
   FOREIGN KEY (discount_code) REFERENCES member_coupon_list  (discount_code)
 )comment = '方案訂單';

@@ -1,7 +1,6 @@
 package com.marryme.plan.vo;
 
 import lombok.*;
-import com.marryme.core.vo.Core;
 
 import javax.persistence.*;
 

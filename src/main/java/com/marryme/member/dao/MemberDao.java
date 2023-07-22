@@ -9,7 +9,7 @@ public interface MemberDao extends CoreDao<Member, String> {
 	Member selectByMemberId(String memberId);
 	
 	/** 搜尋登入使用者帳號密碼 */
-	Member selectForLogin(String memberId, String password);
+	Member selectForLogin(String memberId, String memberPassword);
 
 	void update(Integer id, Member pojo);
 

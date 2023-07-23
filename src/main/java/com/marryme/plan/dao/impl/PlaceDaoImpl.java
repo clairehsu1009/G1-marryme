@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.marryme.common.CommonString.ACTIVE;
 
@@ -83,5 +84,19 @@ public class PlaceDaoImpl implements PlaceDao {
         Place place = getSession().get(Place.class, placeId);
         place.setStatus(0); // 狀態改為下架
         getSession().merge(place);
+    }
+
+    @Override
+    public Optional<byte[]> selectPhotoByIdAndField(Integer placeId, String fieldName) {
+        String hql = "SELECT " + fieldName + " FROM Place WHERE placeId = :placeId";
+        Query<byte[]> query = getSession().createQuery(hql, byte[].class);
+        query.setParameter("placeId", placeId);
+        List<byte[]> photos = query.list();
+
+        if (!photos.isEmpty()) {
+            return Optional.ofNullable(photos.get(0));
+        } else {
+            return Optional.empty();
+        }
     }
 }

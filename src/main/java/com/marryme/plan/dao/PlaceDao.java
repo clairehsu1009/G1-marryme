@@ -6,6 +6,7 @@ import com.marryme.plan.vo.Item;
 import com.marryme.plan.vo.Place;
 
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -23,4 +24,7 @@ public interface PlaceDao extends CoreDao<Place, Integer> {
 
     /** 修改加購項目狀態為下架 */
     void changeStatusToInactive(Integer placeId);
+
+    /** 取得場地photo */
+    Optional<byte[]> selectPhotoByIdAndField(Integer placeId, String fieldName);
 }

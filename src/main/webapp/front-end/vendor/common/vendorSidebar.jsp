@@ -22,6 +22,14 @@
                 <li><a class="treeview-item" href="#"><i class="icon fa fa-edit"></i>新增商品</a></li>
             </ul>
         </li>
+        <li class="treeview"><a class="app-menu__item" href="#"  data-toggle="treeview"><i
+                class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">優惠券管理</span><i
+                class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+                <li><a class="treeview-item" href="<%=request.getContextPath()%>/activity/findAll?vendorId=${vendorId}"><i class="icon fa fa-archive"></i>我的優惠券</a></li>
+                <li><a class="treeview-item" href="<%=request.getContextPath()%>/front-end/vendor/activity/addActivity.jsp"><i class="icon fa fa-edit"></i>新增優惠券</a></li>
+            </ul>
+        </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                 class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">方案管理</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>

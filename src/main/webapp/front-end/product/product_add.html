@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增商品 - 廠商後台 - MarryMe</title>
+    <link href="/css/product_add.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="col lg_9 md_12 sm_12 page_container">
+        <h1 class="page_title">新增商品資料</h1>
+        <form method="post" action="?" name="edit_form">
+            <div class="page_content">
+                <div class="content_border">
+                    <h3 class="title">商品資料</h3>
+                    <ul>
+                        <li class="form_item"><span class="item_name"><i>*</i>商品類別</span><span
+                                class="color_neutral"></span>
+                            <select id='business_type' name='business_type' class='basic_input w_80'>
+                                <option value='0'>請選擇類別</option>
+                                <option value='2001'>婚戒</option>
+                                <option value='2002'>婚禮小物</option>
+                                <option value='2003'>高跟鞋/西裝鞋</option>
+                                <option value='2004'>喜餅</option>
+                                <option value='2005'>婚紗/禮服</option>
+                            </select><span class="status" style="display:none"><i></i></span>
+                        </li>
+                        <li class="form_item"><span class="item_name"><i>*</i>商品名稱</span><input type="text" size="10"
+                                value="" id="name" name="name" class="basic_input input_code title_count_input_js">
+                            <!-- <div id="descri_length" class="word_count title_count_js">00/20</div><span
+                        class="status" style="display:none"><i></i></span> -->
+                        </li>
+                        <li class="form_item" id="">
+                            <p class="item_title item_title_required">商品照片</p>
+                            <div class="upload_img upload_cover"><img id="preview_img_bid" src=" " alt=""><a
+                                    href="javascript:;">上傳圖片</a><input id="nav_file_bid"></div>
+                            <p class="input_tips">※ 比例 3：2；建議最低尺寸 1920Ｘ1280 px</p><span class="status status_error"
+                                style="display: none;" id="file_bid_error"><i></i></span>
+                        </li>
+
+
+
+                        <li class="form_item"><span class="item_name"><i>*</i>商品/服務內容</span>
+                            <div class="item_content">
+                                <textarea id="descri" name="descri" rows="" cols=""
+                                    class="basic_input input_code story_count_input_js"
+                                    placeholder="請填寫商品/服務簡介，資料完整度越高的店家越容易受到客戶青睞哦！"
+                                    style="overflow-y: scroll;height: 180px;"></textarea><span class="status"
+                                    style="display:none"><i></i></span>
+                                <div id="descri_length" class="word_count">目前字數：<span class="story_count_js">0</span>，最少
+                                    60 字元</div>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+                <div class="form_btn"><a class="btn_common btn_primary" href="javascript:;" title="儲存"
+                        onclick="save(this);">儲存</a></div>
+            </div>
+        </form>
+        <form action="?" method="post"><input type="file" accept="image/*" name="file" id="file" hidden>
+        </form>
+        <form action="?" method="post"><input type="file" accept="image/*" name="file" id=" ">
+        </form>
+    </div>
+</body>
+
+</html>

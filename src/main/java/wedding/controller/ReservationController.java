@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet("/reservation")
+//@WebServlet("/reservation")
 public class ReservationController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	

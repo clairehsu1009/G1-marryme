@@ -179,7 +179,7 @@
 
 
 
-						fetch('/marryMe/reservation', {
+						fetch('/marryme/reservation', {
 							method: 'POST',
 							headers: {
 								'Content-Type': 'application/json',

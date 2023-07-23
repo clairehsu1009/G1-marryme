@@ -31,11 +31,12 @@ public class ReservationDaoImpl implements ReservationDao{
 	@Override
 	public void update(Integer id, Reservation vo) {
 		Reservation reservation = getSession().get(Reservation.class, id);
-		reservation.setContactName(reservation.getContactName());
-		reservation.setContactNumber(reservation.getContactNumber());
-		reservation.setEventDate(reservation.getEventDate());
-		reservation.setReservationDate(reservation.getReservationDate());
-		reservation.setReservationNotes(reservation.getReservationNotes());
+		reservation.setContactName(vo.getContactName());
+		reservation.setContactNumber(vo.getContactNumber());
+		reservation.setEventDate(vo.getEventDate());
+		reservation.setReservationDate(vo.getReservationDate());
+		reservation.setReservationNotes(vo.getReservationNotes());
+		
 		
 		getSession().merge(reservation);
 		

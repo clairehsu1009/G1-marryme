@@ -19,11 +19,11 @@
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/plan-item?vendorId=${vendorId}">方案加購項目管理</a></li>
+            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/reservation?vendorId=${vendorId}">預約賞聽管理</a></li>
         </ul>
     </div>
     <!-- 之後這邊要改取得登入廠商的ID 才是正確的 -->
-    <c:if test="${vendorId == item.vendorId}">
+    <c:if test="${vendorId == reservation.vendorId}">
     <div class="row">
         <div class="col-md-12 productsAdd productList">
         <div class="tab-item-content">
@@ -31,24 +31,24 @@
                 <table class="table">
                     <tbody>
                     <tr>
-                        <th scope="col">項目種類</th>
-                        <td>${item.itemTypeName}</td>
+                        <th scope="col">客戶名稱</th>
+                        <td>${reservation.contactName}</td>
                     </tr>
                     <tr>
-                        <th scope="col">項目名稱</th>
-                        <td>${item.itemSelect}</td>
+                        <th scope="col">聯繫電話</th>
+                        <td>${reservation.contactNumber}</td>
                     </tr>
                     <tr>
-                        <th scope="col">項目說明</th>
-                        <td>${item.itemDescription}</td>
+                        <th scope="col">宴客日期</th>
+                        <td>${reservation.eventDate}</td>
                     </tr>
                     <tr>
-                        <th scope="col">訂金</th>
-                        <td>${item.itemDeposit}</td>
+                        <th scope="col">預約日期</th>
+                        <td>${reservation.reservationDate}</td>
                     </tr>
                     <tr>
-                        <th scope="col">金額</th>
-                        <td>${item.itemTotal}</td>
+                        <th scope="col">備註</th>
+                        <td>${reservation.reservationNotes}</td>
                     </tr>
                     </tbody>
                 </table>

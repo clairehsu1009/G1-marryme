@@ -47,5 +47,9 @@ public class Reservation {
      * 改為0 預約取消，就不能再改上架，需要重新新增
      * */
     private Integer status;
+    
+    
+    
+
 	
 }

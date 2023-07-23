@@ -22,5 +22,6 @@
 		<mapping class="com.marryme.activity.entity.Activity"/>
 		<mapping class="com.marryme.product.entity.ProductCategory"/>
 		<mapping class="com.marryme.product.entity.Product"/>
+		<mapping class="com.marryme.reservation.vo.Reservation"/>
 	</session-factory>
 </hibernate-configuration>

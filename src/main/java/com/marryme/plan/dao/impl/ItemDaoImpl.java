@@ -6,7 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.util.List;
-import java.util.Optional;
 
 import static com.marryme.common.CommonString.ACTIVE;
 

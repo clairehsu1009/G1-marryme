@@ -55,6 +55,17 @@
                 <li><a class="treeview-item" href="#"><i class="icon fa fa-th-list"></i>方案訂單</a></li>
             </ul>
         </li>
+        
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+                class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">預約管理</span><i
+                class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+                <li><a class="treeview-item" href="<%=request.getContextPath()%>/reservation?vendorId=${vendorId}"><i 
+                class="icon fa fa-archive"></i>預約明細</a></li>
+<!--                 <li><a class="treeview-item" href="#"><i class="icon fa fa-edit"></i>其他</a></li> -->
+            </ul>
+        </li>
+        
         <li class="treeview">
             <a class="app-menu__item" href="#" target="_blank"><i class="app-menu__icon fa fa-diamond"></i><span
                     class="app-menu__label">前往我的賣場</span><i class="treeview-indicator fa fa-angle-right"></i></a>

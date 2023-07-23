@@ -24,7 +24,7 @@ public interface ActivityService extends CoreService {
 	
 	boolean remove(String discountCode);
 	
-	List<Activity> findAllByVendorIdAndStatus(String vendorId, String active);
+	List<Activity> findAllByVendorIdAndStatus(String vendorId, String statusType);
 
 	// 修改優惠券狀態為下架 
 	boolean changeStatusToInactive(String discountCode);

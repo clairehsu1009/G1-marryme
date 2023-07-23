@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.*;
 
@@ -63,9 +64,10 @@ public class Member {
 	@Column(name = "verifcation_status")
 	private Integer verificationStatus;
 	
+	@Transient
 	private boolean successful;
+	@Transient
 	private String message;
-
 
 	public Member(boolean successful, String message) {
 		this.successful = successful;

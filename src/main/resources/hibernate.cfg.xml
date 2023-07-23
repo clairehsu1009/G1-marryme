@@ -18,10 +18,17 @@
 		<property name="hibernate.highlight_sql">true</property>
 
 
-		<mapping class="com.marryme.plan.vo.Item"/>
 		<mapping class="com.marryme.activity.entity.Activity"/>
 		<mapping class="com.marryme.product.entity.ProductCategory"/>
 		<mapping class="com.marryme.product.entity.Product"/>
 		<mapping class="com.marryme.reservation.vo.Reservation"/>
+		
+		<mapping class="com.marryme.plan.vo.Item"/>
+		<mapping class="com.marryme.plan.vo.Place"/>
+		<mapping class="com.marryme.plan.vo.Plan"/>
+		<mapping class="com.marryme.plan.vo.PlanDetail"/>
+		<mapping class="com.marryme.plan.vo.PlanOrder"/>
+		<mapping class="com.marryme.plan.vo.PlanOrderDetail"/>
+		<mapping class="com.marryme.plan.vo.UnavailableDate"/>
 	</session-factory>
 </hibernate-configuration>

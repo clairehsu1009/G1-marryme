@@ -3,6 +3,10 @@ package com.marryme.common;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.servlet.http.Part;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,5 +54,27 @@ public class ControllerUtils {
             e.printStackTrace();
             throw new RuntimeException("取得參數失敗, " + e);
         }
+    }
+
+    /**
+     * 讀取圖片進參數
+     * @param part
+     * @return
+     * @throws IOException
+     */
+    public static byte[] readPhotoToParameter(Part part) throws IOException {
+        if(part == null || part.getSize() == 0) {
+            return null;
+        }
+        InputStream in = part.getInputStream();
+        byte[] buffer = new byte[4 * 1024];
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        int i;
+        while ((i = in.read(buffer)) != -1) {
+            baos.write(buffer, 0, i);
+            baos.flush();
+        }
+        in.close();
+        return baos.toByteArray();
     }
 }

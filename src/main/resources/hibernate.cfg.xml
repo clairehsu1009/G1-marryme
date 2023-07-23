@@ -20,6 +20,7 @@
 
 		<mapping class="com.marryme.plan.vo.Item"/>
 		<mapping class="com.marryme.activity.entity.Activity"/>
-
+		<mapping class="com.marryme.product.entity.ProductCategory"/>
+		<mapping class="com.marryme.product.entity.Product"/>
 	</session-factory>
 </hibernate-configuration>

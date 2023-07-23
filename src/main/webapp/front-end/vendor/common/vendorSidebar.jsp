@@ -34,8 +34,8 @@
                 class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">方案場地管理</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-archive"></i>我的場地</a></li>
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-edit"></i>新增場地</a></li>
+                <li><a class="treeview-item" href="<%=request.getContextPath()%>/plan-place?vendorId=${vendorId}"><i class="icon fa fa-archive"></i>我的場地</a></li>
+                <li><a class="treeview-item" href="<%=request.getContextPath()%>/front-end/vendor/plan/planItem/addPlanItem.jsp"><i class="icon fa fa-edit"></i>新增場地</a></li>
             </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
@@ -43,7 +43,7 @@
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="<%=request.getContextPath()%>/plan-item?vendorId=${vendorId}"><i class="icon fa fa-archive"></i>方案加購項目</a></li>
-                <li><a class="treeview-item" href="<%=request.getContextPath()%>/front-end/vendor/plan/addPlanItem.jsp"><i class="icon fa fa-edit"></i>新增加購項目</a></li>
+                <li><a class="treeview-item" href="<%=request.getContextPath()%>/front-end/vendor/plan/planItem/addPlanItem.jsp"><i class="icon fa fa-edit"></i>新增加購項目</a></li>
             </ul>
         </li>
 

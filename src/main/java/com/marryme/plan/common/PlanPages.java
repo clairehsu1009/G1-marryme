@@ -3,12 +3,19 @@ package com.marryme.plan.common;
 public class PlanPages {
 
     // planItem 加購項目
-    public static final String ADD_PLAN_ITEM_PAGE = "/front-end/vendor/plan/addPlanItem.jsp";
-    public static final String UPDATE_PLAN_ITEM_PAGE = "/front-end/vendor/plan/updatePlanItem.jsp";
-    public static final String ONE_PLAN_ITEM_PAGE = "/front-end/vendor/plan/planItem.jsp";
+    public static final String ADD_PLAN_ITEM_PAGE = "/front-end/vendor/plan/planItem/addPlanItem.jsp";
+    public static final String UPDATE_PLAN_ITEM_PAGE = "/front-end/vendor/plan/planItem/updatePlanItem.jsp";
+    public static final String ONE_PLAN_ITEM_PAGE = "/front-end/vendor/plan/planItem/planItem.jsp";
     /** 廠商 已上架-方案加購項目清單 */
-    public static final String LIST_PLAN_ITEM_PAGE = "/front-end/vendor/plan/planItemList.jsp";
+    public static final String LIST_PLAN_ITEM_PAGE = "/front-end/vendor/plan/planItem/planItemList.jsp";
     /** 廠商 已下架-方案加購項目清單 */
-    public static final String OFF_LIST_PLAN_ITEM_PAGE = "/front-end/vendor/plan/planItemOffList.jsp";
+    public static final String OFF_LIST_PLAN_ITEM_PAGE = "/front-end/vendor/plan/planItem/planItemOffList.jsp";
+
+    // planPlace 場地
+    public static final String ADD_PLAN_PLACE_PAGE = "/front-end/vendor/plan/place/addPlanPlace.jsp";
+    public static final String UPDATE_PLAN_PLACE_PAGE = "/front-end/vendor/plan/place/updatePlanPlace.jsp";
+    public static final String ONE_PLAN_PLACE_PAGE = "/front-end/vendor/plan/place/planPlace.jsp";
+    public static final String LIST_PLAN_PLACE_PAGE = "/front-end/vendor/plan/place/planPlaceList.jsp";
+
 
 }

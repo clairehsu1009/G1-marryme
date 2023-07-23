@@ -1,11 +1,12 @@
 package com.marryme.member.service.Impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.marryme.member.dao.MemberDao;
 import com.marryme.member.dao.impl.MemberDaoImpl;
 import com.marryme.member.service.MemberService;
-import com.marryme.member.vo.Member;
+import com.marryme.member.vo.*;
 
 public class MemberServiceImpl implements MemberService{
 	
@@ -73,6 +74,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 
 		member = dao.selectForLogin(username, password);
+		
 		if (member == null) {
 			member = new Member();
 			member.setMessage("使用者名稱或密碼錯誤");
@@ -100,8 +102,17 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public List<Member> findAll() {
-		return dao.selectAll();
-	}
+		List<Member> memberList = new ArrayList<>();
+        try {
+            beginTransaction();
+            memberList = dao.selectAll();
+            commit();
+        } catch (Exception e) {
+            rollback();
+            e.printStackTrace();
+        }
+        return memberList;
+    }
 
 	@Override
 	public boolean remove(Integer id) {
@@ -112,5 +123,9 @@ public class MemberServiceImpl implements MemberService{
 	public boolean save(Member member) {
 		return dao.update(member) > 0;
 	}
+	
+	
+
+	
 
 }

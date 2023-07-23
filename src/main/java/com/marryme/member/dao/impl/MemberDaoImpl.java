@@ -62,7 +62,7 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public List<Member> selectAll() {
-		final String hql = "FROM Member ORDER BY member_id";
+		final String hql = "FROM Member ORDER BY memberid";
 		return getSession()
 				.createQuery(hql, Member.class)
 				.getResultList();
@@ -87,8 +87,6 @@ public class MemberDaoImpl implements MemberDao{
 				.setParameter("memberPassword", memberPassword)
 				.uniqueResult();
 	}
-
-
 
 
 }

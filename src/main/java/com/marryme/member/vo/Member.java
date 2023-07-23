@@ -61,7 +61,7 @@ public class Member {
      * 自動變更1 確認信箱點選驗證
      * 自動變更2 驗證失敗，需要重新驗證
      * */
-	@Column(name = "verifcation_status")
+	@Column(name = "verification_status")
 	private Integer verificationStatus;
 	
 	@Transient

@@ -3,10 +3,14 @@ package com.marryme.common;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.marryme.member.service.MemberService;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.ServletContext;
 
 import static com.marryme.common.CommonString.ERROR_MSG;
 import static com.marryme.common.CommonString.EXCEPTION;
@@ -51,4 +55,9 @@ public class ControllerUtils {
             throw new RuntimeException("取得參數失敗, " + e);
         }
     }
+
+	public static MemberService getBean(ServletContext servletContext, Class<MemberService> class1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

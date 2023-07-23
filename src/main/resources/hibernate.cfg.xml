@@ -19,6 +19,7 @@
 
 
 		<mapping class="com.marryme.plan.vo.Item"/>
+		<mapping class="com.marryme.member.vo.Member"/>
 
 	</session-factory>
 </hibernate-configuration>

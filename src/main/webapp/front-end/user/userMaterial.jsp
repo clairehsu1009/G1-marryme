@@ -41,8 +41,7 @@
             </div>
             <div class="tab-item-content">
                 <div class="tab-content">
-                        <c:set var="activeClass" value=active />
-                    <div class="tab-pane fade-in id="tab-0" role="tabpanel">
+                    <div class="tab-pane fade-in active" id="tab-0" role="tabpanel">
                         <table class="table">
                             <thead class="thead">
                             <tr>
@@ -87,11 +86,11 @@
                             </tbody>
                         </table>
                     </div>
-                  
+                 </div> 
                 </div>
             </div>
-        </div>
-    </div>
+       </div>
+   
 
 </main>
 <%@include file="/front-end/vendor/common/vendorFooterScript.jsp"%>

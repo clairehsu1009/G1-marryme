@@ -12,6 +12,8 @@ public interface MemberService extends CoreService{
 	Member login(Member member);
 
 	Member edit(Member member);
+	
+	
 
 	List<Member> findAll();
 

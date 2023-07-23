@@ -172,25 +172,27 @@ CREATE TABLE product (
     image LONGBLOB COMMENT '圖片',
     original_price INT COMMENT '自售價' CHECK (original_price > 0),
 	platform_price INT NOT NULL COMMENT '平台售價' CHECK (platform_price > 0),
+    stock_quantity INT NOT NULL COMMENT '庫存量',
     product_description VARCHAR(500) COMMENT '商品描述',
-    added_time TIMESTAMP NOT NULL,
+    created_time TIMESTAMP NOT NULL COMMENT '商品新增時間' DEFAULT CURRENT_TIMESTAMP,
     product_status TINYINT NOT NULL DEFAULT 0 COMMENT '商品狀態(0未上架, 1上架中, 2已售完, 3已下架)',
 	CONSTRAINT fk_product_vendor_id FOREIGN KEY (vendor_id) REFERENCES vendor (vendor_id),
     CONSTRAINT fk_product_product_category_id FOREIGN KEY (product_category_id) REFERENCES product_category (product_category_id)
 ) COMMENT '商品資料表';
 
 
-INSERT INTO product (vendor_id, product_category_id, product_name, image, original_price, platform_price, product_description, added_time, product_status)
-VALUES ('vendor6@gmail.com', 1, '婚戒1', NULL, 5000, 4000, NULL, NOW(), 1),
-       ('vendor7@gmail.com', 2, '喜餅1', NULL, 3000, 1500, NULL, NOW(), 1),
-       ('vendor8@gmail.com', 3, '婚禮小物1', NULL, 1000, 800, NULL, NOW(), 0),
-       ('vendor9@gmail.com', 4, '婚紗/禮服1', NULL, 8000, 7000, NULL, NOW(), 1),
-       ('vendor10@gmail.com', 5, '高跟鞋/西裝鞋1', NULL, 3000, 2500, NULL, NOW(), 1),
-       ('vendor6@gmail.com', 2, '喜餅2', NULL, 1800, 1600, '超好吃的喜餅喔', NOW(), 1),
-       ('vendor7@gmail.com', 3, '婚禮小物2', NULL, 900, 700, '可愛的婚禮巧克力', NOW(), 0),
-       ('vendor8@gmail.com', 4, '婚紗/禮服2', NULL, 7500, 6000, '新娘穿上會超美', NOW(), 1),
-       ('vendor9@gmail.com', 5, '高跟鞋/西裝鞋2', NULL, 2800, 2200, '超美的高跟鞋', NOW(), 1),
-       ('vendor10@gmail.com', 1, '婚戒2', NULL, 4800, 4200, '超讚的婚戒', NOW(), 1);
+INSERT INTO product (vendor_id, product_category_id, product_name, image, original_price, platform_price, stock_quantity, product_description, created_time, product_status)
+VALUES ('vendor6@gmail.com', 1, '婚戒1', NULL, 5000, 4000, 50, NULL, NOW(), 1),
+	   ('vendor7@gmail.com', 2, '喜餅1', NULL, 3000, 1500, 100, NULL, NOW(), 1),
+	   ('vendor8@gmail.com', 3, '婚禮小物1', NULL, 1000, 800, 30, NULL, NOW(), 0),
+	   ('vendor9@gmail.com', 4, '婚紗/禮服1', NULL, 8000, 7000, 20, NULL, NOW(), 1),
+	   ('vendor10@gmail.com', 5, '高跟鞋/西裝鞋1', NULL, 3000, 2500, 40, NULL, NOW(), 1),
+	   ('vendor6@gmail.com', 2, '喜餅2', NULL, 1800, 1600, 80, '超好吃的喜餅喔', NOW(), 1),
+	   ('vendor7@gmail.com', 3, '婚禮小物2', NULL, 900, 700, 15, '可愛的婚禮巧克力', NOW(), 0),
+	   ('vendor8@gmail.com', 4, '婚紗/禮服2', NULL, 7500, 6000, 25, '新娘穿上會超美', NOW(), 1),
+	   ('vendor9@gmail.com', 5, '高跟鞋/西裝鞋2', NULL, 2800, 2200, 60, '超美的高跟鞋', NOW(), 1),
+	   ('vendor10@gmail.com', 1, '婚戒2', NULL, 4800, 4200, 35, '超讚的婚戒', NOW(), 1);
+
 
 
 -- 建立檢舉資料表
@@ -289,21 +291,24 @@ CREATE TABLE activity (
     activity_start_time TIMESTAMP NOT NULL COMMENT '活動開始時間',
     activity_end_time TIMESTAMP NOT NULL COMMENT '活動結束時間',
 	activity_detail VARCHAR(100) COMMENT '活動內容',
+	`status` int not null default 1 comment '0下架, 1上架',
+    edit_status int not null default 0 comment '0可修改, 1不可修改',
     CONSTRAINT fk_activity_vendor_id FOREIGN KEY (vendor_id) REFERENCES vendor (vendor_id)
 ) COMMENT '優惠活動表';
 
 
-INSERT INTO activity (discount_code, vendor_id, activity_name, discount, activity_start_time, activity_end_time, activity_detail)
-VALUES ('CODE001', NULL, '夏日優惠', -1000, '2023-07-01 10:00:00', '2023-07-07 23:59:59', '享受1000元折扣。'),
-       ('CODE002', NULL, '限時特賣', -850, '2023-07-02 09:00:00', '2023-07-02 12:00:00', '3小時限定特價：只要滿850元就可折850元。'),
-       ('CODE003', NULL, '婚禮特惠', -300, '2023-07-08 18:00:00', '2023-07-10 23:59:59', '結婚相關商品獨家優惠。'),
-       ('CODE004', NULL, '清倉大拍賣', -50, '2023-07-05 12:00:00', '2023-07-15 23:59:59', '大量商品低至半價，為您的特殊日子提供優惠。'),
-       ('CODE005', NULL, '節慶促銷', -25, '2023-07-20 08:00:00', '2023-07-25 23:59:59', '慶祝節日，結婚必備品通通折25元。'),
-       ('CODE006', 'vendor6@gmail.com', '婚禮必備品特賣', 0.2, '2023-07-10 09:00:00', '2023-07-15 23:59:59', '婚禮必備品全線八折優惠。'),
-       ('CODE007', 'vendor7@gmail.com', '新娘美妝特惠', 0.25, '2023-07-12 10:00:00', '2023-07-18 23:59:59', '讓您在重要的一天展現最佳狀態！新娘美妝產品享受25%折扣。'),
-       ('CODE008', 'vendor8@gmail.com', '婚禮佈置清倉', 0.4, '2023-07-20 12:00:00', '2023-07-25 23:59:59', '打造完美氛圍，婚禮佈置產品清倉大拍賣，享受40%優惠。'),
-       ('CODE009', 'vendor9@gmail.com', '婚禮服飾特賣', 0.1, '2023-07-15 09:00:00', '2023-07-20 23:59:59', '婚禮完美服飾享受10%優惠。'),
-       ('CODE010', 'vendor10@gmail.com', '喜餅優惠', 0.15, '2023-07-25 10:00:00', '2023-07-31 23:59:59', '獨家美味喜餅享受15%優惠。');
+INSERT INTO activity (discount_code, vendor_id, activity_name, discount, activity_start_time, activity_end_time, activity_detail, `status`, edit_status)
+VALUES 
+    ('CODE001', NULL, '夏日優惠', -1000, '2023-07-01 10:00:00', '2023-07-07 23:59:59', '享受1000元折扣。', 1, 0),
+    ('CODE002', NULL, '限時特賣', -850, '2023-07-02 09:00:00', '2023-07-02 12:00:00', '3小時限定特價：只要滿850元就可折850元。', 1, 0),
+    ('CODE003', NULL, '婚禮特惠', -300, '2023-07-08 18:00:00', '2023-07-10 23:59:59', '結婚相關商品獨家優惠。', 1, 0),
+    ('CODE004', NULL, '清倉大拍賣', -50, '2023-07-05 12:00:00', '2023-07-15 23:59:59', '大量商品低至半價，為您的特殊日子提供優惠。', 1, 0),
+    ('CODE005', NULL, '節慶促銷', -25, '2023-07-20 08:00:00', '2023-07-25 23:59:59', '慶祝節日，結婚必備品通通折25元。', 1, 0),
+    ('CODE006', 'vendor6@gmail.com', '婚禮必備品特賣', 0.2, '2023-07-10 09:00:00', '2023-07-15 23:59:59', '婚禮必備品全線八折優惠。', 1, 0),
+    ('CODE007', 'vendor7@gmail.com', '新娘美妝特惠', 0.25, '2023-07-12 10:00:00', '2023-07-18 23:59:59', '讓您在重要的一天展現最佳狀態！新娘美妝產品享受25%折扣。', 1, 0),
+    ('CODE008', 'vendor8@gmail.com', '婚禮佈置清倉', 0.4, '2023-07-20 12:00:00', '2023-07-25 23:59:59', '打造完美氛圍，婚禮佈置產品清倉大拍賣，享受40%優惠。', 1, 0),
+    ('CODE009', 'vendor9@gmail.com', '婚禮服飾特賣', 0.1, '2023-07-15 09:00:00', '2023-07-20 23:59:59', '婚禮完美服飾享受10%優惠。', 1, 0),
+    ('CODE010', 'vendor10@gmail.com', '喜餅優惠', 0.15, '2023-07-25 10:00:00', '2023-07-31 23:59:59', '獨家美味喜餅享受15%優惠。', 1, 0);
        
        
 

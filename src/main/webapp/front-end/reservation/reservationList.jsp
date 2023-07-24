@@ -17,7 +17,7 @@
     
     
     <%@include file="/front-end/header.jsp"%>
-	<%@include file="/front-end/reservation/common/rVendorSidebar.jsp"%>
+	<%@include file="/front-end/vendor/common/vendorSidebar.jsp"%>
     
     <main class="app-content">
         <div class="app-title">
@@ -32,7 +32,7 @@
         <ul class="app-breadcrumb breadcrumb">
             <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已取消日期</button></li>
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/reservation?vendorId=${vendorId}">預約賞聽加購項目管理</a></li>
+            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/reservation?vendorId=${vendorId}">預約賞聽管理</a></li>
         </ul>
             
             
@@ -77,18 +77,16 @@
                                             <td>${reservation.reservationDate}</td>
                                             <td>${reservation.reservationNotes}</td>
                                             <td>
-                                           
-                                                    
-                                                    
-                                                <form method="post" action="<%=request.getContextPath()%>/plan-item" style="margin-bottom: 0px;">
-		                                            <input type="hidden" name="planItemId" value="${item.planItemId}" />
-		                                            <input type="hidden" name="vendorId" value="${item.vendorId}" />
-		                                            <c:if test="${item.editStatus == 0}">
-		                                            </c:if>
-		                                                <button type="submit" class="btn btn-info" name="action" value="getOneForUpdate">更新</button>
-		                                            	<button type="submit" class="btn btn-warning" name="action" value="changeStatusToInactive">取消</button>
+		                                        <form method="post" action="<%=request.getContextPath()%>/reservation" style="margin-bottom: 0px;">
+		                                            <input type="hidden" name="reservationId" value="${reservation.reservationId}" />
+			                                            <c:if test="${reservation.status == 1}">
+			                                                <button type="submit" class="btn btn-info" name="action" value="getOneForUpdate">更新</button>
+			                                            </c:if>
+		                                           
+			                                            	<button type="submit" class="btn btn-warning" name="action" value="changeStatusToCancel">取消</button>
+		                                               		
 		                                        </form>
-                                             </td>
+		                                    </td>
                                			 </tr>
             
                            		 </c:forEach>

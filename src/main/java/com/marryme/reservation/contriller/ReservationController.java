@@ -13,6 +13,9 @@ import org.apache.commons.lang3.StringUtils;
 
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,7 +78,7 @@ public class ReservationController extends HttpServlet {
 				break;
 			case UPDATE:update(req, resp, responseMsgMap);
 				break;					  //修改狀態為下架
-			case "changeStatusToInactive":changeStatusToCancel(req, resp, responseMsgMap);
+			case "changeStatusToCancel":changeStatusToCancel(req, resp, responseMsgMap);
 				break;					 //取得狀態為下架的加購項目清單
 			case "getPlanItemInactiveList":getCancelReservationList(req, resp);
 				break;
@@ -103,7 +106,7 @@ public class ReservationController extends HttpServlet {
         req.setAttribute("reservation", reservation);
 
         String action = req.getParameter(ACTION);
-        String url = StringUtils.equals(GET_ONE_FOR_UPDATE, action) ? UPDATE_RESERVATION_ITEM_PAGE : ONE_PLAN_ITEM_PAGE;
+        String url = StringUtils.equals(GET_ONE_FOR_UPDATE, action) ? UPDATE_RESERVATION_ITEM_PAGE : ONE_RESERVATION_PAGE;
         req.getRequestDispatcher(url).forward(req, resp);
     }
 	
@@ -122,6 +125,18 @@ public class ReservationController extends HttpServlet {
             req.getRequestDispatcher(UPDATE_RESERVATION_ITEM_PAGE).forward(req, resp);
             return;
         }
+        // 取得前端傳遞的日期時間字串
+        String eventDateStr = req.getParameter("eventDate");
+        String reservationDateStr = req.getParameter("reservationDate");
+                                 
+        
+     // 在此直接使用 eventDateTime 和 reservationDateTime
+        Timestamp eventDate = Timestamp.valueOf(eventDateStr);
+        Timestamp reservationDate = Timestamp.valueOf(reservationDateStr);
+        reservation.setEventDate(eventDate);
+        reservation.setReservationDate(reservationDate);
+
+        
         Integer reservationId = reservation.getReservationId();
         boolean result = service.update(reservationId, reservation);
 

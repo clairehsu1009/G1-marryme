@@ -1,5 +1,6 @@
 package com.marryme.reservation.service.impl;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,7 +81,8 @@ public class ReservationServiceImpl implements ReservationService {
 	public boolean update(Integer id, Reservation reservation) {
 		boolean result = false;
 		try {
-			beginTransaction();
+			beginTransaction();		
+			
 			dao.update(id, reservation);
 			commit();
 			result = true;

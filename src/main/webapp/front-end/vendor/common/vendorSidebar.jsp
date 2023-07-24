@@ -43,7 +43,7 @@
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="<%=request.getContextPath()%>/plan-place?vendorId=${vendorId}"><i class="icon fa fa-archive"></i>我的場地</a></li>
-                <li><a class="treeview-item" href="<%=request.getContextPath()%>/front-end/vendor/plan/planItem/addPlanItem.jsp"><i class="icon fa fa-edit"></i>新增場地</a></li>
+                <li><a class="treeview-item" href="<%=request.getContextPath()%>/front-end/vendor/plan/place/addPlanPlace.jsp"><i class="icon fa fa-edit"></i>新增場地</a></li>
             </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i

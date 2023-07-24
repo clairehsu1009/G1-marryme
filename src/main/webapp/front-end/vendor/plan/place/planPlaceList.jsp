@@ -4,7 +4,6 @@
 
 <jsp:useBean id="placeList" scope="request" class="java.util.ArrayList" />
 
-
 <html>
 <%@include file="/front-end/vendor/common/vendorHead.jsp"%>
 
@@ -30,14 +29,13 @@
             <div class="tab-item">
                 <ul class="nav" role="tablist">
                     <li><a data-toggle="tab" href="#tab-0" role="tab">下架</a></li>
-                    <li><a class="active" data-toggle="tab" href="#tab-1" role="tab">上架中</a></li>
-
+                    <li><a class="active" data-toggle="tab-1" href="#tab-1" role="tab">上架中</a></li>
                 </ul>
             </div>
             <div class="tab-item-content">
                 <div class="tab-content">
                     <c:forEach begin="0" end="1" varStatus="loop">
-                        <c:set var="activeClass" value="${loop.index == 0 ? 'active' : ''}" />
+                        <c:set var="activeClass" value="${loop.index == 1 ? 'active' : ''}" />
                     <div class="tab-pane fade-in ${activeClass}" id="tab-${loop.index}" role="tabpanel">
                         <table class="table">
                             <thead class="thead">
@@ -53,22 +51,32 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="place" items="${placeList}" begin="0" end="1">
+                            <c:forEach var="place" items="${placeList}" begin="0" end="${placeList.size()}">
                                 <c:if test="${place.status == loop.index}">
                                 <tr>
-                                    <td>${place.placePicture}</td>
+                                    <td>
+                                        <img width="200px" height="200px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${place.placeId}&photoFieldName=placePicture" class="rounded mx-auto d-block" alt="場地主圖片">
+                                    </td>
                                     <td>${place.placeTitle}</td>
                                     <td>${place.numbeOfTables}</td>
                                     <td>${place.placeIntroduction}</td>
-                                    <td>${place.placePictures2}</td>
-                                    <td>${place.placePictures3}</td>
-                                    <td>${place.placePictures4}</td>
-                                    <td>${place.placePictures5}</td>
                                     <td>
-                                        <form method="post" action="<%=request.getContextPath()%>/plan-place" style="margin-bottom: 0px;">
+                                        <img width="50px" height="50px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${place.placeId}&photoFieldName=placePictures2" class="rounded mx-auto d-block" alt="場地圖片2">
+                                    </td>
+                                    <td>
+                                        <img width="50px" height="50px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${place.placeId}&photoFieldName=placePictures3" class="rounded mx-auto d-block" alt="場地圖片3">
+                                    </td>
+                                    <td>
+                                        <img width="50px" height="50px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${place.placeId}&photoFieldName=placePictures4" class="rounded mx-auto d-block" alt="場地圖片4">
+                                    </td>
+                                    <td>
+                                        <img width="50px" height="50px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${place.placeId}&photoFieldName=placePictures5" class="rounded mx-auto d-block" alt="場地圖片5">
+                                    </td>
+                                    <td>
+                                        <form method="post" action="<%=request.getContextPath()%>/plan-place" style="margin-bottom: 0px ;">
                                             <input type="hidden" name="planPlaceId" value="${place.placeId}" />
                                             <input type="hidden" name="vendorId" value="${place.vendorId}" />
-                                            <c:if test="${item.editStatus == 0}">
+                                            <c:if test="${place.editStatus == 0}">
                                                 <button type="submit" class="btn btn-info" name="action" value="getOneForUpdate">編輯</button>
                                             </c:if>
                                             <button type="submit" class="btn btn-warning" name="action" value="changeStatusToInactive">下架</button>

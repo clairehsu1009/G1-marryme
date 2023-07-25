@@ -15313,11 +15313,11 @@ cursor: pointer;
 /* border: 1px dashed #e7ab3c; */
 margin-top:10px;
 }
-.productsAdd #product_photo {
+.productsAdd #placePicture {
 	display:none;
 }
 
-.productsAdd #upload-img .fa.fa-file-picture-o {
+.productsAdd #upload-img .fa-regular.fa-image {
 font-weight: bold;
 font-size: 700%;
 position: absolute;

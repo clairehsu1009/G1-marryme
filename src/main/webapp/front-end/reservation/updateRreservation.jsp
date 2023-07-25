@@ -47,19 +47,84 @@
 						</div>
 					</div>
 					
+					
+					
+					
 					<div class="form-group">
 						<label for="itemDescription" class="col-sm-2 col-form-label">宴客日期</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="eventDate" name="eventDate" placeholder="請輸入宴客日期" value="${reservation.eventDate}">
+							<input type="date" class="form-control" id="eventDate" name="eventDate" placeholder="請輸入宴客日期" value="${reservation.eventDate}" >
 						</div>
 					</div>
+					
+					
+					
+									
+					<div class="form-group">
+						<label for="itemDescription" class="col-sm-2 col-form-label">宴客時段</label>
+						<span class="sattus" style="display: none;"></span> 
+					
+						<select
+							class="form_select input_code" id="eventTime" name="eventTime">
+							<option value="">選擇預約時段</option>
+							<option value="12:00:00">中午</option>
+							<option value="18:00:00">晚上</option>
+						</select>
+						
+					</div>
+
+
+						
+
+
+
+
+
+
+					
+					
+					
 					
 					<div class="form-group">
 						<label for="itemDescription" class="col-sm-2 col-form-label">預約日期</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="reservationDate" name="reservationDate" placeholder="請輸入預約日期" value="${reservation.reservationDate}">
+							<input type="date" class="form-control" id="reservationDate" name="reservationDate" placeholder="請輸入預約日期" value="${reservation.reservationDate} ">
 						</div>
+						
+						
 					</div>
+					
+					
+					<div class="form-group">						
+						<label for="itemDescription" class="col-sm-2 col-form-label">預約時段</label>
+						<span class="sattus" style="display: none;"></span> 
+						<select
+							class="form_select input_code" id="reservationTime" name="reservationTime">
+							<option value="">選擇預約時段</option>
+							<option value="12:00:00">12:00</option>
+							<option value="12:30:00">12:30</option>
+							<option value="13:00:00">13:00</option>
+							<option value="13:30:00">13:30</option>
+							<option value="14:00:00">14:00</option>
+							<option value="14:30:00">14:30</option>
+							<option value="15:00:00">15:00</option>
+							<option value="15:30:00">15:30</option>
+							<option value="16:00:00">16:00</option>
+							<option value="16:30:00">16:30</option>
+							<option value="17:00:00">17:00</option>
+							<option value="17:30:00">17:30</option>
+							<option value="18:00:00">18:00</option>
+							<option value="18:30:00">18:30</option>
+							<option value="19:00:00">19:00</option>
+							<option value="19:30:00">19:30</option>
+							<option value="20:00:00">20:00</option>
+						</select>
+					</div>
+					
+					
+					
+					
+					
 					
 					<div class="form-group">
 						<label for="itemDescription" class="col-sm-2 col-form-label">備註</label>
@@ -80,7 +145,12 @@
 						<a href="<%=request.getContextPath()%>/reservation?vendorId=${vendorId}">
 							<button type="button" class="btn btn-danger">取消</button>
 						</a>
-						<button type="submit" class="btn btn-info" name="action" value="update">儲存</button>
+<!-- 						<button type="submit" class="btn btn-info" name="action" value="update">儲存</button> -->
+							<button type="submit" class="btn btn-info" name="action" value="update" 
+							 id="update" onclick="assembleDateTime()">儲存</button>
+							
+							
+							
 					</div>
 				</FORM>
 			</div>
@@ -89,7 +159,54 @@
 </main>
 <%@include file="/front-end/vendor/common/vendorFooterScript.jsp"%>
 
+
 <script type="text/javascript">
+		//獲取當前日期
+		var currentDate = new Date().toISOString().split("T")[0];
+		
+		
+		// 將當前日期設定為最小日期
+		document.getElementById("eventDate").min = currentDate;
+		document.getElementById("reservationDate").min = currentDate;
+
+
+	//=========後端傳值前端接受===============================
+		
+		// 獲取後端傳來的宴客日期和宴客時段值
+		var eventDateTimeValue = "${reservation.eventDate}";
+		var reservationDateValue = "${reservation.reservationDate}";
+
+		// 將後端傳來的日期時間值轉換為 JavaScript 的 Date 物件
+		var eventDateTime = new Date(eventDateTimeValue);
+		var reservationDateTime = new Date(reservationDateValue);
+
+		// 將宴客日期設定為宴客日期的值
+		document.getElementById("eventDate").value = formatDate(eventDateTime);
+		document.getElementById("reservationDate").value = formatDate(reservationDateTime);
+
+		// 獲取宴客時段的選擇框元素
+		var eventTimeSelect = document.getElementById("eventTime");
+		var reservationTimeSelect = document.getElementById("reservationTime");
+
+		// 根據宴客日期的值選中對應的宴客時段選項
+		if (eventDateTime.getHours() < 12) {
+		    eventTimeSelect.value = "12:00:00";
+		} else {
+		    eventTimeSelect.value = "18:00:00";
+		}
+					
+
+		// 函數：格式化日期時間為 yyyy-mm-dd 格式
+		function formatDate(date) {
+		    var year = date.getFullYear();
+		    var month = (date.getMonth() + 1).toString().padStart(2, '0');
+		    var day = date.getDate().toString().padStart(2, '0');
+		    return year + '-' + month + '-' + day;
+		}
+
+
+	    
+
 
 </script>
 </body>

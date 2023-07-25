@@ -1,7 +1,9 @@
 package com.marryme.reservation.common;
 
 public class ReservationPages {
-
+	
+	// 加預約時間
+    public static final String ADD_RESERVATION_STRING = "/front-end/reservation/addReservation.jsp";
 	/*顯示出預約時間*/
 	public static final String RESERVATION_ITEM_PAGE = "/front-end/reservation/reservationList.jsp";
 	/*更新預約時間*/
@@ -10,6 +12,6 @@ public class ReservationPages {
 	 public static final String OFF_RESERVATION_PAGE = "/front-end/reservation/reservationOffList.jsp";
 	 
 	 public static final String ONE_RESERVATION_PAGE = "/front-end/reservation/reservationDate.jsp";
-	 
-	
+	/*確認畫面*/
+	 public static final String ONE_RESERVATION_CONFIRM = "/front-end/reservation/reservationConfirm.jsp";
 }

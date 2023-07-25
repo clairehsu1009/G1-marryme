@@ -598,10 +598,7 @@ a.btn_text_primary:hover {
     opacity: 0.30
 }
 
-* html #TB_overlay {
-    position: absolute;
-    height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight+'px')
-}
+
 
 #TB_window {
     display: none;
@@ -613,10 +610,7 @@ a.btn_text_primary:hover {
     z-index: 9999
 }
 
-* html #TB_window {
-    position: absolute;
-    margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin=document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px')
-}
+
 
 #TB_window img#TB_Image {
     display: block;
@@ -678,10 +672,6 @@ a.btn_text_primary:hover {
     z-index: 892
 }
 
-* html #TB_load {
-    position: absolute;
-    margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin=document.documentElement && document.documentElement.scrollTop || document.body.scrollTop)+'px')
-}
 
 #TB_HideSelect {
     width: 100%;
@@ -697,10 +687,6 @@ a.btn_text_primary:hover {
     opacity: 0
 }
 
-* html #TB_HideSelect {
-    position: absolute;
-    height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight+'px')
-}
 
 #TB_iframeContent {
     clear: both;
@@ -1262,7 +1248,8 @@ a.submitBtn_disable {
     padding: 10px 60px;
     text-decoration: none;
     border-radius: 3px;
-    font-size: 13px
+    font-size: 13px;
+    cursor: pointer;
 }
 
 a.submitBtn {
@@ -1274,6 +1261,19 @@ a.submitBtn {
     font-size: 13px;
     margin: 0px auto;
     display: inline-block
+}
+
+
+a button.submitBtn {
+    color: #fff;
+    background-color: #ff6687;
+/*     padding: 5px 60px; */
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 13px;
+    margin: 0px auto;
+    display: inline-block;    
+    border: none;
 }
 
 a.outlineBtn_main {
@@ -10744,12 +10744,12 @@ a.venueInfo:hover {
     margin-right: 20px
 }
 
-.venueReserve_form span {
+span.textSize {
     font-size: 13px;
     display: block
 }
 
-.venueReserve_form span i {
+span i.ff6687 {
     color: #ff6687;
     margin-right: 8px
 }
@@ -10875,7 +10875,7 @@ option:hover {
     }
 
     a.submitBtn {
-        width: 100%;
+/*         width: 100%; */
         box-sizing: border-box;
         line-height: 2em
     }

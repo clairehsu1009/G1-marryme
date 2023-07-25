@@ -10,6 +10,7 @@
 <html>
 
 
+
 <%@include file="/front-end/vendor/common/vendorHead.jsp"%>
 
 <body class="app sidebar-mini rtl">
@@ -71,10 +72,29 @@
                                 <tbody>
                                     <c:forEach var="reservation" items="${reservationList}" begin="0" end="${reservationList.size()}">
                                         <tr>                                        
-											<td>${reservation.contactName}</td>
+											<td>${reservation.contactName} </td>
                                             <td>${reservation.contactNumber}</td>
-                                            <td>${reservation.eventDate}</td>
-                                            <td>${reservation.reservationDate}</td>
+<%--                                             <td>${reservation.eventDate}</td> --%>
+<%--                                             <td>${reservation.reservationDate}</td> --%>
+
+
+
+                                             <td>
+                                             	<fmt:formatDate value="${reservation.eventDate}" pattern="yyyy/MM/dd" />
+                                             	
+												<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	
+												<fmt:formatDate value="${reservation.eventDate}" pattern="HH:mm:ss" var="formattedEventTime" />
+												
+												<c:if test="${formattedEventTime eq '12:00:00'}">中午</c:if>
+												<c:if test="${formattedEventTime eq '18:00:00'}">晚餐</c:if>
+											</td>
+
+											
+											
+											
+                                            <td><fmt:formatDate value="${reservation.reservationDate}" pattern="yyyy/MM/dd HH:mm"/></td>
+                                            
                                             <td>${reservation.reservationNotes}</td>
                                             <td>
 		                                        <form method="post" action="<%=request.getContextPath()%>/reservation" style="margin-bottom: 0px;">
@@ -99,6 +119,29 @@
     </div>
 
     </main>
+    
+     <script>
+        // 格式化日期時間函數
+        function formatDateTime(dateTimeStr) {
+            // 將日期時間字串轉換成 JavaScript Date 物件
+            var dateTime = new Date(dateTimeStr);
+
+            // 取得小時
+            var hours = dateTime.getHours();
+
+            // 判斷是 "中午" 還是 "晚上"
+            return hours == 12 ? '中午' : '晚上';
+        }
+        
+        
+      
+        
+        
+    </script>
+    
+    
+    
+		
 
 
 

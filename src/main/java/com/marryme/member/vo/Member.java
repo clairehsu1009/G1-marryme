@@ -1,5 +1,6 @@
 package com.marryme.member.vo;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -45,7 +46,7 @@ public class Member {
 	private Integer memberGender;
 	/** 會員註冊時間 */
 	@Column(name = "member_registration_time")
-	private Timestamp memberRegistrationTime;
+	private Date memberRegistrationTime;
 	/** 會員最後登入時間 */
 	@Column(name = "member_last_login_time")
 	private Timestamp memberLastLoginTime;

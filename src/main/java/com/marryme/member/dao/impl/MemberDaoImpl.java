@@ -17,7 +17,6 @@ public class MemberDaoImpl implements MemberDao{
 	
 	public void insert(Member member) {
 		getSession().persist(member);
-	
 	}
 
 	@Override
@@ -62,7 +61,7 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public List<Member> selectAll() {
-		final String hql = "FROM Member ORDER BY memberid";
+		final String hql = "FROM Member ORDER BY memberId";
 		return getSession()
 				.createQuery(hql, Member.class)
 				.getResultList();

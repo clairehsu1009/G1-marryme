@@ -6,18 +6,19 @@
 
 
 <html>
-<%@include file="/front-end/vendor/common/vendorHead.jsp"%>
+<%@include file="/front-end/user/common/userHead.jsp"%>
 
 <body class="app sidebar-mini rtl">
-<%@include file="/front-end/header.jsp"%>
-<%@include file="/front-end/vendor/common/vendorSidebar.jsp"%>
+<%@include file="/front-end/header.jsp" %>
+<%@include file="/front-end/user/common/userSidebar.jsp" %>
+
 
 <main class="app-content">
     <div class="app-title">
         <div>
             <h1><i class="fa fa-archive">&nbsp;</i>會員資料列表</h1>
         </div>
-        <form method="post" action="<%=request.getContextPath()%>/plan-item" style="margin-bottom: 0px;">
+        <form method="post" action="<%=request.getContextPath()%>/user/userMaterial" style="margin-bottom: 0px;">
             <input type="hidden" name="vendorId" value="${vendorId}" />
         <ul class="app-breadcrumb breadcrumb">
             <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已下架方案加購項目</button></li>

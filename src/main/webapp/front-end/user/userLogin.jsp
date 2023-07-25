@@ -3,8 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
-
-<!DOCTYPE html>
+<!-- 登入以後要跳轉到首頁 -->
 <html>
 <head>
 	<%@include file="/front-end/user/common/userHead.jsp"%>

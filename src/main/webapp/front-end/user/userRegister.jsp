@@ -4,8 +4,9 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 
-<!DOCTYPE html>
-<html>
+<jsp:useBean id="member" scope="request" class="com.marryme.member.vo.Member" />
+
+<html lang="zh-tw">
 <head>
 	<%@include file="/front-end/user/common/userHead.jsp"%>
     <meta charset="UTF-8">
@@ -28,8 +29,7 @@
 
 
         <div class="col lg_12 md_12 sm_12">
-            <form action="?" method="POST" class="login radius_3" name="login_form">
-               
+              <form method="POST" class="login radius_3" name="login_form" action="<%=request.getContextPath()%>/user/userRegister">
                
                <h2>免費註冊</h2>
 
@@ -45,16 +45,27 @@
                                 placeholder="請輸入您的密碼"><label class="sattus" style="display:none"></label><br>
                         </li><br>
                         <label class="item_name" style="text-align:left;">再次確認密碼</label>
-                        <li><input type=" password" name="pwd" class="basic_input input_code"
+                        <li><input type=" password" name="againpwd" class="basic_input input_code"
                                 placeholder="請再次輸入您的密碼"><label class="sattus" style="display:none"></label><br>
                         </li><br>
+<!--                         <label class="item_name" style="text-align:left;">尊姓大名</label> -->
+<!--                         <li><input type="text" name="name" class="basic_input input_code" -->
+<!--                                 placeholder="請輸入您的姓名"><label class="sattus" style="display:none"></label><br> -->
+<!--                         </li><br> -->
+<!--                         <label class="item_name" style="text-align:left;">電話號碼</label> -->
+<!--                         <li><input type="text" name="phone" class="basic_input input_code" -->
+<!--                                 placeholder="請輸入您的電話號碼"><label class="sattus" style="display:none"></label><br> -->
+<!--                         </li><br> -->
                     </ul>
                     <br>
-                    <div class=""><input type="button" value="確認註冊" onclick="login_submit();"
-                            class="btn_common btn_primary">
-                    </div>
+<!--                     <div class=""><input type="button" value="確認註冊" onclick="login_submit();" -->
+<!--                             class="btn_common btn_primary"> -->
+<!--                     </div> -->
+			                     <button type="submit" class="btn btn-warning" name="action" value="changeStatusToInactive">確定註冊</button><br>
+                    
                     <div class="link_wrap"><a href="https://www.marry.com.tw/member-register.html"
-                            class="register">已經有帳號?</a>
+                            class="register">已經有帳號?</a> 
+<!--                             網址要換成登入畫面 -->
                         <a href="https://www.marry.com.tw/member-findpwd.html">忘記密碼</a>
                     </div><br>
 

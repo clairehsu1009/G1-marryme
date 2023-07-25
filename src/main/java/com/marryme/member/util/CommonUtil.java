@@ -19,6 +19,8 @@ import com.marryme.member.service.MemberService;
 
 
 public class CommonUtil {
+	
+	
 
 	
 	public static <P> P json2Pojo(HttpServletRequest request, Class<P> classOfPojo) {

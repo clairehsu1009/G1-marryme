@@ -1,7 +1,6 @@
 package com.marryme.member.controller;
 
 import static com.marryme.member.util.MemberConstants.SERVICE;
-import static com.marryme.member.util.Constants.PREFIX_FRONT_END;
 import static com.marryme.member.util.Constants.USER_MATERIAL_PAGE;
 
 import java.io.IOException;
@@ -19,6 +18,8 @@ import com.marryme.member.vo.Member;
 public class MemberServlet extends HttpServlet{
 	
 private static final long serialVersionUID = 1L;
+
+
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

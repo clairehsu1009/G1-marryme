@@ -179,7 +179,11 @@
 
 
 
+<<<<<<< HEAD
 						fetch('/marryme/reservation', {
+=======
+						fetch('/marryMe/reservation', {
+>>>>>>> d5af96d7be687fd235c20e294eafc8492a5eae7e
 							method: 'POST',
 							headers: {
 								'Content-Type': 'application/json',

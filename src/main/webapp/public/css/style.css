@@ -5424,7 +5424,7 @@ img:not([src]) {
 }
 
 .logo_menu .logo a {
-    background: url(/public/images/front-end/marryme.png) top left no-repeat;
+    background: url(/marryme/public/images/front-end/marryme.png) top left no-repeat;
     background-size: 100%;
     display: block;
     width: 200px;

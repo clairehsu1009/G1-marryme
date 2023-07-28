@@ -537,23 +537,22 @@ INSERT INTO plan_item (vendor_id, item_type, item_select, item_description, item
 CREATE TABLE plan_product_detail (
     plan_product_detail_id int primary key not null auto_increment comment'方案商品明細_ID',
     plan_product_id int comment'方案商品_ID',
-    plan_item_id int comment'加購項目_ID',
     place_id int comment'場地_ID',
     FOREIGN KEY (plan_product_id) REFERENCES plan_product(plan_product_id)
 )comment = '方案商品明細(會有多個場地或加購項目，數量不一定對等，可為null，非關聯關係）';
 
-INSERT INTO plan_product_detail (plan_product_id, plan_item_id, place_id)
+INSERT INTO plan_product_detail (plan_product_id, place_id)
 VALUES
-    (1, 1, 1),
-    (1, null, 2),
-    (1, null, 3),
-    (2, 1, 1),
-    (2, 2, 2),
-    (2, 3, 3),
-    (2, null, 4),
-    (3, 1, 1),
-    (3, 2, 2),
-    (3, 3, null);
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (2, 1),
+    (2, 2),
+    (2, 3),
+    (2, 4),
+    (3, 1),
+    (3, 2),
+    (3, null);
 
 
 CREATE TABLE member_coupon_list (

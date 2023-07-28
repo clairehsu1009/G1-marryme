@@ -68,13 +68,10 @@ public class PlaceDaoImpl implements PlaceDao {
     }
 
     @Override
-    public List<Place> selectAllByVendorIdAndStatus(String vendorId, String statusType) {
-        // 狀態 0下架 INACTIVE /  1上架 ACTIVE
-        int status = ACTIVE.equals(statusType) ? 1 : 0;
-        String hql = "FROM Place WHERE vendorId = :vendorId AND status = :status";
+    public List<Place> selectAllByVendorId(String vendorId) {
+        String hql = "FROM Place WHERE vendorId = :vendorId";
         Query<Place> query = getSession().createQuery(hql, Place.class);
         query.setParameter("vendorId", vendorId);
-        query.setParameter("status", status);
         return query.list();
 
     }

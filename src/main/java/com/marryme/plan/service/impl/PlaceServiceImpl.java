@@ -25,11 +25,11 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public List<Place> findAllByVendorIdAndStatus(String vendorId, String statusType) {
+    public List<Place> findAllByVendorId(String vendorId) {
         List<Place> placeList = new ArrayList<>();
         try {
             beginTransaction();
-            placeList = dao.selectAllByVendorIdAndStatus(vendorId, statusType);
+            placeList = dao.selectAllByVendorId(vendorId);
             commit();
         } catch (Exception e) {
             rollback();

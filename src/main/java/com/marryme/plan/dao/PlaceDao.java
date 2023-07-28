@@ -20,7 +20,7 @@ import java.util.Optional;
  */
 public interface PlaceDao extends CoreDao<Place, Integer> {
     /** 取得廠商符合狀態的資料 */
-    List<Place> selectAllByVendorIdAndStatus(String vendorId, String statusType);
+    List<Place> selectAllByVendorId(String vendorId);
 
     /** 修改加購項目狀態為下架 */
     void changeStatusToInactive(Integer placeId);

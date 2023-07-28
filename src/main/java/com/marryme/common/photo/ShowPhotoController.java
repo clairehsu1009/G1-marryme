@@ -1,5 +1,6 @@
 package com.marryme.common.photo;
 import java.io.*;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,12 +33,14 @@ public class ShowPhotoController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("image/*");
         try {
+
             String placeIdStr = request.getParameter("placeId");
             String fieldName = request.getParameter("photoFieldName");
 
+
             // 可接受的圖片欄位名稱字串
             List<String> isValidPhotoFieldsName = new ArrayList<>(
-                    List.of("placePicture", "placePictures2", "placePictures3", "placePictures4", "placePictures5")
+                    List.of("placePicture", "placePicture1", "placePictures2", "placePictures3", "placePictures4", "placePictures5", "planPic")
             );
 
             // 若不包含在內則結束流程
@@ -52,6 +55,7 @@ public class ShowPhotoController extends HttpServlet {
                 OutputStream out = response.getOutputStream();
                 getPhoto(photo, out);
             }
+
 
             // 照片讀取產生錯誤不處理
         } catch (Exception e) {

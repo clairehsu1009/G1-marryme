@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -47,8 +49,11 @@ public class Product {
 	private Integer stockQuantity;
 	@Column(name = "product_description")
     private String productDescription;
-	@Column(name = "created_time")
+	@Column(name = "created_time", insertable = false)
     private Timestamp createdTime;
 	@Column(name = "product_status")
     private Integer productStatus;
+	@ManyToOne
+	@JoinColumn(name = "product_category_id", insertable = false, updatable = false)
+	private ProductCategory productCategory;
 }

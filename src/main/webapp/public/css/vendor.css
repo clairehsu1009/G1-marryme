@@ -2696,6 +2696,7 @@ fieldset:disabled a.btn {
           box-shadow: 0 0 0 0 rgba(23, 162, 184, 0.5);
 }
 
+
 .btn-warning {
   color: #212529;
   background-color: #ffc107;
@@ -15304,7 +15305,7 @@ be a descendant of the grid when it is being dragged.
 
 							/*productAdd*/
 
-.productsAdd #upload-img{
+.productsAdd #upload-img, #upload-img1, #upload-img2, #upload-img3, #upload-img4, #upload-img5{
 position: relative;
 width: 300px;
 height: 300px;
@@ -15313,8 +15314,12 @@ cursor: pointer;
 /* border: 1px dashed #e7ab3c; */
 margin-top:10px;
 }
-.productsAdd #placePicture {
+
+.productsAdd #placePicture, #placePicture1, #placePicture2, #placePicture3, #placePicture4, #placePicture5 {
 	display:none;
+}
+.productsAdd #planPicture, #planPicture1, #planPicture2, #planPicture3, #planPicture4, #planPicture5 {
+  display:none;
 }
 
 .productsAdd #upload-img .fa-regular.fa-image {
@@ -15325,23 +15330,83 @@ left: 0;
 width: 100%;
 top: 30%;
 }
-
-.productsAdd .delAvatar {
+.productsAdd #upload-img1 .fa-regular.fa-image {
+  font-weight: bold;
+  font-size: 700%;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 30%;
+}
+.productsAdd #upload-img2 .fa-regular.fa-image {
+  font-weight: bold;
+  font-size: 700%;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 30%;
+}
+.productsAdd #upload-img3 .fa-regular.fa-image {
+  font-weight: bold;
+  font-size: 700%;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 30%;
+}
+.productsAdd #upload-img4 .fa-regular.fa-image {
+  font-weight: bold;
+  font-size: 700%;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 30%;
+}
+.productsAdd #upload-img5 .fa-regular.fa-image {
+  font-weight: bold;
+  font-size: 700%;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 30%;
+}
+.productsAdd .delAvatar, .delAvatar1, .delAvatar2, .delAvatar3, .delAvatar4, .delAvatar5{
 position: absolute;
 right: -14px;
 top: -21px;
 
 }
 
+
 .productsAdd i.delAvatar.fa.fa-times-circle-o {
     font-size: 150%;
     cursor: pointer;
 }
+.productsAdd i.delAvatar1.fa.fa-times-circle-o {
+  font-size: 150%;
+  cursor: pointer;
+}
+.productsAdd i.delAvatar2.fa.fa-times-circle-o {
+  font-size: 150%;
+  cursor: pointer;
+}
+.productsAdd i.delAvatar3.fa.fa-times-circle-o {
+  font-size: 150%;
+  cursor: pointer;
+}
+.productsAdd i.delAvatar4.fa.fa-times-circle-o {
+  font-size: 150%;
+  cursor: pointer;
+}
+.productsAdd i.delAvatar5.fa.fa-times-circle-o {
+  font-size: 150%;
+  cursor: pointer;
+}
 
-.productsAdd #upload-img img{
-max-width:100%;
-max-height:100%;
-  }
+.productsAdd #upload-img img, #upload-img1 img, #upload-img2 img, #upload-img3 img, #upload-img4 img, #upload-img5 img {
+  max-width: 100%;
+  max-height: 100%;
+}
   
 .productsAdd, .productsAdd select, .productsAdd option {
 	font-weight:700;

@@ -25,14 +25,15 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12 productsAdd">
-			<form method="post" action="<%=request.getContextPath()%>/plan-place">
-				<div class="form-group">
-					<label for="placePicture" class="col-sm-2 col-form-label">場地主圖片</label>
-					<div class="col-sm-10">
-<%--						TODO 圖片型別未處理          --%>
-						<input class="custom-select form-control" id="placePicture" name="placePicture" placeholder="請輸入場地主圖片"  type="">
-					</div>
+			<form method="post" action="<%=request.getContextPath()%>/plan-place" enctype="multipart/form-data">
+				<div class="col-lg-4 col-sm-6 pic1">
+					<label for="placePicture1" id="upload-img1" class="card mb-2 productcard">場地主圖片
+						<input class="form-control" id="placePicture1" type="file" name="placePicture" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  value="${Place == null  ? "" : Place.placePicture}">
+						<i class="fa-regular fa-image" id="iconcamera1"></i>
+						<i class="delAvatar1 fa fa-times-circle-o" title="移除圖片"></i>
+					</label>
 				</div>
+				<br>
 				<div class="form-group">
 					<label for="placeTitle" class="col-sm-2 col-form-label">場地標題</label>
 					<c:if test="${responseMsgMap.containsKey('placeTitle')}">
@@ -60,33 +61,41 @@
 						<input class="form-control" id="placeIntroduction" name="placeIntroduction" type="text" placeholder="請輸入場地介紹" value="${Place == null  ? "" : Place.placeIntroduction}" required>
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="placePictures2" class="col-sm-2 col-form-label">圖片</label>
-					<div class="col-sm-10">
-						<input class="form-control" id="placePictures2" name="placePictures2" type="text" placeholder="請放入圖片" value="${Place == null  ? "" : Place.placePictures2}">
+				<div class="form-group row col-sm-12 pic2" >
+					<div class="col-lg-4 col-sm-6 mr-5">
+						<label for="placePicture2" id="upload-img2" class="card mb-2 productcard">圖片
+							<input class="form-control" id="placePicture2" type="file" name="placePictures2" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  value="${Place == null  ? "" : Place.placePicture}">
+							<i class="fa-regular fa-image" id="iconcamera2"></i>
+							<i class="delAvatar2 fa fa-times-circle-o" title="移除圖片"></i>
+						</label>
+					</div>
+					<div class="col-lg-4 col-sm-6 pic3">
+						<label for="placePicture3" id="upload-img3" class="card mb-2 productcard">圖片
+							<input class="form-control" id="placePicture3" type="file" name="placePictures3" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  value="${Place == null  ? "" : Place.placePicture}">
+							<i class="fa-regular fa-image" id="iconcamera3"></i>
+							<i class="delAvatar3 fa fa-times-circle-o" title="移除圖片"></i>
+						</label>
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="placePictures3" class="col-sm-2 col-form-label">圖片</label>
-					<div class="col-sm-10">
-						<input class="form-control" id="placePictures3" name="placePictures3" type="text" placeholder="請放入圖片" value="${Place == null  ? "" : Place.placePictures3}">
+				<div class="form-group row col-sm-12 pic4">
+					<div class="col-lg-4 col-sm-6 mr-5">
+						<label for="placePicture4" id="upload-img4" class="card mb-2 productcard">圖片
+							<input class="form-control" id="placePicture4" type="file" name="placePictures4" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  value="${Place == null  ? "" : Place.placePicture}">
+							<i class="fa-regular fa-image" id="iconcamera4"></i>
+							<i class="delAvatar4 fa fa-times-circle-o" title="移除圖片"></i>
+						</label>
 					</div>
-				</div>
-				<div class="form-group">
-					<label for="placePictures4" class="col-sm-2 col-form-label">圖片</label>
-					<div class="col-sm-10">
-						<input class="form-control" id="placePictures4" name="placePictures4" type="text" placeholder="請放入圖片" value="${Place == null  ? "" : Place.placePictures4}">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="placePictures5" class="col-sm-2 col-form-label">圖片</label>
-					<div class="col-sm-10">
-						<input class="form-control" id="placePictures5" name="placePictures5" type="text" placeholder="請放入圖片" value="${Place == null  ? "" : Place.placePictures5}">
+					<div class="col-lg-4 col-sm-6 pic5">
+						<label for="placePicture5" id="upload-img5" class="card mb-2 productcard">圖片
+							<input class="form-control" id="placePicture5" type="file" name="placePictures5" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  value="${Place == null  ? "" : Place.placePicture}">
+							<i class="fa-regular fa-image" id="iconcamera5"></i>
+							<i class="delAvatar5 fa fa-times-circle-o" title="移除圖片"></i>
+						</label>
 					</div>
 				</div>
 				<div class="col-sm-10 productAddBtn">
 					<input type="hidden" name="vendorId" value="${vendorId}">
-					<a href="<%=request.getContextPath()%>/plan-item?vendorId=${vendorId}"><button type="button" class="btn btn-danger">取消</button></a>
+					<a href="<%=request.getContextPath()%>/plan-place?vendorId=${vendorId}"><button type="button" class="btn btn-danger">取消</button></a>
 					<button type="submit" class="btn btn-info" name="action" value="insert">儲存</button>
 				</div>
 			</form>
@@ -97,6 +106,38 @@
 <%@include file="/front-end/vendor/common/vendorFooterScript.jsp"%>
 
 <script type="text/javascript">
+	//實現上傳圖片可以預覽所上傳的圖片,若重新上傳1其他圖片,可以移除舊的圖片預覽,只顯示最新的狀態
+	for (let i = 1; i <= 5; i++) {
+		let photo = document.getElementById(`placePicture\${i}`);
+		let iconcamera = document.getElementById(`iconcamera\${i}`);
+		let uploadimg = document.getElementById(`upload-img\${i}`);
+
+		init(photo, iconcamera, uploadimg);
+	}
+
+		function init(photo, iconcamera, uploadimg) {
+			photo.addEventListener("change", function (e) {
+				$("#" + uploadimg.id + " img").remove();
+				iconcamera.style.display = "block";
+				let files = e.target.files;
+				if (files !== null) {
+					let file = files[0];
+					if (file.type.indexOf('image') > -1) {
+						let reader = new FileReader();
+						reader.addEventListener('load', function (e) {
+							let result = e.target.result;
+							iconcamera.style.display = "none";
+							let img = document.createElement('img');
+							img.src = result;
+							uploadimg.append(img);
+						});
+						reader.readAsDataURL(file);
+					} else {
+						alert('請上傳圖片！');
+					}
+				}
+			});
+		}
 
 </script>
 </body>

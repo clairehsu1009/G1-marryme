@@ -50,7 +50,7 @@ public class PlaceController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String vendorId = req.getParameter("vendorId");
-        List<Place> placeList = service.findAllByVendorIdAndStatus(vendorId, ACTIVE);
+        List<Place> placeList = service.findAllByVendorId(vendorId);
         req.setAttribute("placeList", placeList);
         req.getRequestDispatcher(LIST_PLAN_PLACE_PAGE).forward(req,resp);
     }
@@ -175,9 +175,54 @@ public class PlaceController extends HttpServlet {
     }
 
     private void update(HttpServletRequest req, HttpServletResponse resp, Map<String, String> responseMsgMap) throws ServletException, IOException {
+        String vendorId = req.getParameter("vendorId");
+        String placeTitle = req.getParameter("placeTitle");
+        String numbeOfTables = req.getParameter("numbeOfTables");
+        String placeIntroduction = req.getParameter("placeIntroduction");
+
+
         Map<String, String[]> reqMap = req.getParameterMap();
+
+
+        // 處理欄位檢核錯誤訊息
+        Map<String, String> inValidFieldsMap = getInValidFieldsMsg();
+        if(StringUtils.isBlank(vendorId)) {
+            responseMsgMap.put(EXCEPTION, ERROR_MSG);
+        }
+        if(StringUtils.isBlank(placeTitle)) {
+            responseMsgMap.put("placeTitle", inValidFieldsMap.get("placeTitle"));
+        }
+        if(StringUtils.isBlank(numbeOfTables)) {
+            responseMsgMap.put("numbeOfTables", inValidFieldsMap.get("numbeOfTables"));
+        }
+        if(StringUtils.isBlank(placeIntroduction)) {
+            responseMsgMap.put("placeIntroduction", inValidFieldsMap.get("placeIntroduction"));
+        }
         validErrorForParameterMap(reqMap, this.getInValidFieldsMsg(), responseMsgMap);
+
+        // 圖片處理
+        Part part = req.getPart("placePicture");
+
+        // 可選擇上傳1~5張照片，最少上傳一張，所以只檢核第一張有沒有圖片
+        if (part == null || part.getSize() == 0) {
+            responseMsgMap.put("placePicture", "請最少上傳一張圖片");
+        }
+
+        Part part2 = req.getPart("placePictures2");
+        Part part3 = req.getPart("placePictures3");
+        Part part4 = req.getPart("placePictures4");
+        Part part5 = req.getPart("placePictures5");
+
         Place place = parameterMapToVo(reqMap, Place.class);
+        place.setVendorId(vendorId);
+        place.setPlaceTitle(placeTitle);
+        place.setNumbeOfTables(numbeOfTables);
+        place.setPlaceIntroduction(placeIntroduction);
+        place.setPlacePicture(readPhotoToParameter(part));
+        place.setPlacePictures2(readPhotoToParameter(part2));
+        place.setPlacePictures3(readPhotoToParameter(part3));
+        place.setPlacePictures4(readPhotoToParameter(part4));
+        place.setPlacePictures5(readPhotoToParameter(part5));
 
         if (!responseMsgMap.isEmpty()) {
             req.setAttribute("place", place);
@@ -191,7 +236,6 @@ public class PlaceController extends HttpServlet {
         if(result) {
             Place placeResult = service.getOne(planPlaceId);
             req.setAttribute("place", placeResult);
-            // TODO 待補JSP檔
             req.getRequestDispatcher(ONE_PLAN_PLACE_PAGE).forward(req, resp);
         } else {
             responseMsgMap.put(EXCEPTION, UPDATE_ERROR);

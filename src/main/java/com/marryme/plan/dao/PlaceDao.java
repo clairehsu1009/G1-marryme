@@ -2,7 +2,6 @@ package com.marryme.plan.dao;
 
 
 import com.marryme.core.dao.CoreDao;
-import com.marryme.plan.vo.Item;
 import com.marryme.plan.vo.Place;
 
 import java.util.List;
@@ -19,6 +18,8 @@ import java.util.Optional;
  * @Version 1.0
  */
 public interface PlaceDao extends CoreDao<Place, Integer> {
+    /** 查詢該廠商所有資料 */
+    List<Place> selectAllByVendorId(String vendorId);
     /** 取得廠商符合狀態的資料 */
     List<Place> selectAllByVendorIdAndStatus(String vendorId, String statusType);
 

@@ -482,15 +482,15 @@ CREATE TABLE plan_product (
   plan_picture blob comment'主圖片',
   plan_title varchar(20) not null comment'標題名稱',
   plan_introduction varchar(200) not null comment'方案簡介',
-  `status` int not null default 1 comment'商品狀態,0下架、1上架、2預定額滿',
+  `status` int not null default 1 comment'商品狀態,0下架、1上架',
   edit_status int not null default 0 comment '0可修改, 1不可修改',
   update_time Timestamp not null comment'更新時間',
-  plan_picture_intro1 varchar(20) comment'圖片簡介1',
   plan_pictures1 longblob comment'圖片1',
-  plan_picture_intro2 varchar(20) comment'圖片簡介2',
+  plan_picture_intro1 varchar(20) comment'圖片簡介1',
   plan_pictures2 longblob comment'圖片2',
-  plan_picture_intro3 varchar(20) comment'圖片簡介3',
+  plan_picture_intro2 varchar(20) comment'圖片簡介2',
   plan_pictures3 longblob comment'圖片3',
+  plan_picture_intro3 varchar(20) comment'圖片簡介3',
   FOREIGN KEY (vendor_id) REFERENCES vendor(vendor_id)
 )comment = '方案商品';
 
@@ -542,23 +542,22 @@ INSERT INTO plan_item (vendor_id, item_type, item_select, item_description, item
 CREATE TABLE plan_product_detail (
     plan_product_detail_id int primary key not null auto_increment comment'方案商品明細_ID',
     plan_product_id int comment'方案商品_ID',
-    plan_item_id int comment'加購項目_ID',
     place_id int comment'場地_ID',
     FOREIGN KEY (plan_product_id) REFERENCES plan_product(plan_product_id)
 )comment = '方案商品明細(會有多個場地或加購項目，數量不一定對等，可為null，非關聯關係）';
 
-INSERT INTO plan_product_detail (plan_product_id, plan_item_id, place_id)
+INSERT INTO plan_product_detail (plan_product_id, place_id)
 VALUES
-    (1, 1, 1),
-    (1, null, 2),
-    (1, null, 3),
-    (2, 1, 1),
-    (2, 2, 2),
-    (2, 3, 3),
-    (2, null, 4),
-    (3, 1, 1),
-    (3, 2, 2),
-    (3, 3, null);
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (2, 1),
+    (2, 2),
+    (2, 3),
+    (2, 4),
+    (3, 1),
+    (3, 2),
+    (3, null);
 
 
 CREATE TABLE member_coupon_list (

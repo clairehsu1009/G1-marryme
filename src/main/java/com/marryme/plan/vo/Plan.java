@@ -39,12 +39,19 @@ public class Plan {
     @Column(name = "plan_introduction")
     private String planIntroduction;
     /**
-     *  狀態 0下架 1上架 2預定額滿<br>
-     *  預設1 上架 <br>
-     *  改為0 下架，就不能再改上架，需要重新新增
+     * 狀態 0下架 1上架 <br>
+     * 預設1 上架 <br>
+     * 改為0 下架，就不能再改上架，需要重新新增
      * */
-    @Column(name = "plan_product_status")
-    private Integer planProductStatus;
+    @Column(name = "status")
+    private Integer status;
+    /**
+     * 可否編輯內容 <br>
+     * 預設 0可修改 (若有已上架的方案商品，需提醒是否確認修改，仍可修改、方案帶出的資料會同步變更）<br>
+     * 1不可修改 (已有已成立之訂單，不可更改加購項目內容，只能下架）
+     * */
+    @Column(name = "edit_status")
+    private Integer editStatus;
     /** 更新時間 */
     @Column(name = "update_time")
     private Timestamp updateTime;
@@ -63,12 +70,12 @@ public class Plan {
     /** 圖3簡介 */
     @Column(name = "plan_picture_intro3")
     private String planPictureIntro3;
-    /** 圖3簡介 */
+    /** 圖3 */
     @Column(name = "plan_pictures3")
     private byte[] planPictures3;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "plan_product_id", referencedColumnName = "plan_product_id")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "plan_product_id")
     private List<PlanDetail> PlanDetail = new ArrayList<>();
 
 }

@@ -3,7 +3,6 @@ package com.marryme.plan.service.impl;
 import com.marryme.plan.dao.PlaceDao;
 import com.marryme.plan.dao.impl.PlaceDaoImpl;
 import com.marryme.plan.service.PlaceService;
-import com.marryme.plan.vo.Item;
 import com.marryme.plan.vo.Place;
 
 import java.util.ArrayList;
@@ -36,6 +35,20 @@ public class PlaceServiceImpl implements PlaceService {
             e.printStackTrace();
         }
 
+        return placeList;
+    }
+
+    @Override
+    public List<Place> findAllByVendorIdAndStatus(String vendorId, String statusType) {
+        List<Place> placeList = new ArrayList<>();
+        try {
+            beginTransaction();
+            placeList = dao.selectAllByVendorIdAndStatus(vendorId, statusType);
+            commit();
+        } catch (Exception e) {
+            rollback();
+            e.printStackTrace();
+        }
         return placeList;
     }
 

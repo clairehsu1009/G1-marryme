@@ -78,13 +78,6 @@
 						</div>
 					</div>
 					<div class="form-group row col-sm-12 pic2" >
-<%--						<div class="col-lg-4 col-sm-6 mr-5">--%>
-<%--							<label for="placePicture2" id="upload-img2" class="card mb-2 productcard">圖片--%>
-<%--								<input class="form-control" id="placePicture2" type="file" name="placePicture2" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  value="${place == null  ? "" : place.placePicture}">--%>
-<%--								<i class="fa-regular fa-image" id="iconcamera2"></i>--%>
-<%--								<i class="delAvatar2 fa fa-times-circle-o" title="移除圖片"></i>--%>
-<%--							</label>--%>
-<%--						</div>--%>
 						<c:forEach var="i" begin="2" end="2">
 							<c:choose>
 								<c:when test="${not empty place.placePicture}">
@@ -108,13 +101,6 @@
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
-<%--						<div class="col-lg-4 col-sm-6 pic3">--%>
-<%--							<label for="placePicture5" id="upload-img5" class="card mb-2 productcard">圖片--%>
-<%--								<input class="form-control" id="placePicture5" type="file" name="placePictures3" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  value="${place == null  ? "" : place.placePicture}">--%>
-<%--								<i class="fa-regular fa-image" id="iconcamera5"></i>--%>
-<%--								<i class="delAvatar5 fa fa-times-circle-o" title="移除圖片"></i>--%>
-<%--							</label>--%>
-<%--						</div>--%>
 					<c:forEach var="i" begin="3" end="3">
 						<c:choose>
 							<c:when test="${not empty place.placePicture}">
@@ -140,13 +126,6 @@
 					</c:forEach>
 					</div>
 					<div class="form-group row col-sm-12 pic4">
-<%--						<div class="col-lg-4 col-sm-6 mr-5">--%>
-<%--							<label for="placePicture7" id="upload-img7" class="card mb-2 productcard">圖片--%>
-<%--								<input class="form-control" id="placePicture7" type="file" name="placePictures4" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  value="${place == null  ? "" : place.placePicture}">--%>
-<%--								<i class="fa-regular fa-image" id="iconcamera7"></i>--%>
-<%--								<i class="delAvatar7 fa fa-times-circle-o" title="移除圖片"></i>--%>
-<%--							</label>--%>
-<%--						</div>--%>
 					<c:forEach var="i" begin="4" end="4">
 						<c:choose>
 							<c:when test="${not empty place.placePicture}">
@@ -170,13 +149,6 @@
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
-<%--						<div class="col-lg-4 col-sm-6 pic5">--%>
-<%--							<label for="placePicture5" id="upload-img10" class="card mb-2 productcard">圖片--%>
-<%--								<input class="form-control" id="placePicture9" type="file" name="placePictures5" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  value="${place == null  ? "" : place.placePicture}">--%>
-<%--								<i class="fa-regular fa-image" id="iconcamera10"></i>--%>
-<%--								<i class="delAvatar5 fa fa-times-circle-o" title="移除圖片"></i>--%>
-<%--							</label>--%>
-<%--						</div>--%>
 					<c:forEach var="i" begin="5" end="5">
 						<c:choose>
 							<c:when test="${not empty place.placePicture}">

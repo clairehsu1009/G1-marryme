@@ -1,7 +1,6 @@
 package com.marryme.plan.dao.impl;
 
 import com.marryme.plan.dao.PlaceDao;
-import com.marryme.plan.vo.Item;
 import com.marryme.plan.vo.Place;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -73,7 +72,17 @@ public class PlaceDaoImpl implements PlaceDao {
         Query<Place> query = getSession().createQuery(hql, Place.class);
         query.setParameter("vendorId", vendorId);
         return query.list();
+    }
 
+    @Override
+    public List<Place> selectAllByVendorIdAndStatus(String vendorId, String statusType) {
+        // 狀態 0下架 INACTIVE /  1上架 ACTIVE
+        int status = ACTIVE.equals(statusType) ? 1 : 0;
+        String hql = "FROM Place WHERE vendorId = :vendorId AND status = :status";
+        Query<Place> query = getSession().createQuery(hql, Place.class);
+        query.setParameter("vendorId", vendorId);
+        query.setParameter("status", status);
+        return query.list();
     }
 
     @Override

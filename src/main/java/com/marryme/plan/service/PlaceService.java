@@ -15,8 +15,10 @@ import java.util.List;
  * @Version 1.0
  */
 public interface PlaceService extends CoreService {
-    /** 取得廠商符合狀態的資料 */
+    /** 取得廠商所有資料 */
     List<Place> findAllByVendorId(String vendorId);
+    /** 取得廠商符合狀態的資料 */
+    List<Place> findAllByVendorIdAndStatus(String vendorId, String statusType);
     /** 取得所有方案場地 */
     List<Place> findAll();
     Place getOne(Integer id);

@@ -38,14 +38,11 @@ public class ActivityDaoImpl implements ActivityDao {
 	@Override
 	public void update(String discountCode, Activity vo) {
 		Activity activity = getSession().get(Activity.class, discountCode);
-		// 只set 可以修改的欄位
 		activity.setDiscountCode(vo.getDiscountCode());
 		activity.setActivityName(vo.getActivityName());
 		activity.setDiscount(vo.getDiscount());
 		activity.setActivityStartTime(vo.getActivityStartTime());
 		activity.setActivityEndTime(vo.getActivityEndTime());
-		activity.setStatus(vo.getStatus());
-		activity.setEditStatus(vo.getEditStatus());
 		getSession().merge(activity);
 
 	}

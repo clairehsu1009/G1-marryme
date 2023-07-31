@@ -12,8 +12,6 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -53,7 +51,6 @@ public class Activity {
 	/**
 	 * 狀態 0下架 1上架 預設1 上架 改為0 下架，就不能再改上架，需要重新新增
 	 */
-	@Column(name = "status")
 	private Integer status;
 	/**
 	 * 可否編輯內容 預設 0可修改 (若有已上架的優惠券，需提醒是否確認修改，仍可修改、優惠券帶出的資料會同步變更） 1不可修改

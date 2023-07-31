@@ -6,21 +6,20 @@
 
 package com.marryme.activity.controller;
 
+import static com.marryme.common.CommonString.ACTIVE;
+
+import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static com.marryme.common.CommonString.ACTIVE;
-
-import java.io.IOException;
-import java.util.List;
-
 import com.marryme.activity.entity.Activity;
 import com.marryme.activity.service.ActivityService;
 import com.marryme.activity.service.impl.ActivityServiceImpl;
-import com.marryme.plan.vo.Item;
 
 @WebServlet("/activity/findAll")
 public class FindAllServlet extends HttpServlet {

@@ -24,11 +24,17 @@
 		<mapping class="com.marryme.reservation.vo.Reservation"/>
 		
 		<mapping class="com.marryme.plan.vo.Item"/>
+
 		<mapping class="com.marryme.plan.vo.Place"/>
 		<mapping class="com.marryme.plan.vo.Plan"/>
 		<mapping class="com.marryme.plan.vo.PlanDetail"/>
 		<mapping class="com.marryme.plan.vo.PlanOrder"/>
 		<mapping class="com.marryme.plan.vo.PlanOrderDetail"/>
 		<mapping class="com.marryme.plan.vo.UnavailableDate"/>
+
+		<mapping class="com.marryme.member.vo.Member"/>
+		<mapping class="com.marryme.vendor.vo.Vendor"/>
+
+
 	</session-factory>
 </hibernate-configuration>

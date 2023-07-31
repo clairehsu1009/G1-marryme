@@ -113,7 +113,8 @@ public class ReservationController extends HttpServlet {
 	        	vo.setContactName(reqMap.get("contactName")[0]);	        	
 	        } else {	            
 	            responseMsgMap.put(EXCEPTION, "請輸入聯繫名稱");
-	            doGet(req, resp);
+	            req.getRequestDispatcher(ADD_RESERVATION_STRING).forward(req, resp);
+//	            doGet(req, resp);
 	            return; // 阻止程式繼續執行
 	        };
          if (StringUtils.isNotBlank(reqMap.get("contactNumber")[0])&& reqMap.get("contactNumber")[0].length() == 10) {
@@ -121,7 +122,8 @@ public class ReservationController extends HttpServlet {
         	}  else {
         	    // 如果聯絡電話為空或長度不為10，拋出自訂的例外，並回應錯誤訊息給前端
         	    responseMsgMap.put(EXCEPTION, "請輸入正確的10位數聯絡電話");
-        	    doGet(req, resp);
+        	    req.getRequestDispatcher(ADD_RESERVATION_STRING).forward(req, resp);
+//        	    doGet(req, resp);
         	    return; // 阻止程式繼續執行
         	};
            
@@ -146,7 +148,8 @@ public class ReservationController extends HttpServlet {
         }   else {
     	    // 拋出自訂的例外，並回應錯誤訊息給前端
     	    responseMsgMap.put(EXCEPTION, "請輸入宴客日期");
-    	    doGet(req, resp);
+    	    req.getRequestDispatcher(ADD_RESERVATION_STRING).forward(req, resp);
+//    	    doGet(req, resp);
     	    return; // 阻止程式繼續執行
     	};
         if(StringUtils.isNotBlank(reqMap.get("reservationDate")[0]) && StringUtils.isNotBlank(reqMap.get("reservationTime")[0])) {
@@ -169,7 +172,8 @@ public class ReservationController extends HttpServlet {
         }  else {
     	    // 拋出自訂的例外，並回應錯誤訊息給前端
     	    responseMsgMap.put(EXCEPTION, "請輸入預約日期");
-    	    doGet(req, resp);
+    	    req.getRequestDispatcher(ADD_RESERVATION_STRING).forward(req, resp);
+//    	    doGet(req, resp);
     	    return; // 阻止程式繼續執行
     	};
        
@@ -184,7 +188,8 @@ public class ReservationController extends HttpServlet {
         Integer id = service.insert(vo);
         if (id == null) {
             responseMsgMap.put(EXCEPTION, INSERT_ERROR);
-            doGet(req, resp);
+            req.getRequestDispatcher(ADD_RESERVATION_STRING).forward(req, resp);
+//            doGet(req, resp);
             return;
         }
         responseMsgMap.put(SUCCESS, INSERT_SUCCESS);

@@ -74,9 +74,6 @@
                                         <tr>                                        
 											<td>${reservation.contactName} </td>
                                             <td>${reservation.contactNumber}</td>
-<%--                                             <td>${reservation.eventDate}</td> --%>
-<%--                                             <td>${reservation.reservationDate}</td> --%>
-
 
 
                                              <td>

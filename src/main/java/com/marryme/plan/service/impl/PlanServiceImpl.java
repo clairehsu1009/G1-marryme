@@ -2,8 +2,10 @@ package com.marryme.plan.service.impl;
 
 import com.marryme.plan.dao.PlaceDao;
 import com.marryme.plan.dao.PlanDao;
+import com.marryme.plan.dao.impl.PlaceDaoImpl;
 import com.marryme.plan.dao.impl.PlanDaoImpl;
 import com.marryme.plan.service.PlanService;
+import com.marryme.plan.vo.Place;
 import com.marryme.plan.vo.Plan;
 import com.marryme.plan.vo.PlanDetail;
 
@@ -21,7 +23,6 @@ import java.util.List;
  */
 public class PlanServiceImpl implements PlanService {
     private final PlanDao dao;
-    private PlaceDao placeDao;
 
     public PlanServiceImpl(){
         dao = new PlanDaoImpl();
@@ -41,6 +42,19 @@ public class PlanServiceImpl implements PlanService {
         return planList;
     }
 
+    @Override
+    public List<Plan> findAllByVendorIdAndStatus(String vendorId, String statusType) {
+        List<Plan> planList = new ArrayList<>();
+        try {
+            beginTransaction();
+            planList = dao.selectAllByVendorIdAndStatus(vendorId, statusType);
+            commit();
+        } catch (Exception e) {
+            rollback();
+            e.printStackTrace();
+        }
+        return planList;
+    }
     @Override
     public List<Plan> findAll() {
         List<Plan> planList = new ArrayList<>();
@@ -68,6 +82,7 @@ public class PlanServiceImpl implements PlanService {
         }
         return plan;
     }
+
 
 
     @Override

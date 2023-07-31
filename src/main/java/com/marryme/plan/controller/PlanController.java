@@ -6,8 +6,8 @@ import com.marryme.plan.vo.Place;
 import com.marryme.plan.vo.Plan;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,13 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.*;
 
 import static com.marryme.common.CommonString.*;
 import static com.marryme.common.CommonString.EXCEPTION;
 import static com.marryme.common.ControllerUtils.*;
-import static com.marryme.common.ControllerUtils.readPhotoToParameter;
 import static com.marryme.plan.common.PlanPages.*;
 import static com.marryme.plan.common.PlanPages.ONE_PLAN_PLACE_PAGE;
 
@@ -36,6 +34,7 @@ import static com.marryme.plan.common.PlanPages.ONE_PLAN_PLACE_PAGE;
  */
 
 @WebServlet("/plan")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 10 * 1024 * 1024, maxRequestSize = 10 * 10 * 1024 * 1024)
 public class PlanController extends HttpServlet {
     private PlanService service;
 
@@ -56,9 +55,9 @@ public class PlanController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String vendorId = req.getParameter("vendorId");
-        List<Plan> plans = service.findAllByVendorId("vendorId");
-        req.setAttribute("planList", plans);
-        req.getRequestDispatcher("front-end/plan/planProduct.jsp").forward(req, resp);
+        List<Plan> planList = service.findAllByVendorId(vendorId);
+        req.setAttribute("planList", planList);
+        req.getRequestDispatcher(LIST_PLAN_PRODUCT_PAGE).forward(req, resp);
 
 
     }
@@ -107,12 +106,11 @@ public class PlanController extends HttpServlet {
         String planPictureIntro1 = req.getParameter("planPictureIntro1");
         String planPictureIntro2 = req.getParameter("planPictureIntro2");
         String planPictureIntro3 = req.getParameter("planPictureIntro3");
-        String placesParam = req.getParameter("places");
+        String [] placesParam = req.getParameterValues("placeId");
         List<Integer> places = new ArrayList<>();
 
-        if (placesParam != null && !placesParam.isEmpty()) {
-            String[] placeStrings = placesParam.split(",");
-            for (String place : placeStrings) {
+        if (placesParam != null && placesParam.length > 0) {
+            for (String place : placesParam) {
                 try {
                     int value = Integer.parseInt(place.trim());
                     places.add(value);
@@ -135,33 +133,36 @@ public class PlanController extends HttpServlet {
         }
 
         // 圖片處理
-        Part part = req.getPart("placePicture");
+        Part part = req.getPart("planPicture");
 
         // 可選擇上傳1~5張照片，最少上傳一張，所以只檢核第一張有沒有圖片
         if (part == null || part.getSize() == 0) {
-            responseMsgMap.put("placePicture", "請最少上傳一張圖片");
+            responseMsgMap.put("planPicture", "請最少上傳一張圖片");
         }
 
-        Part part2 = req.getPart("placePictures1");
-        Part part3 = req.getPart("placePictures2");
-        Part part4 = req.getPart("placePictures3");
+        Part part2 = req.getPart("planPictures1");
+        Part part3 = req.getPart("planPictures2");
+        Part part4 = req.getPart("planPictures3");
 
         Plan planVo = new Plan();
         planVo.setVendorId(vendorId);
         planVo.setPlanPicture(readPhotoToParameter(part));
         planVo.setPlanTitle(planTitle);
         planVo.setPlanIntroduction(planIntroduction);
-        planVo.setPlanPictureIntro1(planPictureIntro1);
+        // 後端處理更新時間
+        Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+        planVo.setUpdateTime(currentTimestamp);
         planVo.setPlanPictures1(readPhotoToParameter(part2));
-        planVo.setPlanPictureIntro2(planPictureIntro2);
+        planVo.setPlanPictureIntro1(planPictureIntro1);
         planVo.setPlanPictures2(readPhotoToParameter(part3));
-        planVo.setPlanPictureIntro3(planPictureIntro3);
+        planVo.setPlanPictureIntro2(planPictureIntro2);
         planVo.setPlanPictures3(readPhotoToParameter(part4));
+        planVo.setPlanPictureIntro3(planPictureIntro3);
 
 
         if (!responseMsgMap.isEmpty()) {
             req.setAttribute("plan", planVo);
-            req.getRequestDispatcher(ADD_PLAN_PLACE_PAGE).forward(req, resp);
+            req.getRequestDispatcher(ADD_PLAN_PRODUCT_PAGE).forward(req, resp);
             return;
         }
 
@@ -174,7 +175,7 @@ public class PlanController extends HttpServlet {
         responseMsgMap.put(SUCCESS, INSERT_SUCCESS);
         Plan plan = service.getOne(id);
         req.setAttribute("plan", plan);
-        req.getRequestDispatcher(ONE_PLAN_PLACE_PAGE).forward(req, resp);
+        req.getRequestDispatcher(ONE_PLAN_PRODUCT_PAGE).forward(req, resp);
     }
 
     /**
@@ -182,101 +183,103 @@ public class PlanController extends HttpServlet {
      */
     private void getOne(HttpServletRequest req, HttpServletResponse resp, Map<String, String> responseMsgMap) throws Exception {
 
-//        Integer planProductId = Integer.valueOf(req.getParameter("planProductId"));
-//        Plan planProductId = service.getOne(planProductId);
-//        if (plan == null) {
-//            responseMsgMap.put(EXCEPTION, GET_ERROR);
-//            doGet(req, resp);
-//            return;
-//        }
-//        req.setAttribute("plan", plan);
-//
-//        String action = req.getParameter(ACTION);
-//        String url = StringUtils.equals(GET_ONE_FOR_UPDATE, action) ? UPDATE_PLAN_PLACE_PAGE : ONE_PLAN_PLACE_PAGE;
-//        req.getRequestDispatcher(url).forward(req, resp);
+        Integer planProductId = Integer.valueOf(req.getParameter("planProductId"));
+        Plan plan = service.getOne(planProductId);
+        if (plan == null) {
+            responseMsgMap.put(EXCEPTION, GET_ERROR);
+            doGet(req, resp);
+            return;
+        }
+        req.setAttribute("plan", plan);
+
+        String action = req.getParameter(ACTION);
+        String url = StringUtils.equals(GET_ONE_FOR_UPDATE, action) ? UPDATE_PLAN_PRODUCT_PAGE : ONE_PLAN_PRODUCT_PAGE;
+        req.getRequestDispatcher(url).forward(req, resp);
     }
 
     private void update(HttpServletRequest req, HttpServletResponse resp, Map<String, String> responseMsgMap) throws ServletException, IOException {
-//        String vendorId = req.getParameter("vendorId");
-//        String placeTitle = req.getParameter("placeTitle");
-//        String numbeOfTables = req.getParameter("numbeOfTables");
-//        String placeIntroduction = req.getParameter("placeIntroduction");
-//
-//
-//        Map<String, String[]> reqMap = req.getParameterMap();
-//
-//
-//        // 處理欄位檢核錯誤訊息
-//        Map<String, String> inValidFieldsMap = getInValidFieldsMsg();
-//        if(StringUtils.isBlank(vendorId)) {
-//            responseMsgMap.put(EXCEPTION, ERROR_MSG);
-//        }
-//        if(StringUtils.isBlank(placeTitle)) {
-//            responseMsgMap.put("placeTitle", inValidFieldsMap.get("placeTitle"));
-//        }
-//        if(StringUtils.isBlank(numbeOfTables)) {
-//            responseMsgMap.put("numbeOfTables", inValidFieldsMap.get("numbeOfTables"));
-//        }
-//        if(StringUtils.isBlank(placeIntroduction)) {
-//            responseMsgMap.put("placeIntroduction", inValidFieldsMap.get("placeIntroduction"));
-//        }
-//        validErrorForParameterMap(reqMap, this.getInValidFieldsMsg(), responseMsgMap);
-//
-//        // 圖片處理
-//        Part part = req.getPart("placePicture");
-//
-//        // 可選擇上傳1~5張照片，最少上傳一張，所以只檢核第一張有沒有圖片
-//        if (part == null || part.getSize() == 0) {
-//            responseMsgMap.put("placePicture", "請最少上傳一張圖片");
-//        }
-//
-//        Part part2 = req.getPart("placePictures2");
-//        Part part3 = req.getPart("placePictures3");
-//        Part part4 = req.getPart("placePictures4");
-//        Part part5 = req.getPart("placePictures5");
-//
-//        Place place = parameterMapToVo(reqMap, Place.class);
-//        place.setVendorId(vendorId);
-//        place.setPlaceTitle(placeTitle);
-//        place.setNumbeOfTables(numbeOfTables);
-//        place.setPlaceIntroduction(placeIntroduction);
-//        place.setPlacePicture(readPhotoToParameter(part));
-//        place.setPlacePictures2(readPhotoToParameter(part2));
-//        place.setPlacePictures3(readPhotoToParameter(part3));
-//        place.setPlacePictures4(readPhotoToParameter(part4));
-//        place.setPlacePictures5(readPhotoToParameter(part5));
-//
-//        if (!responseMsgMap.isEmpty()) {
-//            req.setAttribute("place", place);
-//            req.getRequestDispatcher(UPDATE_PLAN_PLACE_PAGE).forward(req, resp);
-//            return;
-//        }
-//        Integer planPlaceId = place.getPlaceId();
-//        boolean result = service.update(planPlaceId, plan);
-//
-//        // 更新成功
-//        if(result) {
-//            Place placeResult = service.getOne(planPlaceId);
-//            req.setAttribute("place", placeResult);
-//            req.getRequestDispatcher(ONE_PLAN_PLACE_PAGE).forward(req, resp);
-//        } else {
-//            responseMsgMap.put(EXCEPTION, UPDATE_ERROR);
-//            doGet(req, resp);
-//        }
+        String vendorId = req.getParameter("vendorId");
+        String planTitle = req.getParameter("planTitle");
+        String planIntroduction = req.getParameter("planIntroduction");
+        String planPictureIntro1 = req.getParameter("planPictureIntro1");
+        String planPictureIntro2 = req.getParameter("planPictureIntro2");
+        String planPictureIntro3 = req.getParameter("planPictureIntro3");
+
+
+        Map<String, String[]> reqMap = req.getParameterMap();
+
+
+        // 處理欄位檢核錯誤訊息
+        Map<String, String> inValidFieldsMap = getInValidFieldsMsg();
+        if(StringUtils.isBlank(vendorId)) {
+            responseMsgMap.put(EXCEPTION, ERROR_MSG);
+        }
+        if(StringUtils.isBlank(planTitle)) {
+            responseMsgMap.put("planTitle", inValidFieldsMap.get("planTitle"));
+        }
+        if(StringUtils.isBlank(planIntroduction)) {
+            responseMsgMap.put("planIntroduction", inValidFieldsMap.get("planIntroduction"));
+        }
+        validErrorForParameterMap(reqMap, this.getInValidFieldsMsg(), responseMsgMap);
+
+        // 圖片處理
+        Part part = req.getPart("planPicture");
+
+        // 可選擇上傳1~5張照片，最少上傳一張，所以只檢核第一張有沒有圖片
+        if (part == null || part.getSize() == 0) {
+            responseMsgMap.put("planPicture", "請最少上傳一張圖片");
+        }
+
+        Part part2 = req.getPart("planPictures1");
+        Part part3 = req.getPart("planPictures2");
+        Part part4 = req.getPart("planPictures3");
+
+        Plan plan = parameterMapToVo(reqMap, Plan.class);
+        plan.setVendorId(vendorId);
+        plan.setPlanPicture(readPhotoToParameter(part));
+        plan.setPlanTitle(planTitle);
+        plan.setPlanIntroduction(planIntroduction);
+        // 後端處理更新時間
+        Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+        plan.setUpdateTime(currentTimestamp);
+        plan.setPlanPictures1(readPhotoToParameter(part2));
+        plan.setPlanPictureIntro1(planPictureIntro1);
+        plan.setPlanPictures2(readPhotoToParameter(part3));
+        plan.setPlanPictureIntro2(planPictureIntro2);
+        plan.setPlanPictures3(readPhotoToParameter(part4));
+        plan.setPlanPictureIntro3(planPictureIntro3);
+
+        if (!responseMsgMap.isEmpty()) {
+            req.setAttribute("plan", plan);
+            req.getRequestDispatcher(UPDATE_PLAN_PRODUCT_PAGE).forward(req, resp);
+            return;
+        }
+        Integer planProductId = plan.getPlanProductId();
+        boolean result = service.update(planProductId, plan);
+
+        // 更新成功
+        if(result) {
+            Plan planResult = service.getOne(planProductId);
+            req.setAttribute("plan", planResult);
+            req.getRequestDispatcher(ONE_PLAN_PRODUCT_PAGE).forward(req, resp);
+        } else {
+            responseMsgMap.put(EXCEPTION, UPDATE_ERROR);
+            doGet(req, resp);
+        }
     }
 
     /** 修改狀態為下架 */
     private void changeStatusToInactive(HttpServletRequest req, HttpServletResponse resp, Map<String, String> responseMsgMap) throws ServletException, IOException {
-        String planPlaceIdStr = req.getParameter("planPlaceId");
+        String planProductIdStr = req.getParameter("planProductId");
         boolean result = false;
-        if(StringUtils.isNotBlank(planPlaceIdStr)) {
-            result = service.changeStatusToInactive(Integer.valueOf(planPlaceIdStr));
+        if(StringUtils.isNotBlank(planProductIdStr)) {
+            result = service.changeStatusToInactive(Integer.valueOf(planProductIdStr));
         }
         // 如果更新失敗，紀錄錯誤訊息
         if(result) {
-            responseMsgMap.put(SUCCESS, "場地下架成功");
+            responseMsgMap.put(SUCCESS, "方案下架成功");
         } else {
-            responseMsgMap.put(EXCEPTION, "下架場地失敗");
+            responseMsgMap.put(EXCEPTION, "下架方案失敗");
         }
         // 回到list清單頁
         doGet(req, resp);

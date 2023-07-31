@@ -74,7 +74,7 @@ public class Plan {
     @Column(name = "plan_pictures3")
     private byte[] planPictures3;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "plan_product_id")
     private List<PlanDetail> PlanDetail = new ArrayList<>();
 

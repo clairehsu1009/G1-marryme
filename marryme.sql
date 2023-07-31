@@ -477,15 +477,15 @@ CREATE TABLE plan_product (
   plan_picture blob comment'主圖片',
   plan_title varchar(20) not null comment'標題名稱',
   plan_introduction varchar(200) not null comment'方案簡介',
-  `status` int not null default 1 comment'商品狀態,0下架、1上架、2預定額滿',
+  `status` int not null default 1 comment'商品狀態,0下架、1上架',
   edit_status int not null default 0 comment '0可修改, 1不可修改',
   update_time Timestamp not null comment'更新時間',
-  plan_picture_intro1 varchar(20) comment'圖片簡介1',
   plan_pictures1 longblob comment'圖片1',
-  plan_picture_intro2 varchar(20) comment'圖片簡介2',
+  plan_picture_intro1 varchar(20) comment'圖片簡介1',
   plan_pictures2 longblob comment'圖片2',
-  plan_picture_intro3 varchar(20) comment'圖片簡介3',
+  plan_picture_intro2 varchar(20) comment'圖片簡介2',
   plan_pictures3 longblob comment'圖片3',
+  plan_picture_intro3 varchar(20) comment'圖片簡介3',
   FOREIGN KEY (vendor_id) REFERENCES vendor(vendor_id)
 )comment = '方案商品';
 

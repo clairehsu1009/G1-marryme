@@ -2,10 +2,13 @@ package com.marryme.plan.dao.impl;
 
 import com.marryme.plan.dao.PlanDao;
 import com.marryme.plan.vo.Plan;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.util.List;
+import java.util.Optional;
+
 import static com.marryme.common.CommonString.ACTIVE;
 /**
  * ClassName: PlanDaoImpl
@@ -17,7 +20,6 @@ import static com.marryme.common.CommonString.ACTIVE;
  * @Version 1.0
  */
 public class PlanDaoImpl implements PlanDao {
-
     @Override
     public List<Plan> selectAll() {
         String hql = "FROM Plan";
@@ -72,10 +74,35 @@ public class PlanDaoImpl implements PlanDao {
     }
 
     @Override
+    public List<Plan> selectAllByVendorIdAndStatus(String vendorId, String statusType) {
+        // 狀態 0下架 INACTIVE /  1上架 ACTIVE
+        int status = ACTIVE.equals(statusType) ? 1 : 0;
+        String hql = "FROM Plan WHERE vendorId = :vendorId AND status = :status";
+        Query<Plan> query = getSession().createQuery(hql, Plan.class);
+        query.setParameter("vendorId", vendorId);
+        query.setParameter("status", status);
+        return query.list();
+    }
+
+    @Override
     public void changeStatusToInactive(Integer planProductId) {
         Plan plan = getSession().get(Plan.class, planProductId);
         plan.setStatus(0); // 狀態改為下架
         getSession().merge(plan);
+    }
+
+    @Override
+    public Optional<byte[]> selectPhotoByIdAndField(Integer planProductId, String fieldName) {
+        String hql = "SELECT " + fieldName + " FROM Plan WHERE planProductId = :planProductId";
+        Query<byte[]> query = getSession().createQuery(hql, byte[].class);
+        query.setParameter("planProductId", planProductId);
+        List<byte[]> photos = query.list();
+
+        if (!photos.isEmpty()) {
+            return Optional.ofNullable(photos.get(0));
+        } else {
+            return Optional.empty();
+        }
     }
 }
 

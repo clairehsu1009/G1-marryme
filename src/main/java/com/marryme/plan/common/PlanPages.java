@@ -20,7 +20,9 @@ public class PlanPages {
 
 
     // planProduct 方案
-    public static final String ADD_PLAN_PRODUCT_PAGE = "/front-end/vendor/plan/place/addPlanProduct.jsp";
-
+    public static final String ADD_PLAN_PRODUCT_PAGE = "/front-end/vendor/plan/plan/addPlanProduct.jsp";
+    public static final String UPDATE_PLAN_PRODUCT_PAGE = "/front-end/vendor/plan/plan/updatePlanProduct.jsp";
+    public static final String ONE_PLAN_PRODUCT_PAGE = "/front-end/vendor/plan/plan/planProduct.jsp";
+    public static final String LIST_PLAN_PRODUCT_PAGE = "/front-end/vendor/plan/plan/planProductList.jsp";
 
 }

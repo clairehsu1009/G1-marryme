@@ -147,7 +147,8 @@
                     </div>
                 </div>
                 <div class="col-sm-10 productAddBtn">
-                    <input type="hidden" name="vendorId" value="${vendorId}">
+                    <input type="hidden" name="planProductId" value="${plan.planProductId}">
+                    <input type="hidden" name="vendorId" value="${plan.vendorId}">
                     <a href="<%=request.getContextPath()%>/plan?vendorId=${vendorId}"><button type="button" class="btn btn-danger">取消</button></a>
                     <button type="submit" class="btn btn-info" name="action" value="insert">儲存</button>
                 </div>

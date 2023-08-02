@@ -3,6 +3,7 @@ package com.marryme.member.controller;
 import static com.marryme.member.util.MemberConstants.SERVICE;
 import static com.marryme.member.util.Constants.USER_MATERIAL_PAGE;
 
+
 import java.io.IOException;
 import java.util.List;
 
@@ -12,13 +13,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.marryme.emp.service.EmpService;
+import com.marryme.emp.service.Impl.EmpServiceImpl;
+import com.marryme.member.service.MemberService;
+import com.marryme.member.service.Impl.MemberServiceImpl;
 import com.marryme.member.vo.Member;
 
 @WebServlet("/user/userMaterial")
 public class MemberServlet extends HttpServlet{
 	
 private static final long serialVersionUID = 1L;
-
 
 	
 	@Override
@@ -27,6 +31,5 @@ private static final long serialVersionUID = 1L;
 		request.setAttribute("memberList", memberList);
 		request.getRequestDispatcher(USER_MATERIAL_PAGE).forward(request, response);
 	}
-	
 
 }

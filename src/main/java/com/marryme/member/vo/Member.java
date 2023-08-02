@@ -1,15 +1,13 @@
 package com.marryme.member.vo;
 
-import java.sql.Date;
+
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import lombok.*;
 
@@ -21,9 +19,9 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member {
+public class Member{
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "member_id")
 	private String memberId; 
 	/** 會員姓名 */
@@ -31,22 +29,21 @@ public class Member {
 	private String memberName; 
 	/** 會員電話 */
 	@Column(name = "member_phone")
-	private Integer memberPhone; 
-	/** 會員信箱 */
-	@Column(name = "member_email")
-	private String memberEmail;
+	private String memberPhone; 
 	/** 會員密碼 */
 	@Column(name = "member_password")
 	private String memberPassword; 
 	/** 會員地址 */
 	@Column(name = "member_address")
 	private String memberAddress;
-	/** 會員性別 */
+	/** 會員性別
+	 * 狀態 0未選擇 1新郎 2新娘
+	 *  */
 	@Column(name = "member_gender")
 	private Integer memberGender;
-	/** 會員註冊時間 */
+	/** 會員註冊日期 */
 	@Column(name = "member_registration_time")
-	private Date memberRegistrationTime;
+	private LocalDate memberRegistrationTime;
 	/** 會員最後登入時間 */
 	@Column(name = "member_last_login_time")
 	private Timestamp memberLastLoginTime;
@@ -64,14 +61,8 @@ public class Member {
      * */
 	@Column(name = "verification_status")
 	private Integer verificationStatus;
-	
-	@Transient
-	private boolean successful;
-	@Transient
-	private String message;
 
-	public Member(boolean successful, String message) {
-		this.successful = successful;
-		this.message = message;
-	}
+	
+	
+	
 }

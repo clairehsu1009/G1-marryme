@@ -55,6 +55,7 @@ public class ReservationDaoImpl implements ReservationDao{
 		
 		int status = ACTIVE.equals(statusType) ? 1 : 0;
 		String hql = "FROM Reservation WHERE vendorId = :vendorId AND status = :status";
+		
 		Query<Reservation> query = getSession().createQuery(hql, Reservation.class);
 		query.setParameter("vendorId", vendorId);
 		query.setParameter("status", status);

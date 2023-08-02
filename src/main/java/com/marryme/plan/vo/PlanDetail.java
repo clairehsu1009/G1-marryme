@@ -30,9 +30,6 @@ public class PlanDetail {
     /** 方案ID */
     @Column(name = "plan_product_id")
     private Integer planProductId;
-    /** 加購項目ID */
-    @Column(name = "plan_item_id")
-    private Integer planItemId;
     /** 場地ID */
     @Column(name = "place_id")
     private Integer placeId;

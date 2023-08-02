@@ -32,7 +32,9 @@
                     <tbody>
                     <tr>
                         <th scope="col">場地主圖片</th>
-                        <td>${place.placePicture}</td>
+                        <td>
+                            <img width="200px" height="200px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${place.placeId}&photoFieldName=placePicture" class="rounded mx-auto d-block" alt="場地主圖片">
+                        </td>
                     </tr>
                     <tr>
                         <th scope="col">場地標題</th>
@@ -48,19 +50,27 @@
                     </tr>
                     <tr>
                         <th scope="col">圖片</th>
-                        <td>${place.placePictures2}</td>
+                        <td>
+                            <img width="50px" height="50px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${place.placeId}&photoFieldName=placePictures2" class="rounded mx-auto d-block" alt="場地圖片2">
+                        </td>
                     </tr>
                     <tr>
                         <th scope="col">圖片</th>
-                        <td>${place.placePictures3}</td>
+                        <td>
+                            <img width="50px" height="50px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${place.placeId}&photoFieldName=placePictures3" class="rounded mx-auto d-block" alt="場地圖片3">
+                        </td>
                     </tr>
                     <tr>
                         <th scope="col">圖片</th>
-                        <td>${place.placePictures4}</td>
+                        <td>
+                            <img width="50px" height="50px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${place.placeId}&photoFieldName=placePictures4" class="rounded mx-auto d-block" alt="場地圖片4">
+                        </td>
                     </tr>
                     <tr>
                         <th scope="col">圖片</th>
-                        <td>${place.placePictures5}</td>
+                        <td>
+                            <img width="50px" height="50px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${place.placeId}&photoFieldName=placePictures5" class="rounded mx-auto d-block" alt="場地圖片5">
+                        </td>
                     </tr>
                     </tbody>
                 </table>

@@ -1,31 +1,34 @@
 package com.marryme.reservation.contriller;
 
+import static com.marryme.common.CommonString.*;
+
+import static com.marryme.common.ControllerUtils.parameterMapToVo;
+import static com.marryme.common.ControllerUtils.validErrorForParameterMap;
+import static com.marryme.plan.common.PlanPages.ONE_PLAN_PLACE_PAGE;
+import static com.marryme.reservation.common.ReservationPages.*;
+
+
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.marryme.plan.vo.Item;
+import org.apache.commons.lang3.StringUtils;
+import org.checkerframework.checker.signature.qual.BinaryNameWithoutPackage;
+
 import com.marryme.reservation.service.impl.ReservationServiceImpl;
 import com.marryme.reservation.vo.Reservation;
-import org.apache.commons.lang3.StringUtils;
 
-
-import java.io.IOException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static com.marryme.reservation.common.ReservationPages.*;
-import static com.marryme.common.CommonString.*;
-import static com.marryme.common.ControllerUtils.*;
-import static com.marryme.plan.common.PlanPages.OFF_LIST_PLAN_ITEM_PAGE;
-import static com.marryme.plan.common.PlanPages.ONE_PLAN_ITEM_PAGE;
-import static com.marryme.plan.common.PlanPages.UPDATE_PLAN_ITEM_PAGE;
 
 @WebServlet("/reservation")
 public class ReservationController extends HttpServlet {
@@ -71,8 +74,8 @@ public class ReservationController extends HttpServlet {
 			}
 			// action 事件請求控制
 			switch (action) {
-//			case INSERT:insert(req, resp, responseMsgMap);
-//				break;
+			case INSERT:insert(req, resp, responseMsgMap);
+				break;
 			case GET_ONE_FOR_UPDATE:
 			case GET_ONE:getOne(req, resp, responseMsgMap);
 				break;
@@ -92,6 +95,105 @@ public class ReservationController extends HttpServlet {
 			doGet(req, resp);
 		}
 	}
+	
+	/*新增*/
+	private void insert(HttpServletRequest req, HttpServletResponse resp, Map<String, String> responseMsgMap) throws ServletException, IOException {
+        Map<String, String[]> reqMap = req.getParameterMap();
+        validErrorForParameterMap(reqMap, this.getInValidFieldsMsg(), responseMsgMap);
+        
+//        Reservation vo = parameterMapToVo(reqMap, Reservation.class);
+        Reservation vo = new Reservation();
+        if(StringUtils.isNotBlank(reqMap.get("vendorId")[0])) {
+        	vo.setVendorId(reqMap.get("vendorId")[0]);
+        }   
+        if(StringUtils.isNotBlank(reqMap.get("memberId")[0])) {
+        	vo.setMemberId(reqMap.get("memberId")[0]);
+        }        	    
+        if(StringUtils.isNotBlank(reqMap.get("contactName")[0])) {
+	        	vo.setContactName(reqMap.get("contactName")[0]);	        	
+	        } else {	            
+	            responseMsgMap.put(EXCEPTION, "請輸入聯繫名稱");
+	            doGet(req, resp);
+	            return; // 阻止程式繼續執行
+	        };
+         if (StringUtils.isNotBlank(reqMap.get("contactNumber")[0])&& reqMap.get("contactNumber")[0].length() == 10) {
+        	    vo.setContactNumber(reqMap.get("contactNumber")[0]);
+        	}  else {
+        	    // 如果聯絡電話為空或長度不為10，拋出自訂的例外，並回應錯誤訊息給前端
+        	    responseMsgMap.put(EXCEPTION, "請輸入正確的10位數聯絡電話");
+        	    doGet(req, resp);
+        	    return; // 阻止程式繼續執行
+        	};
+           
+        if(StringUtils.isNotBlank(reqMap.get("eventDate")[0]) && StringUtils.isNotBlank(reqMap.get("eventTime")[0])) {
+        	SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        	String[] eventTime = reqMap.get("eventTime") ;
+        	String[] eventDate = reqMap.get("eventDate") ;
+        	String eventString = eventDate[0]+" "+eventTime[0];//2023-07-11 12:00:00
+        	try {
+        		// 將前端傳遞的日期時間字串轉換為 Date 物件
+        		Date date = sdf2.parse(eventString);
+
+        		// 將 Date 物件轉換為 Timestamp 物件
+        		Timestamp timestamp = new Timestamp(date.getTime());
+
+        		// 設定 Timestamp 物件到 vo 物件的 eventDate 屬性
+        		vo.setEventDate(timestamp);
+
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+        }   else {
+    	    // 拋出自訂的例外，並回應錯誤訊息給前端
+    	    responseMsgMap.put(EXCEPTION, "請輸入宴客日期");
+    	    doGet(req, resp);
+    	    return; // 阻止程式繼續執行
+    	};
+        if(StringUtils.isNotBlank(reqMap.get("reservationDate")[0]) && StringUtils.isNotBlank(reqMap.get("reservationTime")[0])) {
+        	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    	String[] reservationDate = reqMap.get("reservationDate") ;
+	    	String[] reservationTime = reqMap.get("reservationTime") ;
+	    	String eventString = reservationDate[0]+" "+reservationTime[0];//2023-07-11 12:00:00
+	    	try {
+        		// 將前端傳遞的日期時間字串轉換為 Date 物件
+        		Date date = sdf.parse(eventString);
+
+        		// 將 Date 物件轉換為 Timestamp 物件
+        		Timestamp timestamp = new Timestamp(date.getTime());
+
+        		// 設定 Timestamp 物件到 vo 物件的 eventDate 屬性
+        		vo.setReservationDate(timestamp);	    	
+			} catch (ParseException e) { 
+				e.printStackTrace();
+			}
+        }  else {
+    	    // 拋出自訂的例外，並回應錯誤訊息給前端
+    	    responseMsgMap.put(EXCEPTION, "請輸入預約日期");
+    	    doGet(req, resp);
+    	    return; // 阻止程式繼續執行
+    	};
+       
+	    vo.setStatus(1);
+        
+        if (!responseMsgMap.isEmpty()) {
+            req.setAttribute("reservation", vo);
+            req.getRequestDispatcher(ADD_RESERVATION_STRING).forward(req, resp);
+            return;
+        }
+        
+        Integer id = service.insert(vo);
+        if (id == null) {
+            responseMsgMap.put(EXCEPTION, INSERT_ERROR);
+            doGet(req, resp);
+            return;
+        }
+        responseMsgMap.put(SUCCESS, INSERT_SUCCESS);
+        Reservation reservation = service.getOne(id);
+        req.setAttribute("reservation", reservation);
+        req.getRequestDispatcher(ONE_RESERVATION_CONFIRM).forward(req, resp);
+    }
+	
+	
 	
 	/*編輯先取出資料*/
 	private void getOne(HttpServletRequest req, HttpServletResponse resp, Map<String, String> responseMsgMap) throws Exception {
@@ -117,28 +219,100 @@ public class ReservationController extends HttpServlet {
 	/*更新預約日期*/
 	private void update(HttpServletRequest req, HttpServletResponse resp, Map<String, String> responseMsgMap) throws ServletException, IOException {
         Map<String, String[]> reqMap = req.getParameterMap();
-        validErrorForParameterMap(reqMap, this.getInValidFieldsMsg(), responseMsgMap);
-        Reservation reservation = parameterMapToVo(reqMap, Reservation.class);
-
+       
+        Reservation reservation = new Reservation();
+        
         if (!responseMsgMap.isEmpty()) {
             req.setAttribute("reservation", reservation);
             req.getRequestDispatcher(UPDATE_RESERVATION_ITEM_PAGE).forward(req, resp);
             return;
         }
-        // 取得前端傳遞的日期時間字串
-        String eventDateStr = req.getParameter("eventDate");
-        String reservationDateStr = req.getParameter("reservationDate");
-                                 
-        
-     // 在此直接使用 eventDateTime 和 reservationDateTime
-        Timestamp eventDate = Timestamp.valueOf(eventDateStr);
-        Timestamp reservationDate = Timestamp.valueOf(reservationDateStr);
-        reservation.setEventDate(eventDate);
-        reservation.setReservationDate(reservationDate);
+             
+       
+        String reservationIdStr = req.getParameter("reservationId");
+        Integer reservationId = Integer.parseInt(reservationIdStr);
+        reservation.setReservationId(reservationId);
 
         
-        Integer reservationId = reservation.getReservationId();
-        boolean result = service.update(reservationId, reservation);
+   
+        if(StringUtils.isNotBlank(reqMap.get("vendorId")[0])) {
+        	reservation.setVendorId(reqMap.get("vendorId")[0]);
+        }   
+        if(StringUtils.isNotBlank(reqMap.get("memberId")[0])) {
+        	reservation.setMemberId(reqMap.get("memberId")[0]);
+        }        	    
+        if(StringUtils.isNotBlank(reqMap.get("contactName")[0])) {
+        	reservation.setContactName(reqMap.get("contactName")[0]);	        	
+	        } else {	            
+	            responseMsgMap.put(EXCEPTION, "請輸入聯繫名稱");
+	            doGet(req, resp);
+	            return; // 阻止程式繼續執行
+	        };
+         if (StringUtils.isNotBlank(reqMap.get("contactNumber")[0])&& reqMap.get("contactNumber")[0].length() == 10) {
+        	 reservation.setContactNumber(reqMap.get("contactNumber")[0]);
+        	}  else {
+        	    // 如果聯絡電話為空或長度不為10，拋出自訂的例外，並回應錯誤訊息給前端
+        	    responseMsgMap.put(EXCEPTION, "請輸入正確的10位數聯絡電話");
+        	    doGet(req, resp);
+        	    return; // 阻止程式繼續執行
+        	};
+           
+        if(StringUtils.isNotBlank(reqMap.get("eventDate")[0]) && StringUtils.isNotBlank(reqMap.get("eventTime")[0])) {
+        	SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        	String[] eventTime = reqMap.get("eventTime") ;
+        	String[] eventDate = reqMap.get("eventDate") ;
+        	String eventString = eventDate[0]+" "+eventTime[0];//2023-07-11 12:00:00
+        	try {
+        		// 將前端傳遞的日期時間字串轉換為 Date 物件
+        		Date date = sdf2.parse(eventString);
+
+        		// 將 Date 物件轉換為 Timestamp 物件
+        		Timestamp timestamp = new Timestamp(date.getTime());
+
+        		// 設定 Timestamp 物件到 vo 物件的 eventDate 屬性
+        		reservation.setEventDate(timestamp);
+
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+        }   else {
+    	    // 拋出自訂的例外，並回應錯誤訊息給前端
+    	    responseMsgMap.put(EXCEPTION, "請輸入宴客日期");
+    	    doGet(req, resp);
+    	    return; // 阻止程式繼續執行
+    	};
+        if(StringUtils.isNotBlank(reqMap.get("reservationDate")[0]) && StringUtils.isNotBlank(reqMap.get("reservationTime")[0])) {
+        	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    	String[] reservationDate = reqMap.get("reservationDate") ;
+	    	String[] reservationTime = reqMap.get("reservationTime") ;
+	    	String eventString = reservationDate[0]+" "+reservationTime[0];//2023-07-11 12:00:00
+	    	try {
+        		// 將前端傳遞的日期時間字串轉換為 Date 物件
+        		Date date = sdf.parse(eventString);
+
+        		// 將 Date 物件轉換為 Timestamp 物件
+        		Timestamp timestamp = new Timestamp(date.getTime());
+
+        		// 設定 Timestamp 物件到 vo 物件的 eventDate 屬性
+        		reservation.setReservationDate(timestamp);	    	
+			} catch (ParseException e) { 
+				e.printStackTrace();
+			}
+        }  else {
+    	    // 拋出自訂的例外，並回應錯誤訊息給前端
+    	    responseMsgMap.put(EXCEPTION, "請輸入預約日期");
+    	    doGet(req, resp);
+    	    return; // 阻止程式繼續執行
+    	};
+       
+    	
+    	reservation.setStatus(1);
+       
+
+    	 boolean result = service.update(reservationId, reservation);
+        
+        
+        
 
         // 更新成功
         if(result) {

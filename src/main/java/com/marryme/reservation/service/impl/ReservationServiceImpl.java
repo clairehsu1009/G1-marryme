@@ -81,8 +81,7 @@ public class ReservationServiceImpl implements ReservationService {
 	public boolean update(Integer id, Reservation reservation) {
 		boolean result = false;
 		try {
-			beginTransaction();		
-			
+			beginTransaction();				
 			dao.update(id, reservation);
 			commit();
 			result = true;

@@ -42,7 +42,6 @@ public class FindAllShopProductServlet extends HttpServlet {
 		resp.setHeader("Access-Control-Allow-Credentials", "true"); // 是否允許帶有憑證的請求
 
 	    String productCategoryIdParam = req.getParameter("productCategoryId");
-	    System.out.println(productCategoryIdParam);
 	    Integer productCategoryId = null;
 	    if (productCategoryIdParam != null && !productCategoryIdParam.isEmpty()) {
 	        try {

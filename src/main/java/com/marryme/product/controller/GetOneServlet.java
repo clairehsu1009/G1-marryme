@@ -1,6 +1,6 @@
 /**
  * @Author Jeanny
- * @Create 2023/7/27 10:50
+ * @Create 2023/7/28 23:33
  * @Version 1.0
  */
 
@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.marryme.product.entity.Product;
 import com.marryme.product.service.impl.ProductServiceImpl;
 
-@WebServlet("/product/getOneForUpdate")
-public class GetOneForUpdateServlet extends HttpServlet {
+@WebServlet("/product/getOne")
+public class GetOneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ProductServiceImpl service = new ProductServiceImpl();
 
@@ -38,7 +38,7 @@ public class GetOneForUpdateServlet extends HttpServlet {
 			return;
 		}
 		req.setAttribute("product", product);
-		req.getRequestDispatcher("/front-end/vendor/product/editProduct.jsp").forward(req, res);
+		req.getRequestDispatcher("/front-end/product/productDetail.jsp").forward(req, res);
 	}
 
 	@Override

@@ -2,10 +2,11 @@ const init = () => {
 	// 獲取 URL 中的 productCategoryId 參數
 	const urlParams = new URLSearchParams(window.location.search);
 	const productCategoryId = urlParams.get('productCategoryId');
-
-	console.log(productCategoryId); // 檢查 productCategoryId 的值是否正確
 	// 使用Fetch API呼叫後端Servlet取得商品資料
-	fetch(`http://localhost:8080/marryme/product/findAllShopProduct?productCategoryId=${productCategoryId}`) // 替換成實際的Servlet URL
+	const currentDomain = window.location.origin;
+	const apiUrl = `${currentDomain}/marryme/product/findAllShopProduct?productCategoryId=${productCategoryId}`;
+
+	fetch(apiUrl) // 替換成實際的Servlet URL
 		.then(response => response.json())
 		.then(data => {
 			// 將取得的商品資料顯示在網頁上
@@ -20,7 +21,7 @@ const init = () => {
 				const liImage = document.createElement("li");
 				const aImage = document.createElement("a");
 				aImage.title = item.title;
-				aImage.href = item.link;
+				aImage.href = `${currentDomain}/marryme/product/getOne?productId=${item.id}`;
 				aImage.className = "cltk_click";
 				aImage.setAttribute("data-cltk-id", item.id);
 				const imgElement = document.createElement("img");
@@ -37,7 +38,7 @@ const init = () => {
 				const h2Title = document.createElement("h2");
 				const aTitle = document.createElement("a");
 				aTitle.title = item.title;
-				aTitle.href = item.link;
+				aTitle.href =`${currentDomain}/marryme/product/getOne?productId=${item.id}`;
 				aTitle.className = "cltk_click";
 				aTitle.setAttribute("data-cltk-id", item.id);
 				const spanTitle = document.createElement("span");
@@ -50,7 +51,6 @@ const init = () => {
 				const liShop = document.createElement("li");
 				const aShop = document.createElement("a");
 				aShop.title = item.title;
-				aShop.href = item.shop_link;
 				aShop.className = "cltk_click";
 				aShop.setAttribute("data-cltk-id", item.id);
 				const spanShop = document.createElement("span");
@@ -62,7 +62,7 @@ const init = () => {
 				const liPrice = document.createElement("li");
 				const aPrice = document.createElement("a");
 				aPrice.title = item.title;
-				aPrice.href = item.link;
+				aPrice.href =`${currentDomain}/marryme/product/getOne?productId=${item.id}`;
 				aPrice.className = "cltk_click";
 				aPrice.setAttribute("data-cltk-id", item.id);
 				const spanPrice = document.createElement("span");

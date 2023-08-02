@@ -7,7 +7,6 @@
 	
 <%
 String productCategoryId = request.getParameter("productCategoryId");
-System.out.println("productCategoryId: " + productCategoryId);
 %>
 
 
@@ -17,7 +16,7 @@ System.out.println("productCategoryId: " + productCategoryId);
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<title>Merry Me</title>
+<title>Marry Me</title>
 <link rel="icon"
 	href="${pageContext.request.contextPath}/public/images/front-end/marrymelittle.ico"
 	type="image/x-icon">
@@ -57,42 +56,8 @@ System.out.println("productCategoryId: " + productCategoryId);
 			</ol>
 		</div>
 	</div>
-	<div class="main_h1">
-		<!--做服務or商品的才需要加-->
-		<div class="rwd_wrap group">
-			<div class="clearfix">
-				<ul class="clearfix">
-					<li><a href="#" class="onit">商品</a></li>
-					<li><a href="#" class="">店家</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
 
-	<!-- <div class="filter_pc on_pc"> 做服務or商品的才需要加，這段先保留畫面位置因為有JS功能+還有功能選項尚待確認 -->
-	<div class="filter_pc on_pc">
-		<section class="rwd_wrap group">
-			<div id="service_filter_obt_html"></div>
-			<div id="service_filter_ts_html"></div>
-			<div id="service_filter_pr_html">
-				<dl id="show_pr" class="show_filter">
-					<dt>
-						<a href="javascript:;" onclick="check_open_filter('show_pr');">
-							預算 </a>
-					</dt>
-					<dd id="show_pr_dd" style="display: none;">
-						<ul class="radius_3">
-							<label for="pr_">
-								<li class="onit filter_search_ref"
-								onclick="filter_search_ref($(this).find('a'));"><a id="pr_"
-									href="" rel_id="show_pr" rel_tit="預算" title="不拘"> 不拘&nbsp;<span>0</span></a></li>
-							</label>
-						</ul>
-					</dd>
-				</dl>
-			</div>
-		</section>
-	</div>
+
 
 	<!--<div class="rwd_wrap group"> 這段做服務or商品才需要新增-->
 	<div class="rwd_wrap group">

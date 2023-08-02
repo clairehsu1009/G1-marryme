@@ -320,7 +320,6 @@
  	// 獲取 URL 中的 productId 參數
 		const urlParams = new URLSearchParams(window.location.search);
 		const productId = urlParams.get('productId');
-	// 使用Fetch API呼叫後端Servlet取得商品資料
 		const currentDomain = window.location.origin;
 		const apiUrl = `${currentDomain}/marryme/product/addCart`;
 	
@@ -333,24 +332,19 @@
           // 發送POST請求到後端Servlet
           $.ajax({
             type: "POST",
-            url: apiUrl, // 根據您的後端Servlet的路徑來設置
+            url: apiUrl, 
             data: {
               productId: productId, // 將商品ID和數量作為POST請求的數據傳遞
               productQty: quantity
             },
             success: function(response) {
-            	 // 這裡可以處理加入購物車成功的提示，您可以使用Swal.fire或其他方法
                 Swal.fire({
                     icon: 'success',
                     title: '成功加入購物車!',
                     text: '商品已經添加到購物車中。',
-                }).then(function() {
-                    // 成功提示後自動跳轉到購物車頁面
-                    window.location.href = '/marryme/front-end/product/shoppingCart.jsp';
                 });
             },
             error: function(xhr, status, error) {
-              // 這裡可以處理加入購物車失敗的提示，您可以使用Swal.fire或其他方法
               Swal.fire("加入購物車失敗!", "請稍後再試。", "error");
             }
           });

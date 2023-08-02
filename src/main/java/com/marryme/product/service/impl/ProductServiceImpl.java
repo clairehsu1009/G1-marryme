@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
-import org.hibernate.Hibernate;
-
 import com.marryme.product.dao.ProductDao;
 import com.marryme.product.dao.impl.ProductDaoImpl;
+import com.marryme.product.entity.Cart;
 import com.marryme.product.entity.Product;
 import com.marryme.product.service.ProductService;
 
@@ -96,7 +93,7 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return productList;
 	}
-	
+
 	@Override
 	public List<Product> findAllByProductCategoryId(Integer productCategoryId) {
 		List<Product> productList = new ArrayList<>();
@@ -138,6 +135,45 @@ public class ProductServiceImpl implements ProductService {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public void buyProduct(Integer id, Cart cart) {
+		Product product = null;
+		try {
+			beginTransaction();
+			product = dao.selectById(id);
+			commit();
+			cart.addProduct(product);
+		} catch (Exception e) {
+			rollback();
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void deleteProduct(Integer id, Cart cart) throws Exception {
+		if (cart == null) {
+			throw new Exception("購物車為空");
+		}
+		cart.getProductMap().remove(id);
+	}
+
+	@Override
+	public void updateQuantity(Integer id, Cart cart, Integer quantity) throws Exception {
+		if (cart == null) {
+			throw new Exception("購物車為空");
+		}
+		cart.getProductMap().get(id).setQuantity(quantity);
+	}
+
+	@Override
+	public void clearCart(Cart cart) throws Exception {
+		if (cart == null) {
+			throw new Exception("購物車為空");
+		}
+		cart.getProductMap().clear();
+
 	}
 
 }

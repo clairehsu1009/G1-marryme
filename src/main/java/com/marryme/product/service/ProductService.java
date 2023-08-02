@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.marryme.core.service.CoreService;
+import com.marryme.product.entity.Cart;
 import com.marryme.product.entity.Product;
 
 public interface ProductService extends CoreService {
@@ -24,6 +25,15 @@ public interface ProductService extends CoreService {
     boolean changeStatusToInactive(Integer id);
 
 	List<Product> findAllByProductCategoryId(Integer productCategoryId);
+	
+	// 購物車使用
+	public void buyProduct(Integer id, Cart cart);
+	
+	public void deleteProduct(Integer id, Cart cart) throws Exception;
+	
+	public void updateQuantity(Integer id, Cart cart, Integer quantity) throws Exception;
+	
+	public void clearCart(Cart cart) throws Exception;
 
 
 }

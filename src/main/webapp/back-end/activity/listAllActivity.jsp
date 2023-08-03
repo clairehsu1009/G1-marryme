@@ -79,10 +79,10 @@
 														 <input type="hidden" name="discountCode" value="${activity.discountCode}">
 														 <c:if test="${activity.editStatus == 0}">
 															<button type="submit" class="btn btn-info" 
-																formaction="<%=request.getContextPath()%>/marryme/activity/getOneForUpdate">編輯</button>
+																formaction="<%=request.getContextPath()%>/activity/getOneForUpdate">編輯</button>
 														</c:if>
 														<button type="submit" class="btn btn-warning"
-															formaction="<%=request.getContextPath()%>/marryme/activity/delete">下架</button>
+															formaction="<%=request.getContextPath()%>/activity/delete">下架</button>
 													</form>
 												</td>
 											</tr>

@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -66,13 +65,13 @@ public class UpdateServlet extends HttpServlet {
 		String activity_detail = req.getParameter("activity_detail");
 
 		Activity activity = new Activity();
-		activity.setDiscount_code(discount_code);
-		activity.setVendor_id(vendor_id);
-		activity.setActivity_name(activity_name);
+		activity.setDiscountCode(discount_code);
+		activity.setVendorId(vendor_id);
+		activity.setActivityName(activity_name);
 		activity.setDiscount(discount);
-		activity.setActivity_start_time(activity_start_time);
-		activity.setActivity_end_time(activity_end_time);
-		activity.setActivity_detail(activity_detail);
+		activity.setActivityStartTime(activity_start_time);
+		activity.setActivityEndTime(activity_end_time);
+		activity.setActivityDetail(activity_detail);
 
 		// Send the use back to the form, if there were errors
 		if (!errorMsgs.isEmpty()) {

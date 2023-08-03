@@ -7,6 +7,8 @@
 
 package com.marryme.activity.service.impl;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,5 +128,16 @@ public class ActivityServiceImpl implements ActivityService {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	public void deleteActivity(String discount_code) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Activity updateActivity(String discount_code, String vendor_id, String activity_name, BigDecimal discount,
+			Timestamp activity_start_time, Timestamp activity_end_time, String activity_detail) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

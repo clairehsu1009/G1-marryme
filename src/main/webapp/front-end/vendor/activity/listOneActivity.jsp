@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<jsp:useBean id="item" scope="request" class="com.marryme.plan.vo.Item" />
+<jsp:useBean id="activity" scope="request" class="com.marryme.activity.entity.Activity" />
 <html lang="zh-tw">
 <%@include file="/front-end/vendor/common/vendorHead.jsp"%>
 

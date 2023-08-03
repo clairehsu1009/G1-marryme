@@ -8113,7 +8113,7 @@ table.hall td {
 }
 
 .rate_what .evaluate span {
-    background: url(/public/images/front-end/selected.svg) no-repeat;
+    background: url(/marryme/public/images/front-end/selected.svg) no-repeat;
     display: inline-block;
     width: 13px;
     height: 17px
@@ -9589,7 +9589,7 @@ a.reserveVenue_btn:hover {
 .profile_detail .info .detail .evaluate .bg_star {
     width: 14px;
     height: 14px;
-    background: url(/public/images/front-end/selected.svg) center no-repeat;
+    background: url(/marryme/public/images/front-end/selected.svg) center no-repeat;
     background-size: 100%
 }
 
@@ -12669,4 +12669,14 @@ h5::before {
     color: rgba(0, 0, 0, .54);
     font-size: 14px;
     padding-left: 0px;
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    background-color: #000;
 }

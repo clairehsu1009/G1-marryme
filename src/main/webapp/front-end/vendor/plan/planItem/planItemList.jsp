@@ -17,7 +17,7 @@
         <div>
             <h1><i class="fa fa-archive">&nbsp;</i>上架中-方案加購項目</h1>
         </div>
-        <form method="post" action="<%=request.getContextPath()%>/plan-item" style="margin-bottom: 0px;">
+        <form method="post" action="<%=request.getContextPath()%>/plan-item" style="margin-bottom: 0;">
             <input type="hidden" name="vendorId" value="${vendorId}" />
         <ul class="app-breadcrumb breadcrumb">
             <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已下架方案加購項目</button></li>
@@ -65,7 +65,7 @@
                                     <td>${item.itemDeposit}</td>
                                     <td>${item.itemTotal}</td>
                                     <td>
-                                        <form method="post" action="<%=request.getContextPath()%>/plan-item" style="margin-bottom: 0px;">
+                                        <form method="post" action="<%=request.getContextPath()%>/plan-item" style="margin-bottom: 0;">
                                             <input type="hidden" name="planItemId" value="${item.planItemId}" />
                                             <c:if test="${item.editStatus == 0}">
                                                 <button type="submit" class="btn btn-info" name="action" value="getOneForUpdate">編輯</button>

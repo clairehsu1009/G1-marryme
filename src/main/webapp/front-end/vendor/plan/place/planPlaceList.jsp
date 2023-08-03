@@ -16,11 +16,11 @@
         <div>
             <h1><i class="fa fa-archive">&nbsp;</i>方案場地</h1>
         </div>
-        <form method="post" action="<%=request.getContextPath()%>/plan-place" style="margin-bottom: 0px;">
+        <form method="post" action="<%=request.getContextPath()%>/plan-place" style="margin-bottom: 0;">
             <input type="hidden" name="vendorId" value="${vendorId}" />
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/plan-item?vendorId=${vendorId}">方案場地管理</a></li>
+            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/plan-place?vendorId=${vendorId}">方案場地管理</a></li>
         </ul>
         </form>
     </div>
@@ -29,12 +29,12 @@
             <div class="tab-item">
                 <ul class="nav" role="tablist">
                     <li><a data-toggle="tab" href="#tab-0" role="tab">下架</a></li>
-                    <li><a class="active" data-toggle="tab-1" href="#tab-1" role="tab">上架中</a></li>
+                    <li><a class="active" data-toggle="tab" href="#tab-1" role="tab">上架中</a></li>
                 </ul>
             </div>
             <div class="tab-item-content">
                 <div class="tab-content">
-                    <c:forEach begin="0" end="1" varStatus="loop">
+                    <c:forEach begin="0" end="1" varStatus="loop" >
                         <c:set var="activeClass" value="${loop.index == 1 ? 'active' : ''}" />
                     <div class="tab-pane fade-in ${activeClass}" id="tab-${loop.index}" role="tabpanel">
                         <table class="table">
@@ -52,7 +52,9 @@
                             </thead>
                             <tbody>
                             <c:forEach var="place" items="${placeList}" begin="0" end="${placeList.size()}">
+<%--                                <c:out value="loop.index: ${loop.index}, place.status: ${place.status}" /><br>--%>
                                 <c:if test="${place.status == loop.index}">
+
                                 <tr>
                                     <td>
                                         <img width="200px" height="200px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${place.placeId}&photoFieldName=placePicture" class="rounded mx-auto d-block" alt="場地主圖片">
@@ -73,7 +75,7 @@
                                         <img width="50px" height="50px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${place.placeId}&photoFieldName=placePictures5" class="rounded mx-auto d-block" alt="場地圖片5">
                                     </td>
                                     <td>
-                                        <form method="post" action="<%=request.getContextPath()%>/plan-place" style="margin-bottom: 0px ;">
+                                        <form method="post" action="<%=request.getContextPath()%>/plan-place" style="margin-bottom: 0 ;">
                                             <input type="hidden" name="planPlaceId" value="${place.placeId}" />
                                             <input type="hidden" name="vendorId" value="${place.vendorId}" />
                                             <c:if test="${place.editStatus == 0}">

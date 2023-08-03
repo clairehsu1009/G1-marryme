@@ -412,33 +412,35 @@ INSERT INTO `album` (`vendor_id`) VALUES
 -- 建立商品訂單--
 CREATE TABLE orders (
 		order_id int not null auto_increment comment '訂單_ID',
-		member_id varchar(50) not null comment '會員_ID(信箱) FK' ,
-		discount_code varchar(10) comment '優惠代碼 FK',
-		order_status int not null comment '訂單狀態(0待付款, 1待出貨, 2待收貨, 3已完成, 4取消)',
-		order_date TIMESTAMP not null comment '訂單日期',
+		member_id varchar(50) not null comment '會員_ID(信箱)',
+        recipient_name varchar(50) not null comment '收件人姓名',
+        recipient_phone varchar(20) not null comment '收件人電話',
+        recipient_address varchar(50) not null comment '收件人地址',
+		order_status TINYINT not null comment '訂單狀態(0待付款, 1待出貨, 2待收貨, 3已完成, 4取消)',
+		order_date TIMESTAMP not null default NOW() comment '訂單日期',
 		payment_method int not null comment '付款方式(0轉帳, 1刷卡)',
 		payment_deadline TIMESTAMP not null comment '付款期限',
 		payment_state int not null comment '付款狀態(0已成立, 1處理中, 2已付清)',
-		order_start_time TIMESTAMP not null comment '訂單開始時間',
-		order_end_time TIMESTAMP  not null comment '訂單結束時間',
 		shipping_fee int comment '運費',
-		discount_amount decimal(10,2) comment '折抵金',
 		total_amount int not null comment '總金額' check (total_amount > 0 ),
 		PRIMARY KEY (order_id),
-  		FOREIGN KEY (member_id) REFERENCES member(member_id),
-  		FOREIGN KEY (discount_code) REFERENCES activity(discount_code)
+  		FOREIGN KEY (member_id) REFERENCES member(member_id)
         )
 		COMMENT '商品訂單';
-        
 
-INSERT INTO orders (member_id, discount_code, order_status,
-			order_date, payment_method, payment_deadline, payment_state,
-			order_start_time, order_end_time, shipping_fee, discount_amount ,total_amount)		
-	VALUES ('member1@gmail.com','CODE001',0,'2023-07-01 18:00:00',0,'2023-07-04 18:00:00',0,'2023-07-01 18:00:00','2023-07-08 18:00:00',120,120,8990),
-		   ('member2@gmail.com',NULL,1,'2023-07-02 19:00:00',1,'2023-07-05 19:00:00',2,'2023-07-02 19:00:00','2023-07-09 19:00:00',120,0,599),
-		   ('member3@gmail.com','CODE002',2,'2023-07-03 18:00:00',1,'2023-07-06 18:00:00',2,'2023-07-03 18:00:00','2023-07-10 18:00:00',120,100,1990),
-		   ('member4@gmail.com','CODE003',3,'2023-07-04 18:00:00',0,'2023-07-07 18:00:00',2,'2023-07-04 18:00:00','2023-07-13 18:00:00',120,99,2790),
-		   ('member5@gmail.com',NULL,4,'2023-07-05 18:00:00',1,'2023-07-08 18:00:00',1,'2023-07-05 18:00:00','2023-07-12 18:00:00',120,0,3450);
+INSERT INTO orders (member_id, recipient_name, recipient_phone, recipient_address, order_status, payment_method, payment_deadline, payment_state, shipping_fee, total_amount)
+VALUES 
+    ('member1@gmail.com', '林小一', '0910763485', '新北市三重區忠孝路三段47號5樓', 0, 0, '2023-07-25 18:00:00', 1, 120, 8920),
+    ('member2@gmail.com', '蔡雄大', '0911904530', '台北市南港區三重路41巷15號8樓', 1, 1, '2023-07-26 19:00:00', 2, 120, 4620),
+    ('member3@gmail.com', '金城武', '0912659093', '基隆市七堵區明德一路2巷3弄18號1樓', 2, 1, '2023-07-27 18:00:00', 2, 120, 14120),
+    ('member4@gmail.com', '黃小雞', '0913859034', '台南市永康區大同街413巷17號2樓', 3, 0, '2023-07-28 18:00:00', 2, 120, 2620),
+    ('member5@gmail.com', '劉小六', '0914980537', '高雄市三民區立忠路95巷310號12樓', 4, 1, '2023-07-29 18:00:00', 1, 120, 19120),
+    ('member6@gmail.com', '李永哲', '0915764983', '彰化縣彰化市中華西路283巷67弄4樓', 0, 0, '2023-07-30 18:00:00', 1, 120, 2520),
+    ('member7@gmail.com', '廖小二', '0916983875', '台中市中區中山路143巷310號3樓', 1, 1, '2023-07-31 19:00:00', 2, 120, 7120),
+    ('member8@gmail.com', '白小黑', '0917490560', '新竹市北區中正路626巷280號9樓', 1, 1, '2023-08-01 18:00:00', 2, 120, 5120),
+    ('member9@gmail.com', '羅大偉', '0918654321', '桃園市八德區介壽路二段490巷78號6樓', 0, 0, '2023-08-02 18:00:00', 1, 120, 12120),
+    ('member10@gmail.com', '呂小王', '0919938403', '花蓮縣吉安鄉建國路一段162號1樓', 1, 0, '2023-08-03 18:00:00', 2, 120, 4520);
+
            
            
 CREATE TABLE plan_place (
@@ -482,15 +484,15 @@ CREATE TABLE plan_product (
   plan_picture blob comment'主圖片',
   plan_title varchar(20) not null comment'標題名稱',
   plan_introduction varchar(200) not null comment'方案簡介',
-  `status` int not null default 1 comment'商品狀態,0下架、1上架、2預定額滿',
+  `status` int not null default 1 comment'商品狀態,0下架、1上架',
   edit_status int not null default 0 comment '0可修改, 1不可修改',
   update_time Timestamp not null comment'更新時間',
-  plan_picture_intro1 varchar(20) comment'圖片簡介1',
   plan_pictures1 longblob comment'圖片1',
-  plan_picture_intro2 varchar(20) comment'圖片簡介2',
+  plan_picture_intro1 varchar(20) comment'圖片簡介1',
   plan_pictures2 longblob comment'圖片2',
-  plan_picture_intro3 varchar(20) comment'圖片簡介3',
+  plan_picture_intro2 varchar(20) comment'圖片簡介2',
   plan_pictures3 longblob comment'圖片3',
+  plan_picture_intro3 varchar(20) comment'圖片簡介3',
   FOREIGN KEY (vendor_id) REFERENCES vendor(vendor_id)
 )comment = '方案商品';
 
@@ -542,23 +544,22 @@ INSERT INTO plan_item (vendor_id, item_type, item_select, item_description, item
 CREATE TABLE plan_product_detail (
     plan_product_detail_id int primary key not null auto_increment comment'方案商品明細_ID',
     plan_product_id int comment'方案商品_ID',
-    plan_item_id int comment'加購項目_ID',
     place_id int comment'場地_ID',
     FOREIGN KEY (plan_product_id) REFERENCES plan_product(plan_product_id)
 )comment = '方案商品明細(會有多個場地或加購項目，數量不一定對等，可為null，非關聯關係）';
 
-INSERT INTO plan_product_detail (plan_product_id, plan_item_id, place_id)
+INSERT INTO plan_product_detail (plan_product_id, place_id)
 VALUES
-    (1, 1, 1),
-    (1, null, 2),
-    (1, null, 3),
-    (2, 1, 1),
-    (2, 2, 2),
-    (2, 3, 3),
-    (2, null, 4),
-    (3, 1, 1),
-    (3, 2, 2),
-    (3, 3, null);
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (2, 1),
+    (2, 2),
+    (2, 3),
+    (2, 4),
+    (3, 1),
+    (3, 2),
+    (3, null);
 
 
 CREATE TABLE member_coupon_list (
@@ -585,28 +586,31 @@ VALUES('member1@gmail.com', 'CODE001', 1),
       
       
 -- 建立商品訂單明細
-CREATE TABLE order_detail(
-		order_detail_id int not null auto_increment comment '訂單明細_ID',
-		order_id int not null comment '訂單_ID FK',
-		product_id int not null comment '商品_ID FK',
-		quantity int not null comment '數量',
-		original_price int comment '自售價' check (original_price > 0),
-		platform_price int not null comment '平台售價'check (platform_price> 0),
-		rating int comment '評分',
-		review_title varchar(20) comment '評價標題',
-		review_content varchar(500) comment '評價內容',
- 		PRIMARY KEY (order_detail_id),
-		FOREIGN KEY (order_id) REFERENCES orders(order_id),
-  		FOREIGN KEY (product_id) REFERENCES product(product_id)
-        )
-		COMMENT '商品訂單明細';
-        
-INSERT INTO order_detail (order_id, product_id, quantity, original_price, platform_price, rating, review_title, review_content)
- VALUES (1,1,10,999,1299,5,'婚禮小物','小熊品質真的很好，幸運找到好店家'),
-		(2,2,20,1999,2399,4,'婚鞋','品質有點像淘寶便宜貨，但速度很快'),
-		(3,3,30,2999,3499,3,'婚紗','這甚麼品質?便宜沒好貨欸'),
-		(4,4,40,3999,4399,2,'喜餅','就說不要花生口味了!!害我爸差點吃了送院'),
-		(5,5,50,4999,5399,1,'婚戒','鑽石部分塑膠做的，真的是有夠廉價!');
+CREATE TABLE order_detail (
+	order_detail_id int not null auto_increment comment '訂單明細_ID',
+	order_id int not null comment '訂單_ID',
+	product_id int not null comment '商品_ID',
+	quantity int not null comment '數量',
+	amount int not null comment '購買總金額' check (amount > 0),
+	PRIMARY KEY (order_detail_id),
+	FOREIGN KEY (order_id) REFERENCES orders(order_id),
+	FOREIGN KEY (product_id) REFERENCES product(product_id)
+) COMMENT '商品訂單明細';
+
+INSERT INTO order_detail (order_id, product_id, quantity, amount)
+VALUES
+	(1, 1, 2, 8000),
+	(1, 3, 1, 800),
+	(2, 2, 3, 4500),
+	(3, 4, 2, 14000),
+	(4, 5, 1, 2500),
+	(5, 1, 4, 16000),
+	(5, 2, 2, 3000),
+	(6, 3, 3, 2400),
+	(7, 4, 1, 7000),
+	(8, 5, 2, 5000),
+    (9, 8, 2, 12000),
+    (10, 9, 2, 4400);
         
         
 CREATE TABLE unavailable_dates (

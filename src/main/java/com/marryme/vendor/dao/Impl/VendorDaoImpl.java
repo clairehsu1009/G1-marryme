@@ -40,7 +40,6 @@ public class VendorDaoImpl implements VendorDao {
 		}
 		hql.append("vendorName = :vendorName, ")
 			.append("vendorPhone = :vendorPhone, ")
-			.append("vendorEmail = :vendorEmail, ")
 			.append("vendorLocation = :vendorLocation, ")
 			.append("vendorAddress = :vendorAddress, ")
 			.append("vendorWebsite = :vendorWebsite, ")
@@ -58,7 +57,6 @@ public class VendorDaoImpl implements VendorDao {
 		}
 		return query.setParameter("vendorName", vendor.getVendorName())
 		        .setParameter("vendorPhone", vendor.getVendorPhone())
-		        .setParameter("vendorEmail", vendor.getVendorEmail())
 		        .setParameter("vendorLocation", vendor.getVendorLocation())
 		        .setParameter("vendorAddress", vendor.getVendorAddress())
 		        .setParameter("vendorWebsite", vendor.getVendorWebsite())
@@ -101,7 +99,7 @@ public class VendorDaoImpl implements VendorDao {
 	@Override
 	public Vendor selectForLogin(String vendorId, String vendorPassword) {
 		final String sql = "select * from Vendor "
-				+ "where vendorId = :vendorId and vendorPassword = :vendorPassword";
+				+ "where vendor_id = :vendorId and vendor_password = :vendorPassword";
 		return getSession().createNativeQuery(sql, Vendor.class)
 				.setParameter("vendorId", vendorId)
 				.setParameter("vendorPassword", vendorPassword)

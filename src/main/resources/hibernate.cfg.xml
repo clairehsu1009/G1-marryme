@@ -34,7 +34,11 @@
 
 		<mapping class="com.marryme.member.vo.Member"/>
 		<mapping class="com.marryme.vendor.vo.Vendor"/>
+<<<<<<< HEAD
 		<mapping class="com.marryme.weddingVenue.vo.WeddingVenue"/>
+=======
+		<mapping class="com.marryme.emp.vo.Emp"/>
+>>>>>>> 5d9219ffadcc2a7504d295f5feeb35d6b4fc0235
 
 	</session-factory>
 </hibernate-configuration>

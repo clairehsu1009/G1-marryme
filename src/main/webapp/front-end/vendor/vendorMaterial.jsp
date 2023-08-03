@@ -49,7 +49,6 @@
                                 <th scope="col">廠商ID</th>
                                 <th scope="col">品牌名稱</th>
                                 <th scope="col">電話號碼</th>
-                                <th scope="col">信箱</th>
                                 <th scope="col">密碼</th>
                                 <th scope="col">服務地區</th>
                                 <th scope="col">地址</th>
@@ -72,7 +71,6 @@
                                     <td>${vendor.vendorId}</td>
                                     <td>${vendor.vendorName}</td>
                                     <td>${vendor.vendorPhone}</td>
-                                    <td>${vendor.vendorEmail}</td>
                                     <td>${vendor.vendorPassword}</td>
                                     <td>${vendor.vendorLocation}</td>
                                     <td>${vendor.vendorAddress}</td>

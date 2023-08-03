@@ -12,7 +12,9 @@ public interface WeddingVenueService extends CoreService{
 	    /** 取得廠商符合狀態的資料 */
 	    List<WeddingVenue> findAllAndStatus(String statusType);
 	    /** 取得所有方案場地 */
-//	    Optional<WeddingVenue> findWeddingVenueById(Integer id);	  
+	    Optional<List<byte[]>> findWeddingVenuePlacePicById(Integer id);
+	    
+	    
 	    Optional<byte[]> findWeddingVenueById(Integer id);
 
 	    /*取圖片*/
@@ -20,6 +22,10 @@ public interface WeddingVenueService extends CoreService{
 	    
 	    
 	    List<WeddingVenue> findAll();
+	    
+	    WeddingVenue getOne (Integer id);
+	    
+	    String findVendorLocationbyId(String id);
 	    
 	    
 }

@@ -49,11 +49,10 @@
                                 <th scope="col">會員ID</th>
                                 <th scope="col">姓名</th>
                                 <th scope="col">電話號碼</th>
-                                <th scope="col">信箱</th>
                                 <th scope="col">密碼</th>
                                 <th scope="col">地址</th>
                                 <th scope="col">性別</th>
-                                <th scope="col">註冊時間</th>
+                                <th scope="col">註冊日期</th>
                                 <th scope="col">註冊IP</th>
                                 <th scope="col">審核狀態</th>
                             </tr>
@@ -65,7 +64,6 @@
                                     <td>${member.memberId}</td>
                                     <td>${member.memberName}</td>
                                     <td>${member.memberPhone}</td>
-                                    <td>${member.memberEmail}</td>
                                     <td>${member.memberPassword}</td>
                                     <td>${member.memberAddress}</td>
                                     <td>${member.memberGender}</td>

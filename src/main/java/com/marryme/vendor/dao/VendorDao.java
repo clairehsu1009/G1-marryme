@@ -5,8 +5,6 @@ import java.util.List;
 import org.hibernate.Session;
 
 import com.marryme.core.util.HibernateUtil;
-import com.marryme.member.dao.MemberDao;
-import com.marryme.member.vo.Member;
 import com.marryme.vendor.vo.Vendor;
 
 public interface VendorDao{

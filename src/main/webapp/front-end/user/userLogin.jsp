@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ page isELIgnored="false" %>
 
 <!-- 登入以後要跳轉到首頁 -->
 <html>
@@ -27,7 +28,7 @@
 
 
         <div class="col lg_12 md_12 sm_12">
-            <form action="?" method="POST" class="login radius_3" name="login_form">
+            <form class="login radius_3" name="login_form" method="POST" action="<%=request.getContextPath()%>/user/userLogin" style="margin-bottom:50px;margin-top:200px;width:400px;">
                 <!-- <h2>立即登入</h2> -->
                 <!-- HTML -->
 
@@ -47,23 +48,24 @@
 
                     <!-- 頁籤的內容區塊 -->
 
-                    <div class="tab-content-1">
+                    <div class="tab-content-1" >
                         <ul>
                             <label class="item_name" style="text-align:left;">會員電子信箱/Email</label>
-                            <li><input type="text" name="account" class="basic_input input_code"
+                            <li><input type="text" name="memberAccount" class="basic_input input_code"
                                     placeholder="請輸入您的電子信箱/Email"><label class="sattus"
                                     style="display:none"></label><br>
                             </li><br>
                             <label class="item_name" style="text-align:left;">會員密碼</label>
-                            <li><input type=" password" name="pwd" class="basic_input input_code"
+                            <li><input type=" password" name="memberPwd" class="basic_input input_code"
                                     placeholder="請輸入您的密碼"><label class="sattus" style="display:none"></label><br>
                             </li><br>
                         </ul>
-                        <div class=""><input type="button" value="會員登入" onclick="login_submit();"
-                                class="btn_common btn_primary">
-                        </div>
-                        <div class="link_wrap"><a href="https://www.marry.com.tw/member-register.html"
-                                class="register">免費註冊</a>
+						<c:if test="${not empty responseMsgMap.exception}">
+							    ${responseMsgMap.exception}
+							</c:if><br>
+                        <button type="submit" class="btn btn-warning" name="action" value="memberLogin">會員登入</button><br>
+                        <div class="link_wrap">
+                        <a href="${pageContext.request.contextPath}/front-end/user/userRegister.jsp" class="register">免費註冊</a>
                             <a href="https://www.marry.com.tw/member-findpwd.html">忘記密碼</a>
                         </div><br>
 
@@ -71,20 +73,21 @@
                     <div class="tab-content-2">
                         <ul>
                             <label class="item_name" style="text-align:left;">廠商電子信箱/Email</label>
-                            <li><input type="text" name="account" class="basic_input input_code"
+                            <li><input type="text" name="vendorAccount" class="basic_input input_code"
                                     placeholder="請輸入您的電子信箱/Email"><label class="sattus"
                                     style="display:none"></label><br>
                             </li><br>
                             <label class="item_name" style="text-align:left;">廠商密碼</label>
-                            <li><input type=" password" name="pwd" class="basic_input input_code"
+                            <li><input type=" password" name="vendorPwd" class="basic_input input_code"
                                     placeholder="請輸入您的密碼"><label class="sattus" style="display:none"></label><br>
                             </li><br>
                         </ul>
-                        <div class=""><input type="button" value="廠商登入" onclick="login_submit();"
-                                class="btn_common btn_primary">
-                        </div>
-                        <div class="link_wrap"><a href="https://www.marry.com.tw/member-register.html"
-                                class="register">免費註冊</a>
+                        <c:if test="${not empty errorMap.exception}">
+							    ${errorMap.exception}
+							</c:if><br>
+                        <button type="submit" class="btn btn-warning" name="action" value="vendorLogin">廠商登入</button>
+                        <div class="link_wrap">
+                        <a href="${pageContext.request.contextPath}/front-end/vendor/vendorRegister.jsp" class="register">免費註冊</a>
                             <a href="https://www.marry.com.tw/member-findpwd.html">忘記密碼</a>
                         </div><br>
 
@@ -92,17 +95,18 @@
                     <div class="tab-content-3">
                         <ul>
                             <label class="item_name" style="text-align:left;">平台登入帳號/Email</label>
-                            <li><input type="text" name="account" class="basic_input input_code"
+                            <li><input type="text" name="empAccount" class="basic_input input_code"
                                     placeholder="請輸入您的帳號/Email"><label class="sattus" style="display:none"></label><br>
                             </li><br>
                             <label class="item_name" style="text-align:left;">平台密碼</label>
-                            <li><input type=" password" name="pwd" class="basic_input input_code"
+                            <li><input type=" password" name="empPwd" class="basic_input input_code"
                                     placeholder="請輸入您的密碼"><label class="sattus" style="display:none"></label><br>
                             </li><br>
                         </ul><br>
-                        <div class=""><input type="button" value="平台登入" onclick="login_submit();"
-                                class="btn_common btn_primary">
-                        </div>
+                        <c:if test="${not empty errorMsgMap.exception}">
+							    ${errorMsgMap.exception}
+							</c:if><br>
+                        <button type="submit" class="btn btn-warning" name="action" value="empLogin">平台登入</button>
           
                     </div>
                 </div>
@@ -113,22 +117,12 @@
 
 
 
-<!-- body End -->
-
-
-<!-- Footer Section Begin -->
-<%@include file="/front-end/footer.jsp"%>
-<!-- Footer Section End -->
 
 <!-- Js Plugins -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/js/template/jquery-3.7.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/js/template/bootstrap.bundle.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/js/template/bootstrap.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/js/marryme.js"></script>
-
-<script>
-
-</script>
 
 
 </body>

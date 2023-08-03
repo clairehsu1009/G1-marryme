@@ -1,5 +1,7 @@
 package com.marryme.member.controller;
 
+import static com.marryme.member.util.Constants.USER_REGISTER_PAGE;
+
 import java.io.IOException;
 
 
@@ -57,7 +59,8 @@ public class BasicinformationServlet extends HttpServlet {
 	            // 更新成功後，從資料庫中重新查詢該會員的資料
 	            Member updatedMember = service.findById(member.getMemberId());
 	            session.setAttribute("member", updatedMember);
-	            response.sendRedirect("../user/userMaterial");// 更新成功後跳回會員中心
+	            response.sendRedirect("../user/userMaterial"); 
+//	            request.getRequestDispatcher("../user/userM").forward(request, response);// 更新成功後跳回會員中心
 	        } else {
 	            // 更新失敗，可以傳遞錯誤訊息到前端
 	            response.getWriter().write("更新失敗，請重新嘗試。");
@@ -67,5 +70,4 @@ public class BasicinformationServlet extends HttpServlet {
 	
 
 }	
-
 

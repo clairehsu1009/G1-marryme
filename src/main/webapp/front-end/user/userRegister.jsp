@@ -77,7 +77,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/js/template/bootstrap.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/js/marryme.js"></script>
 
-<%@include file="/front-end/vendor/vendor/common/vendorFooterScript.jsp"%>
+<%@include file="/front-end/vendor/common/vendorFooterScript.jsp"%>
 
 <script type="text/javascript">
 

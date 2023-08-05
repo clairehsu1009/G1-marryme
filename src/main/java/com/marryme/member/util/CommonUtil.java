@@ -5,17 +5,8 @@ import static com.marryme.member.util.Constants.JSON_MIME_TYPE;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.SQLException;
-
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
-
-import com.marryme.member.service.MemberService;
 
 
 public class CommonUtil {

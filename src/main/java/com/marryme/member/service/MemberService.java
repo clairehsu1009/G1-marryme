@@ -1,21 +1,19 @@
 package com.marryme.member.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.marryme.core.service.CoreService;
 import com.marryme.member.vo.Member;
 
 public interface MemberService extends CoreService{
 	
-	boolean register(Member member);
-
 	
-	boolean login(Member member);
+	Member register(Member member);
 
-	boolean edit(Member member);
+	Member login(Member member);
 	
-//	Member edit(Member member);
+	
+	Member edit(Member member);
 	
 	List<Member> findAll();
 

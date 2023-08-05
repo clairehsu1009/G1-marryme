@@ -12,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Merry Me</title>
-    <link rel="icon" href="${pageContext.request.contextPath}/public/images/front-end/marrymelittle.ico" type="image/x-icon">
 	
     <!-- Css Styles -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/bootstrap/bootstrap.min.css" type="text/css" />
@@ -66,7 +65,7 @@
                         <button type="submit" class="btn btn-warning" name="action" value="memberLogin">會員登入</button><br>
                         <div class="link_wrap">
                         <a href="${pageContext.request.contextPath}/front-end/user/userRegister.jsp" class="register">免費註冊</a>
-                            <a href="https://www.marry.com.tw/member-findpwd.html">忘記密碼</a>
+                        <a href="${pageContext.request.contextPath}/front-end/user/password.jsp">忘記密碼</a>
                         </div><br>
 
                     </div>
@@ -88,7 +87,7 @@
                         <button type="submit" class="btn btn-warning" name="action" value="vendorLogin">廠商登入</button>
                         <div class="link_wrap">
                         <a href="${pageContext.request.contextPath}/front-end/vendor/vendorRegister.jsp" class="register">免費註冊</a>
-                            <a href="https://www.marry.com.tw/member-findpwd.html">忘記密碼</a>
+                        <a href="${pageContext.request.contextPath}/front-end/user/password.jsp">忘記密碼</a>
                         </div><br>
 
                     </div>

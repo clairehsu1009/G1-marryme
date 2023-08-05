@@ -50,18 +50,18 @@ public class RegisterServlet extends HttpServlet {
 			member.setMemberPassword(pwd);
 			member.setMemberRegistrationTime(LocalDate.now());
 
-			boolean isRegistered = service.register(member); // 調用 register 方法進行註冊
+			Member registeredMember = service.register(member); // 調用 register 方法進行註冊
 
-			if (isRegistered) {
-				// 註冊成功
-				HttpSession session = request.getSession();
-				session.setAttribute("member", member);
-				response.sendRedirect("../user/userMaterial"); // 註冊成功轉首頁
+			if (registeredMember != null) {
+			    // 註冊成功
+			    HttpSession session = request.getSession();
+			    session.setAttribute("member", registeredMember);
+			    response.sendRedirect("../user/userMaterial"); // 註冊成功轉首頁
 			} else {
-				// 註冊失敗，可以從 member 中取得錯誤訊息並進行相應處理
-				request.setAttribute("responseMsgMap", responseMsgMap);
-				responseMsgMap.put(EXCEPTION, "帳號已存在，註冊失敗");
-				request.getRequestDispatcher(USER_REGISTER_PAGE).forward(request, response);
+			    // 註冊失敗，可以從 member 中取得錯誤訊息並進行相應處理
+			    request.setAttribute("responseMsgMap", responseMsgMap);
+			    responseMsgMap.put(EXCEPTION, "帳號已存在，註冊失敗");
+			    request.getRequestDispatcher(USER_REGISTER_PAGE).forward(request, response);
 			}
 		}
 	}

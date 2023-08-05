@@ -1,5 +1,5 @@
 package com.marryme.member.controller;
-import static com.marryme.emp.util.Constants.EMP_MATERIAL_PAGE;
+
 import static com.marryme.common.CommonString.EXCEPTION;
 import static com.marryme.member.util.Constants.USER_LOGIN_PAGE;
 import static com.marryme.member.util.MemberConstants.SERVICE;
@@ -38,11 +38,11 @@ public class LoginServlet extends HttpServlet {
 			Member member = new Member();
 			member.setMemberId(account);
 			member.setMemberPassword(pwd);
-			boolean isLoginSuccessful = SERVICE.login(member);
-			if (isLoginSuccessful) {
-				HttpSession session = request.getSession();
-				session.setAttribute("member", member);
-				response.sendRedirect("../user/userMaterial"); // 登入成功轉預覽首頁 待處理
+			Member loggedInMember = SERVICE.login(member);
+			if (loggedInMember != null) {
+			    HttpSession session = request.getSession();
+			    session.setAttribute("member", loggedInMember);
+			    response.sendRedirect("../user/userMaterial"); // 登入成功轉預覽首頁 待處理
 			} else {
 				request.setAttribute("responseMsgMap", responseMsgMap);
 				responseMsgMap.put(EXCEPTION, "會員登入失敗，請確認帳號密碼無誤");
@@ -54,11 +54,11 @@ public class LoginServlet extends HttpServlet {
 			Vendor vendor = new Vendor();
 			vendor.setVendorId(account);
 			vendor.setVendorPassword(pwd);
-			boolean isLoginSuccessful = SERVICE2.login(vendor);
-			if (isLoginSuccessful) {
-				HttpSession session = request.getSession();
-				session.setAttribute("vendor", vendor);
-				response.sendRedirect("https://google.com"); // 登入成功轉預覽首頁 待處理
+			Vendor loggedInVendor = SERVICE2.login(vendor);
+			if (loggedInVendor != null) {
+			    HttpSession session = request.getSession();
+			    session.setAttribute("vendor", loggedInVendor);
+				response.sendRedirect("../vendor/vendorMaterial"); // 登入成功轉預覽首頁 待處理
 			} else {
 				request.setAttribute("errorMap", errorMap);
 				errorMap.put(EXCEPTION, "廠商登入失敗，請確認帳號密碼無誤");
@@ -70,10 +70,10 @@ public class LoginServlet extends HttpServlet {
 			Emp emp = new Emp();
 			emp.setEmpEmail(account);
 			emp.setEmpPassword(pwd);
-			boolean isLoginSuccessful = SERVICE3.login(emp);
-			if (isLoginSuccessful) {
-				HttpSession session = request.getSession();
-				session.setAttribute("emp", emp);
+			Emp loggedInEmp = SERVICE3.login(emp);
+			if (loggedInEmp != null) {
+			    HttpSession session = request.getSession();
+			    session.setAttribute("emp", loggedInEmp);
 				response.sendRedirect("../emp/empMaterial"); // 登入成功轉預覽首頁 待處理
 			} else {
 				request.setAttribute("errorMsgMap", errorMsgMap);

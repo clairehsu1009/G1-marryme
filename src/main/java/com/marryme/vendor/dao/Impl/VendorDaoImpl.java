@@ -10,7 +10,7 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-
+import com.marryme.member.vo.Member;
 import com.marryme.vendor.dao.VendorDao;
 import com.marryme.vendor.vo.Vendor;
 
@@ -30,52 +30,25 @@ public class VendorDaoImpl implements VendorDao {
 		return 1;
 	}
 	
-	@Override
-	public int update(Vendor vendor) {
-		final StringBuilder hql = new StringBuilder()
-				.append("UPDATE Vendor SET ");
-		final String password = vendor.getVendorPassword();
-		if (password != null && !password.isEmpty()) {
-			hql.append("password = :password,");
-		}
-		hql.append("vendorName = :vendorName, ")
-			.append("vendorPhone = :vendorPhone, ")
-			.append("vendorLocation = :vendorLocation, ")
-			.append("vendorAddress = :vendorAddress, ")
-			.append("vendorWebsite = :vendorWebsite, ")
-			.append("vendorFb = :vendorFb, ")
-			.append("vendorIg = :vendorIg, ")
-			.append("companyId = :companyId, ")
-			.append("contactPerson = :contactPerson, ")
-			.append("basicIntroduction = :basicIntroduction, ")
-			.append("googlemap = :googlemap, ")
-			.append("vendorRegistrationTime = NOW() ")
-			.append("WHERE vendorId = :vendorId");
-		Query query = getSession().createQuery(hql.toString());
-		if (password != null && !password.isEmpty()) {
-			query.setParameter("password", vendor.getVendorPassword());
-		}
-		return query.setParameter("vendorName", vendor.getVendorName())
-		        .setParameter("vendorPhone", vendor.getVendorPhone())
-		        .setParameter("vendorLocation", vendor.getVendorLocation())
-		        .setParameter("vendorAddress", vendor.getVendorAddress())
-		        .setParameter("vendorWebsite", vendor.getVendorWebsite())
-		        .setParameter("vendorFb", vendor.getVendorFb())
-		        .setParameter("vendorIg", vendor.getVendorIg())
-		        .setParameter("companyId", vendor.getCompanyId())
-		        .setParameter("contactPerson", vendor.getContactPerson())
-		        .setParameter("basicIntroduction", vendor.getBasicIntroduction())
-		        .setParameter("googlemap", vendor.getGooglemap())
-		        .setParameter("vendorId", vendor.getVendorId())
-				.executeUpdate();
-	}
+	public void update(Vendor vendor) {
+        // 只set 可以修改的欄位
+		vendor.setVendorName(vendor.getVendorName());
+		vendor.setVendorPhone(vendor.getVendorPhone());
+		vendor.setVendorAddress(vendor.getVendorAddress());
+		vendor.setVendorLocation(vendor.getVendorLocation());
+		vendor.setCompanyId(vendor.getCompanyId());
+		vendor.setContactPerson(vendor.getContactPerson());
+		vendor.setVendorWebsite(vendor.getVendorWebsite());
+		vendor.setVendorFb(vendor.getVendorFb());
+		vendor.setVendorIg(vendor.getVendorIg());
+		vendor.setGooglemap(vendor.getGooglemap());
+//		vendor.setManufacturerCategory(vendor.getManufacturerCategory());
+
+        getSession().merge(vendor);
+
+    }
 	
 	
-	
-	@Override
-	public Vendor selectById(String vendorId) {
-		return getSession().get(Vendor.class, vendorId);
-	}
 
 	@Override
 	public List<Vendor> selectAll() {
@@ -85,14 +58,10 @@ public class VendorDaoImpl implements VendorDao {
 				.getResultList();
 	}
 	
+	
 	@Override
 	public Vendor selectByVendorId(String vendorId) {
-		Session session = getSession();
-		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-		CriteriaQuery<Vendor> criteriaQuery = criteriaBuilder.createQuery(Vendor.class);
-		Root<Vendor> root = criteriaQuery.from(Vendor.class);
-		criteriaQuery.where(criteriaBuilder.equal(root.get("vendorId"), vendorId));
-		return session.createQuery(criteriaQuery).uniqueResult();
+		return getSession().get(Vendor.class, vendorId);
 	}
 	
 	

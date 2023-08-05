@@ -13,10 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.marryme.emp.service.EmpService;
-import com.marryme.emp.service.Impl.EmpServiceImpl;
-import com.marryme.member.service.MemberService;
-import com.marryme.member.service.Impl.MemberServiceImpl;
 import com.marryme.member.vo.Member;
 
 @WebServlet("/user/userMaterial")

@@ -59,7 +59,7 @@
 					<div class="form-group">
 						<label for="memberPhone" class="col-sm-2 col-form-label">會員電話</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="memberPhone" name="phone" type="text" placeholder="請輸入您的電話號碼" value="${member.memberPhone}">
+							<input class="form-control" id="memberPhone" name="phone" type="text" placeholder="請輸入您的電話號碼" value="${member.memberPhone}">
 						</div>
 					</div>
 					<div class="form-group">
@@ -74,12 +74,13 @@
 							<input class="form-control" id="memberPassword" name="pwd" type="text" placeholder="請輸入您的密碼" value="${member.memberPassword}">
 						</div>
 					</div>
+					 <c:set var="genderValue" value="${member.memberGender}" />
 					<label for="memberGender" class="col-sm-2 col-form-label">會員性別</label>
-					<select class="form-control" style="width:80%;margin:15px" name="sex" >
-					  <option value="0">請選擇身分</option>
-					  <option value="1">新郎</option>
-					  <option value="2">新娘</option>
-					</select>
+					<select class="form-control" style="width:80%;margin:15px" name="sex">
+			            <option value="0" ${genderValue == 0 ? 'selected' : ''}>請選擇身分</option>
+			            <option value="1" ${genderValue == 1 ? 'selected' : ''}>新郎</option>
+			            <option value="2" ${genderValue == 2 ? 'selected' : ''}>新娘</option>
+			        </select>
 					<br>
 					<div class="col-sm-10 productAddBtn">
 						<button type="submit" class="btn btn-info" name="action" value="update">儲存</button>

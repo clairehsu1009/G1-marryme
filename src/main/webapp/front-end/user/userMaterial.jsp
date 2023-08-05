@@ -19,7 +19,7 @@
             <h1><i class="fa fa-archive">&nbsp;</i>會員資料列表</h1>
         </div>
         <form method="post" action="<%=request.getContextPath()%>/user/userMaterial" style="margin-bottom: 0px;">
-            <input type="hidden" name="vendorId" value="${vendorId}" />
+            <input type="hidden" name="memberId" value="${memberId}" />
         <ul class="app-breadcrumb breadcrumb">
             <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已下架方案加購項目</button></li>
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>

@@ -37,12 +37,12 @@ public class EmpServiceImpl implements EmpService{
 	
 	
 	
-	public boolean login(Emp emp) {
+	public Emp login(Emp emp) {
 	    final String username = emp.getEmpEmail();
 	    final String password = emp.getEmpPassword();
 
 	    if (username == null || password == null) {
-	        return false;
+	        return null;
 	    }
 
 	    beginTransaction();
@@ -50,15 +50,15 @@ public class EmpServiceImpl implements EmpService{
 	    try {
 	        if (emp == null) {
 	            rollback();
-	            return false;
+	            return null;
 	        } else {
 	            commit();
-	            return true;
+	            return emp;
 	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        rollback();
-	        return false;
+	        return null;
 	    }
 	}
 	

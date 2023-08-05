@@ -11,6 +11,6 @@ public interface EmpService extends CoreService{
 	
 	List<Emp> findAll();
 	
-	boolean login(Emp emp);
+	Emp login(Emp emp);
 
 }

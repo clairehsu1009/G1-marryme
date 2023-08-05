@@ -15,8 +15,6 @@ public interface MemberDao {
 
 	void update(Member member);
 	
-//	int update(Member member);
-	
 	int updateById(Member member);
 	
 	int deleteById(Integer id);
@@ -24,11 +22,9 @@ public interface MemberDao {
 	/** 搜尋會員帳號 */
 	Member selectByMemberId(String memberId);
 
-
 	/** 搜尋登入會員帳號密碼 */
 	Member selectForLogin(String memberId, String memberPassword);
 
-//	Member selectById(String memberId);
 
 	default Session getSession() {
 		return HibernateUtil.getSessionFactory().getCurrentSession();

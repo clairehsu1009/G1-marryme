@@ -1,7 +1,6 @@
 package com.marryme.member.controller;
 
-import static com.marryme.member.util.Constants.USER_REGISTER_PAGE;
-
+import static com.marryme.common.CommonString.*;
 import java.io.IOException;
 
 
@@ -26,9 +25,9 @@ public class BasicinformationServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException {
-	    HttpSession session = request.getSession();
-	    Member member = (Member) session.getAttribute("member");
-
+	     request.setCharacterEncoding(UTF_8);
+	     HttpSession session = request.getSession();
+	     Member member = (Member) session.getAttribute("member");
 	    if (member != null) {
 	        String pwd = request.getParameter("pwd");
 	        String name = request.getParameter("name");
@@ -51,20 +50,31 @@ public class BasicinformationServlet extends HttpServlet {
 	            // 若性別值無效，可以根據需求做相應處理，這裡假設性別值為 0 代表未選擇
 	            newMember.setMemberGender(0);
 	        }
+//	        if (gender == null || (!gender.equals("1") && !gender.equals("2"))) {
+//	            newMember.setMemberGender(0); // 若性別值為空或不是 "1" 或 "2"，設定為 0
+//	        } else {
+//	            newMember.setMemberGender(Integer.parseInt(gender)); // 否則設定為指定的性別值
+//	        }
 
 	        // 假設SERVICE提供了一個方法用於更新會員資料
-	        boolean isUpdated = service.edit(newMember);
-
-	        if (isUpdated) {
+	        
+	        member = service.edit(newMember);
+ 
+//	        if (isUpdated) {
+//	        if(member) {
 	            // 更新成功後，從資料庫中重新查詢該會員的資料
-	            Member updatedMember = service.findById(member.getMemberId());
-	            session.setAttribute("member", updatedMember);
+//	            Member updatedMember = service.findById(member.getMemberId());
+	        
+	            session.setAttribute("member", newMember);
 	            response.sendRedirect("../user/userMaterial"); 
 //	            request.getRequestDispatcher("../user/userM").forward(request, response);// 更新成功後跳回會員中心
-	        } else {
-	            // 更新失敗，可以傳遞錯誤訊息到前端
-	            response.getWriter().write("更新失敗，請重新嘗試。");
-	        }
+//	        }else {
+//				
+//			}
+//	            } else {
+//	            // 更新失敗，可以傳遞錯誤訊息到前端
+//	            response.getWriter().write("更新失敗，請重新嘗試。");
+//	        }
 	    }
 	}
 	

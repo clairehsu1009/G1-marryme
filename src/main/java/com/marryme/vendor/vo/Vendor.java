@@ -34,7 +34,7 @@ public class Vendor {
 	private String vendorPassword; 
 	/** 廠商地區 */
 	@Column(name = "vendor_location")
-	private String vendorLocation;
+	private Integer vendorLocation;
 	/** 廠商地址 */
 	@Column(name = "vendor_address")
 	private String vendorAddress;
@@ -43,6 +43,7 @@ public class Vendor {
      * */
 	@Column(name = "manufacturer_category")
 	private Integer manufacturerCategory;
+	
 	/** 廠商註冊時間 */
 	@Column(name = "vendor_registration_time")
 	private LocalDate vendorRegistrationTime;
@@ -57,7 +58,7 @@ public class Vendor {
 	private String vendorIg; 
 	/** 廠商統編 */
 	@Column(name = "company_id")
-	private Integer companyId;
+	private String companyId;
 	/** 廠商聯絡人 */
 	@Column(name = "contact_person")
 	private String contactPerson;

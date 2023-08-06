@@ -411,8 +411,9 @@ INSERT INTO `album` (`vendor_id`) VALUES
 
 -- 建立商品訂單--
 CREATE TABLE orders (
-		order_id int not null auto_increment comment '訂單_ID',
+		order_id int auto_increment comment '訂單_ID',
 		member_id varchar(50) not null comment '會員_ID(信箱)',
+        vendor_id varchar(50) not null comment '廠商_ID(信箱)',
         recipient_name varchar(50) not null comment '收件人姓名',
         recipient_phone varchar(20) not null comment '收件人電話',
         recipient_address varchar(50) not null comment '收件人地址',
@@ -424,22 +425,16 @@ CREATE TABLE orders (
 		shipping_fee int comment '運費',
 		total_amount int not null comment '總金額' check (total_amount > 0 ),
 		PRIMARY KEY (order_id),
-  		FOREIGN KEY (member_id) REFERENCES member(member_id)
+  		FOREIGN KEY (member_id) REFERENCES member(member_id),
+        FOREIGN KEY (vendor_id) REFERENCES vendor(vendor_id)
         )
 		COMMENT '商品訂單';
 
-INSERT INTO orders (member_id, recipient_name, recipient_phone, recipient_address, order_status, payment_method, payment_deadline, payment_state, shipping_fee, total_amount)
+INSERT INTO orders (member_id, vendor_id, recipient_name, recipient_phone, recipient_address, order_status, payment_method, payment_deadline, payment_state, shipping_fee, total_amount)
 VALUES 
-    ('member1@gmail.com', '林小一', '0910763485', '新北市三重區忠孝路三段47號5樓', 0, 0, '2023-07-25 18:00:00', 1, 120, 8920),
-    ('member2@gmail.com', '蔡雄大', '0911904530', '台北市南港區三重路41巷15號8樓', 1, 1, '2023-07-26 19:00:00', 2, 120, 4620),
-    ('member3@gmail.com', '金城武', '0912659093', '基隆市七堵區明德一路2巷3弄18號1樓', 2, 1, '2023-07-27 18:00:00', 2, 120, 14120),
-    ('member4@gmail.com', '黃小雞', '0913859034', '台南市永康區大同街413巷17號2樓', 3, 0, '2023-07-28 18:00:00', 2, 120, 2620),
-    ('member5@gmail.com', '劉小六', '0914980537', '高雄市三民區立忠路95巷310號12樓', 4, 1, '2023-07-29 18:00:00', 1, 120, 19120),
-    ('member6@gmail.com', '李永哲', '0915764983', '彰化縣彰化市中華西路283巷67弄4樓', 0, 0, '2023-07-30 18:00:00', 1, 120, 2520),
-    ('member7@gmail.com', '廖小二', '0916983875', '台中市中區中山路143巷310號3樓', 1, 1, '2023-07-31 19:00:00', 2, 120, 7120),
-    ('member8@gmail.com', '白小黑', '0917490560', '新竹市北區中正路626巷280號9樓', 1, 1, '2023-08-01 18:00:00', 2, 120, 5120),
-    ('member9@gmail.com', '羅大偉', '0918654321', '桃園市八德區介壽路二段490巷78號6樓', 0, 0, '2023-08-02 18:00:00', 1, 120, 12120),
-    ('member10@gmail.com', '呂小王', '0919938403', '花蓮縣吉安鄉建國路一段162號1樓', 1, 0, '2023-08-03 18:00:00', 2, 120, 4520);
+    ('member1@gmail.com', 'vendor6@gmail.com', '林小一', '0910763485', '新北市三重區忠孝路三段47號5樓', 0, 0, '2023-07-25 18:00:00', 1, 120, 5720),
+    ('member2@gmail.com', 'vendor7@gmail.com', '蔡雄大', '0911904530', '台北市南港區三重路41巷15號8樓', 1, 1, '2023-07-26 19:00:00', 2, 120, 2320),
+    ('member3@gmail.com', 'vendor8@gmail.com', '金城武', '0912659093', '基隆市七堵區明德一路2巷3弄18號1樓', 2, 1, '2023-07-27 18:00:00', 2, 120, 6920);
 
            
            
@@ -599,18 +594,12 @@ CREATE TABLE order_detail (
 
 INSERT INTO order_detail (order_id, product_id, quantity, amount)
 VALUES
-	(1, 1, 2, 8000),
-	(1, 3, 1, 800),
-	(2, 2, 3, 4500),
-	(3, 4, 2, 14000),
-	(4, 5, 1, 2500),
-	(5, 1, 4, 16000),
-	(5, 2, 2, 3000),
-	(6, 3, 3, 2400),
-	(7, 4, 1, 7000),
-	(8, 5, 2, 5000),
-    (9, 8, 2, 12000),
-    (10, 9, 2, 4400);
+	(1, 1, 1, 4000),
+	(1, 6, 1, 1600),
+	(2, 2, 1, 1500),
+	(2, 7, 1, 700),
+	(3, 3, 1, 800),
+	(3, 8, 1, 6000);
         
         
 CREATE TABLE unavailable_dates (

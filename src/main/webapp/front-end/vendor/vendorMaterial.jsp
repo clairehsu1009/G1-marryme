@@ -18,7 +18,7 @@
         <div>
             <h1><i class="fa fa-archive">&nbsp;</i>廠商資料列表</h1>
         </div>
-        <form method="post" action="<%=request.getContextPath()%>/vendor/vendorMaterial" style="margin-bottom: 0px;">
+        <form method="post" action="<%=request.getContextPath()%>/vendor/vendorMaterial" >
             <input type="hidden" name="vendorId" value="${vendorId}" />
         <ul class="app-breadcrumb breadcrumb">
             <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已下架方案加購項目</button></li>
@@ -40,10 +40,12 @@
 <!--                     <li><a data-toggle="tab" href="#tab-6" role="tab">其他</a></li> -->
                 </ul>
             </div>
-            <div class="tab-item-content">
-                <div class="tab-content">
+            <div class="tab-item-content" >
+                <div class="tab-content" >
                     <div class="tab-pane fade-in active" id="tab-0" role="tabpanel">
-                        <table class="table">
+                        <table class="table" style="padding: 10px; /* 添加內邊距 */
+						  border: 1px solid #ccc; /* 添加邊框 */
+						  display: inline-block; /* 設定為行內區塊元素 */" >
                             <thead class="thead">
                             <tr>
                                 <th scope="col">廠商ID</th>

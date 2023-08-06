@@ -86,4 +86,24 @@ public class ProductDaoImpl implements ProductDao {
 		product.setProductStatus(0); // 狀態改為下架
 		getSession().merge(product);
 	}
+	
+	@Override
+	public void updateProductStock(Integer productId, Integer newStock) {
+	    try {
+	        Session session = getSession();
+	        
+	        // 獲取商品
+	        Product product = session.get(Product.class, productId);
+	        if (product == null) {
+	            throw new RuntimeException("商品不存在");
+	        }
+	        
+	        // 更新庫存
+	        product.setStockQuantity(newStock);
+	        session.merge(product);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
 }

@@ -22,4 +22,6 @@ public interface ProductDao extends CoreDao<Product, Integer>{
     void changeStatusToInactive(Integer productId);
 
 	List<Product> selectAllByProductCategoryId(Integer productCategoryId);
+
+	void updateProductStock(Integer productId, Integer newStock);
 }

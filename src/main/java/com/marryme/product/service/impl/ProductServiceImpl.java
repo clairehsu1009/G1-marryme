@@ -12,8 +12,8 @@ import com.marryme.product.service.ProductService;
 
 /**
  * @Author Jeanny
- * @Create 2023/7/23 19:57
- * @Version 1.0
+ * @Create 2023/8/6 09:44
+ * @Version 2.0
  */
 
 public class ProductServiceImpl implements ProductService {
@@ -175,5 +175,29 @@ public class ProductServiceImpl implements ProductService {
 		cart.getProductMap().clear();
 
 	}
+	
+	@Override
+	public void updateProductStock(Integer productId, Integer quantity) {
+	    try {
+	        // 獲取商品信息
+	        Product product = dao.selectById(productId);
+	        if (product == null) {
+	            throw new RuntimeException("商品不存在");
+	        }
+
+	        // 計算新的庫存量
+	        int newStock = product.getStockQuantity() - quantity;
+	        if (newStock < 0) {
+	            throw new RuntimeException("庫存不足");
+	        }
+
+	        // 更新商品庫存
+	        dao.updateProductStock(productId, newStock);
+	    } catch (Exception e) {
+	        rollback();
+	        e.printStackTrace();
+	    }
+	}
+
 
 }

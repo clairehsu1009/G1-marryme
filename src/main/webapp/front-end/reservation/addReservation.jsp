@@ -1,23 +1,134 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Merry Me</title>
+
+
+<link rel="icon"
+	href="${pageContext.request.contextPath}/public/images/front-end/marrymelittle.ico"
+	type="image/x-icon">
+
+<!-- Css Styles -->
+<!-- <link rel="stylesheet" -->
+<%-- 	href="${pageContext.request.contextPath}/public/css/bootstrap/bootstrap.min.css" --%>
+<!-- 	type="text/css" /> -->
+<!-- <link rel="stylesheet" -->
+<%-- 	href="${pageContext.request.contextPath}/public/css/fontawesome/css/all.css" --%>
+<!-- 	type="text/css" /> -->
+<!-- <link rel="stylesheet" -->
+<%-- 	href="${pageContext.request.contextPath}/public/css/style.css" --%>
+<!-- 	type="text/css" /> -->
+	
+	
+
 <%@include file="/front-end/vendor/common/vendorHead.jsp"%>
+<%@include file="/front-end/header.jsp"%>
+	
+	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/front-end/reservation/css/addReservation.css">
 
+</head>
 
-	<head>
-	
-		<!-- 引入JQUERY -->
-		<!-- <script src="js/reservation.js"></script> -->
-		<link rel="stylesheet" type="text/css" href="css/addReservation.css">
-	</head>
-	
-	
-	<body>
-		<main class="app-content">
+<body>
+	<!-- Header Section Begin -->
+	<%@include file="/front-end/header.jsp"%>
+	<!-- Header End -->
+				
+	<!-- body Begin -->
+	<div class="rwd_wrap group">
+		<div class="col lg_12 md_6 sm_12">
+			<ol itemscope itemtype="http://schema.org/BreadcrumbList"
+				class="bread_list">
+				<li itemprop="itemListElement" itemscope
+					itemtype="https://schema.org/ListItem"><a itemprop="item"
+					href="#" title="Marryme首頁"> <span itemprop="name">首頁</span></a>
+					<meta itemprop="position" content="1"></li>
+				<li itemprop="itemListElement" itemscope
+					itemtype="https://schema.org/ListItem"><span itemprop="name">婚宴場地</span>
+					<!--自己那頁的名稱-->
+					<meta itemprop="position" content="2"></li>
+			</ol>
+		</div>
+	</div>
+	<div class="main_h1">
+		<!--做服務or商品的才需要加-->
+		<div class="rwd_wrap group">
+			<div class="clearfix">
+				<ul class="clearfix">
+					<li><a href="#" class="">方案</a></li>
+					<li><a href="#" class="onit">店家</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+<!-- 	<div class="filter_pc on_pc"> 做服務or商品的才需要加，這段先保留畫面位置因為有JS功能+還有功能選項尚待確認 -->
+	<div class="filter_pc on_pc">
+		<section class="rwd_wrap group">
+			<div id="service_filter_obt_html">
+				<dl id="show_pr" class="show_filter">
+					<dt>
+						<a href="javascript:;" onclick="check_open_filter('show_pr');">
+							店家區域 </a>
+					</dt>
+					<dd id="show_pr_dd" style="display: none;">
+						<ul class="radius_3">
+							<label for="pr_">
+								<li class="onit filter_search_ref"
+								onclick="filter_search_ref($(this).find('a'));"><a id="pr_"
+									href="" rel_id="show_pr" rel_tit="預算" title="不拘"> 不拘&nbsp;<span>0</span></a></li>
+							</label>
+						</ul>
+						<ul class="radius_3">
+							<label for="pr_">
+								<li class="onit filter_search_ref"
+								onclick="filter_search_ref($(this).find('a'));"><a id="pr_"
+									href="" rel_id="show_pr" rel_tit="預算" title="不拘"> 不拘&nbsp;<span>0</span></a></li>
+							</label>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+						
+			<div id="service_filter_ts_html">
+				<dl id="show_pr" class="show_filter">
+					<dt>
+						<a href="javascript:;" onclick="check_open_filter('show_pr');">
+							桌數區間 </a>
+					</dt>
+				</dl>				
+			</div>
+			
+			<div id="service_filter_pr_html">
+				<dl id="show_pr" class="show_filter">
+					<dt>
+						<a href="javascript:;" onclick="check_open_filter('show_pr');">
+							預算 </a>
+					</dt>
+					<dd id="show_pr_dd" style="display: none;">
+						<ul class="radius_3">
+							<label for="pr_">
+								<li class="onit filter_search_ref"
+								onclick="filter_search_ref($(this).find('a'));"><a id="pr_"
+									href="" rel_id="show_pr" rel_tit="預算" title="不拘"> 不拘&nbsp;<span>0</span></a></li>
+							</label>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+		</section>
+	</div>
+
+	<!--<div class="rwd_wrap group"> 這段做服務or商品才需要新增-->
+	<main class="app-content">
 
 			<div id="pop">
 				<div class="pop-casemain radius_3">
@@ -45,31 +156,34 @@
 										
 									<span class="textSize"><i class="ff6687">*</i>會員</span>
 									<span class="sattus" style="display: none;"></span> 
-									<input class="form_input input_code" type="text" value="member8@gmail.com" name="memberId" id="memberId" placeholder="會員ID" autocomplete="off">
+									<input class="form_input input_code" type="text" value="member8@gmail.com" name="memberId" id="memberId" placeholder="會員ID" autocomplete="off" required>
 										
 									<span class="textSize"><i class="ff6687">*</i>預約大名</span>
 									<span class="sattus" style="display: none;"></span> 
-									<input class="form_input input_code" type="text" value="${reservation == null  ? "" : reservation.contactName}" name="contactName" id="contactName" placeholder="輸入名字" autocomplete="off">
+									<input class="form_input input_code" type="text" value="${reservation == null  ? "" : reservation.contactName}" name="contactName" id="contactName" placeholder="輸入名字" autocomplete="off" required>
 										
 									<span class="textSize"><i class="ff6687">*</i>聯絡電話</span> 
 									<span class="sattus" style="display: none;"></span> 
 									<input class="form_input input_code" type="text" value="${reservation == null  ? "" : reservation.contactNamber}" name="contactNumber" id="contactNumber" placeholder="輸入電話" autocomplete="off"
-										maxlength="10">
+										maxlength="10" required>
 
 									<div class="form_wrap_half">
 										<span class="textSize"><i class="ff6687">*</i>宴客日期</span> 
 										<span class="sattus" style="display: none;"></span>
-										<input class="form_input input_code datepicker hasDatepicker" rel_status="2" type="date" value="${reservation == null  ? "" : reservation.contactDate} placeholder="預計婚期" id="eventDate" name="eventDate" autocomplete="off">
+										<input class="form_input input_code datepicker hasDatepicker" rel_status="2" type="date" value="${reservation == null  ? "" : reservation.contactDate} placeholder="預計婚期" id="eventDate" name="eventDate" autocomplete="off" required>
 									</div>
 
 									<div class="form_wrap_half">
 										<span class="textSize"> <i class="ff6687">*</i>宴客時段 </span> 
 										<span class="sattus" style="display: none;"></span> 
-										<select class="form_select input_code" id="eventTime" name="eventTime">
+										<select class="form_select input_code" id="eventTime" name="eventTime" required>
 											<option value="">選擇預約時段</option>
 											<option value="12:00:00">中午</option>
 											<option value="18:00:00">晚上</option>
 										</select>
+										<div class="invalid-feedback">
+										    請選擇預約時段。
+										</div>
 									</div>
 
 
@@ -77,13 +191,13 @@
 									<div class="form_wrap_half">
 										<span class="textSize"> <i class="ff6687">*</i>預約日期 </span> 
 										<span class="sattus" style="display: none;"></span> 
-										<input class="form_input m_r_8 input_code form_select datepicker hasDatepicker" type="date" value="${reservation == null  ? "" : reservation.reservationDate}" placeholder="選擇預約日期" id="reservationDate" name="reservationDate" autocomplete="off">
+										<input class="form_input m_r_8 input_code form_select datepicker hasDatepicker" type="date" value="${reservation == null  ? "" : reservation.reservationDate}" placeholder="選擇預約日期" id="reservationDate" name="reservationDate" autocomplete="off" required>
 									</div>
 
 									<div class="form_wrap_half">
 										<span class="textSize"> <i class="ff6687">*</i>預約時段
 										</span> <span class="sattus" style="display: none;"></span> <select
-											class="form_select input_code" id="reservationTime" name="reservationTime">
+											class="form_select input_code" id="reservationTime" name="reservationTime" required>
 											<option value="">選擇預約時段</option>
 											<option value="12:00:00">12:00</option>
 											<option value="12:30:00">12:30</option>
@@ -103,6 +217,9 @@
 											<option value="19:30:00">19:30</option>
 											<option value="20:00:00">20:00</option>
 										</select>
+										<div class="invalid-feedback">
+										    請選擇預約時段。
+										</div>
 									</div>
 
 									<span class="textSize">備註</span>
@@ -148,5 +265,29 @@
 		  
 		  
 		</script>		
-	</body>
+	
+	
+	
+	
+	
+	<!-- body End -->
+
+
+	<!-- Footer Section Begin -->
+	<%@include file="/front-end/footer.jsp"%>
+	<!-- Footer Section End -->
+
+	<!-- Js Plugins -->
+<!-- 	<script type="text/javascript" -->
+<%-- 		src="${pageContext.request.contextPath}/public/js/template/jquery-3.7.0.min.js"></script> --%>
+<!-- 	<script type="text/javascript" -->
+<%-- 		src="${pageContext.request.contextPath}/public/js/template/bootstrap.bundle.js"></script> --%>
+<!-- 	<script type="text/javascript" -->
+<%-- 		src="${pageContext.request.contextPath}/public/js/template/bootstrap.js"></script> --%>
+<!-- 	<script type="text/javascript" -->
+<%-- 		src="${pageContext.request.contextPath}/public/js/marryme.js"></script> --%>
+
+
+
+</body>
 </html>

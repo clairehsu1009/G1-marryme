@@ -40,73 +40,85 @@
                     <ul>
                         <label class="item_name" style="text-align:left;">註冊電子信箱/Email</label>
                         <li><input type="text" name="account" class="basic_input input_code"
-                                placeholder="請輸入您的電子信箱/Email"><label class="sattus" style="display:none"></label><br>
+                                placeholder="請輸入您的電子信箱/Email" required><label class="sattus" style="display:none"></label><br>
                         </li><br>
                         <label class="item_name" style="text-align:left;">註冊密碼</label>
                         <li><input type=" password" name="pwd" class="basic_input input_code"
-                                placeholder="請輸入您的密碼"><label class="sattus" style="display:none"></label><br>
+                                placeholder="請輸入您的密碼" required><label class="sattus" style="display:none"></label><br>
                         </li><br>
                         <label class="item_name" style="text-align:left;">再次確認密碼</label>
                         <li><input type=" password" name="againpwd" class="basic_input input_code"
-                                placeholder="請再次輸入您的密碼"><label class="sattus" style="display:none"></label><br>
+                                placeholder="請再次輸入您的密碼" required><label class="sattus" style="display:none"></label><br>
                         </li><br>
                          <label class="item_name" style="text-align:left;">品牌名稱</label>
                         <li><input type="text" name="name" class="basic_input input_code"
-                                placeholder="請輸入您的品牌名稱"><label class="sattus" style="display:none"></label><br>
+                                placeholder="請輸入您的品牌名稱" required><label class="sattus" style="display:none"></label><br>
                         </li><br>
+                        <c:set var="categoryValue" value="${vendor.manufacturerCategory}" /> 
                         <label class="item_name" style="text-align:left;">廠商類別</label>
-							<select class="form-control"  name="manufacturerCategory">
-							  <option value="0">請選擇類別</option>
-							  <option value="1">商品</option>
-							  <option value="2">服務</option>
-							</select>
+<!-- 							<select class="form-control"  name="category" required>  -->
+<!-- 							  <option value="0">請選擇類別</option> -->
+<!-- 							  <option value="1">商品</option> -->
+<!-- 							  <option value="2">服務</option> -->
+<!-- 							</select> -->
+<!-- 						<select class="form-control" name="category" required> -->
+<%-- 						    <option value="0" ${vendor.manufacturerCategory == 0 ? 'selected' : ''}>請選擇類別</option> --%>
+<%-- 						    <option value="1" ${vendor.manufacturerCategory == 1 ? 'selected' : ''}>商品</option> --%>
+<%-- 						    <option value="2" ${vendor.manufacturerCategory == 2 ? 'selected' : ''}>服務</option> --%>
+<!-- 						</select> -->
+						<select class="form-control" name="category" required>
+						    <option value="0" ${categoryValue == 0 ? 'selected' : ''}>請選擇類別</option>
+						    <option value="1" ${categoryValue == 1 ? 'selected' : ''}>商品</option>
+						    <option value="2" ${categoryValue == 2 ? 'selected' : ''}>服務</option>
+						</select>
 							<br>
                         <label class="item_name" style="text-align:left;">電話號碼</label>
-                        <li><input type=" password" name="phone" class="basic_input input_code"
-                                placeholder="請輸入您的電話號碼"><label class="sattus" style="display:none"></label><br>
+                        <li><input type=" password" name="phone" class="basic_input input_code" placeholder="請輸入您的電話號碼" required>
+                             <label class="sattus" style="display:none"></label><br>
                         </li><br>
-                        <label class="item_name" style="text-align:left;">廠商地區</label>
-                        <select class="form-control"  name="location">
-							  <option value="10">縣市</option>
-			                  <option value="11">台北市</option>
-			                  <option value="12">新北市</option>
-			                  <option value="13">桃園市</option>
-			                  <option value="14">新竹市</option>
-			                  <option value="15">新竹縣</option>
-			                  <option value="16">基隆市</option>
-			                  <option value="17">台中市</option>
-			                  <option value="18">苗栗縣</option>
-			                  <option value="19">彰化縣</option>
-			                  <option value="20">雲林縣</option>
-			                  <option value="21">南投縣</option>
-			                  <option value="22">高雄市</option>
-			                  <option value="23">台南市</option>
-			                  <option value="24">嘉義市</option>
-			                  <option value="25">嘉義縣</option>
-			                  <option value="26">屏東縣</option>
-			                  <option value="27">澎湖縣</option>
-			                  <option value="28">宜蘭縣</option>
-			                  <option value="29">花蓮縣</option>
-			                  <option value="30">台東縣</option>
-			                  <option value="31">金門縣</option>
-			                  <option value="32">連江縣</option>
-							</select>
+                       <c:set var="locationValue" value="${vendor.vendorLocation}" />
+						<label class="item_name" style="text-align:left;">廠商地區</label>
+						<select class="form-control" name="location" required>
+						    <option value="10" ${locationValue == 10 ? 'selected' : ''}>縣市</option>
+						    <option value="11" ${locationValue == 11 ? 'selected' : ''}>台北市</option>
+						    <option value="12" ${locationValue == 12 ? 'selected' : ''}>新北市</option>
+						    <option value="13" ${locationValue == 13 ? 'selected' : ''}>桃園市</option>
+						    <option value="14" ${locationValue == 14 ? 'selected' : ''}>新竹市</option>
+						    <option value="15" ${locationValue == 15 ? 'selected' : ''}>新竹縣</option>
+						    <option value="16" ${locationValue == 16 ? 'selected' : ''}>基隆市</option>
+						    <option value="17" ${locationValue == 17 ? 'selected' : ''}>台中市</option>
+						    <option value="18" ${locationValue == 18 ? 'selected' : ''}>苗栗縣</option>
+						    <option value="19" ${locationValue == 19 ? 'selected' : ''}>彰化縣</option>
+						    <option value="20" ${locationValue == 20 ? 'selected' : ''}>雲林縣</option>
+						    <option value="21" ${locationValue == 21 ? 'selected' : ''}>南投縣</option>
+						    <option value="22" ${locationValue == 22 ? 'selected' : ''}>高雄市</option>
+						    <option value="23" ${locationValue == 23 ? 'selected' : ''}>台南市</option>
+						    <option value="24" ${locationValue == 24 ? 'selected' : ''}>嘉義市</option>
+						    <option value="25" ${locationValue == 25 ? 'selected' : ''}>嘉義縣</option>
+						    <option value="26" ${locationValue == 26 ? 'selected' : ''}>屏東縣</option>
+						    <option value="27" ${locationValue == 27 ? 'selected' : ''}>澎湖縣</option>
+						    <option value="28" ${locationValue == 28 ? 'selected' : ''}>宜蘭縣</option>
+						    <option value="29" ${locationValue == 29 ? 'selected' : ''}>花蓮縣</option>
+						    <option value="30" ${locationValue == 30 ? 'selected' : ''}>台東縣</option>
+						    <option value="31" ${locationValue == 31 ? 'selected' : ''}>金門縣</option>
+						    <option value="32" ${locationValue == 32 ? 'selected' : ''}>連江縣</option>
+						</select>
 							<br>
                          <label class="item_name" style="text-align:left;">廠商統編</label>
                         <li><input type="text" name="companyid" class="basic_input input_code"
-                                placeholder="請輸入您的統一編號"><label class="sattus" style="display:none"></label><br>
+                                placeholder="請輸入您的統一編號" required><label class="sattus" style="display:none"></label><br>
                         </li><br>
                         <label class="item_name" style="text-align:left;">廠商聯絡人</label>
                         <li><input type=" password" name="contactperson" class="basic_input input_code"
-                                placeholder="請輸入您的負責人"><label class="sattus" style="display:none"></label><br>
+                                placeholder="請輸入您的負責人" required><label class="sattus" style="display:none"></label><br>
                         </li><br>
                         <label class="item_name" style="text-align:left;">廠商基本資料</label>
-                        <li><input type=" password" name="basicintroduction class="basic_input input_code" style="height:200px;"
-                                placeholder="請介紹一下您的品牌"><label class="sattus" style="display:none"></label><br>
+                        <li><input type=" password" name="basicintroduction" class="basic_input input_code" style="height:200px;"
+                                placeholder="請介紹一下您的品牌"required><label class="sattus" style="display:none"></label><br>
                         </li><br>
-                        <c:if test="${errorMsgMap.containsKey('registerError')}">
-							<span class="errorMsg">${errorMsgMap['registerError']}</span>
-						</c:if>
+                        <c:if test="${not empty responseMsgMap.exception}">
+							    ${responseMsgMap.exception}
+						</c:if><br>
                     </ul>
                     <br>
 					<!-- 顯示註冊結果的訊息 -->

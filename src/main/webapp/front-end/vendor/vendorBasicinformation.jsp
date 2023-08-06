@@ -30,10 +30,9 @@
             <h1><i class="fa fa-user fa-lg"></i> 廠商基本資料</h1>
         </div>
         <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/front-end/user/userIndex.jsp"><i
+            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/front-end/vendor/vendorIndex.jsp"><i
                     class="fa fa-home fa-lg"></i></a></li>
             <li class="breadcrumb-item">廠商首頁</li> 
-<!--             							廠商商場? -->
         </ul>
     </div>
 <!--    <div class="form_item"> -->
@@ -45,29 +44,55 @@
 <!--       <p class="input_tips">請上傳 200 x 200px 以上之 jpg / png 檔，檔案大小不超過10MB</p><span class="sattus sat_error" -->
 <!--         style="display: none;" id="file_error"><i></i></span> -->
 <!--     </div> -->
-    <form method="post" name="edit_form" action="<%=request.getContextPath()%>/vendor/vendorBasicinformation">
+    <form method="post" name="edit_form" action="<%=request.getContextPath()%>/vendor/vendorBasicinformationjsp">
+<!--      				<div class="form-group"> -->
+<!-- 						<label for="itemSelect" class="col-sm-2 col-form-label">廠商類別</label> -->
+<!-- 						<div class="col-sm-10"> -->
+<%-- 							<input class="form-control" id="manufacturerCategory" name="category" type="text" placeholder="" value="${vendor.manufacturerCategory}"> --%>
+<!-- 						</div> -->
+<!--      				</div> -->
+<%--      				 <c:set var="categoryValue" value="${vendor.manufacturerCategory}" /> --%>
+<!-- 					<label for="manufacturerCategory" class="col-sm-2 col-form-label">廠商類別</label> -->
+<!-- 					<select class="form-control" style="width:80%;margin:15px" name="category"> -->
+<%-- 			            <option value="0" ${genderValue == 0 ? 'selected' : ''}>商品</option> --%>
+<%-- 			            <option value="1" ${genderValue == 1 ? 'selected' : ''}>服務</option> --%>
+<!-- 			        </select> -->
+					<c:set var="categoryValue" value="${vendor.manufacturerCategory}" /> 
+			        <label for="manufacturerCategory" class="col-sm-2 col-form-label">廠商類別</label>
+					<select class="form-control" style="width:80%;margin:15px" name="category" disabled>
+					    <c:choose>
+					        <c:when test="${categoryValue == 0}">
+					            <option value="0" selected>商品</option>
+					            <option value="1">服務</option>
+					        </c:when>
+					        <c:when test="${categoryValue == 1}">
+					            <option value="0">商品</option>
+					            <option value="1" selected>服務</option>
+					        </c:when>
+					    </c:choose>
+					</select>
      				<div class="form-group">
 						<label for="itemSelect" class="col-sm-2 col-form-label">品牌名稱</label>
 						<div class="col-sm-10">
-							<input class="form-control" id="vendorName" name="name" type="text" placeholder="請輸入您的品牌名稱" value="${vendor.vendorName}" required>
+							<input class="form-control" id="vendorName" name="name" type="text" placeholder="請輸入您的品牌名稱" value="${vendor.vendorName}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="itemDescription" class="col-sm-2 col-form-label">廠商電話</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="vendorPhone" name="phone" placeholder="請輸入您的電話號碼" value="${vendor.vendorPhone}" required>
+							<input type="text" class="form-control" id="vendorPhone" name="phone" placeholder="請輸入您的電話號碼" value="${vendor.vendorPhone}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="itemDescription" class="col-sm-2 col-form-label">廠商統編</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="companyId" name="id" placeholder="請輸入您的統一編號" value="${vendor.companyId}" required>
+							<input type="text" class="form-control" id="companyId" name="companyid" placeholder="請輸入您的統一編號" value="${vendor.companyId}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="itemDescription" class="col-sm-2 col-form-label">廠商聯絡人</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="contactPerson" name="Person" placeholder="請輸入您的負責人" value="${vendor.contactPerson}" required>
+							<input type="text" class="form-control" id="contactPerson" name="person" placeholder="請輸入您的負責人" value="${vendor.contactPerson}">
 						</div>
 					</div>
 					<div class="form-group">
@@ -76,37 +101,38 @@
 							<input class="form-control" id="vendorPassword"" name="pwd" type="text" placeholder="" value="${vendor.vendorPassword}">
 						</div>
 					</div>
+					<c:set var="locationValue" value="${vendor.vendorLocation}" />
 					<label for="vendorLocation" class="col-sm-2 col-form-label">廠商地區</label>
 					<select class="form-control" style="width:80%;margin:15px" name="location">
-					  		  <option value="10">縣市</option>
-			                  <option value="11">台北市</option>
-			                  <option value="12">新北市</option>
-			                  <option value="13">桃園市</option>
-			                  <option value="14">新竹市</option>
-			                  <option value="15">新竹縣</option>
-			                  <option value="16">基隆市</option>
-			                  <option value="17">台中市</option>
-			                  <option value="18">苗栗縣</option>
-			                  <option value="19">彰化縣</option>
-			                  <option value="20">雲林縣</option>
-			                  <option value="21">南投縣</option>
-			                  <option value="22">高雄市</option>
-			                  <option value="23">台南市</option>
-			                  <option value="24">嘉義市</option>
-			                  <option value="25">嘉義縣</option>
-			                  <option value="26">屏東縣</option>
-			                  <option value="27">澎湖縣</option>
-			                  <option value="28">宜蘭縣</option>
-			                  <option value="29">花蓮縣</option>
-			                  <option value="30">台東縣</option>
-			                  <option value="31">金門縣</option>
-			                  <option value="32">連江縣</option>
+					    <option value="10" ${locationValue == 10 ? 'selected' : ''}>縣市</option>
+					    <option value="11" ${locationValue == 11 ? 'selected' : ''}>台北市</option>
+					    <option value="12" ${locationValue == 12 ? 'selected' : ''}>新北市</option>
+					    <option value="13" ${locationValue == 13 ? 'selected' : ''}>桃園市</option>
+					    <option value="14" ${locationValue == 14 ? 'selected' : ''}>新竹市</option>
+					    <option value="15" ${locationValue == 15 ? 'selected' : ''}>新竹縣</option>
+					    <option value="16" ${locationValue == 16 ? 'selected' : ''}>基隆市</option>
+					    <option value="17" ${locationValue == 17 ? 'selected' : ''}>台中市</option>
+					    <option value="18" ${locationValue == 18 ? 'selected' : ''}>苗栗縣</option>
+					    <option value="19" ${locationValue == 19 ? 'selected' : ''}>彰化縣</option>
+					    <option value="20" ${locationValue == 20 ? 'selected' : ''}>雲林縣</option>
+					    <option value="21" ${locationValue == 21 ? 'selected' : ''}>南投縣</option>
+					    <option value="22" ${locationValue == 22 ? 'selected' : ''}>高雄市</option>
+					    <option value="23" ${locationValue == 23 ? 'selected' : ''}>台南市</option>
+					    <option value="24" ${locationValue == 24 ? 'selected' : ''}>嘉義市</option>
+					    <option value="25" ${locationValue == 25 ? 'selected' : ''}>嘉義縣</option>
+					    <option value="26" ${locationValue == 26 ? 'selected' : ''}>屏東縣</option>
+					    <option value="27" ${locationValue == 27 ? 'selected' : ''}>澎湖縣</option>
+					    <option value="28" ${locationValue == 28 ? 'selected' : ''}>宜蘭縣</option>
+					    <option value="29" ${locationValue == 29 ? 'selected' : ''}>花蓮縣</option>
+					    <option value="30" ${locationValue == 30 ? 'selected' : ''}>台東縣</option>
+					    <option value="31" ${locationValue == 31 ? 'selected' : ''}>金門縣</option>
+					    <option value="32" ${locationValue == 32 ? 'selected' : ''}>連江縣</option>
 					</select>
 					<br>
 					<div class="form-group">
 						<label for="itemDescription" class="col-sm-2 col-form-label">廠商地址</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="vendorAddress" name="address" placeholder="請輸入您的完整地址" value="${vendor.vendorAddress}" required>
+							<input type="text" class="form-control" id="vendorAddress" name="address" placeholder="請輸入您的完整地址" value="${vendor.vendorAddress}">
 						</div>
 					</div>
 					<div class="form-group">
@@ -118,31 +144,29 @@
 					<div class="form-group">
 						<label for="itemDescription" class="col-sm-2 col-form-label">廠商FB</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="vendorFb" name="Facebook" placeholder="請輸入您的Facebook連結" value="${vendor.vendorFb}">
+							<input type="text" class="form-control" id="vendorFb" name="facebook" placeholder="請輸入您的Facebook連結" value="${vendor.vendorFb}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="itemDescription" class="col-sm-2 col-form-label">廠商IG</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="vendorIg" name="IG" placeholder="請輸入您的IG連結" value="${vendor.vendorIg}">
+							<input type="text" class="form-control" id="vendorIg" name="ig" placeholder="請輸入您的IG連結" value="${vendor.vendorIg}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="itemDescription" class="col-sm-2 col-form-label">googlemap</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="googlemap" name="googlemap" placeholder="請輸入您的googlemap連結" value="${vendor.googlemap}" required>
+							<input type="text" class="form-control" id="googlemap" name="googlemap" placeholder="請輸入您的googlemap連結" value="${vendor.googlemap}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="itemDescription" class="col-sm-2 col-form-label">廠商基本資料</label>
 						<div class="col-sm-10">
-							<input type="text" style="height:200px;" class="form-control" id="basicIntroduction" name="basicIntroduction" placeholder="請介紹一下您的品牌" value="${vendor.basicIntroduction}" required>
+							<input type="text" style="height:200px;" class="form-control" id="basicIntroduction" name="basicIntroduction"  placeholder="請介紹一下您的品牌" value="${vendor.basicIntroduction}">
 						</div>
 					</div>
 					
 					<div class="col-sm-10 productAddBtn">
-						<input type="hidden" name="planItemId" value="${item.planItemId}">
-						<a href="<%=request.getContextPath()%>/plan-item?vendorId=${vendorId}"><button type="button" class="btn btn-danger">取消</button></a>
 						<button type="submit" class="btn btn-info" name="action" value="update">儲存</button>
 					</div>
     </form>

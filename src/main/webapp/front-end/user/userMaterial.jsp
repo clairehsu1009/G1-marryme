@@ -2,24 +2,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<jsp:useBean id="vendorList" scope="request" class="java.util.ArrayList" />
+<jsp:useBean id="memberList" scope="request" class="java.util.ArrayList" />
 
 
 <html>
-<%@include file="/front-end/vendor/common/vendorHead.jsp"%>
+<%@include file="/front-end/user/common/userHead.jsp"%>
 
 <body class="app sidebar-mini rtl">
-<%@include file="/front-end/header.jsp"%>
-<%@include file="/front-end/vendor/common/vendorSidebar.jsp"%>
+<%@include file="/front-end/header.jsp" %>
+<%@include file="/front-end/user/common/userSidebar.jsp" %>
 
 
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-archive">&nbsp;</i>廠商資料列表</h1>
+            <h1><i class="fa fa-archive">&nbsp;</i>會員資料列表</h1>
         </div>
-        <form method="post" action="<%=request.getContextPath()%>/vendor/vendorMaterial" style="margin-bottom: 0px;">
-            <input type="hidden" name="vendorId" value="${vendorId}" />
+        <form method="post" action="<%=request.getContextPath()%>/user/userMaterial" style="margin-bottom: 0px;">
+            <input type="hidden" name="memberId" value="${memberId}" />
         <ul class="app-breadcrumb breadcrumb">
             <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已下架方案加購項目</button></li>
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -46,47 +46,33 @@
                         <table class="table">
                             <thead class="thead">
                             <tr>
-                                <th scope="col">廠商ID</th>
-                                <th scope="col">品牌名稱</th>
+                                <th scope="col">會員ID</th>
+                                <th scope="col">姓名</th>
                                 <th scope="col">電話號碼</th>
                                 <th scope="col">密碼</th>
-                                <th scope="col">服務地區</th>
                                 <th scope="col">地址</th>
-                                <th scope="col">廠商類別</th>
-                                <th scope="col">註冊時間</th>
-                                <th scope="col">官方網址</th>
-                                <th scope="col">FB</th>
-                                <th scope="col">IG</th>
-                                <th scope="col">統編</th>
-                                <th scope="col">聯絡人</th>
-                                <th scope="col">基本資料</th>
-                                <th scope="col">googlemap</th>
+                                <th scope="col">性別</th>
+                                <th scope="col">註冊日期</th>
+                                <th scope="col">註冊IP</th>
                                 <th scope="col">審核狀態</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="vendor" items="${vendorList}" begin="0" end="${vendorList.size()}" >
+                            <c:forEach var="member" items="${memberList}" begin="0" end="${memberList.size()}" >
                
                                 <tr>
-                                    <td>${vendor.vendorId}</td>
-                                    <td>${vendor.vendorName}</td>
-                                    <td>${vendor.vendorPhone}</td>
-                                    <td>${vendor.vendorPassword}</td>
-                                    <td>${vendor.vendorLocation}</td>
-                                    <td>${vendor.vendorAddress}</td>
-                                    <td>${vendor.manufacturerCategory}</td>
-                                    <td>${vendor.vendorRegistrationTime}</td>
-                                    <td>${vendor.vendorWebsite}</td>
-                                    <td>${vendor.vendorFb}</td>
-                                    <td>${vendor.vendorIg}</td>
-                                    <td>${vendor.companyId}</td>
-                                    <td>${vendor.contactPerson}</td>
-                                    <td>${vendor.basicIntroduction}</td>
-                                    <td>${vendor.googlemap}</td>
-                                    <td>${vendor.vendorStatus}</td>
+                                    <td>${member.memberId}</td>
+                                    <td>${member.memberName}</td>
+                                    <td>${member.memberPhone}</td>
+                                    <td>${member.memberPassword}</td>
+                                    <td>${member.memberAddress}</td>
+                                    <td>${member.memberGender}</td>
+                                    <td>${member.memberRegistrationTime}</td>
+                                    <td>${member.memberRegistrationIp}</td>
+                                    <td>${member.verificationStatus}</td>
                                     <td>
-                                        <form method="post" action="<%=request.getContextPath()%>/vendor/vendorMaterial" style="margin-bottom: 0px;">
-                                            <input type="hidden" name="vendorId" value="${vendor.vendorId}" />
+                                        <form method="post" action="<%=request.getContextPath()%>/user/userMaterial" style="margin-bottom: 0px;">
+                                            <input type="hidden" name="memberId" value="${member.memberId}" />
 <%--                                             <c:if test="${item.editStatus == 0}"> --%>
 <!--                                                 <button type="submit" class="btn btn-info" name="action" value="getOneForUpdate">編輯</button> -->
 <%--                                             </c:if> --%>

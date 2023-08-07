@@ -53,7 +53,7 @@
 				<%--                    </div>--%>
 				<%--                </c:if>--%>
 
-				<li class="pc_list"><a href="#" title="登入" class="no_block">登入</a></li>
+				<li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/user/userLogin.jsp" title="登入" class="no_block">登入</a></li>
 				<li class="pc_list"><a href="#" title="免費註冊" class="no_block">註冊</a></li>
 			</ul>
 			<div style="display: none;" id="header_menu" class="mobile_tools">

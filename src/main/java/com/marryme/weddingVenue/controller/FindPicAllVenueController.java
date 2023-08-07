@@ -63,8 +63,11 @@ public class FindPicAllVenueController extends HttpServlet {
 
         // 如果圖片數據為空，使用預設圖片
         if (objectData == null || objectData.length == 0) {
-        	resp.sendError(HttpServletResponse.SC_NOT_FOUND);
-        	return;
+        	String defaultImagePath = "/public/images/front-end/picture.png";
+	        File file = new File(getServletContext().getRealPath(defaultImagePath));
+	        try (FileInputStream fis = new FileInputStream(file)) {
+	            objectData = fis.readAllBytes();
+	        }
         }
 
         ServletOutputStream out = resp.getOutputStream();

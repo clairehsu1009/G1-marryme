@@ -21,7 +21,7 @@
 <%@include file="/front-end/header.jsp"%>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/front-end/weddingVenue/css/weddingPlanWork.css" type="text/css" />
+	href="${pageContext.request.contextPath}/front-end/weddingVenue/css/weddingVenueWork.css" type="text/css" />
 	
 	
 	<%@ page import="java.util.List" %>
@@ -48,11 +48,8 @@
 					itemtype="https://schema.org/ListItem">
 <!-- 					<span itemprop="name">婚宴場地</span> -->
 					
-					 <form method="post" action="<%=request.getContextPath()%>/weddingVenueList">
-					  <a href="<%=request.getContextPath()%>/weddingVenueList">
-					    <span itemprop="name">婚宴場地</span>
-					  </a>
-					</form>
+				<a href="<%=request.getContextPath()%>/weddingVenueList">婚宴場地!!!!!!!!!</a>
+
 					 
 					 
 					<!--自己那頁的名稱-->
@@ -133,37 +130,37 @@
 
 
 
-
-
-   
-
 <section class="rwd_wrap profile_detail">
         <div class="info">
 <form method="post" action="<%=request.getContextPath()%>/weddingVenueWork">	
 <input type="hidden" name="placeId" value=1/>
 		
-            <div class="avatar"><a href="#" title="新莊典華"><img alt="新莊典華"
-                        title="新莊典華"
-                        src="<%=request.getContextPath()%>/weddingVenue?id=${weddingVenueWork.placeId}"></a>
+            <div class="avatar">
+            	<a href="#" title="${weddingVenueWork.placeTitle}">
+            		<img alt="${weddingVenueWork.placeTitle}" title="${weddingVenueWork.placeTitle}" src="<%=request.getContextPath()%>/weddingVenue?id=${weddingVenueWork.placeId}">
+                </a>
                 <a class="flagship_tag" href="#" target="_blank">${weddingVenueWork.placeTitle}</a>
             </div>
+            
             <div class="detail">
-
-                <div><a class="evaluate" href="https://www.marry.com.tw/studio-reviews-16481"><span
-                            class="bg_star"></span>
-                        4.9&nbsp;<span class="counts" id="evaluate_counts_basic">(861)</span></a></div>
+                <div>
+                	<a class="evaluate" href="https://www.marry.com.tw/studio-reviews-16481">
+	                	<span class="bg_star"></span> 4.9&nbsp;
+	                        <span class="counts" id="evaluate_counts_basic">(861)
+	                     </span>
+                   </a>
+                </div>
             </div>
         </div>
+        
         <div class="toolbar"><a href="javascript:;" id="studio_like_a" onclick="set_like_big(this,'studio',4985);"
                 class="follow btn_common btn_outline_primary " title="追蹤新莊典華"><img
                     src="https://statics.marry.com.tw/img/studio/follow_default.svg"><span>追蹤</span></a>
           
-            <a class="ask btn_common btn_primary add_ask" href="javascript:;" rel_m_id="anZRNjk0Wk42LzI4THM0d2RR"
+            <a class="ask btn_common btn_primary add_ask" href="${pageContext.request.contextPath}/front-end/reservation/addReservation.jsp" rel_m_id="anZRNjk0Wk42LzI4THM0d2RR"
                 rel_s_id="0" rel_a_id="760">
-                預約賞廳
-                <span class="tooltips_2d6788 ask_tooltips" style="display: none;">詢問贈2組抽獎券</span>
+                預約賞廳               
             </a>
-<%--    </c:forEach> --%>
 </form>	 
         </div>
     </section>
@@ -283,36 +280,80 @@
         </div>
     </section>
     
-    <section class="more_photos rwd_wrap_new more_photos_swiper_js">
+    
+    
+<!--  ==========================================方案=================================================    -->
+ <c:set var="vendorId" value="${weddingVenueWork.vendorId}" />
+  
+    <section class="more_photos rwd_wrap_new more_photos_swiper_js" >
         <p><b>方案</b></p>
-         <div class="slider_wrap">
-            <div class="swiper-container swiper-container-initialized swiper-container-horizontal"
-                style="cursor: grab;">
                 <div id="service_swiper_list" class="swiper-wrapper" aria-live="polite"
                     style="transform: translate3d(0px, 0px, 0px);">
-                    
-                    
-                  
-                    
+                   
+	<form method="post" action="<%=request.getContextPath()%>/plan" style="margin-bottom: 0;">
+         <input type="hidden" name="vendorId" value="${vendorId}" />
+              
+           <div class="tab-item-content"  >
+                <div class="tab-content">
+                    <c:forEach begin="0" end="1" varStatus="loop" >
+                        <c:set var="activeClass" value="${loop.index == 1 ? 'active' : ''}" />
+                        <div class="tab-pane fade-in ${activeClass}" id="tab-${loop.index}" role="tabpanel">
+                            <table class="table" border-collapse: collapse; style="width: 100%;">
+                                <thead class="thead">
+                                <tr>
+                                    <th style="width: 14.28%; height:100px;" scope="col">方案主圖片</th>
+                                    <th style="width: 14.28%; height:100px;" scope="col">方案標題</th>
+                                    <th style="width: 14.28%; height:100px;" scope="col">方案介紹</th>
+                                    <th style="width: 14.28%; height:100px;" scope="col">圖片1</th>
+                                    <th style="width: 14.28%; height:100px;" scope="col">圖片2</th>
+                                    <th style="width: 14.28%; height:100px;" scope="col">圖片3</th>
+                                    <th style="width: 14.28%; height:100px;" scope="col">簡介</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="plan" items="${planList}" begin="0" end="${planList.size()}">
+                                    <c:if test="${plan.status == loop.index}">
+                                        <tr>
+                                            <td>
+                                                <img width="200px" height="200px" src="${pageContext.request.contextPath}/ShowPhoto?planProductId=${plan.planProductId}&photoFieldName=planPicture" class="rounded mx-auto d-block" alt="方案主圖片">
+                                            </td>
+                                            <td>${plan.planTitle}</td>
+                                            <td>${plan.planIntroduction}</td>
+                                            <td>
+                                                <img width="50px" height="50px" src="${pageContext.request.contextPath}/ShowPhoto?planProductId=${plan.planProductId}&photoFieldName=planPictures1" class="rounded mx-auto d-block" alt="方案圖片1">
+                                            </td>
+                                           
+                                            <td>
+                                                <img width="50px" height="50px" src="${pageContext.request.contextPath}/ShowPhoto?planProductId=${plan.planProductId}&photoFieldName=planPictures2" class="rounded mx-auto d-block" alt="方案圖片2">
+                                            </td>
+                                            
+                                            <td>
+                                                <img width="50px" height="50px" src="${pageContext.request.contextPath}/ShowPhoto?planProductId=${plan.planProductId}&photoFieldName=planPictures3" class="rounded mx-auto d-block" alt="方案圖片3">
+                                            </td>
+                                           
+                                            <td>
+                                                <form method="post" action="<%=request.getContextPath()%>/plan" style="margin-bottom: 0 ;">
+                                                    <input type="hidden" name="planProductId" value="${plan.planProductId}" />
+                                                    <input type="hidden" name="vendorId" value="${plan.vendorId}" />
+                                                    <button type="submit" class="btn btn-info" name="action" value="getOne">查看</button>                                                  
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </c:if>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </c:forEach>
+                </div>
            </div>
-         </div>
-        </div>
-    </section>
+        </form>                
+       </div>
+</section>
     
-    
-    
-
-
-
-
+   
 		
 	<!-- body End -->
-
-
-
-
-
-
 
 
 	

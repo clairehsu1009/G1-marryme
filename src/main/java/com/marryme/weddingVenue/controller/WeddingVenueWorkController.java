@@ -1,6 +1,7 @@
 package com.marryme.weddingVenue.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.marryme.plan.vo.Plan;
 import com.marryme.weddingVenue.service.WeddingVenueService;
 import com.marryme.weddingVenue.service.impl.WeddingVenueServiceImpl;
 import com.marryme.weddingVenue.vo.WeddingVenue;
+import com.marryme.plan.service.PlanService;
+import com.marryme.plan.service.impl.PlanServiceImpl;
 
 
 
@@ -19,10 +23,12 @@ import com.marryme.weddingVenue.vo.WeddingVenue;
 public class WeddingVenueWorkController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private WeddingVenueService service;
+	private PlanService planService;
 	
 	@Override
 	public void init() throws ServletException {
 		service = new WeddingVenueServiceImpl();
+		planService= new PlanServiceImpl();
 	}
 
 	@Override
@@ -36,10 +42,15 @@ public class WeddingVenueWorkController extends HttpServlet{
 	    }
 
         WeddingVenue weddingVenueWork = service.getOne(placeId);
+        
+        String vendorId = service.findVendorIdByPlaceId(placeId);
+        
+        List<Plan> planList = planService.findAllByVendorId(vendorId);
 
    
         /*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
         req.setAttribute("weddingVenueWork", weddingVenueWork);
+        req.setAttribute("planList", planList);
 		String url = "/front-end/weddingVenue/weddingVenueWork.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 
 		successView.forward(req, resp);

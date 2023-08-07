@@ -26,6 +26,7 @@
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
 
@@ -126,11 +127,11 @@
 		<div class="rwd_wrap group">
 			<div class="h1_count clearfix">
 				<h1 class="channel_title">
-					<strong id="channel_title">婚宴場地推薦店家</strong>
+					<strong id="channel_title">婚宴場地</strong>
 				</h1>
 				<div class="count_line">
 					<span class="count" id="service_count_main">共<b
-						id="service_count">0</b>筆商品
+						id="service_count">${totalVenues}</b>筆商品
 					</span> <span class="line"></span>
 				</div>
 	
@@ -166,9 +167,9 @@
         <div class="col lg_12 md_12 sm_12" id="basic_list">
             <div class="shop_box_list">              
 
-<form method="post" action="<%=request.getContextPath()%>/weddingVenueList">	
-<%--    <c:forEach var="weddingVenue" items="${weddingVenuesList}" begin="0" end="${weddingVenuesList.size()}">                  --%>
-<c:forEach var="weddingVenue" items="${weddingVenuesList}" begin="<%= startIndex %>" end="<%= endIndex %>">
+				<form method="post" action="<%=request.getContextPath()%>/weddingVenueList">	
+					<%--    <c:forEach var="weddingVenue" items="${weddingVenuesList}" begin="0" end="${weddingVenuesList.size()}">                  --%>
+					<c:forEach var="weddingVenue" items="${weddingVenuesList}" begin="<%= startIndex %>" end="<%= endIndex %>">
 
 	
                   <ul class="shop_box" id="data-cltk-id_6167">
@@ -176,7 +177,7 @@
                         <a class="shop_pic_a cltk_click" data-cltk-id="data-cltk-id_6167" 
                         	href="<%=request.getContextPath()%>/weddingVenueWork?id=${weddingVenue.placeId}" 
                          	onclick="goToPage(${weddingVenue.placeId});">
-                                    <img class="shop_pic_img" title="孫立人將軍官邸 - 官邸文囍" alt="貓貓官邸"
+                                    <img class="shop_pic_img" title="${weddingVenue.placeTitle}" alt="${weddingVenue.placeTitle}"
                                     src="<%=request.getContextPath()%>/weddingVenue?id=${weddingVenue.placeId}">
                         </a>
                     </li>
@@ -192,28 +193,30 @@
                         	</a>
                         	<span class="shop_work_wrap">
                             	<a class="shop_work cltk_click" data-cltk-id="data-cltk-id_6167" href="#">廳房 ${weddingVenue.numbeOfTables}</a>
-                            	<a class="shop_work cltk_click" data-cltk-id="data-cltk-id_6167" href="#">方案&nbsp;4</a>
+                            	<a class="shop_work cltk_click" data-cltk-id="data-cltk-id_6167" href="#">方案&nbsp;${totalPlans}</a>
 
 <%--                             	<a class="shop_work cltk_click" data-cltk-id="data-cltk-id_6167" data-size="${weddingPlanList.size()}" href="#">方案&nbsp;</a> --%>
-                            	
+                         	
                             	
                             </span>
                         </div>
                         <ul class="tag_row">
                         </ul>
-                        <div class="shop_add">
-                            <img src="https://statics.marry.com.tw/img/public/vendorprofile/location_gray_20.svg">
+                                        
+   
+ <c:forEach var="location" items="${location}">
+    <div class="shop_add">
+        <img src="https://statics.marry.com.tw/img/public/vendorprofile/location_gray_20.svg">
+        <span>${location}</span>
+    </div>
+</c:forEach>
 
-
-							<span>
-                                台北市&nbsp;中正區
-                            </span>
-
-                        </div>
+          
+                        
 	                    </li>
 	                </ul>
-   </c:forEach>
-</form>	           
+				   </c:forEach>
+				</form>	           
 	   		 </div>
 	    </div>
 	</section>
@@ -262,10 +265,6 @@ function goToPage(page) {
 	  }
 	}
 
-
-
-var currentPage = <%= totalPages %>;
-console.log(currentPage)
 
 
 </script>

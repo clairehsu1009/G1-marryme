@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import com.marryme.core.util.HibernateUtil;
+import com.marryme.plan.vo.Plan;
+import com.marryme.product.entity.Product;
 import com.marryme.weddingVenue.dao.WeddingVenueDao;
 import com.marryme.weddingVenue.vo.WeddingVenue;
 import com.marryme.vendor.vo.Vendor;
@@ -46,6 +48,29 @@ public class WeddingVenueDaoImpl implements WeddingVenueDao{
 	        query.setParameter("status", status);
 	        return query.list();
 
+	    }
+	    
+	    @Override
+	    public List<Plan> selectPlanAllAndStatus(String statusType) {
+	    	// 狀態 0下架 INACTIVE /  1上架 ACTIVE
+	    	int status = ACTIVE.equals(statusType) ? 1 : 0;
+	    	String hql = "FROM Plan WHERE status = :status";
+	    	Query<Plan> query = getSession().createQuery(hql, Plan.class);
+	    	query.setParameter("status", status);
+	    	return query.list();
+	    	
+	    }
+	    
+	    
+	    @Override
+	    public List<Product> selectProductAllAndStatus(String statusType) {
+	    	// 狀態 0下架 INACTIVE /  1上架 ACTIVE
+	    	int status = ACTIVE.equals(statusType) ? 1 : 0;
+	    	String hql = "FROM Product WHERE productStatus = :productStatus";
+	    	Query<Product> query = getSession().createQuery(hql, Product.class);
+	    	query.setParameter("productStatus", status);
+	    	return query.list();
+	    	
 	    }
 	    
 	    @Override
@@ -138,10 +163,6 @@ public class WeddingVenueDaoImpl implements WeddingVenueDao{
 	    }
 
 
-		
-	    
-	    
-	    
 	    
 		@Override
 		public Integer insert(WeddingVenue pojo) {
@@ -153,6 +174,36 @@ public class WeddingVenueDaoImpl implements WeddingVenueDao{
 		public void update(Integer id, WeddingVenue pojo) {
 			// TODO Auto-generated method stub
 			
+		}
+		
+		
+		@Override
+		public String getVendorIdByPlaceId(Integer placeId) {
+		    String vendorId = null;
+		    try {
+		    	 String hql = "SELECT p.vendorId FROM Place p WHERE p.placeId = :placeId";
+		         Query<String> query = getSession().createQuery(hql, String.class);
+		         query.setParameter("placeId", placeId);
+		         vendorId = query.uniqueResult();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return vendorId;
+		}
+
+		
+		
+		public String getVendorLocationByVendorId(String vendorId) {
+		    String vendorLocation = null;
+		    try {
+		        String sql = "SELECT v.vendorLocation FROM Vendor v WHERE v.vendorId = :vendorId\r\n";
+		        Query<String> query = getSession().createQuery(sql, String.class);
+		        query.setParameter("vendorId", vendorId);
+		        vendorLocation = query.uniqueResult();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return vendorLocation;
 		}
 
 		

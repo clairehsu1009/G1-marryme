@@ -16,17 +16,7 @@
 	href="${pageContext.request.contextPath}/public/images/front-end/marrymelittle.ico"
 	type="image/x-icon">
 
-<!-- Css Styles -->
-<!-- <link rel="stylesheet" -->
-<%-- 	href="${pageContext.request.contextPath}/public/css/bootstrap/bootstrap.min.css" --%>
-<!-- 	type="text/css" /> -->
-<!-- <link rel="stylesheet" -->
-<%-- 	href="${pageContext.request.contextPath}/public/css/fontawesome/css/all.css" --%>
-<!-- 	type="text/css" /> -->
-<!-- <link rel="stylesheet" -->
-<%-- 	href="${pageContext.request.contextPath}/public/css/style.css" --%>
-<!-- 	type="text/css" /> -->
-	
+
 	
 
 <%@include file="/front-end/vendor/common/vendorHead.jsp"%>
@@ -71,61 +61,7 @@
 	</div>
 
 <!-- 	<div class="filter_pc on_pc"> 做服務or商品的才需要加，這段先保留畫面位置因為有JS功能+還有功能選項尚待確認 -->
-	<div class="filter_pc on_pc">
-		<section class="rwd_wrap group">
-			<div id="service_filter_obt_html">
-				<dl id="show_pr" class="show_filter">
-					<dt>
-						<a href="javascript:;" onclick="check_open_filter('show_pr');">
-							店家區域 </a>
-					</dt>
-					<dd id="show_pr_dd" style="display: none;">
-						<ul class="radius_3">
-							<label for="pr_">
-								<li class="onit filter_search_ref"
-								onclick="filter_search_ref($(this).find('a'));"><a id="pr_"
-									href="" rel_id="show_pr" rel_tit="預算" title="不拘"> 不拘&nbsp;<span>0</span></a></li>
-							</label>
-						</ul>
-						<ul class="radius_3">
-							<label for="pr_">
-								<li class="onit filter_search_ref"
-								onclick="filter_search_ref($(this).find('a'));"><a id="pr_"
-									href="" rel_id="show_pr" rel_tit="預算" title="不拘"> 不拘&nbsp;<span>0</span></a></li>
-							</label>
-						</ul>
-					</dd>
-				</dl>
-			</div>
-						
-			<div id="service_filter_ts_html">
-				<dl id="show_pr" class="show_filter">
-					<dt>
-						<a href="javascript:;" onclick="check_open_filter('show_pr');">
-							桌數區間 </a>
-					</dt>
-				</dl>				
-			</div>
-			
-			<div id="service_filter_pr_html">
-				<dl id="show_pr" class="show_filter">
-					<dt>
-						<a href="javascript:;" onclick="check_open_filter('show_pr');">
-							預算 </a>
-					</dt>
-					<dd id="show_pr_dd" style="display: none;">
-						<ul class="radius_3">
-							<label for="pr_">
-								<li class="onit filter_search_ref"
-								onclick="filter_search_ref($(this).find('a'));"><a id="pr_"
-									href="" rel_id="show_pr" rel_tit="預算" title="不拘"> 不拘&nbsp;<span>0</span></a></li>
-							</label>
-						</ul>
-					</dd>
-				</dl>
-			</div>
-		</section>
-	</div>
+	
 
 	<!--<div class="rwd_wrap group"> 這段做服務or商品才需要新增-->
 	<main class="app-content">
@@ -229,7 +165,7 @@
 							</div>
 							<div>
 								<input type="hidden" name="vendorId" value="${vendorId}">
-								<a href="<%=request.getContextPath()%>/reservation?vendorId=${vendorId}"  class="submitBtn">
+								<a href="${pageContext.request.contextPath}/front-end/reservation/addReservation.jsp"  class="submitBtn">
 									<button type="button" class="submitBtn">取消</button>
 								</a>
 						

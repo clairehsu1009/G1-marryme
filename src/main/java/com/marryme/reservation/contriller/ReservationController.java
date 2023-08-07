@@ -98,6 +98,8 @@ public class ReservationController extends HttpServlet {
 	
 	/*新增*/
 	private void insert(HttpServletRequest req, HttpServletResponse resp, Map<String, String> responseMsgMap) throws ServletException, IOException {
+
+		
         Map<String, String[]> reqMap = req.getParameterMap();
         validErrorForParameterMap(reqMap, this.getInValidFieldsMsg(), responseMsgMap);
         

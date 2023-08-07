@@ -1,4 +1,4 @@
-package com.marryme.weddingVenue.controller;
+package com.marryme.weddingVenue.references;
 
 import static com.marryme.common.CommonString.ACTIVE;
 

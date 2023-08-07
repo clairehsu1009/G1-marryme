@@ -20,11 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.marryme.weddingVenue.service.WeddingVenueService;
 import com.marryme.weddingVenue.service.impl.WeddingVenueServiceImpl;
-import com.marryme.weddingVenue.vo.WeddingVenue;
 
+import com.marryme.plan.vo.Plan;
 
-@WebServlet("/weddingVenue")
-public class WeddingVenueController extends HttpServlet{
+@WebServlet("/weddingPlan")
+public class WeddingPlanController extends HttpServlet{
 	
 	
 	   private static final long serialVersionUID = 12L;
@@ -36,16 +36,16 @@ public class WeddingVenueController extends HttpServlet{
 	   
 		   resp.setContentType("image/jpeg");
 
-		    String placeIdStr = req.getParameter("id");
+		    String planIdStr = req.getParameter("id");
 		    byte[] objectData = null;
 
-		    if (placeIdStr != null) {
+		    if (planIdStr != null) {
 		        try {
-		            int placeId = Integer.parseInt(placeIdStr);
-		            List<WeddingVenue> weddingVenuesList = service.findAllAndStatus(ACTIVE);
+		            int planId = Integer.parseInt(planIdStr);
+		            List<Plan> PlanList = service.findPlanAllAndStatus(ACTIVE);
 		            
-		            if (placeId > 0 && placeId <= weddingVenuesList.size()) {
-		                objectData = weddingVenuesList.get(placeId - 1).getPlacePicture();
+		            if (planId > 0 && planId <= PlanList.size()) {
+		                objectData = PlanList.get(planId - 1).getPlanPicture();
 		                
 		            }
 		        } catch (NumberFormatException e) {

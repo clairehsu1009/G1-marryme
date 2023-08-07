@@ -1,6 +1,7 @@
 create database if not exists marryme;
 use marryme;
 
+
 DROP TABLE IF EXISTS order_detail;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS member_coupon_list;
@@ -30,6 +31,10 @@ DROP TABLE IF EXISTS product_category;
 DROP TABLE IF EXISTS report;
   
   CREATE TABLE member (
+
+
+CREATE TABLE member (
+
   `member_id` varchar(50) not null comment '會員_ID (信箱)' ,
   `member_password` varchar(50) not null comment '密碼',
   `member_name` varchar(50) null comment '姓名',
@@ -318,25 +323,43 @@ CREATE TABLE `reservation` (
   `event_date` TIMESTAMP NOT NULL COMMENT '宴客日期',
   `reservation_date` TIMESTAMP NOT NULL COMMENT '預約日期時段',
   `reservation_notes` VARCHAR(500) NULL COMMENT '備註',
+  `status` int not null default 1 comment '0取消, 1成功',
   PRIMARY KEY (`reservation_id`),
   FOREIGN KEY (`vendor_id`) REFERENCES `vendor` (`vendor_id`),
   FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`)
 ) COMMENT = '會員預約賞聽';
 
 
-INSERT INTO reservation (vendor_id, member_id, contact_name, contact_number, event_date, reservation_date)
+INSERT INTO reservation (vendor_id, member_id, contact_name, contact_number, event_date, reservation_date,status)
 VALUES
-    ('vendor1@gmail.com', 'member1@gmail.com', 'John Doe', '0912345678', '2023-07-10', '2023-07-05 10:00:00'),
-    ('vendor2@gmail.com', 'member2@gmail.com', 'Jane Smith', '0923456789', '2023-07-11', '2023-07-06 14:30:00'),
-    ('vendor3@gmail.com', 'member3@gmail.com', 'Michael Johnson', '0934567890', '2023-07-12', '2023-07-07 19:45:00'),
-    ('vendor4@gmail.com', 'member4@gmail.com', 'Emily Davis', '0945678901', '2023-07-13', '2023-07-08 09:15:00'),
-    ('vendor5@gmail.com', 'member5@gmail.com', 'David Brown', '0956789012', '2023-07-14', '2023-07-09 16:00:00'),
-    ('vendor6@gmail.com', 'member6@gmail.com', 'Jennifer Wilson', '0967890123', '2023-07-15', '2023-07-10 11:30:00'),
-    ('vendor7@gmail.com', 'member7@gmail.com', 'Andrew Miller', '0978901234', '2023-07-16', '2023-07-11 13:45:00'),
-    ('vendor8@gmail.com', 'member8@gmail.com', 'Olivia Taylor', '0989012345', '2023-07-17', '2023-07-12 18:30:00'),
-    ('vendor9@gmail.com', 'member9@gmail.com', 'Daniel Anderson', '0990123456', '2023-07-18', '2023-07-13 15:15:00'),
-    ('vendor10@gmail.com', 'member10@gmail.com', 'Sophia Martinez', '0911234567', '2023-07-19', '2023-07-14 10:45:00');
-    
+    ('vendor1@gmail.com', 'member2@gmail.com', 'Jane Smith', '0923456789', '2023-07-11 12:00:00', '2023-07-06 14:30:00',1),
+    ('vendor1@gmail.com', 'member2@gmail.com', 'Jane Smith', '0923456789', '2023-07-11 12:00:00', '2023-07-06 14:30:00',1),
+    ('vendor1@gmail.com', 'member3@gmail.com', 'Michael Johnson', '0934567890', '2023-07-12 12:00:00', '2023-07-07 19:30:00',1),
+    ('vendor1@gmail.com', 'member4@gmail.com', 'Emily Davis', '0945678901', '2023-07-13 12:00:00', '2023-07-08 09:30:00',1),
+    ('vendor1@gmail.com', 'member5@gmail.com', 'David Brown', '0956789012', '2023-07-14 12:00:00', '2023-07-09 16:00:00',1),
+    ('vendor1@gmail.com', 'member6@gmail.com', 'Jennifer Wilson', '0967890123', '2023-07-15 12:00:00', '2023-07-10 11:30:00',1),
+    ('vendor1@gmail.com', 'member7@gmail.com', 'Andrew Miller', '0978901234', '2023-07-16 12:00:00', '2023-07-11 13:30:00',1),
+    ('vendor1@gmail.com', 'member8@gmail.com', 'Olivia Taylor', '0989012345', '2023-07-17 12:00:00', '2023-07-12 18:30:00',1),
+    ('vendor1@gmail.com', 'member9@gmail.com', 'Daniel Anderson', '0990123456', '2023-07-18 12:00:00', '2023-07-13 15:30:00',1),
+    ('vendor1@gmail.com', 'member10@gmail.com', 'Sophia Martinez', '0911234567', '2023-07-19 12:00:00', '2023-07-14 12:30:00',1);
+
+
+
+CREATE TABLE `marryme`.`favorites_product` (
+ `vendor_id` VARCHAR(50) NOT NULL COMMENT '場商_id 信箱 FK',
+  `member_id` VARCHAR(50) NOT NULL COMMENT '會員_id 信箱 FK',
+  FOREIGN KEY (`vendor_id`) REFERENCES `vendor` (`vendor_id`),
+  FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`)
+  )COMMENT = '追蹤廠商';
+
+
+INSERT INTO `favorites_product` (`vendor_id`, `member_id`) VALUES
+ ('vendor1@gmail.com', 'member1@gmail.com'),
+  ('vendor2@gmail.com', 'member2@gmail.com'), 
+  ('vendor3@gmail.com', 'member3@gmail.com'), 
+  ('vendor4@gmail.com', 'member4@gmail.com'), 
+  ('vendor5@gmail.com', 'member5@gmail.com'), 
+  ('vendor6@gmail.com', 'member6@gmail.com');
     
 CREATE TABLE `assess` (
   `rating_id` INT NOT NULL AUTO_INCREMENT COMMENT '評價_id 流水號 ',

@@ -1,14 +1,11 @@
-package com.marryme.weddingVenue.controller;
-
+package com.marryme.weddingVenue;
 
 import static com.marryme.common.CommonString.ACTIVE;
-
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -17,35 +14,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import com.marryme.product.entity.Product;
 import com.marryme.weddingVenue.service.WeddingVenueService;
 import com.marryme.weddingVenue.service.impl.WeddingVenueServiceImpl;
-import com.marryme.weddingVenue.vo.WeddingVenue;
 
-
-@WebServlet("/weddingVenue")
-public class WeddingVenueController extends HttpServlet{
+@WebServlet("/weddingProduct")
+public class WeddingProductController extends HttpServlet{
 	
-	
-	   private static final long serialVersionUID = 12L;
+		private static final long serialVersionUID = 12L;
 	   private final WeddingVenueService service = new WeddingVenueServiceImpl();
-
-
-  
-	   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
 	   
+	   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
+		   
 		   resp.setContentType("image/jpeg");
 
-		    String placeIdStr = req.getParameter("id");
+		    String productIdStr = req.getParameter("id");
 		    byte[] objectData = null;
 
-		    if (placeIdStr != null) {
+		    if (productIdStr != null) {
 		        try {
-		            int placeId = Integer.parseInt(placeIdStr);
-		            List<WeddingVenue> weddingVenuesList = service.findAllAndStatus(ACTIVE);
+		            int productId = Integer.parseInt(productIdStr);
+		            List<Product> ProductList = service.findProductAllAndStatus(ACTIVE);
 		            
-		            if (placeId > 0 && placeId <= weddingVenuesList.size()) {
-		                objectData = weddingVenuesList.get(placeId - 1).getPlacePicture();
+		            if (productId > 0 && productId <= ProductList.size()) {
+		                objectData = ProductList.get(productId - 1).getImage();
 		                
 		            }
 		        } catch (NumberFormatException e) {
@@ -89,9 +81,4 @@ public class WeddingVenueController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);
 	}
-
-        	
-    	
-        	
-
 }

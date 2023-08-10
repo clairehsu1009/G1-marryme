@@ -35,16 +35,16 @@
 
                 <div class="tab-content-1">
                     <ul>
-                        <label class="item_name" style="text-align:left;">註冊電子信箱/Email</label>
+                        <label for="account" class="item_name" style="text-align:left;">註冊電子信箱/Email</label>
                         <li><input type="text" name="account" class="basic_input input_code"
                                 placeholder="請輸入您的電子信箱/Email"><label class="sattus" style="display:none"></label><br>
                         </li><br>
                         <label class="item_name" style="text-align:left;">註冊密碼</label>
-                        <li><input type=" password" name="pwd" class="basic_input input_code"
+                        <li><input type="password" name="pwd" class="basic_input input_code" 
                                 placeholder="請輸入您的密碼"><label class="sattus" style="display:none"></label><br>
                         </li><br>
                         <label class="item_name" style="text-align:left;">再次確認密碼</label>
-                        <li><input type=" password" name="againpwd" class="basic_input input_code"
+                        <li><input type="password" name="againpwd" class="basic_input input_code"
                                 placeholder="請再次輸入您的密碼"><label class="sattus" style="display:none"></label><br>
                         </li><br>
                         <c:if test="${not empty responseMsgMap.exception}">
@@ -57,7 +57,7 @@
                     	 <button type="submit" class="btn btn-info" name="action" value="update">確定註冊</button>
                     <div class="link_wrap">
                         <a href="${pageContext.request.contextPath}/front-end/user/userLogin.jsp" class="register">已經有帳號?</a>
-<!--                             <a href="https://www.marry.com.tw/member-findpwd.html">忘記密碼</a> -->
+        		        <a href="${pageContext.request.contextPath}/front-end/user/password.jsp" >忘記密碼</a>
                         </div><br>
                     
 					

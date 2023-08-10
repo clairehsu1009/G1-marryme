@@ -34,7 +34,7 @@ public class Vendor {
 	private String vendorPassword; 
 	/** 廠商地區 */
 	@Column(name = "vendor_location")
-	private Integer vendorLocation;
+	private String vendorLocation;
 	/** 廠商地址 */
 	@Column(name = "vendor_address")
 	private String vendorAddress;

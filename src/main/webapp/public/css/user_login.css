@@ -200,6 +200,7 @@ html {
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
+input[type="password"],
 button {
     -webkit-appearance: none
 }
@@ -211,6 +212,7 @@ button {
     margin: 0 auto;
     max-width: 1300px
 }
+
 
 .rwd_wrap_new {
     color: rgba(0, 0, 0, 0.8);
@@ -327,6 +329,7 @@ span {
 .group {
     zoom: 1
 }
+
 
 .lg_12 {
     width: 100%
@@ -1345,6 +1348,7 @@ div#gonext a em {
     background: url(/img/1190120793391444_b.jpg) center center no-repeat;
 }
 
+
 .pop_470 {
     max-width: 470px
 }
@@ -1589,7 +1593,7 @@ a.text_gray {
     display: block;
     background: rgba(255, 240, 245);
     padding: 32px 30px;
-    margin: 250px auto 130px;
+    margin: 200px auto 130px;
     font-size: 15px;
     border-radius: 10px;
     box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.2);

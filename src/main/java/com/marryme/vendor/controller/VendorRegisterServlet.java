@@ -55,18 +55,15 @@ public class VendorRegisterServlet extends HttpServlet{
 					request.getRequestDispatcher(VENDOR_REGISTER_PAGE).forward(request, response);
 			        return; // 終止處理
 				}
-		
-				
-				
+	
 				
 				if (Objects.equals(pwd, againpwd)) {
 					Vendor vendor = new Vendor();
 					vendor.setVendorId(account);
 					vendor.setVendorPassword(pwd);
 					vendor.setVendorName(name);
-//					vendor.setManufacturerCategory(null);
 					vendor.setVendorPhone(phone);
-//					vendor.setVendorLocation(null);
+					vendor.setVendorLocation(location);
 					vendor.setCompanyId(companyid);
 					vendor.setContactPerson(contactperson);
 					vendor.setBasicIntroduction(basicintroduction);
@@ -78,21 +75,8 @@ public class VendorRegisterServlet extends HttpServlet{
 					} else {
 					    vendor.setManufacturerCategory(0); // 设置默认值为 0
 					}
-					
-					   if (location != null && !location.isEmpty()) {
-//				            int locationCode = Integer.parseInt(location);
-				            vendor.setVendorLocation(Integer.parseInt(location));
-//				            VendorLocation vendorLocation = new VendorLocation();
-//				            vendorLocation.setLocationCode(locationCode); // 设置数据库中的代号
-//				            newVendor.setVendorLocation(vendorLocation);
-				        }
-					
-					
-					
 
 					Vendor registeredVendor = service.register(vendor); // 調用 register 方法進行註冊
-					
-					
 					
 
 					if (registeredVendor!= null) {

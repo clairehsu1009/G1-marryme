@@ -52,18 +52,44 @@ public class MemberDaoImpl implements MemberDao{
 				.uniqueResult();
 	}
 
-
-    public void update(Member member) {
-        // 只set 可以修改的欄位
-        member.setMemberName(member.getMemberName());
-        member.setMemberPhone(member.getMemberPhone());
-        member.setMemberAddress(member.getMemberAddress());
-        member.setMemberGender(member.getMemberGender());
-        member.setMemberPassword(member.getMemberPassword());
-
-        getSession().merge(member);
-
-    }
+	
+	
+	public void update(Member member) {
+	    if (member == null || member.getMemberId() == null) {
+	        return;
+	    }
+	    
+	    Member existingMember = getSession().get(Member.class, member.getMemberId());
+	    
+	    if (existingMember == null) {
+	        return;
+	    }
+	    
+	    if (member.getMemberName() != null) {
+	        existingMember.setMemberName(member.getMemberName());
+	    }
+	    
+	    if (member.getMemberPhone() != null) {
+	        existingMember.setMemberPhone(member.getMemberPhone());
+	    }
+	    
+	    if (member.getMemberAddress() != null) {
+	        existingMember.setMemberAddress(member.getMemberAddress());
+	    }
+	    
+	    if (member.getMemberGender() != null) {
+	        existingMember.setMemberGender(member.getMemberGender());
+	    }
+	    
+	    if (member.getMemberPassword() != null) {
+	        existingMember.setMemberPassword(member.getMemberPassword());
+	    }
+	    
+	    getSession().merge(existingMember);
+	}
+	
+	
+	
 	
 	@Override
 	public int updateById(Member member) {

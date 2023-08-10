@@ -3,7 +3,6 @@ package com.marryme.vendor.controller;
 import static com.marryme.common.CommonString.UTF_8;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,12 +20,14 @@ public class VendorBasicinformationServlet extends HttpServlet{
 	
 	private final VendorService service = new VendorServiceImpl();
 	
+
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException {
 	     request.setCharacterEncoding(UTF_8);
 	     HttpSession session = request.getSession();
 	     Vendor vendor = (Vendor) session.getAttribute("vendor");
-	    if (vendor != null) {
+	    if (vendor != null) {	    	
 	        String pwd = request.getParameter("pwd");
 	        String name = request.getParameter("name");
 	        String phone = request.getParameter("phone");
@@ -40,7 +41,8 @@ public class VendorBasicinformationServlet extends HttpServlet{
 	        String ig = request.getParameter("ig"); // 取得選擇的性別值
 	        String googlemap = request.getParameter("googlemap");
 	        String basicIntroduction = request.getParameter("basicIntroduction");
-	        
+	     
+	     
 
 	        // 創建一個新的Member物件，並設定其屬性
 	        Vendor newVendor = new Vendor();
@@ -49,7 +51,7 @@ public class VendorBasicinformationServlet extends HttpServlet{
 	        newVendor.setVendorName(name);
 	        newVendor.setVendorPhone(phone);
 	        newVendor.setVendorAddress(address);
-	        newVendor.setVendorLocation(null);
+	        newVendor.setVendorLocation(location);
 	        newVendor.setVendorWebsite(website);
 	        newVendor.setVendorFb(facebook);
 	        newVendor.setVendorIg(ig);
@@ -61,31 +63,8 @@ public class VendorBasicinformationServlet extends HttpServlet{
 	        
 	        if (category != null && (category.equals("0") || category.equals("1"))) {
 	        	newVendor.setManufacturerCategory(Integer.parseInt(category));
-//	        } else {
-	            // 若性別值無效，可以根據需求做相應處理，這裡假設性別值為 0 代表未選擇
-//	        	newVendor.setManufacturerCategory(0);
 	        }
 	        
-//	        if (location != null && (location.equals("10") || location.equals("11") || location.equals("12") || location.equals("13")
-//	        		||location.equals("14")||location.equals("15")||location.equals("16")||location.equals("17")||location.equals("18")
-//	        		||location.equals("19")||location.equals("20")||location.equals("21")||location.equals("22")||location.equals("23")
-//	        		||location.equals("24")||location.equals("25")||location.equals("26")||location.equals("27")||location.equals("28")
-//	        		||location.equals("29")||location.equals("30")||location.equals("31")||location.equals("32")||location.equals("33"))) {
-//	            newVendor.setVendorLocation(Integer.parseInt(location));
-//	        } else {
-//	            newVendor.setVendorLocation(10); // 设置默认值为 10
-//	        }
-
-	        if (location != null && !location.isEmpty()) {
-//	            int locationCode = Integer.parseInt(location);
-	            newVendor.setVendorLocation(Integer.parseInt(location));
-//	            VendorLocation vendorLocation = new VendorLocation();
-//	            vendorLocation.setLocationCode(locationCode); // 设置数据库中的代号
-//	            newVendor.setVendorLocation(vendorLocation);
-	        }
-//	        	vendor = service.edit(newVendor);
-//	          session.setAttribute("vendor", newVendor);
-//	            response.sendRedirect("../vendor/vendorMaterial"); 
 	        Vendor updatedVendor = service.edit(newVendor);
             if (updatedVendor != null) {
                 session.setAttribute("vendor", updatedVendor);
@@ -99,4 +78,5 @@ public class VendorBasicinformationServlet extends HttpServlet{
 
 	    }
 	    }
+
 }

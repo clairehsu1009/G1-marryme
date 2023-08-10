@@ -48,34 +48,34 @@
         <div class="swiper-wrapper slider_content" id="center">
             <div class="swiper-slide banner">
                 <div class="img">
-                    <a href="https://marry.com.tw/13666" target="_blank" title="結婚吧挺新人，找命定商家">
+                    <a href="#" target="_blank" title="結婚吧挺新人，找命定商家">
                         <picture>
-                            <source srcset="https://data.marry.com.tw/img/2023/05/26/168506239196378300.webp"
+                            <source srcset="${pageContext.request.contextPath}/public/images/front-end/Banner-1.jpg"
                                 media="(min-width: 1025px)" type="image/webp">
-                            <source srcset="https://data.marry.com.tw/img/2023/05/26/168508424559025900.webp"
+                            <source srcset="${pageContext.request.contextPath}/public/images/front-end/Banner-1.jpg"
                                 type="image/webp">
-                            <source srcset="https://data.marry.com.tw/img/2023/05/26/168506239197072100.png"
+                            <source srcset="${pageContext.request.contextPath}/public/images/front-end/Banner-1.jpg"
                                 media="(min-width: 1025px)" type="image/jpeg">
-                            <source srcset="https://data.marry.com.tw/img/2023/05/26/168506239197072100.png"
+                            <source srcset="${pageContext.request.contextPath}/public/images/front-end/Banner-1.jpg"
                                 type="image/jpeg"><img
-                                src="https://data.marry.com.tw/img/2023/05/26/168506239197072100.png" alt="結婚吧挺新人，找命定商家"
+                                src="#" alt="結婚吧挺新人，找命定商家"
                                 title="結婚吧挺新人，找命定商家">
                         </picture>
                     </a>
                 </div>
             </div>
             <div class="swiper-slide banner">
-                <div class="img"><a href="https://marry.com.tw/10281" target="_blank" title="">
+                <div class="img"><a href="#" target="_blank" title="">
                         <picture>
-                            <source srcset="https://data.marry.com.tw/img/2021/12/09/163903368895706400.webp"
+                            <source srcset="${pageContext.request.contextPath}/public/images/front-end/Banner-3.jpg"
                                 media="(min-width: 1025px)" type="image/webp">
-                            <source srcset="https://data.marry.com.tw/img/2021/12/09/163903368895581400.webp"
+                            <source srcset="${pageContext.request.contextPath}/public/images/front-end/Banner-3.jpg"
                                 type="image/webp">
-                            <source srcset="https://data.marry.com.tw/img/2021/12/09/163903368899004700.jpeg"
+                            <source srcset="${pageContext.request.contextPath}/public/images/front-end/Banner-3.jpg"
                                 media="(min-width: 1025px)" type="image/jpeg">
-                            <source srcset="https://data.marry.com.tw/img/2021/12/09/163903368899120100.jpeg"
+                            <source srcset="${pageContext.request.contextPath}/public/images/front-end/Banner-3.jpg"
                                 type="image/jpeg"><img
-                                src="https://data.marry.com.tw/img/2021/12/09/163903368899004700.jpeg" alt="" title="">
+                                src="#" alt="" title="">
                         </picture>
                     </a></div>
             </div>
@@ -118,13 +118,14 @@
                                     data-src="<%=request.getContextPath()%>/weddingVenue?id=${weddingVenue.placeId}">
                             </picture>
                         </a>
-                        <a class="shop_profPic shop_profPic_four cltk_click" data-cltk-id="data-cltk-home_basic-9033" href="#" title="">
-	                         <img class="lazy" title="${weddingVenue.placeTitle}" alt="${weddingVenue.placeTitle}"
-	                                data-src="<%=request.getContextPath()%>/weddingVenue?id=${weddingVenue.placeId}">
-                        </a>
+<!--  小圖                       <a class="shop_profPic shop_profPic_four cltk_click" data-cltk-id="data-cltk-home_basic-9033" href="#" title=""> -->
+<%-- 	                         <img class="lazy" title="${weddingVenue.placeTitle}" alt="${weddingVenue.placeTitle}" --%>
+<%-- 	                                data-src="<%=request.getContextPath()%>/weddingVenue?id=${weddingVenue.placeId}"> --%>
+<!--                         </a> -->
                     </li>
                     <li class="shop_info">
-                        <h3><a class="shop_name cltk_click" data-cltk-id="data-cltk-home_basic-9033"
+                        <h3>
+                        	<a class="shop_name cltk_click" data-cltk-id="data-cltk-home_basic-9033"
                                 href="#" title="${weddingVenue.placeTitle}">${weddingVenue.placeTitle}
                             </a>
                         </h3>
@@ -224,12 +225,17 @@
 <section class="rwd_wrap group">
         <div class="col lg_12 md_12 sm_12">
         
+
+        
+        
             <div class="index_title">
+             		<a href="${pageContext.request.contextPath}/front-end/product/product.jsp?productCategoryId=1">
                     <i class="title_sort icon_venue"></i>
                     <h2>婚禮週邊</h2>
+                    </a>
                 <p>共${totalProductAlls}件商品</p>
 	                <span class="more_go">
-		                <a href="#">看更多</a>
+		                <a href="${pageContext.request.contextPath}/front-end/product/product.jsp?productCategoryId=1">看更多</a>
 	                 </span>
             </div>
   
@@ -241,7 +247,7 @@
                     data-cltk="aWZWaDh0SWV1YXpzSXMweVB6ZmtqMnJQaE5PMHhwMFFNS0FpOGNMdzQ3SzhNbmg1bWkwSDhLTGFndWV6bnd1YnNNbUFCRWJReEc1TFFnSkdENWtGY1pkOElIeXJ6VFg1UFI5YVNJUG45WnlXOFlEVUpnVkgyanFYTjFITXVNMk83RUxXTENSTnc5N2N1SllCVFExM1o2RVRmUEpoUDcwc2d5MnE4MmkwS0hRSDl5ekdEdWFuQUdXekVvbDFTR1plaktxTTNuRmhuMjErbzlCZ0lKSGNFWUR0ZDc1aXQyV1REOU05RUFKRjdTME1xTEp5amhoRUNxSzhaeEFpN3c=">
                     <li class="shop_pic">
                         <a class="shop_pic_a cltk_click" data-cltk-id="data-cltk-home_basic-9033"
-                            href="<%=request.getContextPath()%>/weddingProduct?id=${product.productId}" title="">
+                            href="<%=request.getContextPath()%>/product/getOne?productId=${product.productId}" title="">
  
                             <picture>
                                     <img class="lazy shop_pic_img" title="${product.productName}"
@@ -249,10 +255,10 @@
                                     data-src="<%=request.getContextPath()%>/weddingProduct?id=${product.productId}">
                             </picture>
                         </a>
-                        <a class="shop_profPic shop_profPic_four cltk_click" data-cltk-id="data-cltk-home_basic-9033" href="#" title="">
-	                         <img class="lazy" title="${product.productName}" alt="${product.productName}"
-	                                data-src="<%=request.getContextPath()%>/weddingProduct?id=${product.productId}">
-                        </a>
+<!-- 小圖                        <a class="shop_profPic shop_profPic_four cltk_click" data-cltk-id="data-cltk-home_basic-9033" href="#" title=""> -->
+<%-- 	                         <img class="lazy" title="${product.productName}" alt="${product.productName}" --%>
+<%-- 	                                data-src="<%=request.getContextPath()%>/weddingProduct?id=${product.productId}"> --%>
+<!--                         </a> -->
                     </li>
                     <li class="shop_info">
                         <h3><a class="shop_name cltk_click" data-cltk-id="data-cltk-home_basic-9033"
@@ -298,102 +304,54 @@
 
 
 
-<!-- =============================婚禮週邊======================================== -->
-<!--         <div class="lg_12 md_12 sm_12 clearfix"> -->
-<!--             <div class="index_title"><a href="https://www.marry.com.tw/record-photos?a_id=812"> -->
-<!--                     <i class="title_sort icon_record"></i> -->
-<!--                     <h2>婚禮週邊</h2> -->
-<!--                 </a> -->
-<!--                 <p>共17,466商品</p><span class="more_go"><a -->
-<!--                         href="#">看更多<img class="arrow_more" -->
-<!--                             src="https://statics.marry.com.tw/img/public/arrow_more.svg" alt="看更多"></a></span> -->
-<!--             </div> -->
-<!--             <div class="photos_wall clearfix"> -->
-<!--                 <ul class="album_box radius_2" id="data-cltk-home_works-123082" -->
-<!--                     data-cltk="M1BKc29OUWQ2cTNzSXMweVB6ZmtqMnJQaE5PMHhwMFFNS0FpOHNMdzQ3SzhNbmg1bWkwSDhLYkJoZWlwMGhMVCtjU05IQTNOMVdaNWRBOEFGc3RNZXBOMU1uV3R3SGY3TXdkRFM5YXNwc3FQOFoyZmFSOFNnQ0tPTEFTVjU4M2Q4QldFTkQxTmxwdVN4WXdLSFVKQk5QUUtOS0ZvTktRc3kzYXk2bWo4Y1dNR3BuMkFVcTYwQm4rNEZJb29GVFpIMDdpSG1TWTRoM1JtN29BcElNSFlUOFAxYnU5ajlHV0pGOG8rUzEwYXZEUVhxdlU2amxnWEUrUQ==" -->
-<!--                     itemscope="" itemtype="https://schema.org/ImageObject"> -->
-<!--                     <li class="photos_pic"><a class="cltk_click" data-cltk-id="data-cltk-home_works-123082" -->
-<!--                             href="https://www.marry.com.tw/studio-works-kwmi4109mmwi123082mm.html#works_index" -->
-<!--                             title="【婚禮。精選】"> -->
-<!--                             <picture> -->
-<!--                                 <source -->
-<!--                                     data-srcset="https://d2uju15hmm6f78.cloudfront.net/image/2017/01/05/4109/2023/03/12/trim_167861627666704400_450x300.webp" -->
-<!--                                     type="image/webp"> -->
-<!--                                 <source -->
-<!--                                     data-srcset="https://d2uju15hmm6f78.cloudfront.net/image/2017/01/05/4109/2023/03/12/trim_167861627666704400_450x300.jpg" -->
-<!--                                     type="image/jpg"><img class="lazy" itemprop="contentUrl" title="【婚禮。精選】" -->
-<!--                                     alt="【婚禮。精選】" -->
-<!--                                     data-src="https://d2uju15hmm6f78.cloudfront.net/image/2017/01/05/4109/2023/03/12/trim_167861627666704400_450x300.jpg"> -->
-<!--                             </picture> -->
-<!--                         </a><span class="photos_counts"> -->
-<!--                             共 479張</span></li> -->
-<!--                     <li class="photos_name"> -->
-<!--                         <h3 class="boxsize nobr"><a class="cltk_click" data-cltk-id="data-cltk-home_works-123082" -->
-<!--                                 href="https://www.marry.com.tw/studio-works-kwmi4109mmwi123082mm.html#works_index" -->
-<!--                                 title="【婚禮。精選】"><span itemprop="name"> -->
-<!--                                     【婚禮。精選】</span></a></h3> -->
-<!--                     </li> -->
-<!--                     <li class="photos_studio nobr boxsize"><a class="cltk_click" -->
-<!--                             data-cltk-id="data-cltk-home_works-123082" href="https://www.marry.com.tw/studio-4109" -->
-<!--                             itemprop="author"> -->
-<!--                             有惟攝影 yw studio<span> -->
-<!--                                 6,819 人氣</span></a></li> -->
-<!--                 </ul> -->
-
-<!--             </div> -->
-<!--         </div>   -->
-<!--                 </ul> -->
-<!--             </div> -->
-<!--         </div> -->
-<!--     </section> -->
-
 
 
 <!-- ===============================婚禮籌備必讀攻略========================================= -->
-    <section class="rwd_wrap group">
-        <div class="index_title"><a href="https://www.marry.com.tw/topic?a_id=816">
-                <i class="title_sort icon_no"></i>
-                <h2>婚禮籌備必讀攻略</h2>
-            </a>
-            <p>共2,600篇</p><span class="more_go"><a href="https://www.marry.com.tw/topic?a_id=822">看更多<img
-                        class="arrow_more" src="https://statics.marry.com.tw/img/public/arrow_more.svg"
-                        alt="看更多"></a></span>
-        </div>
-        <div class="lg_12 topic_wall">
-            <ul class="topic_list clearfix" id="data-cltk-home_topic-4061"
-                data-cltk="amZGaDk0WWQ3UGZzSXMweVB6ZmtqMnJQaE5PMHhwMFFNS0FpOHNMdzQ3SzhNbmg1bWkwSDhLWEJoK3E1MGhMVCtjU05IQTNOMVdaNWRBOEFGc3RNZjVGd00zYnN3VHo3S1UwT1NOQ3JwdEdJdk1qT2FGZ1NsbkRES1E3YXVaemN0QldSZlhCTWpiYVAvc2RWVmtNWk5iWUxkS0Y1ZmZRM215WGo2eXIwZW5SWDgzK0ZDckhvQkhEckRkVTZIbmNRaXFDZWdXdG96blEyNnQ1cU9OaUpUb0QxZFBkNjl6N1dTSnNuVUY5ZDlEUlg5K3g4">
-                <li class="l_img"><a class="cltk_click" data-cltk-id="data-cltk-home_topic-4061"
-                        href="https://www.marry.com.tw/topic/4061" title="結婚不挑好日子竟有 6 大好處？忌嫁娶/鬼月/平日「非吉日」婚宴優惠專案盤點！"><img
-                            class="lazy"
-                            data-src="https://data.marry.com.tw/img/2023/04/20/168198088273444400_w_mid_450x338.jpg"
-                            title="結婚不挑好日子竟有 6 大好處？忌嫁娶/鬼月/平日「非吉日」婚宴優惠專案盤點！"
-                            alt="結婚不挑好日子竟有 6 大好處？忌嫁娶/鬼月/平日「非吉日」婚宴優惠專案盤點！"></a></li>
-                <li class="r_info">
-                    <dl>
-                        <dt>
-                            <h3><a class="cltk_click" data-cltk-id="data-cltk-home_topic-4061"
-                                    href="https://www.marry.com.tw/topic/4061"
-                                    title="結婚不挑好日子竟有 6 大好處？忌嫁娶/鬼月/平日「非吉日」婚宴優惠專案盤點！">結婚不挑好日子竟有 6
-                                    大好處？忌嫁娶/鬼月/平日「非吉日」婚宴優惠專案盤點！</a></h3>
-                        </dt>
-                        <dd class="d_count" style="text-align:left;">
-                            <div data-href="https://www.marry.com.tw/topic/4061" data-send="false"
-                                data-layout="button_count" data-width="80" data-show-faces="false"></div>
-                            人氣：<em>5223</em> <span>│</span>
-                            分享：<em>2</em>
-                        </dd>
-                    </dl>
-                </li>
-            </ul>
+<!--     <section class="rwd_wrap group"> -->
+<!--         <div class="index_title"><a href="https://www.marry.com.tw/topic?a_id=816"> -->
+<!--                 <i class="title_sort icon_no"></i> -->
+<!--                 <h2>婚禮籌備必讀攻略</h2> -->
+<!--             </a> -->
+<!--             <p>共2,600篇</p><span class="more_go"><a href="https://www.marry.com.tw/topic?a_id=822">看更多<img -->
+<!--                         class="arrow_more" src="https://statics.marry.com.tw/img/public/arrow_more.svg" -->
+<!--                         alt="看更多"></a></span> -->
+<!--         </div> -->
+<!--         <div class="lg_12 topic_wall"> -->
+<!--             <ul class="topic_list clearfix" id="data-cltk-home_topic-4061" -->
+<!--                 data-cltk="amZGaDk0WWQ3UGZzSXMweVB6ZmtqMnJQaE5PMHhwMFFNS0FpOHNMdzQ3SzhNbmg1bWkwSDhLWEJoK3E1MGhMVCtjU05IQTNOMVdaNWRBOEFGc3RNZjVGd00zYnN3VHo3S1UwT1NOQ3JwdEdJdk1qT2FGZ1NsbkRES1E3YXVaemN0QldSZlhCTWpiYVAvc2RWVmtNWk5iWUxkS0Y1ZmZRM215WGo2eXIwZW5SWDgzK0ZDckhvQkhEckRkVTZIbmNRaXFDZWdXdG96blEyNnQ1cU9OaUpUb0QxZFBkNjl6N1dTSnNuVUY5ZDlEUlg5K3g4"> -->
+<!--                 <li class="l_img"><a class="cltk_click" data-cltk-id="data-cltk-home_topic-4061" -->
+<!--                         href="https://www.marry.com.tw/topic/4061" title="結婚不挑好日子竟有 6 大好處？忌嫁娶/鬼月/平日「非吉日」婚宴優惠專案盤點！"><img -->
+<!--                             class="lazy" -->
+<!--                             data-src="https://data.marry.com.tw/img/2023/04/20/168198088273444400_w_mid_450x338.jpg" -->
+<!--                             title="結婚不挑好日子竟有 6 大好處？忌嫁娶/鬼月/平日「非吉日」婚宴優惠專案盤點！" -->
+<!--                             alt="結婚不挑好日子竟有 6 大好處？忌嫁娶/鬼月/平日「非吉日」婚宴優惠專案盤點！"></a></li> -->
+<!--                 <li class="r_info"> -->
+<!--                     <dl> -->
+<!--                         <dt> -->
+<!--                             <h3><a class="cltk_click" data-cltk-id="data-cltk-home_topic-4061" -->
+<!--                                     href="https://www.marry.com.tw/topic/4061" -->
+<!--                                     title="結婚不挑好日子竟有 6 大好處？忌嫁娶/鬼月/平日「非吉日」婚宴優惠專案盤點！">結婚不挑好日子竟有 6 -->
+<!--                                     大好處？忌嫁娶/鬼月/平日「非吉日」婚宴優惠專案盤點！</a></h3> -->
+<!--                         </dt> -->
+<!--                         <dd class="d_count" style="text-align:left;"> -->
+<!--                             <div data-href="https://www.marry.com.tw/topic/4061" data-send="false" -->
+<!--                                 data-layout="button_count" data-width="80" data-show-faces="false"></div> -->
+<!--                             人氣：<em>5223</em> <span>│</span> -->
+<!--                             分享：<em>2</em> -->
+<!--                         </dd> -->
+<!--                     </dl> -->
+<!--                 </li> -->
+<!--             </ul> -->
 			
+<!-- 	=========================大圖輪播橫桿============================= -->
 			 <div id="msg_descri_{targetid}" class="send_btn msg_descri" is_focus="0" style="cursor:text;"
                 contenteditable="true" placeholder="輪入訊息 (Shift + Enter 換行)" name="descri_div"
                 onclick='ask_msg_list("#ask_msg_var_{targetid}");'>
             </div>
 			
 			
-        </div>
-    </section>
+<!--         </div> -->
+<!--     </section> -->
             
             
 

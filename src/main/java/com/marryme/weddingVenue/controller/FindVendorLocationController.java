@@ -26,8 +26,7 @@ public class FindVendorLocationController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	String vendorId = req.getParameter("vendorId");
     	String vendorLocation = service.findVendorLocationbyId(vendorId);
-        req.setAttribute("vendorLocation", vendorLocation);      
-
+        req.setAttribute("vendorLocation", vendorLocation);
     }
 }
 

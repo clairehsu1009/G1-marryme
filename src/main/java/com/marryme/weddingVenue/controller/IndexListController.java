@@ -3,10 +3,8 @@ package com.marryme.weddingVenue.controller;
 import static com.marryme.common.CommonString.ACTIVE;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.marryme.vendor.service.VendorService;
-import com.marryme.vendor.service.Impl.VendorServiceImpl;
-import com.marryme.vendor.vo.Vendor;
 import com.marryme.weddingVenue.service.WeddingVenueService;
 import com.marryme.weddingVenue.service.impl.WeddingVenueServiceImpl;
 import com.marryme.weddingVenue.vo.WeddingVenue;
@@ -96,7 +91,7 @@ public class IndexListController extends HttpServlet{
                 req.setAttribute("location", location);
 
             }
-        req.getRequestDispatcher("/front-end/weddingVenue/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/front-end/index.jsp").forward(req, resp);
 	            
 	 }   
 	 

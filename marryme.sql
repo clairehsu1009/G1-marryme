@@ -30,8 +30,6 @@ DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS product_category;
 DROP TABLE IF EXISTS report;
   
-  CREATE TABLE member (
-
 
 CREATE TABLE member (
   `member_id` varchar(50) not null comment '會員_ID (信箱)' ,

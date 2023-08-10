@@ -55,7 +55,7 @@
                                     style="display:none"></label><br>
                             </li><br>
                             <label class="item_name" style="text-align:left;">會員密碼</label>
-                            <li><input type=" password" name="memberPwd" class="basic_input input_code"
+                            <li><input type="password" name="memberPwd" class="basic_input input_code"
                                     placeholder="請輸入您的密碼"><label class="sattus" style="display:none"></label><br>
                             </li><br>
                         </ul>
@@ -77,7 +77,7 @@
                                     style="display:none"></label><br>
                             </li><br>
                             <label class="item_name" style="text-align:left;">廠商密碼</label>
-                            <li><input type=" password" name="vendorPwd" class="basic_input input_code"
+                            <li><input type="password" name="vendorPwd" class="basic_input input_code"
                                     placeholder="請輸入您的密碼"><label class="sattus" style="display:none"></label><br>
                             </li><br>
                         </ul>
@@ -98,7 +98,7 @@
                                     placeholder="請輸入您的帳號/Email"><label class="sattus" style="display:none"></label><br>
                             </li><br>
                             <label class="item_name" style="text-align:left;">平台密碼</label>
-                            <li><input type=" password" name="empPwd" class="basic_input input_code"
+                            <li><input type="password" name="empPwd" class="basic_input input_code"
                                     placeholder="請輸入您的密碼"><label class="sattus" style="display:none"></label><br>
                             </li><br>
                         </ul><br>

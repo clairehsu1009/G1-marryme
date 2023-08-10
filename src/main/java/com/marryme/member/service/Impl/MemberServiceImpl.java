@@ -151,6 +151,25 @@ public class MemberServiceImpl implements MemberService {
 			return false;
 		}
 	}
+	
+//	public void updateMemberPassword(Member member) {
+//	    Session session = sessionFactory.getCurrentSession();
+//	    Transaction transaction = null;
+//
+//	    try {
+//	        transaction = session.beginTransaction();
+//
+//	        // 更新會員密碼
+//	        session.update(member);
+//
+//	        transaction.commit();
+//	    } catch (Exception e) {
+//	        if (transaction != null) {
+//	            transaction.rollback();
+//	        }
+//	        e.printStackTrace();
+//	    }
+//	}
 
 //	@Override
 //    public void save(Member member) {

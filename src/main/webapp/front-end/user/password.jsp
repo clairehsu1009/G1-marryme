@@ -45,8 +45,10 @@
                             </li> -->
                     </ul>
                     <br>
-                    <div class=""><input type="button" value="發送驗證信" onclick="login_submit();"
-                            class="btn_common btn_primary">
+                    <div class="">
+<!--                     <input type="button" value="發送驗證信" onclick="login_submit();" -->
+<!--                             class="btn_common btn_primary"> -->
+                     <button type="submit" class="btn btn-warning" name="action" value="">發送驗證信</button>
                     </div>
 
 

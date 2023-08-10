@@ -44,33 +44,33 @@
 <!--       <p class="input_tips">請上傳 200 x 200px 以上之 jpg / png 檔，檔案大小不超過10MB</p><span class="sattus sat_error" -->
 <!--         style="display: none;" id="file_error"><i></i></span> -->
 <!--     </div> -->
-    <form method="post" name="edit_form" action="<%=request.getContextPath()%>/vendor/vendorBasicinformationjsp">
+    <form method="post" name="edit_form" action="<%=request.getContextPath()%>/vendor/vendorBasicinformation">
 <!--      				<div class="form-group"> -->
 <!-- 						<label for="itemSelect" class="col-sm-2 col-form-label">廠商類別</label> -->
 <!-- 						<div class="col-sm-10"> -->
 <%-- 							<input class="form-control" id="manufacturerCategory" name="category" type="text" placeholder="" value="${vendor.manufacturerCategory}"> --%>
 <!-- 						</div> -->
 <!--      				</div> -->
-<%--      				 <c:set var="categoryValue" value="${vendor.manufacturerCategory}" /> --%>
-<!-- 					<label for="manufacturerCategory" class="col-sm-2 col-form-label">廠商類別</label> -->
-<!-- 					<select class="form-control" style="width:80%;margin:15px" name="category"> -->
-<%-- 			            <option value="0" ${genderValue == 0 ? 'selected' : ''}>商品</option> --%>
-<%-- 			            <option value="1" ${genderValue == 1 ? 'selected' : ''}>服務</option> --%>
-<!-- 			        </select> -->
-					<c:set var="categoryValue" value="${vendor.manufacturerCategory}" /> 
-			        <label for="manufacturerCategory" class="col-sm-2 col-form-label">廠商類別</label>
+     				 <c:set var="categoryValue" value="${vendor.manufacturerCategory}" />
+					<label for="manufacturerCategory" class="col-sm-2 col-form-label">廠商類別</label>
 					<select class="form-control" style="width:80%;margin:15px" name="category" disabled>
-					    <c:choose>
-					        <c:when test="${categoryValue == 0}">
-					            <option value="0" selected>商品</option>
-					            <option value="1">服務</option>
-					        </c:when>
-					        <c:when test="${categoryValue == 1}">
-					            <option value="0">商品</option>
-					            <option value="1" selected>服務</option>
-					        </c:when>
-					    </c:choose>
-					</select>
+			            <option value="0" ${genderValue == 0 ? 'selected' : ''}>商品</option>
+			            <option value="1" ${genderValue == 1 ? 'selected' : ''}>服務</option>
+			        </select>
+<%-- 					<c:set var="categoryValue" value="${vendor.manufacturerCategory}" />  --%>
+<!-- 			        <label for="manufacturerCategory" class="col-sm-2 col-form-label">廠商類別</label> -->
+<!-- 					<select class="form-control" style="width:80%;margin:15px" name="category" disabled> -->
+<%-- 					    <c:choose> --%>
+<%-- 					        <c:when test="${categoryValue == 0}"> --%>
+<!-- 					            <option value="0" selected>商品</option> -->
+<!-- 					            <option value="1">服務</option> -->
+<%-- 					        </c:when> --%>
+<%-- 					        <c:when test="${categoryValue == 1}"> --%>
+<!-- 					            <option value="0">商品</option> -->
+<!-- 					            <option value="1" selected>服務</option> -->
+<%-- 					        </c:when> --%>
+<%-- 					    </c:choose> --%>
+<!-- 					</select> -->
      				<div class="form-group">
 						<label for="itemSelect" class="col-sm-2 col-form-label">品牌名稱</label>
 						<div class="col-sm-10">
@@ -98,35 +98,35 @@
 					<div class="form-group">
 						<label for="vendorPassword" class="col-sm-2 col-form-label">廠商密碼</label>
 						<div class="col-sm-10">
-							<input class="form-control" id="vendorPassword"" name="pwd" type="text" placeholder="" value="${vendor.vendorPassword}">
+							<input class="form-control" id="vendorPassword" name="pwd" type="text" placeholder="" value="${vendor.vendorPassword}">
 						</div>
 					</div>
 					<c:set var="locationValue" value="${vendor.vendorLocation}" />
 					<label for="vendorLocation" class="col-sm-2 col-form-label">廠商地區</label>
-					<select class="form-control" style="width:80%;margin:15px" name="location">
-					    <option value="10" ${locationValue == 10 ? 'selected' : ''}>縣市</option>
-					    <option value="11" ${locationValue == 11 ? 'selected' : ''}>台北市</option>
-					    <option value="12" ${locationValue == 12 ? 'selected' : ''}>新北市</option>
-					    <option value="13" ${locationValue == 13 ? 'selected' : ''}>桃園市</option>
-					    <option value="14" ${locationValue == 14 ? 'selected' : ''}>新竹市</option>
-					    <option value="15" ${locationValue == 15 ? 'selected' : ''}>新竹縣</option>
-					    <option value="16" ${locationValue == 16 ? 'selected' : ''}>基隆市</option>
-					    <option value="17" ${locationValue == 17 ? 'selected' : ''}>台中市</option>
-					    <option value="18" ${locationValue == 18 ? 'selected' : ''}>苗栗縣</option>
-					    <option value="19" ${locationValue == 19 ? 'selected' : ''}>彰化縣</option>
-					    <option value="20" ${locationValue == 20 ? 'selected' : ''}>雲林縣</option>
-					    <option value="21" ${locationValue == 21 ? 'selected' : ''}>南投縣</option>
-					    <option value="22" ${locationValue == 22 ? 'selected' : ''}>高雄市</option>
-					    <option value="23" ${locationValue == 23 ? 'selected' : ''}>台南市</option>
-					    <option value="24" ${locationValue == 24 ? 'selected' : ''}>嘉義市</option>
-					    <option value="25" ${locationValue == 25 ? 'selected' : ''}>嘉義縣</option>
-					    <option value="26" ${locationValue == 26 ? 'selected' : ''}>屏東縣</option>
-					    <option value="27" ${locationValue == 27 ? 'selected' : ''}>澎湖縣</option>
-					    <option value="28" ${locationValue == 28 ? 'selected' : ''}>宜蘭縣</option>
-					    <option value="29" ${locationValue == 29 ? 'selected' : ''}>花蓮縣</option>
-					    <option value="30" ${locationValue == 30 ? 'selected' : ''}>台東縣</option>
-					    <option value="31" ${locationValue == 31 ? 'selected' : ''}>金門縣</option>
-					    <option value="32" ${locationValue == 32 ? 'selected' : ''}>連江縣</option>
+					<select class="form-control" style="width:80%;margin:15px" name="location" >
+					    <option value="縣市" ${'縣市'.equals(locationValue) ? 'selected' : ''}>縣市</option>
+					    <option value="新北市" ${'新北市'.equals(locationValue) ? 'selected' : ''}>新北市</option>
+					    <option value="台北市" ${'台北市'.equals(locationValue) ? 'selected' : ''}>台北市</option>
+					    <option value="桃園市" ${'桃園市'.equals(locationValue) ? 'selected' : ''}>桃園市</option>
+					    <option value="新竹市" ${'新竹市'.equals(locationValue) ? 'selected' : ''}>新竹市</option>
+					    <option value="新竹縣" ${'新竹縣'.equals(locationValue) ? 'selected' : ''}>新竹縣</option>
+					    <option value="基隆市" ${'基隆市'.equals(locationValue) ? 'selected' : ''}>基隆市</option>
+					    <option value="台中市" ${'台中市'.equals(locationValue) ? 'selected' : ''}>台中市</option>
+					    <option value="苗栗縣" ${'苗栗縣'.equals(locationValue) ? 'selected' : ''}>苗栗縣</option>
+					    <option value="彰化縣" ${'彰化縣'.equals(locationValue) ? 'selected' : ''}>彰化縣</option>
+					    <option value="雲林縣" ${'雲林縣'.equals(locationValue) ? 'selected' : ''}>雲林縣</option>
+					    <option value="南投縣" ${'南投縣'.equals(locationValue) ? 'selected' : ''}>南投縣</option>
+					    <option value="高雄市" ${'高雄市'.equals(locationValue) ? 'selected' : ''}>高雄市</option>
+					    <option value="台南市" ${'台南市'.equals(locationValue) ? 'selected' : ''}>台南市</option>
+					    <option value="嘉義市" ${'嘉義市'.equals(locationValue) ? 'selected' : ''}>嘉義市</option>
+					    <option value="嘉義縣" ${'嘉義縣'.equals(locationValue) ? 'selected' : ''}>嘉義縣</option>
+					    <option value="屏東縣" ${'屏東縣'.equals(locationValue) ? 'selected' : ''}>屏東縣</option>
+					    <option value="澎湖縣" ${'澎湖縣'.equals(locationValue) ? 'selected' : ''}>澎湖縣</option>
+					    <option value="宜蘭縣" ${'宜蘭縣'.equals(locationValue) ? 'selected' : ''}>宜蘭縣</option>
+					    <option value="花蓮縣" ${'花蓮縣'.equals(locationValue) ? 'selected' : ''}>花蓮縣</option>
+					    <option value="台東縣" ${'台東縣'.equals(locationValue) ? 'selected' : ''}>台東縣</option>
+					    <option value="金門縣" ${'金門縣'.equals(locationValue) ? 'selected' : ''}>金門縣</option>
+					    <option value="連江縣" ${'連江縣'.equals(locationValue) ? 'selected' : ''}>連江縣</option>
 					</select>
 					<br>
 					<div class="form-group">
@@ -162,7 +162,7 @@
 					<div class="form-group">
 						<label for="itemDescription" class="col-sm-2 col-form-label">廠商基本資料</label>
 						<div class="col-sm-10">
-							<input type="text" style="height:200px;" class="form-control" id="basicIntroduction" name="basicIntroduction"  placeholder="請介紹一下您的品牌" value="${vendor.basicIntroduction}">
+							<input type="text" style="height:200px;text-align:left;white-space:normal;" class="form-control" id="basicIntroduction" name="basicIntroduction"  placeholder="請介紹一下您的品牌" value="${vendor.basicIntroduction}">
 						</div>
 					</div>
 					

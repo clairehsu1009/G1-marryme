@@ -21,17 +21,17 @@
         <form method="post" action="<%=request.getContextPath()%>/vendor/vendorMaterial" >
             <input type="hidden" name="vendorId" value="${vendorId}" />
         <ul class="app-breadcrumb breadcrumb">
-            <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已下架方案加購項目</button></li>
+<!--             <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已下架方案加購項目</button></li> -->
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
             <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/plan-item?vendorId=${vendorId}">方案加購項目管理</a></li>
         </ul>
         </form>
     </div>
-    <div class="row productList" id="productList">
+    <div class="row productList" id="vendorList">
         <div class="product-tab col-lg-12 col-12">
             <div class="tab-item">
                 <ul class="nav" role="tablist">
-                    <li><a class="active" data-toggle="tab" href="#tab-0" role="tab">試菜</a></li>
+                    <li><a class="active" data-toggle="tab" href="#tab-0" role="tab">廠商</a></li>
 <!--                     <li><a data-toggle="tab" href="#tab-1" role="tab">菜價</a></li> -->
 <!--                     <li><a data-toggle="tab" href="#tab-2" role="tab">婚禮企劃團隊服務</a></li> -->
 <!--                     <li><a data-toggle="tab" href="#tab-3" role="tab">婚禮佈置</a></li> -->
@@ -92,7 +92,7 @@
 <%--                                             <c:if test="${item.editStatus == 0}"> --%>
 <!--                                                 <button type="submit" class="btn btn-info" name="action" value="getOneForUpdate">編輯</button> -->
 <%--                                             </c:if> --%>
-                                            <button type="submit" class="btn btn-warning" name="action" value="changeStatusToInactive">下架</button>
+                                            <button type="submit" href="${pageContext.request.contextPath}/front-end/vendor/vendorBasicinformation.jsp" class="btn btn-warning" name="action" value="changeStatusToInactive">下架</button>
                                         </form>
                                     </td>
                                 </tr>

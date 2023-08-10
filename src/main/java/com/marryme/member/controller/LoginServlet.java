@@ -64,6 +64,24 @@ public class LoginServlet extends HttpServlet {
 				errorMap.put(EXCEPTION, "廠商登入失敗，請確認帳號密碼無誤");
 				request.getRequestDispatcher(USER_LOGIN_PAGE + "#tab-2").forward(request, response);
 			}
+//			 Integer manufacturerCategory = loggedInVendor.getManufacturerCategory();
+//		        
+//		        if (manufacturerCategory != null) {
+//		            if (manufacturerCategory == 0) {
+//		                response.sendRedirect("../vendor/vendorMaterial"); // 商品頁面
+//		            } else if (manufacturerCategory == 1) {
+//		                response.sendRedirect("https://www.google.com/"); // 服務頁面
+//		            } else {
+//		                // 若 manufacturerCategory 值不是 0 或 1，可以根據需求進行處理
+//		            }
+//		        } else {
+//		            // 若 manufacturerCategory 為 null，可以根據需求進行處理
+//		        }
+//		    } else {
+//		        request.setAttribute("errorMap", errorMap);
+//		        errorMap.put(EXCEPTION, "廠商登入失敗，請確認帳號密碼無誤");
+//		        request.getRequestDispatcher(USER_LOGIN_PAGE + "#tab-2").forward(request, response);
+//		    }
 		} else if (action.equals("empLogin")) {
 			String account = request.getParameter("empAccount");
 			String pwd = request.getParameter("empPwd");

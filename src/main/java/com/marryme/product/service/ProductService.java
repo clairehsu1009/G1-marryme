@@ -26,7 +26,7 @@ public interface ProductService extends CoreService {
 	boolean toggleProductStatus(Integer id);
 	
 	// 購物車使用
-	void buyProduct(Integer id, Cart cart);
+	void buyProduct(Integer id, Cart cart, Integer productQty);
 	
 	void deleteProduct(Integer id, Cart cart) throws Exception;
 	
@@ -35,6 +35,8 @@ public interface ProductService extends CoreService {
 	void clearCart(Cart cart) throws Exception;
 
 	void updateProductStock(Integer productId, Integer quantity);
+
+
 
 
 

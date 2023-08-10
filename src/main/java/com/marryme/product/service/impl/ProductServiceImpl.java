@@ -138,13 +138,16 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public void buyProduct(Integer id, Cart cart) {
+	public void buyProduct(Integer id, Cart cart, Integer productQty) {
 		Product product = null;
 		try {
 			beginTransaction();
 			product = dao.selectById(id);
 			commit();
-			cart.addProduct(product);
+			// 將指定數量的商品添加到購物車
+	        for (int i = 0; i < productQty; i++) {
+	            cart.addProduct(product);
+	        }
 		} catch (Exception e) {
 			rollback();
 			e.printStackTrace();

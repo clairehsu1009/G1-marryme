@@ -14,3 +14,13 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/public/css/user.css">
 
 </head>
+
+
+<!-- 增加import -->
+<%@ page import="com.marryme.member.vo.Member" %>
+<%
+  //TODO 之後這邊要改取得登入廠商的ID 才是正確的
+//   String memberId = "member2@gmail.com";
+  Member memberId = (Member) session.getAttribute("memdor");
+  session.setAttribute("memberId", memberId);
+%>

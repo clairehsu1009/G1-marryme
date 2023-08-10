@@ -70,8 +70,9 @@
 					</div>
 					<div class="form-group">
 						<label for="memberPassword" class="col-sm-2 col-form-label">會員密碼</label>
+						<a href="${pageContext.request.contextPath}/front-end/user/password.jsp" >修改密碼</a>
 						<div class="col-sm-10">
-							<input class="form-control" id="memberPassword" name="pwd" type="text" placeholder="請輸入您的密碼" value="${member.memberPassword}">
+							<input type="password" class="form-control" id="memberPassword" name="pwd" type="text" placeholder="請輸入您的密碼" value="${member.memberPassword}">
 						</div>
 					</div>
 					 <c:set var="genderValue" value="${member.memberGender}" />

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
+
 import com.marryme.weddingVenue.service.WeddingVenueService;
 import com.marryme.weddingVenue.service.impl.WeddingVenueServiceImpl;
 import com.marryme.weddingVenue.vo.WeddingVenue;
@@ -28,9 +28,8 @@ public class WeddingVenueController extends HttpServlet{
 	
 	
 	   private static final long serialVersionUID = 12L;
-	   private final Gson gson = new Gson();
 	   private final WeddingVenueService service = new WeddingVenueServiceImpl();
-	   
+
 
   
 	   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
@@ -44,7 +43,7 @@ public class WeddingVenueController extends HttpServlet{
 		        try {
 		            int placeId = Integer.parseInt(placeIdStr);
 		            List<WeddingVenue> weddingVenuesList = service.findAllAndStatus(ACTIVE);
-
+		            
 		            if (placeId > 0 && placeId <= weddingVenuesList.size()) {
 		                objectData = weddingVenuesList.get(placeId - 1).getPlacePicture();
 		                

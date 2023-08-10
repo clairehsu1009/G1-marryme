@@ -4,10 +4,13 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import com.marryme.core.util.HibernateUtil;
+import com.marryme.plan.vo.Plan;
+import com.marryme.product.entity.Product;
 import com.marryme.weddingVenue.dao.WeddingVenueDao;
 import com.marryme.weddingVenue.vo.WeddingVenue;
+import com.marryme.vendor.vo.Vendor;
 
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,6 +51,29 @@ public class WeddingVenueDaoImpl implements WeddingVenueDao{
 	    }
 	    
 	    @Override
+	    public List<Plan> selectPlanAllAndStatus(String statusType) {
+	    	// 狀態 0下架 INACTIVE /  1上架 ACTIVE
+	    	int status = ACTIVE.equals(statusType) ? 1 : 0;
+	    	String hql = "FROM Plan WHERE status = :status";
+	    	Query<Plan> query = getSession().createQuery(hql, Plan.class);
+	    	query.setParameter("status", status);
+	    	return query.list();
+	    	
+	    }
+	    
+	    
+	    @Override
+	    public List<Product> selectProductAllAndStatus(String statusType) {
+	    	// 狀態 0下架 INACTIVE /  1上架 ACTIVE
+	    	int status = ACTIVE.equals(statusType) ? 1 : 0;
+	    	String hql = "FROM Product WHERE productStatus = :productStatus";
+	    	Query<Product> query = getSession().createQuery(hql, Product.class);
+	    	query.setParameter("productStatus", status);
+	    	return query.list();
+	    	
+	    }
+	    
+	    @Override
 	    public Optional<WeddingVenue> selectPhotoField(String placePicture) {
 	        // 確認提供的 fieldName 是否為有效的圖片欄位名稱，
 	        List<String> validPhotoFieldNames = List.of("placePicture");
@@ -67,27 +93,39 @@ public class WeddingVenueDaoImpl implements WeddingVenueDao{
 	            return Optional.empty();
 	        }
 	    }
+	    
+	 
+	    
+	    @Override
+	    public Optional<List<byte[]>> getPlacePicAllById(Integer placeId) {
+	        List<byte[]> pictures = new ArrayList<>();
 
+	        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+	            // 使用 HQL 查詢場地的圖片
+	        	String hql = "SELECT placePicture, placePictures2, placePictures3, placePictures4, placePictures5 FROM WeddingVenue WHERE placeId = :placeId";
+	            Query<Object[]> query = session.createQuery(hql);
+	            query.setParameter("placeId", placeId);
+
+	            // 執行查詢並取得結果
+	            Object[] results = query.uniqueResult();
+
+	            if (results != null) {
+	                for(Object result : results) {
+	                    if(result != null) {
+	                        pictures.add((byte[]) result);
+	                    }
+	                }
+	            }
+	            return Optional.of(pictures);
+	            
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return Optional.empty();
+	    }
 
 	    
 	    
-	    
-	    
-//	    @Override
-//	    public Optional<WeddingVenue> getPlacePictureById(Integer placeId) {
-//	        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-//	            // 使用 HQL 查詢場地的圖片
-//	            String hql = "SELECT placePicture FROM WeddingVenue WHERE placeId = :placeId";
-//	            Query<byte[]> query = session.createQuery(hql, byte[].class);
-//	            query.setParameter("placeId", placeId);
-//
-//	            // 執行查詢並取得結果
-//	            byte[] placePicture = query.uniqueResult();
-//	        } catch (Exception e) {
-//	            e.printStackTrace();
-//	        }
-//	        return Optional.empty();
-//	    }
 	    
 	    @Override
 	    public Optional<byte[]> getPlacePictureById(Integer id) {
@@ -113,10 +151,18 @@ public class WeddingVenueDaoImpl implements WeddingVenueDao{
 	    }
 
 
-	    
-	    
-	    
-	    
+	    @Override
+	    public Vendor getVendorbyId(String id) {
+	        String hql = "FROM Vendor v " + // 注意這裡我使用了Vendor而不是完整的資料表名，因為在HQL中我們使用的是Java實體類名稱
+	                     "JOIN v.planPlace p " + // 假設Vendor實體中有planPlace屬性
+	                     "WHERE p.vendorId = :vendorId"; // 注意這裡的變量名稱
+
+	        Query<Vendor> query = getSession().createQuery(hql, Vendor.class);
+	        query.setParameter("vendorId", id);
+	        return query.uniqueResult(); // 返回單一結果
+	    }
+
+
 	    
 		@Override
 		public Integer insert(WeddingVenue pojo) {
@@ -129,6 +175,38 @@ public class WeddingVenueDaoImpl implements WeddingVenueDao{
 			// TODO Auto-generated method stub
 			
 		}
+		
+		
+		@Override
+		public String getVendorIdByPlaceId(Integer placeId) {
+		    String vendorId = null;
+		    try {
+		    	 String hql = "SELECT p.vendorId FROM Place p WHERE p.placeId = :placeId";
+		         Query<String> query = getSession().createQuery(hql, String.class);
+		         query.setParameter("placeId", placeId);
+		         vendorId = query.uniqueResult();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return vendorId;
+		}
+
+		
+		
+		public String getVendorLocationByVendorId(String vendorId) {
+		    String vendorLocation = null;
+		    try {
+		        String sql = "SELECT v.vendorLocation FROM Vendor v WHERE v.vendorId = :vendorId\r\n";
+		        Query<String> query = getSession().createQuery(sql, String.class);
+		        query.setParameter("vendorId", vendorId);
+		        vendorLocation = query.uniqueResult();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return vendorLocation;
+		}
+
+		
 	}
 	
 

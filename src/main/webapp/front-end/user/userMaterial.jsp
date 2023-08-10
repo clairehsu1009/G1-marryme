@@ -21,17 +21,25 @@
         <form method="post" action="<%=request.getContextPath()%>/user/userMaterial" style="margin-bottom: 0px;">
             <input type="hidden" name="memberId" value="${memberId}" />
         <ul class="app-breadcrumb breadcrumb">
-            <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已下架方案加購項目</button></li>
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/plan-item?vendorId=${vendorId}">方案加購項目管理</a></li>
+<!--             <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已下架方案加購項目</button></li> -->
+<!--             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li> -->
+<%--             <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/plan-item?vendorId=${vendorId}">方案加購項目管理</a></li> --%>
+<!-- 			<div id="kwds_rs_bid" class="searchBar acResults"> -->
+<!--                         <input name="kwds_bid" id="kwds_bid" type="text" placeholder="搜尋" class="default"> -->
+<!--                         <span class="btn_search"> -->
+<%--                                 <a href="${pageContext.request.contextPath}/user/SearchMember" app_into_hide='1' id="search_submit_btn">搜尋</a> --%>
+<!--                          <button type="submit" class="btn btn-warning" name="action" value="">搜尋</button> -->
+<!--                             </span> -->
+<!--             </div>        -->
         </ul>
+        
         </form>
     </div>
-    <div class="row productList" id="productList">
+    <div class="row productList" id="memberList">
         <div class="product-tab col-lg-12 col-12">
             <div class="tab-item">
                 <ul class="nav" role="tablist">
-                    <li><a class="active" data-toggle="tab" href="#tab-0" role="tab">試菜</a></li>
+                    <li><a class="active" data-toggle="tab" href="#tab-0" role="tab">會員</a></li>
 <!--                     <li><a data-toggle="tab" href="#tab-1" role="tab">菜價</a></li> -->
 <!--                     <li><a data-toggle="tab" href="#tab-2" role="tab">婚禮企劃團隊服務</a></li> -->
 <!--                     <li><a data-toggle="tab" href="#tab-3" role="tab">婚禮佈置</a></li> -->
@@ -53,7 +61,6 @@
                                 <th scope="col">地址</th>
                                 <th scope="col">性別</th>
                                 <th scope="col">註冊日期</th>
-                                <th scope="col">註冊IP</th>
                                 <th scope="col">審核狀態</th>
                             </tr>
                             </thead>
@@ -68,7 +75,6 @@
                                     <td>${member.memberAddress}</td>
                                     <td>${member.memberGender}</td>
                                     <td>${member.memberRegistrationTime}</td>
-                                    <td>${member.memberRegistrationIp}</td>
                                     <td>${member.verificationStatus}</td>
                                     <td>
                                         <form method="post" action="<%=request.getContextPath()%>/user/userMaterial" style="margin-bottom: 0px;">

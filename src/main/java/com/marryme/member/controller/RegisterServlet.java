@@ -43,6 +43,19 @@ public class RegisterServlet extends HttpServlet {
 			request.getRequestDispatcher(USER_REGISTER_PAGE).forward(request, response);
 	        return; // 終止處理
 		}
+		
+		// 使用正規表達式來檢查密碼是否符合要求
+	    String passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+	    if (!pwd.matches(passwordRegex)) {
+	        // 密碼不符合要求，你可以處理錯誤訊息或導向錯誤頁面
+	        // 這裡我們暫時將錯誤訊息寫到 responseMsgMap 中，你可以再做其他處理
+
+	        request.setAttribute("responseMsgMap", responseMsgMap);
+	        responseMsgMap.put(EXCEPTION, "密碼格式不正確，須包含至少2位英文和6位數字，總長度不得低於8碼");
+	        request.getRequestDispatcher(USER_REGISTER_PAGE).forward(request, response);
+	        return; // 終止處理
+	    }
+
 
 		if (Objects.equals(pwd, againpwd)) {
 			Member member = new Member();

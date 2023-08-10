@@ -13,7 +13,8 @@
 				<li>
 					<div class="member_welcome">
 						<p class="member_name">
-							您好 歡迎來到Marryme！置頂公告 - <a href="#"
+							${vendor.vendorId}
+							${member.memberId} 您好 歡迎來到Marryme！置頂公告 - <a href="#"
 								title="活動快報📣Marryme挺新人，找命定店家，送你一籮筐好禮嫁妝💖">活動快報📣Marryme挺新人，找命定店家，送你一籮筐好禮嫁妝💖</a><br>
 						</p>
 					</div>
@@ -22,39 +23,57 @@
 			<ul class="on_pc right_toolbar">
 				<li class="pc_list"><a href="/marryme/front-end/product/shoppingCart.jsp"><i
 						class="fas fa-cart-shopping"></i></a></li>
-				<li class="pc_list"><a href="#" title="店家入駐" class="no_block">店家入駐</a></li>
+<!-- 				<li class="pc_list"> -->
+<%-- 				<a href="<%=request.getContextPath()%>/front-end/vendor/vendorRegister.jsp" title="店家入駐" class="no_block">店家入駐</a> --%>
+<!-- 				</li> -->
 
-				<%-- 判斷會員是否登入，可以改變要顯示之內容，不用切多個頁面 -->
 
-<%--                <c:if test="${not empty userVO.user_id}">--%>
-				<%--                    <div class="header-right">--%>
-				<%--                        <FORM id="userLogOut" METHOD="post" class="logout-form"--%>
-				<%--                              action="<%=request.getContextPath()%>/User_LogoutHandler">--%>
-				<%--                            <a--%>
-				<%--                                    href="<%=request.getContextPath()%>/front-end/protected/userIndex.jsp">--%>
-				<%--									<span class="userLogin" style="cursor: pointer"><img--%>
-				<%--                                            class="rounded-circle" width="45px" height="40px"--%>
-				<%--                                            src="${pageContext.request.contextPath}/UserShowPhoto?user_id=${userVO.user_id}" />&nbsp;--%>
-				<%--										${userVO.user_name} </span>--%>
-				<%--                            </a> <input type="hidden" name="action" value="signOut"> <a--%>
-				<%--                                href="#"--%>
-				<%--                                onclick="document.getElementById('userLogOut').submit();"><button--%>
-				<%--                                type="button" class="btn">登出</button></a>--%>
-				<%--                        </FORM>--%>
-				<%--                    </div>--%>
-				<%--                </c:if>--%>
-				<%--                <c:if test="${empty userVO.user_id}">--%>
-				<%--                    <div class="header-right">--%>
-				<%--                        <a--%>
-				<%--                                href="<%=request.getContextPath()%>/front-end/user/register.jsp"><button--%>
-				<%--                                type="button" class="btn">註冊</button></a> <a--%>
-				<%--                            href="<%=request.getContextPath()%>/front-end/userLogin.jsp" ><button--%>
-				<%--                            type="button" class="btn">登入</button></a>--%>
-				<%--                    </div>--%>
-				<%--                </c:if>--%>
 
-				<li class="pc_list"><a href="#" title="登入" class="no_block">登入</a></li>
-				<li class="pc_list"><a href="#" title="免費註冊" class="no_block">註冊</a></li>
+<!-- 				判斷會員是否登入，可以改變要顯示之內容，不用切多個頁面 -->
+
+<%--                <c:if test="${not empty member.memberId}">               --%>
+<%-- 					<li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/vendor/vendorRegister.jsp" title="店家入駐" class="no_block">店家入駐</a></li> --%>
+<%-- 					<li class="pc_list"><a href="<%=request.getContextPath()%>/user/userLogout" title="登出" class="no_block">登出</a></li> --%>
+<%-- 					<li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/user/userMaterial.jsp" title="客戶資訊" class="no_block">客戶資訊</a></li> --%>
+<%-- 					<c:if test="${not empty vendor.vendorId}"> --%>
+<%-- 						<li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/vendor/vendorMaterial.jsp" title="廠商資訊" class="no_block">廠商資訊</a></li> --%>
+<%-- 					</c:if> --%>
+<%--                </c:if> --%>
+<%--                <c:if test="${empty member.memberId} && ${empty vendor.vendorId}"> --%>
+<%--                  	 <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/vendor/vendorRegister.jsp" title="店家入駐" class="no_block">店家入駐</a></li> --%>
+<%--                    	<li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/user/userLogin.jsp" title="登入" class="no_block">登入</a></li> --%>
+<%-- 					<li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/user/userRegister.jsp" title="免費註冊" class="no_block">註冊</a></li> --%>
+                   
+<%--                </c:if> --%>
+
+
+<c:choose>
+    <c:when test="${not empty vendor.vendorId}">
+        <!-- 廠商已登入 -->
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/vendor/vendorRegister.jsp" title="店家入駐" class="no_block">店家入駐</a></li>
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/user/userLogout" title="登出" class="no_block">登出</a></li>
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/vendor/vendorMaterial.jsp" title="廠商資訊" class="no_block">廠商資訊</a></li>
+    </c:when>
+    <c:when test="${not empty member.memberId}">
+        <!-- 會員已登入 -->
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/vendor/vendorRegister.jsp" title="店家入駐" class="no_block">店家入駐</a></li>
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/user/userLogout" title="登出" class="no_block">登出</a></li>
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/user/userMaterial.jsp" title="客戶資訊" class="no_block">客戶資訊</a></li>
+    </c:when>
+    <c:otherwise>
+        <!-- 未登入 -->
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/vendor/vendorRegister.jsp" title="店家入駐" class="no_block">店家入駐</a></li>
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/user/userLogin.jsp" title="登入" class="no_block">登入</a></li>
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/user/userRegister.jsp" title="免費註冊" class="no_block">註冊</a></li>
+    </c:otherwise>
+</c:choose>
+
+
+
+
+               
+
+				
 			</ul>
 			<div style="display: none;" id="header_menu" class="mobile_tools">
 				<div class="mobile_menu">
@@ -70,7 +89,7 @@
 						</div>
 						<p class="text">您好，歡迎來到Marryme</p>
 						<div class="btn_groups">
-							<a href="#" class="btn_outline" title="免費註冊">免費註冊</a><a href="#"
+							<a href="#" class="btn_outline" title="免費註冊">免費註冊</a><a href="#${pageContext.request.contextPath}/user/userLogin"
 								class="btn_contain" title="登入">登入</a>
 						</div>
 						<a href="#" class="btn_text" title="店家免費駐站">店家免費駐站</a>
@@ -84,7 +103,7 @@
 					</ul>
 					<ul class="list_area">
 						<li class="title">找店家</li>
-						<li><a href="#" title="婚宴場地">婚宴場地 </a></li>
+						<li><a href="${pageContext.request.contextPath}/weddingVenueList" title="婚宴場地">婚宴場地 </a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/product/findAllShopProduct?productCategoryId=1"
 							title="婚戒">婚戒</a></li>
@@ -112,7 +131,7 @@
 		<div class="col lg_12 md_12 sm_12">
 			<div class="logo_menu clearfix">
 				<h2 class="logo">
-					<a href="#" title="Marryme"
+					<a href="${pageContext.request.contextPath}/index" title="Marryme"
 						style="background: url(/marryme/public/images/front-end/marryme.png) top left no-repeat; background-size: 100%">Marryme</a>
 				</h2>
 				<ul class="pc_menu">
@@ -124,7 +143,7 @@
 							<div class="sub_m_list">
 								<p>辦婚禮</p>
 								<ul>
-									<li><a href="#">婚宴場地</a></li>
+									<li><a href="${pageContext.request.contextPath}/weddingVenueList">婚宴場地</a></li>
 								</ul>
 							</div>
 							<div class="sub_m_list">
@@ -163,7 +182,8 @@
 			</div>
 		</div>
 </header>
+
 <!-- Header End -->
 <script>
-	
+
 </script>

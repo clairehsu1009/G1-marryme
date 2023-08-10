@@ -8,10 +8,12 @@ import com.marryme.reservation.service.ReservationService;
 import com.marryme.reservation.dao.ReservationDao;
 import com.marryme.reservation.dao.impl.ReservationDaoImpl;
 import com.marryme.reservation.vo.Reservation;
+import com.marryme.vendor.vo.Vendor;
 
 public class ReservationServiceImpl implements ReservationService {
 	
 	private final ReservationDao dao;
+	
 	
 	public ReservationServiceImpl() {
 		dao = new ReservationDaoImpl();
@@ -31,6 +33,23 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationList;
 	}
 	
+	
+	@Override
+	public List<Object[]> findVendorAllByMember(String memberId) {
+		List<Object[]> vendorList = new ArrayList<>();
+		try {
+			beginTransaction();
+			vendorList = dao.seleteVendorAllByMemberId(memberId);
+			commit();
+		}catch (Exception e) {
+			rollback ();
+			e.printStackTrace();
+		}
+		return vendorList;
+	}
+	
+	
+	 
 	@Override
 	public List<Reservation> findAll(){
 		List<Reservation> reservationList = new ArrayList<>();
@@ -92,21 +111,6 @@ public class ReservationServiceImpl implements ReservationService {
 		return result;
 	}
 	
-	@Override
-	public boolean deleteById(Integer id) {
-		boolean result = false;
-		try {
-			beginTransaction();
-			dao.deleteById(id);
-			commit();
-			result = true;
-		} catch (Exception e) {
-			rollback ();
-			e.printStackTrace();
-		}
-		return result;
-	}
-	
 	
 	@Override
 	public boolean changeStatusToCancel(Integer id){
@@ -122,6 +126,9 @@ public class ReservationServiceImpl implements ReservationService {
 		}
 		return result;
 	}
+
+
+
 
 
 }

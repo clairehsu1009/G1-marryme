@@ -73,11 +73,16 @@ public class WeddingVenue {
 		@Column(name = "edit_status")
 		private Integer editStatus;
 		
+//		@Column(name = "vendor_location")
+//		private Integer vendorLocation;
+		
 		
 		public WeddingVenue(Integer placeId, byte[] placePicture) {
 		    this.placeId = placeId;
 		    this.placePicture = placePicture;
 		}
+		
+		
 
 
 }

@@ -18,10 +18,9 @@ public interface ProductDao extends CoreDao<Product, Integer>{
     
     Product findProductPic(Integer productId);
 
-    /** 修改商品狀態為下架 */
-    void changeStatusToInactive(Integer productId);
-
 	List<Product> selectAllByProductCategoryId(Integer productCategoryId);
 
 	void updateProductStock(Integer productId, Integer newStock);
+
+	void toggleProductStatus(Integer id);
 }

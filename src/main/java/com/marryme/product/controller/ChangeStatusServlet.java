@@ -22,8 +22,8 @@ import com.marryme.product.entity.Product;
 import com.marryme.product.service.ProductService;
 import com.marryme.product.service.impl.ProductServiceImpl;
 
-@WebServlet("/product/changeStatusToInactive")
-public class ChangeStatusToInactiveServlet extends HttpServlet {
+@WebServlet("/product/changeStatus")
+public class ChangeStatusServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private ProductService service;
@@ -43,17 +43,17 @@ public class ChangeStatusToInactiveServlet extends HttpServlet {
 		req.setCharacterEncoding(UTF_8);
 		Map<String, String> responseMsgMap = new HashMap<>();
 		req.setAttribute(RESPONSE_MSG_MAP, responseMsgMap);
-		/** 修改狀態為下架 */
+		/** 修改商品狀態 */
 		String productId = req.getParameter("productId");
 		boolean result = false;
 		if (StringUtils.isNotBlank(productId)) {
-			result = service.changeStatusToInactive(Integer.valueOf(productId));
+			result = service.toggleProductStatus(Integer.valueOf(productId));
 		}
 		// 如果更新失敗，紀錄錯誤訊息
 		if (result) {
-			responseMsgMap.put(SUCCESS, "商品下架成功");
+			responseMsgMap.put(SUCCESS, "商品狀態更新成功");
 		} else {
-			responseMsgMap.put(EXCEPTION, "商品下架失敗");
+			responseMsgMap.put(EXCEPTION, "商品狀態更新失敗");
 		}
 		// 回到list清單頁
 		String vendorId = req.getParameter("vendorId");

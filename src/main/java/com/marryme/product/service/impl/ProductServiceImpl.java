@@ -123,11 +123,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public boolean changeStatusToInactive(Integer id) {
+	public boolean toggleProductStatus(Integer id) {
 		boolean result = false;
 		try {
 			beginTransaction();
-			dao.changeStatusToInactive(id);
+			dao.toggleProductStatus(id);
 			commit();
 			result = true;
 		} catch (Exception e) {

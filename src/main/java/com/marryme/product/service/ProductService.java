@@ -20,11 +20,10 @@ public interface ProductService extends CoreService {
 	List<Product> findAllByVendorId(String vendorId);
 	
 	Optional<Product> getProductPic(Integer productId);
-	
-	  /** 修改加購項目狀態為下架 */
-    boolean changeStatusToInactive(Integer id);
 
 	List<Product> findAllByProductCategoryId(Integer productCategoryId);
+	
+	boolean toggleProductStatus(Integer id);
 	
 	// 購物車使用
 	void buyProduct(Integer id, Cart cart);
@@ -36,6 +35,8 @@ public interface ProductService extends CoreService {
 	void clearCart(Cart cart) throws Exception;
 
 	void updateProductStock(Integer productId, Integer quantity);
+
+
 
 
 }

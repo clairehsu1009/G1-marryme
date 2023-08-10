@@ -72,7 +72,8 @@ public class FindAllShopProductServlet extends HttpServlet {
 				jsonObject.addProperty("id", product.getProductId());
 				jsonObject.addProperty("image", imageBase64);
 				jsonObject.addProperty("title", product.getProductName());
-				jsonObject.addProperty("price", formattedPrice);
+				jsonObject.addProperty("price", formattedPrice); // 格式化後的價格
+				jsonObject.addProperty("platformPrice", product.getPlatformPrice()); // 原始價格
 
 				// 將商品 JSON 物件添加到列表中
 				jsonObjects.add(jsonObject);

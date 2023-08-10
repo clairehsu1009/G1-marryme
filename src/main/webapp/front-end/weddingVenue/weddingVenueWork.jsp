@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,7 +103,7 @@
 				<dl id="show_pr" class="show_filter">
 					<dt>
 						<a href="javascript:;" onclick="check_open_filter('show_pr');">
-							桌數區間 </a>
+							方案 </a>
 					</dt>
 				</dl>				
 			</div>
@@ -132,7 +134,7 @@
 
 <section class="rwd_wrap profile_detail">
         <div class="info">
-<form method="post" action="<%=request.getContextPath()%>/weddingVenueWork">	
+<%-- <form method="post" action="<%=request.getContextPath()%>/weddingVenueWork">	 --%>
 <input type="hidden" name="placeId" value=1/>
 		
             <div class="avatar">
@@ -157,11 +159,12 @@
                 class="follow btn_common btn_outline_primary " title="追蹤新莊典華"><img
                     src="https://statics.marry.com.tw/img/studio/follow_default.svg"><span>追蹤</span></a>
           
-            <a class="ask btn_common btn_primary add_ask" href="${pageContext.request.contextPath}/front-end/reservation/addReservation.jsp" rel_m_id="anZRNjk0Wk42LzI4THM0d2RR"
-                rel_s_id="0" rel_a_id="760">
-                預約賞廳               
-            </a>
-</form>	 
+<%--             <a class="ask btn_common btn_primary add_ask" href="${pageContext.request.contextPath}/front-end/reservation/addReservation.jsp?vendorId=${vendorId}" rel_m_id="anZRNjk0Wk42LzI4THM0d2RR" --%>
+<!--             <a class="ask btn_common btn_primary add_ask addPage" href="javascript:void(0);"  rel_m_id="anZRNjk0Wk42LzI4THM0d2RR" -->
+<!--                 rel_s_id="0" rel_a_id="760"> -->
+<!--                 預約賞廳                -->
+<!--             </a> -->
+<!-- </form>	  -->
         </div>
     </section>
 
@@ -189,15 +192,12 @@
                         <p class="text">無</p>
                     </li>
                 </ul>
-                <div class="btn_wrap"><a href="javascript:;" class="btn_common btn_outline_primary like_js"
-                        onclick="set_like_no_style(this,'works',84193)">
-                        <i class="icon_like icon_like_clicked">
-<%--                         <a href="<%=request.getContextPath()%>/weddingVenue/images/hearts.png" title="loving icons"></a> --%>
-                        </i>
-                        已收藏
-                    </a>
-                    <a href="${pageContext.request.contextPath}/front-end/reservation/addReservation.jsp" class="reserve_venue_js btn_common btn_primary" 
-                      id="" >預約賞廳</a>
+                <div class="btn_wrap">
+
+                    <a class="ask btn_common btn_primary add_ask addPage" href="javascript:void(0);"  rel_m_id="anZRNjk0Wk42LzI4THM0d2RR"
+		               id="addPage" name="action" value="getOne">
+		                預約賞廳               
+		            </a>
                 </div>
             </div>
         </div>
@@ -211,6 +211,10 @@
         <div class="text_wrap">
             <${weddingVenueWork.placeIntroduction}>
         </div>
+        
+<!-- =======================googlemap============================ -->
+
+        
         <div class="application">
             <b>場地適用</b>
             <ul>
@@ -284,6 +288,7 @@
     
 <!--  ==========================================方案=================================================    -->
  <c:set var="vendorId" value="${weddingVenueWork.vendorId}" />
+ <c:set var="placeId" value="${weddingVenueWork.placeId}" />
   
     <section class="more_photos rwd_wrap_new more_photos_swiper_js" >
         <p><b>方案</b></p>
@@ -351,7 +356,39 @@
        </div>
 </section>
     
-   
+<script>
+
+ // 取得具有 "addPage" 類別的所有元素
+  const buttons = document.querySelectorAll(".addPage");
+
+ //迴圈設置每個按鈕的點擊事件處理函式
+ buttons.forEach(button => {
+    button.onclick = function (event) {
+//      alert(${weddingVenueWork.placeId});
+//     alert(${vendor.vendorId});
+ 	var memberId = "${member.memberId}";
+ 	var placeId = "${weddingVenueWork.placeId}";
+//  	alert(memberId);
+ 	
+ 	// 阻止默認行為
+     event.preventDefault();
+    
+     if (typeof memberId === 'undefined' || memberId == null || memberId == "") { 
+        window.location.href = "<%=request.getContextPath()%>/front-end/user/userLogin.jsp";
+    } else {
+<%--         window.location.href = "<%=request.getContextPath()%>/front-end/reservation/addReservation.jsp"; --%>
+<%-- window.location.href = "<%=request.getContextPath()%>/front-end/reservation/addReservation.jsp?placeId=" + placeId; --%>
+window.location.href = "<%=request.getContextPath()%>/addReservation?action=getOne&placeId=" + placeId;
+
+
+     }
+   }
+ });
+	
+
+</script>
+
+
 		
 	<!-- body End -->
 

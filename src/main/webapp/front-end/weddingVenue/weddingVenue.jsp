@@ -71,7 +71,7 @@
 					<dl id="show_pr" class="show_filter">
 						<dt>
 							<a href="javascript:;" onclick="check_open_filter('show_pr');">
-								店家區域 </a>
+								方案 </a>
 						</dt>
 						<dd id="show_pr_dd" style="display: none;">
 							<ul class="radius_3">
@@ -95,8 +95,8 @@
 				<div id="service_filter_ts_html">
 					<dl id="show_pr" class="show_filter">
 						<dt>
-							<a href="javascript:;" onclick="check_open_filter('show_pr');">
-								桌數區間 </a>
+							<a href="${pageContext.request.contextPath}/weddingVenueList" onclick="check_open_filter('show_pr');">
+								場地 </a>
 						</dt>
 					</dl>				
 				</div>
@@ -105,7 +105,7 @@
 					<dl id="show_pr" class="show_filter">
 						<dt>
 							<a href="javascript:;" onclick="check_open_filter('show_pr');">
-								預算 </a>
+								 </a>
 						</dt>
 						<dd id="show_pr_dd" style="display: none;">
 							<ul class="radius_3">

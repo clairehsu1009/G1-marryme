@@ -15,8 +15,13 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 </head>
 
+
+
+<!-- 增加import -->
+<%@ page import="com.marryme.vendor.vo.Vendor" %>
+
 <%
-  //TODO 之後這邊要改取得登入廠商的ID 才是正確的
-  String vendorId = "vendor1@gmail.com";
-  session.setAttribute("vendorId", vendorId);
+//TODO 之後這邊要改取得登入廠商的ID 才是正確的
+Vendor vendorId = (Vendor) session.getAttribute("vendor");
+session.setAttribute("vendorId", vendorId);
 %>

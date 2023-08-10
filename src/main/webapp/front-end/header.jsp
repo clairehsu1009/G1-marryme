@@ -105,20 +105,20 @@
 						<li class="title">找店家</li>
 						<li><a href="${pageContext.request.contextPath}/weddingVenueList" title="婚宴場地">婚宴場地 </a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/product/findAllShopProduct?productCategoryId=1"
+							href="${pageContext.request.contextPath}/front-end/product/product.jsp?productCategoryId=1"
 							title="婚戒">婚戒</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/product/findAllShopProduct?productCategoryId=2"
-							title="婚禮小物">婚禮小物</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/product/findAllShopProduct?productCategoryId=3"
-							title="高跟鞋/西裝鞋">高跟鞋/西裝鞋</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/product/findAllShopProduct?productCategoryId=4"
+							href="${pageContext.request.contextPath}/front-end/product/product.jsp?productCategoryId=2"
 							title="喜餅">喜餅</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/product/findAllShopProduct?productCategoryId=5"
-							title="婚紗禮服">婚紗禮服</a></li>
+							href="${pageContext.request.contextPath}/front-end/product/product.jsp?productCategoryId=3"
+							title="婚禮小物">婚禮小物</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/front-end/product/product.jsp?productCategoryId=4"
+							title="婚紗/禮服">婚紗/禮服</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/front-end/product/product.jsp?productCategoryId=5"
+							title="高跟鞋/西裝鞋">高跟鞋/西裝鞋</a></li>
 					</ul>
 				</div>
 				<a class="menu_close"> <img

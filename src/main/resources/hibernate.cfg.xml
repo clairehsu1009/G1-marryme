@@ -21,6 +21,9 @@
 		<mapping class="com.marryme.activity.entity.Activity"/>
 		<mapping class="com.marryme.product.entity.ProductCategory"/>
 		<mapping class="com.marryme.product.entity.Product"/>
+		<mapping class="com.marryme.order.entity.Order"/>
+		<mapping class="com.marryme.order.entity.OrderDetail"/>
+
 		<mapping class="com.marryme.reservation.vo.Reservation"/>
 		
 		<mapping class="com.marryme.plan.vo.Item"/>

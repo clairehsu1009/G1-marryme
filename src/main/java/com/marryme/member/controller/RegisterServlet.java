@@ -74,7 +74,7 @@ public class RegisterServlet extends HttpServlet {
 				// 註冊成功
 				HttpSession session = request.getSession();
 				session.setAttribute("member", registeredMember);
-				response.sendRedirect("../user/userMaterial"); // 註冊成功轉首頁
+				response.sendRedirect("../index"); // 註冊成功轉首頁
 			} else {
 				// 註冊失敗，可以從 member 中取得錯誤訊息並進行相應處理
 				request.setAttribute("responseMsgMap", responseMsgMap);

@@ -89,7 +89,7 @@ public class VendorRegisterServlet extends HttpServlet{
 					    // 註冊成功
 					    HttpSession session = request.getSession();
 					    session.setAttribute("vendor", registeredVendor);
-					    response.sendRedirect("../vendor/vendorMaterial"); // 註冊成功轉首頁
+					    response.sendRedirect("../index"); // 註冊成功轉首頁
 					} else {
 					    // 註冊失敗，可以從 member 中取得錯誤訊息並進行相應處理
 					    request.setAttribute("responseMsgMap", responseMsgMap);

@@ -1,6 +1,7 @@
 package com.marryme.vendor.controller;
 
 import static com.marryme.common.CommonString.UTF_8;
+import static com.marryme.vendor.util.Constants.VENDOR_BASICINFORMATION_PAGE;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -65,14 +66,16 @@ public class VendorBasicinformationServlet extends HttpServlet{
 	        	newVendor.setManufacturerCategory(Integer.parseInt(category));
 	        }
 	        
-	        Vendor updatedVendor = service.edit(newVendor);
-            if (updatedVendor != null) {
-                session.setAttribute("vendor", updatedVendor);
-                response.sendRedirect("../vendor/vendorMaterial"); // 更新成功，重定向到供应商主页
-            } else {
+//	        Vendor updatedVendor = service.edit(newVendor);
+	        vendor = service.edit(newVendor);
+//            if (updatedVendor != null) {
+                session.setAttribute("vendor", newVendor);
+                response.sendRedirect("../index"); // 更新成功，重定向到供应商主页
+//                request.getRequestDispatcher(VENDOR_BASICINFORMATION_PAGE).forward(request, response);
+//            } else {
                 // 更新失败，可以添加相应的处理，例如显示错误消息
-                response.sendRedirect("https://www.google.com/"); // 重定向到之前的页面
-            }
+//                response.sendRedirect("https://www.google.com/"); // 重定向到之前的页面
+//            }
  
 	          
 

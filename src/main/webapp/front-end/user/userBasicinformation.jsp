@@ -49,9 +49,11 @@
      
       
      <div class="form-group">
-                 
+     
+     				          
               
 						<label for="memberName" class="col-sm-2 col-form-label">會員姓名</label>
+						<a href="${pageContext.request.contextPath}/front-end/user/password.jsp" >修改密碼</a>
 						<div class="col-sm-10">
 							<input class="form-control" id="memberName" name="name" type="text" placeholder="請輸入您的姓名" value="${member.memberName}">
 						</div>
@@ -68,13 +70,13 @@
 							<input class="form-control" id="memberAddress" name="address" type="text" placeholder="請輸入您的居住地" value="${member.memberAddress}">
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="memberPassword" class="col-sm-2 col-form-label">會員密碼</label>
-						<a href="${pageContext.request.contextPath}/front-end/user/password.jsp" >修改密碼</a>
-						<div class="col-sm-10">
-							<input type="password" class="form-control" id="memberPassword" name="pwd" type="text" placeholder="請輸入您的密碼" value="${member.memberPassword}">
-						</div>
-					</div>
+<!-- 					<div class="form-group"> -->
+<!-- 						<label for="memberPassword" class="col-sm-2 col-form-label">會員密碼</label> -->
+<%-- 						<a href="${pageContext.request.contextPath}/front-end/user/password.jsp" >修改密碼</a> --%>
+<!-- 						<div class="col-sm-10"> -->
+<%-- 							<input type="password" class="form-control" id="memberPassword" name="pwd" type="text" placeholder="請輸入您的密碼" value="${member.memberPassword}"> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
 					 <c:set var="genderValue" value="${member.memberGender}" />
 					<label for="memberGender" class="col-sm-2 col-form-label">會員性別</label>
 					<select class="form-control" style="width:80%;margin:15px" name="sex">

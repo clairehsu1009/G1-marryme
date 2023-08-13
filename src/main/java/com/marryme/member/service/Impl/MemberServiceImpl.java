@@ -1,5 +1,8 @@
 package com.marryme.member.service.Impl;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +70,60 @@ public class MemberServiceImpl implements MemberService {
 	    }
 	}
 
+	
+	
+//	public Member login(Member member) {
+//	    final String username = member.getMemberId();
+//	    final String plainPassword = member.getMemberPassword();
+//
+//	    if (username == null || plainPassword == null) {
+//	        return null;
+//	    }
+//
+//	    // 將使用者輸入的密碼進行 SHA-256 加密
+//	    String encryptedPassword = encryptPassword(plainPassword);
+//
+//	    beginTransaction();
+//	    member = dao.selectForLogin(username, encryptedPassword);
+//
+//	    try {
+//	        if (member == null) {
+//	            rollback();
+//	            return null;
+//	        } else {
+//	            commit();
+//	            return member;
+//	        }
+//	    } catch (Exception e) {
+//	        e.printStackTrace();
+//	        rollback();
+//	        return null;
+//	    }
+//	}
+	
+	
+//	// SHA-256 加密方法
+//	private String encryptPassword(String password) {
+//	    try {
+//	        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+//	        byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+//
+//	        StringBuilder hexString = new StringBuilder();
+//	        for (byte b : encodedHash) {
+//	            String hex = Integer.toHexString(0xff & b);
+//	            if (hex.length() == 1) hexString.append('0');
+//	            hexString.append(hex);
+//	        }
+//
+//	        return hexString.toString();
+//	    } catch (NoSuchAlgorithmException e) {
+//	        e.printStackTrace();
+//	        // 處理例外...
+//	    }
+//
+//	    return null;
+//	}
+	
 	
 	@Override
 	public Member edit(Member member) {

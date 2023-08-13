@@ -28,36 +28,36 @@
 
 
         <div class="col lg_12 md_12 sm_12">
-              <form method="POST" class="login radius_3" name="login_form" action="<%=request.getContextPath()%>/user/userRegister">
+              <form method="POST" class="login radius_3" name="login_form" action="<%=request.getContextPath()%>/emp/empLogin">
                
-               <h2>會員註冊</h2>
+               <h2>平台登入</h2>
 
 
                 <div class="tab-content-1">
                     <ul>
-                        <label for="account" class="item_name" style="text-align:left;">註冊電子信箱/Email</label>
-                        <li><input type="text" name="account" class="basic_input input_code"
-                                placeholder="請輸入您的電子信箱/Email" required><label class="sattus" style="display:none"></label><br>
-                        </li><br>
-                        <label class="item_name" style="text-align:left;">註冊密碼</label>
-                        <li><input type="password" name="pwd" class="basic_input input_code" title="密碼須包含至少2位英文和6位數字，總長度不得低於8碼"
-                                placeholder="請輸入您的密碼" required><label class="sattus" style="display:none"></label><br>
-                        </li><br>
-                        <label class="item_name" style="text-align:left;">再次確認密碼</label>
-                        <li><input type="password" name="againpwd" class="basic_input input_code" title="請與註冊密碼相符"
-                                placeholder="請再次輸入您的密碼" required><label class="sattus" style="display:none"></label><br>
-                        </li><br>
-                        <c:if test="${not empty responseMsgMap.exception}">
-							    ${responseMsgMap.exception}
+                     
+                            <label class="item_name" style="text-align:left;">平台登入帳號/Email</label>
+                            <li><input type="text" name="empAccount" class="basic_input input_code"
+                                    placeholder="請輸入您的帳號/Email"><label class="sattus" style="display:none"></label><br>
+                            </li><br>
+                            <label class="item_name" style="text-align:left;">平台密碼</label>
+                            <li><input type="password" name="empPwd" class="basic_input input_code"
+                                    placeholder="請輸入您的密碼"><label class="sattus" style="display:none"></label><br>
+                            </li><br>
+                        </ul><br>
+                        <c:if test="${not empty errorMsgMap.exception}">
+							    ${errorMsgMap.exception}
 							</c:if><br>
+                        <button type="submit" class="btn btn-warning" name="action" value="empLogin">平台登入</button>
+          
  
                     </ul>
                     <br>
 
-                    	 <button type="submit" class="btn btn-info" name="action" value="insert">確定註冊</button>
-                    <div class="link_wrap">
-                        <a href="${pageContext.request.contextPath}/front-end/user/userLogin.jsp" class="register">已經有帳號?</a>
-        		        <a href="${pageContext.request.contextPath}/front-end/user/password.jsp" >忘記密碼</a>
+<!--                     	 <button type="submit" class="btn btn-info" name="action" value="insert">確定註冊</button> -->
+<!--                     <div class="link_wrap"> -->
+<%--                         <a href="${pageContext.request.contextPath}/front-end/user/userLogin.jsp" class="register">已經有帳號?</a> --%>
+<%--         		        <a href="${pageContext.request.contextPath}/front-end/user/password.jsp" >忘記密碼</a> --%>
                         </div><br>
                     
 					

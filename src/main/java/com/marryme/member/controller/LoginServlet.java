@@ -6,6 +6,9 @@ import static com.marryme.member.util.MemberConstants.SERVICE;
 import static com.marryme.member.util.MemberConstants.SERVICE2;
 import static com.marryme.member.util.MemberConstants.SERVICE3;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,35 +38,62 @@ public class LoginServlet extends HttpServlet {
 		if (action.equals("memberLogin")) {
 			String account = request.getParameter("memberAccount");
 			String pwd = request.getParameter("memberPwd");
+//			// 對輸入的密碼進行 SHA-256 加密
+		    String encryptedPassword = encryptPassword(pwd);
 			Member member = new Member();
 			member.setMemberId(account);
-			member.setMemberPassword(pwd);
+		
+			// 對輸入的密碼進行 SHA-256 加密
+//		    String encryptedPassword = encryptPassword(pwd);
+			member.setMemberPassword(encryptedPassword);
 			Member loggedInMember = SERVICE.login(member);
-			if (loggedInMember != null) {
+			if (loggedInMember != null && loggedInMember.getMemberPassword().equals(encryptedPassword)) {
+//			if (loggedInMember != null) {
+
 			    HttpSession session = request.getSession();
 			    session.setAttribute("member", loggedInMember);
 			    response.sendRedirect("../user/userMaterial"); // 登入成功轉預覽首頁 待處理
-			} else {
+			} else  {
+				 member.setMemberPassword(pwd);
+			     loggedInMember = SERVICE.login(member);
+			     if (loggedInMember != null) {
+
+					    HttpSession session = request.getSession();
+					    session.setAttribute("member", loggedInMember);
+					    response.sendRedirect("../user/userMaterial"); // 登入成功轉預覽首頁 待處理  
+			     } else  {
 				request.setAttribute("responseMsgMap", responseMsgMap);
 				responseMsgMap.put(EXCEPTION, "會員登入失敗，請確認帳號密碼無誤");
 				request.getRequestDispatcher(USER_LOGIN_PAGE + "#tab-1").forward(request, response);
 			}
+			}
 		} else if (action.equals("vendorLogin")) {
 			String account = request.getParameter("vendorAccount");
 			String pwd = request.getParameter("vendorPwd");
+			// 對輸入的密碼進行 SHA-256 加密
+		    String encryptedPassword = encryptPassword(pwd);
 			Vendor vendor = new Vendor();
 			vendor.setVendorId(account);
-			vendor.setVendorPassword(pwd);
+			vendor.setVendorPassword(encryptedPassword);
 			Vendor loggedInVendor = SERVICE2.login(vendor);
-			if (loggedInVendor != null) {
+			if (loggedInVendor != null && loggedInVendor.getVendorPassword().equals(encryptedPassword)) {
+//			if (loggedInVendor != null) {
 			    HttpSession session = request.getSession();
 			    session.setAttribute("vendor", loggedInVendor);
-				response.sendRedirect("../vendor/vendorMaterial"); // 登入成功轉預覽首頁 待處理
+				response.sendRedirect("../index"); // 登入成功轉預覽首頁 待處理
 			} else {
+				 vendor.setVendorPassword(pwd);
+				 loggedInVendor = SERVICE2.login(vendor);
+				 if (loggedInVendor != null) {
+					  HttpSession session = request.getSession();
+					    session.setAttribute("vendor", loggedInVendor);
+					    response.sendRedirect("../index"); // 登入成功轉預覽首頁 待處理  
+				 } else {
 				request.setAttribute("errorMap", errorMap);
 				errorMap.put(EXCEPTION, "廠商登入失敗，請確認帳號密碼無誤");
 				request.getRequestDispatcher(USER_LOGIN_PAGE + "#tab-2").forward(request, response);
 			}
+			}			 
 //			 Integer manufacturerCategory = loggedInVendor.getManufacturerCategory();
 //		        
 //		        if (manufacturerCategory != null) {
@@ -100,4 +130,26 @@ public class LoginServlet extends HttpServlet {
 			}
 		}
 	}
+	// SHA-256 加密方法
+	private String encryptPassword(String password) {
+	    try {
+	        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+	        byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+
+	        StringBuilder hexString = new StringBuilder();
+	        for (byte b : encodedHash) {
+	            String hex = Integer.toHexString(0xff & b);
+	            if (hex.length() == 1) hexString.append('0');
+	            hexString.append(hex);
+	        }
+
+	        return hexString.toString();
+	    } catch (NoSuchAlgorithmException e) {
+	        e.printStackTrace();
+	        // 處理例外...
+	    }
+
+	    return null;
+	}
+	
 }

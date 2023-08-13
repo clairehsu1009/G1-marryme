@@ -33,15 +33,15 @@
 
                 <span id="tab-1">會員登入</span>
                 <span id="tab-2">廠商登入</span>
-                <span id="tab-3">平台登入</span>
+<!--                 <span id="tab-3">平台登入</span> -->
 
 
                 <!-- 頁籤按鈕 -->
                 <div id="tab">
                     <ul>
-                        <li><a href="#tab-1">會員登入</a></li>
-                        <li><a href="#tab-2">廠商登入</a></li>
-                        <li><a href="#tab-3">平台登入</a></li>
+                        <li><a href="#tab-1" style="margin-right:40px;">會員登入</a></li>
+                        <li><a href="#tab-2" style="margin-right:70px;">廠商登入</a></li>
+<!--                         <li><a href="#tab-3">平台登入</a></li> -->
 
                     </ul>
 
@@ -91,23 +91,23 @@
                         </div><br>
 
                     </div>
-                    <div class="tab-content-3">
-                        <ul>
-                            <label class="item_name" style="text-align:left;">平台登入帳號/Email</label>
-                            <li><input type="text" name="empAccount" class="basic_input input_code"
-                                    placeholder="請輸入您的帳號/Email"><label class="sattus" style="display:none"></label><br>
-                            </li><br>
-                            <label class="item_name" style="text-align:left;">平台密碼</label>
-                            <li><input type="password" name="empPwd" class="basic_input input_code"
-                                    placeholder="請輸入您的密碼"><label class="sattus" style="display:none"></label><br>
-                            </li><br>
-                        </ul><br>
-                        <c:if test="${not empty errorMsgMap.exception}">
-							    ${errorMsgMap.exception}
-							</c:if><br>
-                        <button type="submit" class="btn btn-warning" name="action" value="empLogin">平台登入</button>
+<!--                     <div class="tab-content-3"> -->
+<!--                         <ul> -->
+<!--                             <label class="item_name" style="text-align:left;">平台登入帳號/Email</label> -->
+<!--                             <li><input type="text" name="empAccount" class="basic_input input_code" -->
+<!--                                     placeholder="請輸入您的帳號/Email"><label class="sattus" style="display:none"></label><br> -->
+<!--                             </li><br> -->
+<!--                             <label class="item_name" style="text-align:left;">平台密碼</label> -->
+<!--                             <li><input type="password" name="empPwd" class="basic_input input_code" -->
+<!--                                     placeholder="請輸入您的密碼"><label class="sattus" style="display:none"></label><br> -->
+<!--                             </li><br> -->
+<!--                         </ul><br> -->
+<%--                         <c:if test="${not empty errorMsgMap.exception}"> --%>
+<%-- 							    ${errorMsgMap.exception} --%>
+<%-- 							</c:if><br> --%>
+<!--                         <button type="submit" class="btn btn-warning" name="action" value="empLogin">平台登入</button> -->
           
-                    </div>
+<!--                     </div> -->
                 </div>
 
             </form>

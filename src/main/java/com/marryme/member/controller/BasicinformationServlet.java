@@ -60,7 +60,7 @@ public class BasicinformationServlet extends HttpServlet {
 //	            Member updatedMember = service.findById(member.getMemberId());
 	        
 	            session.setAttribute("member", newMember);
-	            response.sendRedirect("../user/userMaterial"); 
+	            response.sendRedirect("../index"); 
 //	            request.getRequestDispatcher("../user/userM").forward(request, response);// 更新成功後跳回會員中心
 //	        }else {
 //				

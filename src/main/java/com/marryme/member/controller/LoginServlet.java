@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 
 			    HttpSession session = request.getSession();
 			    session.setAttribute("member", loggedInMember);
-			    response.sendRedirect("../user/userMaterial"); // 登入成功轉預覽首頁 待處理
+			    response.sendRedirect("../index"); // 登入成功轉預覽首頁 待處理
 			} else  {
 				 member.setMemberPassword(pwd);
 			     loggedInMember = SERVICE.login(member);
@@ -60,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 
 					    HttpSession session = request.getSession();
 					    session.setAttribute("member", loggedInMember);
-					    response.sendRedirect("../user/userMaterial"); // 登入成功轉預覽首頁 待處理  
+					    response.sendRedirect("../index"); // 登入成功轉預覽首頁 待處理  
 			     } else  {
 				request.setAttribute("responseMsgMap", responseMsgMap);
 				responseMsgMap.put(EXCEPTION, "會員登入失敗，請確認帳號密碼無誤");

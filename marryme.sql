@@ -33,7 +33,7 @@ DROP TABLE IF EXISTS report;
 
 CREATE TABLE member (
   `member_id` varchar(50) not null comment '會員_ID (信箱)' ,
-  `member_password` varchar(50) not null comment '密碼',
+  `member_password` varchar(100) not null comment '密碼',
   `member_name` varchar(50) null comment '姓名',
   `member_phone` varchar(20) null comment '手機',
   `member_address` varchar(50) null comment '地址',
@@ -49,7 +49,7 @@ CREATE TABLE member (
   
   CREATE TABLE vendor (
   `vendor_id` varchar(50) not null comment '廠商_ID (信箱)',
-   `vendor_password` varchar(50) not null comment '密碼',
+   `vendor_password` varchar(100) not null comment '密碼',
   `vendor_phone` varchar(20) null comment '電話號碼',
   `vendor_name` varchar(50) null comment '品牌名稱',
   `vendor_location` varchar(50) null comment '服務地區',

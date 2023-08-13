@@ -6,8 +6,9 @@
 
 
 <html>
+<head>
 <%@include file="/front-end/user/common/userHead.jsp"%>
-
+</head>
 <body class="app sidebar-mini rtl">
 <%@include file="/front-end/header.jsp" %>
 <%@include file="/front-end/user/common/userSidebar.jsp" %>
@@ -57,11 +58,9 @@
                                 <th scope="col">會員ID</th>
                                 <th scope="col">姓名</th>
                                 <th scope="col">電話號碼</th>
-                                <th scope="col">密碼</th>
                                 <th scope="col">地址</th>
                                 <th scope="col">性別</th>
                                 <th scope="col">註冊日期</th>
-                                <th scope="col">審核狀態</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -71,18 +70,16 @@
                                     <td>${member.memberId}</td>
                                     <td>${member.memberName}</td>
                                     <td>${member.memberPhone}</td>
-                                    <td>${member.memberPassword}</td>
                                     <td>${member.memberAddress}</td>
                                     <td>${member.memberGender}</td>
                                     <td>${member.memberRegistrationTime}</td>
-                                    <td>${member.verificationStatus}</td>
                                     <td>
                                         <form method="post" action="<%=request.getContextPath()%>/user/userMaterial" style="margin-bottom: 0px;">
                                             <input type="hidden" name="memberId" value="${member.memberId}" />
 <%--                                             <c:if test="${item.editStatus == 0}"> --%>
 <!--                                                 <button type="submit" class="btn btn-info" name="action" value="getOneForUpdate">編輯</button> -->
 <%--                                             </c:if> --%>
-                                            <button type="submit" class="btn btn-warning" name="action" value="changeStatusToInactive">下架</button>
+<!--                                             <button type="submit" class="btn btn-warning" name="action" value="changeStatusToInactive">下架</button> -->
                                         </form>
                                     </td>
                                 </tr>

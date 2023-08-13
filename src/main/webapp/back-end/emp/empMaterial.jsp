@@ -17,13 +17,13 @@
         <div>
             <h1><i class="fa fa-archive">&nbsp;</i>員工資料列表</h1>
         </div>
-        <form method="post" action="<%=request.getContextPath()%>/emp/empMaterial.jsp" style="margin-bottom: 0px;">
+        <form method="post" action="<%=request.getContextPath()%>/emp/empMaterial" style="margin-bottom: 0px;">
             <input type="hidden" name="vendorId" value="${vendorId}" />
-        <ul class="app-breadcrumb breadcrumb">
-            <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已下架方案加購項目</button></li>
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/plan-item?vendorId=${vendorId}">方案加購項目管理</a></li>
-        </ul>
+<!--         <ul class="app-breadcrumb breadcrumb"> -->
+<!--             <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已下架方案加購項目</button></li> -->
+<!--             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li> -->
+<%--             <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/plan-item?vendorId=${vendorId}">方案加購項目管理</a></li> --%>
+<!--         </ul> -->
         </form>
     </div>
     <div class="row productList" id="EmpList">
@@ -77,7 +77,7 @@
 <%--                                             <c:if test="${item.editStatus == 0}"> --%>
 <!--                                                 <button type="submit" class="btn btn-info" name="action" value="getOneForUpdate">編輯</button> -->
 <%--                                             </c:if> --%>
-                                            <button type="submit" class="btn btn-warning" name="action" value="changeStatusToInactive">下架</button>
+                                            <button type="submit" class="btn btn-warning" name="action" value="changeStatusToInactive">移除</button>
                                         </form>
                                     </td>
                                 </tr>

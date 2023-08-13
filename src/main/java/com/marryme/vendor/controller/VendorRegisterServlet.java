@@ -5,6 +5,9 @@ import static com.marryme.common.CommonString.UTF_8;
 import static com.marryme.vendor.util.Constants.VENDOR_REGISTER_PAGE;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -75,6 +78,9 @@ public class VendorRegisterServlet extends HttpServlet{
 					} else {
 					    vendor.setManufacturerCategory(0); // 设置默认值为 0
 					}
+					
+					String encryptedPassword = encryptPassword(pwd);
+					vendor.setVendorPassword(encryptedPassword);
 
 					Vendor registeredVendor = service.register(vendor); // 調用 register 方法進行註冊
 					
@@ -92,6 +98,27 @@ public class VendorRegisterServlet extends HttpServlet{
 					}
 				}		
 		
-		
 	}
+	//SHA-256 加密方法
+		private String encryptPassword(String password) {
+			try {
+				MessageDigest digest = MessageDigest.getInstance("SHA-256");
+				byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+
+				StringBuilder hexString = new StringBuilder();
+				for (byte b : encodedHash) {
+					String hex = Integer.toHexString(0xff & b);
+					if (hex.length() == 1)
+						hexString.append('0');
+					hexString.append(hex);
+				}
+
+				return hexString.toString();
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+				// 處理例外...
+			}
+
+			return null;
+		}
 }

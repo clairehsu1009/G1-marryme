@@ -43,11 +43,11 @@
                                 placeholder="請輸入您的電子信箱/Email" required><label class="sattus" style="display:none"></label><br>
                         </li><br>
                         <label class="item_name" style="text-align:left;">註冊密碼</label>
-                        <li><input type="password" name="pwd" class="basic_input input_code"
+                        <li><input type="password" name="pwd" class="basic_input input_code"  title="密碼須包含至少2位英文和6位數字，總長度不得低於8碼"
                                 placeholder="請輸入您的密碼" required><label class="sattus" style="display:none"></label><br>
                         </li><br>
                         <label class="item_name" style="text-align:left;">再次確認密碼</label>
-                        <li><input type="password" name="againpwd" class="basic_input input_code"
+                        <li><input type="password" name="againpwd" class="basic_input input_code" title="請與註冊密碼相符"
                                 placeholder="請再次輸入您的密碼" required><label class="sattus" style="display:none"></label><br>
                         </li><br>
                          <label class="item_name" style="text-align:left;">品牌名稱</label>
@@ -101,8 +101,11 @@
                                 placeholder="請輸入您的負責人" required><label class="sattus" style="display:none"></label><br>
                         </li><br>
                         <label class="item_name" style="text-align:left;">廠商基本資料</label>
-                        <li><input type=" password" name="basicintroduction" class="basic_input input_code" style="height:200px;"
-                                placeholder="請介紹一下您的品牌"required><label class="sattus" style="display:none"></label><br>
+                        <li>
+                        <input type=" password" name="basicintroduction" class="basic_input input_code" style="height:200px;"
+                                placeholder="請介紹一下您的品牌"required>
+<!--                              <textarea type="text" style="height:200px;text-align:left;white-space:normal;" class="form-control" id="basicIntroduction" name="basicIntroduction"  placeholder="請介紹一下您的品牌" required></textarea> -->
+                                <label class="sattus" style="display:none"></label><br>
                         </li><br>
                         <!-- 如果有錯誤訊息，顯示錯誤訊息 -->
                         <c:if test="${not empty responseMsgMap.exception}">

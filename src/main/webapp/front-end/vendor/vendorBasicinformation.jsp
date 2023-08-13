@@ -6,11 +6,12 @@
 
 
 <html>
+<head>
 <%@include file="/front-end/vendor/common/vendorHead.jsp"%>
 
-<body class="app sidebar-mini rtl">
-<%@include file="/front-end/header.jsp" %>
-<%@include file="/front-end/user/common/userSidebar.jsp" %>
+<!-- <body class="app sidebar-mini rtl"> -->
+<%-- <%@include file="/front-end/header.jsp" %> --%>
+<%-- <%@include file="/front-end/user/common/userSidebar.jsp" %> --%>
 
 	
 <!--     Css Styles -->
@@ -53,6 +54,7 @@
 <!--      				</div> -->
      				 <c:set var="categoryValue" value="${vendor.manufacturerCategory}" />
 					<label for="manufacturerCategory" class="col-sm-2 col-form-label">廠商類別</label>
+					<a href="${pageContext.request.contextPath}/front-end/user/password.jsp" >修改密碼</a>
 					<select class="form-control" style="width:80%;margin:15px" name="category" disabled>
 			            <option value="0" ${genderValue == 0 ? 'selected' : ''}>商品</option>
 			            <option value="1" ${genderValue == 1 ? 'selected' : ''}>服務</option>
@@ -95,12 +97,12 @@
 							<input type="text" class="form-control" id="contactPerson" name="person" placeholder="請輸入您的負責人" value="${vendor.contactPerson}">
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="vendorPassword" class="col-sm-2 col-form-label">廠商密碼</label>
-						<div class="col-sm-10">
-							<input class="form-control" id="vendorPassword" name="pwd" type="text" placeholder="" value="${vendor.vendorPassword}">
-						</div>
-					</div>
+<!-- 					<div class="form-group"> -->
+<!-- 						<label for="vendorPassword" class="col-sm-2 col-form-label">廠商密碼</label> -->
+<!-- 						<div class="col-sm-10"> -->
+<%-- 							<input class="form-control" id="vendorPassword" name="pwd" type="password" placeholder="" value="${vendor.vendorPassword}"> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
 					<c:set var="locationValue" value="${vendor.vendorLocation}" />
 					<label for="vendorLocation" class="col-sm-2 col-form-label">廠商地區</label>
 					<select class="form-control" style="width:80%;margin:15px" name="location" >
@@ -150,24 +152,28 @@
 					<div class="form-group">
 						<label for="itemDescription" class="col-sm-2 col-form-label">廠商IG</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="vendorIg" name="ig" placeholder="請輸入您的IG連結" value="${vendor.vendorIg}">
+							<input type="text" class="form-control" id="vendorIg" name="ig" placeholder="請輸入您的IG連結" value="${vendor.vendorIg}"/>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="itemDescription" class="col-sm-2 col-form-label">googlemap</label>
+						<label for="googlemap" class="col-sm-2 col-form-label">googlemap</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="googlemap" name="googlemap" placeholder="請輸入您的googlemap連結" value="${vendor.googlemap}">
+							<input type="text" class="form-control" id="googlemap" name="googlemap" placeholder="請輸入您的googlemap連結" value="${vendor.googlemap}"/>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="itemDescription" class="col-sm-2 col-form-label">廠商基本資料</label>
+						<label for="basicIntroduction" class="col-sm-2 col-form-label">廠商基本資料</label>
 						<div class="col-sm-10">
-							<input type="text" style="height:200px;text-align:left;white-space:normal;" class="form-control" id="basicIntroduction" name="basicIntroduction"  placeholder="請介紹一下您的品牌" value="${vendor.basicIntroduction}">
+							<textarea  style="height:200px;text-align:left;white-space:normal;" class="form-control" id="basicIntroduction" name="basicIntroduction"  placeholder="請介紹一下您的品牌" >${vendor.basicIntroduction}</textarea>
+<%-- 							<input type="text" style="height:200px;text-align:left;white-space:normal;line-height:45px;color: #495057;background-color: #fff;border: 1px solid #ced4da;font-size: 1rem;" id="basicIntroduction" name="basicIntroduction" placeholder="請輸入您的品牌介紹" value="${vendor.basicIntroduction}"> --%>
+							<input type="hidden"  name="basicIntroduction"  value="${vendor != null ? '' : vendor.basicIntroduction}"/>
+<%-- 							<textarea type="text" style="height:200px;text-align:left;white-space:normal;" class="form-control" id="basicIntroduction" name="basicIntroduction" placeholder="請介紹一下您的品牌" value="${vendor != null ? '' : vendor.basicIntroduction}">${vendor.basicIntroduction}</textarea> --%>
 						</div>
 					</div>
 					
 					<div class="col-sm-10 productAddBtn">
 						<button type="submit" class="btn btn-info" name="action" value="update">儲存</button>
+<!-- 						<input type="submit" class="btn btn-info" name="action" value="update"> -->
 					</div>
     </form>
  

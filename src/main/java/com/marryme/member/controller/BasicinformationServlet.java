@@ -50,12 +50,6 @@ public class BasicinformationServlet extends HttpServlet {
 	            // 若性別值無效，可以根據需求做相應處理，這裡假設性別值為 0 代表未選擇
 	            newMember.setMemberGender(0);
 	        }
-//	        if (gender == null || (!gender.equals("1") && !gender.equals("2"))) {
-//	            newMember.setMemberGender(0); // 若性別值為空或不是 "1" 或 "2"，設定為 0
-//	        } else {
-//	            newMember.setMemberGender(Integer.parseInt(gender)); // 否則設定為指定的性別值
-//	        }
-
 	        // 假設SERVICE提供了一個方法用於更新會員資料
 	        
 	        member = service.edit(newMember);

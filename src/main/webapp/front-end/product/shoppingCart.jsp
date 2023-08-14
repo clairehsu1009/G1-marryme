@@ -10,19 +10,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Marry Me</title>
+    	<link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/innerpage.css" />
     <link rel="icon" href="${pageContext.request.contextPath}/public/images/front-end/marrymelittle.ico" type="image/x-icon">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/client-index.css" />
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/bootstrap/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/fontawesome/css/all.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/style.css" type="text/css" />
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/front-template/css/bootstrap.min.css" type="text/css" /> --%>
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/front-template/css/font-awesome.min.css" type="text/css" /> --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/product/css/themify-icons.css" type="text/css" />
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/product/css/elegant-icons.css" type="text/css" /> --%>
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/product/css/owl.carousel.min.css" type="text/css" /> --%>
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/product/css/nice-select.css" type="text/css" /> --%>
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/product/css/jquery-ui.min.css" type="text/css" /> --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/product/css/slicknav.min.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/product/css/style.css" type="text/css" />
 </head>
@@ -46,7 +42,7 @@
                 <meta itemprop="position" content="2">
             </li>
             <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <span itemprop="name">購物車</span> <!--自己那頁的名稱-->
+                <span itemprop="name">購物車</span> 
                 <meta itemprop="position" content="3">
             </li>
         </ol>
@@ -57,17 +53,21 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
+          	 <c:if test="${empty sessionScope.cart}">
+				  <tr class="empty-cart">
+					  <td colspan="5">您的購物車是空的</td>
+				  </tr>
+			  </c:if>
            <c:if test="${not empty sessionScope.cart}">
             <div class="cart-table">
-<%--              <form action="${pageContext.request.contextPath}/checkOut.jsp" method="post"> <!-- 修改表單的action，指向結帳頁面的URL --> --%>
               <table>
                 <thead>
                   <tr>
-                    <th>Image</th>
-                    <th class="p-name">Product Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
+                    <th>商品圖片</th>
+                    <th class="p-name">商品名稱</th>
+                    <th>價格</th>
+                    <th>數量</th>
+                    <th>總計</th>
                     <th>操作</th>
                   </tr>
                 </thead>
@@ -80,15 +80,21 @@
 	                    <td class="cart-title first-row">
 	                      <h5>${me.value.product.productName}</h5>
 	                    </td>
-	                    <td class="p-price first-row">$${me.value.product.platformPrice}</td>
+	                    <td class="p-price first-row"><fmt:formatNumber value="${me.value.product.platformPrice}" type="number" pattern="$#,###" /></td>
 	                    <td class="qua-col first-row">
 	                      <div class="quantity">
-	                        <div class="pro-qty">
-	                          <input type="text" name="quantity" value="${me.value.quantity}" onchange="update(this, ${me.key}, ${me.value.quantity})" />
+	                        <div class="qty-btn-group">
+								<button type="button" class="down" data-unit-price="${me.value.product.platformPrice }" data-id="${me.key}" data-product-id="${me.key}">
+									<i class="iconfont-caret-down inline-middle"></i>
+								</button>
+								<input type="text" value="${me.value.quantity}" data-id="${me.key}" data-type="number">
+								<button type="button" class="up" data-unit-price="${me.value.product.platformPrice }" data-id="${me.key}" data-product-id="${me.key}">
+									<i class="iconfont-caret-up inline-middle"></i>
+								</button>
 	                        </div>
 	                      </div>
 	                    </td>
-	                    <td class="total-price first-row">$${me.value.price}</td>
+	                    <td class="total-price first-row">$<span data-type="row-total" data-id="${me.key}"><fmt:formatNumber value="${me.value.price}" type="number" pattern="#,###" /></span></td>
 	                    <td class="close-td first-row"><a href="${pageContext.request.contextPath}/product/deleteCartProduct?productId=${me.key}" style="color: black;"><i class="fa-solid fa-xmark"></i></a></td>
 	                  </tr>
 	                </c:forEach>
@@ -114,8 +120,7 @@
 	              <div class="col-lg-4 offset-lg-4">
 	                <div class="proceed-checkout">
 	                  <ul>
-	                    <li class="subtotal">Subtotal <span>$240.00</span></li>
-	                    <li class="cart-total">總金額 <span>$${cart.price}</span></li>
+	                    <li class="cart-total">合計(不含運費) <span style="color: #e7ab3c;font-size: 16px;font-weight: 700">$<em data-type="total"><fmt:formatNumber value="${cart.price}" type="number" pattern="#,###" /></em></span></li>
 	                  </ul>
 	                  <a href="${pageContext.request.contextPath}/front-end/product/checkOut.jsp" class="proceed-btn">前往結帳</a>
 	                </div>
@@ -149,52 +154,91 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/front-end/product/js/main.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/front-end/product/js/products-search.js" ></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.all.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/front-end/product/js/shoppingCart.js" ></script>
+<script>  
+	function addThousandsSeparator(num) {
+	    // 將數字轉為字串
+	    let numStr = num.toString();
+	    // 使用正則表達式在數字中添加千分位逗號
+	    numStr = numStr.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	
+	    return numStr;
+	}
+	
+	function removeThousandsSeparator(str) {
+	    // 去除字符串中的千分位逗號
+	    const numStr = str.toString().replace(/,/g, "");
+	
+	    // 將去除千分位逗號後的字串轉換為數字
+	    const num = parseFloat(numStr);
+	
+	    return num;
+	}
+	$(function() {
+	    // .up class = up 向上按鈕 增加數量
+	    $(".up").click(function() {
+	        var id = $(this).attr("data-id"); // 獲取 data-id 標籤的值 
+	        var productid = $(this).attr("data-product-id"); // 獲取 data-product-id 標籤的值
+	        
+	        // 數量
+	        var number = parseInt($("[data-type=number][data-id=" + id + "]").val()); // 獲取 text 的 number 值取整數
+	        $("[data-type=number][data-id=" + id + "]").val(++number); // 數量 + 1
+	
+	        // 商品小計
+	        // html() 方法返回或設置被選元素的內容
+	        var price = parseInt($(this).attr("data-unit-price")); // 獲取商品價格取整數
+	        var rowtotal = removeThousandsSeparator($("[data-type=row-total][data-id=" + id + "]").html()); // 商品小計
+	        $("[data-type=row-total][data-id=" + id + "]").html(addThousandsSeparator(rowtotal+price)); // 點擊添加數量按鈕 商品小計=當前商品價格+當前商品的小計
+	        // 商品總價
+	        var total = removeThousandsSeparator($("[data-type=total]").html()); // 全部商品的總價
+	        $("[data-type=total]").html(addThousandsSeparator(total+ price)); // 點擊添加數量後 商品總價=商品價格+之前的商品總價
+	
+	        $.ajax({
+	            url: '${pageContext.request.contextPath}/product/updateCartQuantity', 
+	            type: "POST",
+	            dataType: "json",
+	            data: {
+	                productId: productid,
+	                quantity: number,
+	            },
+	            success: function(response) {
+	                location.reload();
+	            }
+	        });
+	    });
+	    // .down class = down 向下 減少數量
+	    $(".down").click(function() { 
+	        var id = $(this).attr("data-id"); // 獲取 data-id 標籤的值
+	        var productid = $(this).attr("data-product-id"); // 獲取 data-product-id 標籤的值
+	        var number = parseInt($("[data-type=number][data-id=" + id + "]").val()); // 獲取 text 的 number 值取整數
+	        if (number <= 0) { // 數量小於等於0
+	            return false;
+	        }
+	        $("[data-type=number][data-id=" + id + "]").val(--number); // 數量 - 1
+	
+	        var price = parseInt($(this).attr("data-unit-price")); // 獲取商品價格取整數
+	        var rowtotal = removeThousandsSeparator($("[data-type=row-total][data-id=" + id + "]").html()); // 商品小計
+	        $("[data-type=row-total][data-id=" + id + "]").html(addThousandsSeparator(rowtotal-price)); // 點擊減少數量按鈕 商品小計=當前商品的小計-當前商品價格
+	
+	        var total = removeThousandsSeparator($("[data-type=total]").html()); // 全部商品的總價
+	        $("[data-type=total]").html(addThousandsSeparator(total - price)); // 點擊減少數量後 商品總價=之前的商品總價-商品價格
+	
+	        $.ajax({
+	            url: '${pageContext.request.contextPath}/product/updateCartQuantity', 
+	            type: "POST",
+	            dataType: "json",
+	            data: {
+	                productId: productid,
+	                quantity: number,
+	            },
+	            success: function(data) {
+	                location.reload();
+	            }
+	        });
+	    });
+	});
 
-<script type="text/javascript">  
-        /* @input 將輸入框本身填入
-           @id 將商品id傳遞進來，告訴伺服器是修改哪一個購物項目
-           @oldValue 原本的值，如果使用者不想修改了，就修改為原本的值
-        */
-        function update(input, id, oldValue) {
-
-        // 獲取得到輸入框的數據
-        var quantity = input.value;
-
-        // 詢問使用者是否真的修改
-        var b = window.confirm("你確定修改嗎？");
-
-        // 如果確定修改，就跳轉到修改的Servlet上
-        if (b) {
-        window.location.href = "${pageContext.request.contextPath}/product/updateCartQuantity?productId=" + id + "&quantity=" + quantity + "";
-        } else {
-        // 如果不確定修改，將輸入框的數據改成原來的值
-        input.value = oldValue;
-        }
-        }
 </script>
-<!-- 在 JavaScript 中添加事件監聽器 -->
-<script>
-document.getElementById('clearCartBtn').addEventListener('click', function(event) {
-  event.preventDefault(); // 阻止按鈕的默認行為，避免直接跳轉到連結
-
-  // 使用 Swal.fire 顯示彈出提醒訊息
-  Swal.fire({
-    title: '確認清空購物車？',
-    text: '您確定要清空購物車嗎？此操作無法恢復。',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: '確定',
-    cancelButtonText: '取消',
-  }).then((result) => {
-    // 使用者按下確定後執行相應的動作
-    if (result.isConfirmed) {
-      // 使用者按下確定後，將連結送到後端清除
-      window.location.href = event.target.href;
-    }
-  });
-});
-</script>
-
 
 </body>
 </html>

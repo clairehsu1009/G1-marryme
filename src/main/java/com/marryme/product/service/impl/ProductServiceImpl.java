@@ -107,7 +107,33 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return productList;
 	}
-
+	
+	@Override
+	public List<Product> getProductByStatus(Integer productStatus) {
+		List<Product> productList = new ArrayList<>();
+		try {
+			beginTransaction();
+			productList = dao.getOrderByStatus(productStatus);
+			commit();
+		} catch (Exception e) {
+			rollback();
+			e.printStackTrace();
+		}
+		return productList;
+	}
+	@Override
+	public List<Product> getProductByStatusAndVendorId(Integer productStatus, String vendorId) {
+		List<Product> productList = new ArrayList<>();
+		try {
+			beginTransaction();
+			productList = dao.getOrderByStatusAndVendorId(productStatus, vendorId);
+			commit();
+		} catch (Exception e) {
+			rollback();
+			e.printStackTrace();
+		}
+		return productList;
+	}
 	public Optional<Product> getProductPic(Integer productId) {
 		Optional<Product> result = Optional.empty();
 		try {
@@ -182,7 +208,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void updateProductStock(Integer productId, Integer quantity) {
 	    try {
-	        // 獲取商品信息
+	        // 拿到商品資料
 	        Product product = dao.selectById(productId);
 	        if (product == null) {
 	            throw new RuntimeException("商品不存在");

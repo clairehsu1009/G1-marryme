@@ -20,7 +20,7 @@ List<ProductCategory> allProductCategories = productCategorySvc.findAll();
 request.setAttribute("allProductCategories", allProductCategories);
 %>
 
-
+<!DOCTYPE html>
 <html lang="zh-tw">
 <%@include file="/front-end/vendor/common/vendorHead.jsp"%>
 
@@ -39,11 +39,10 @@ request.setAttribute("allProductCategories", allProductCategories);
 			<ul class="app-breadcrumb breadcrumb">
 				<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
 				<li class="breadcrumb-item"><a
-					href="<%=request.getContextPath()%>/product/findAll?vendorId=${vendorId}">商品管理</a></li>
+					href="<%=request.getContextPath()%>/product/findAll?vendorId=${vendor.vendorId}">商品管理</a></li>
 			</ul>
 		</div>
-		<!-- 之後這邊要改取得登入廠商的ID 才是正確的 -->
-		<c:if test="${vendorId == product.vendorId}">
+		<c:if test="${vendor.vendorId == product.vendorId}">
 			<div class="row">
 				<div class="col-md-12 productsAdd">
 					<form method="post"
@@ -136,7 +135,7 @@ request.setAttribute("allProductCategories", allProductCategories);
 							<input type="hidden" name="productId"
 								value="${product.productId}"> <input type="hidden"
 								name="vendorId" value="${product.vendorId}"> <a
-								href="<%=request.getContextPath()%>/product/findAll?vendorId=${vendorId}">
+								href="<%=request.getContextPath()%>/product/findAll?vendorId=${vendor.vendorId}">
 								<button type="button" class="btn btn-danger">取消</button>
 							</a>
 							<button type="submit" class="btn btn-info">儲存</button>
@@ -146,40 +145,9 @@ request.setAttribute("allProductCategories", allProductCategories);
 			</div>
 		</c:if>
 	</main>
-	<script type="text/javascript">
-		//實現上傳圖片可以預覽所上傳的圖片,若重新上傳其他圖片,可以移除舊的圖片預覽,只顯示最新的狀態
-
-		let myFile = document.getElementById("image");
-		let preview = document.getElementById('preview');
-		let oldimg = document.getElementById('oldimg');
-
-		function init() {
-			myFile.addEventListener('change', function(e) {
-				$("#preview").empty();
-				let files = e.target.files;
-				if (files !== null) {
-					let file = files[0];
-					if (file.type.indexOf('image') > -1) {
-						let reader = new FileReader();
-						reader.addEventListener('load', function(e) {
-							let result = e.target.result;
-							let img = document.createElement('img');
-							img.src = result;
-							img.style.maxWidth = '100%'; /* Ensure the image fits within the container */
-							img.style.maxHeight = '100%';
-							preview.append(img);
-							oldimg.remove();
-						});
-						reader.readAsDataURL(file);
-					} else {
-						alert('請上傳圖片！');
-					}
-				}
-			});
-		}
-
-		window.onload = init;
-	</script>
+	
 	<%@include file="/front-end/vendor/common/vendorFooterScript.jsp"%>
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/front-end/vendor/product/js/editProduct.js" ></script>
 </body>
 </html>

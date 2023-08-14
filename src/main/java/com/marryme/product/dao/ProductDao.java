@@ -13,6 +13,7 @@ import com.marryme.product.entity.Product;
  */
 
 public interface ProductDao extends CoreDao<Product, Integer>{
+	
     /** 取得該廠商所有商品的資料 */
     List<Product> selectAllByVendorId(String vendorId);
     
@@ -23,4 +24,8 @@ public interface ProductDao extends CoreDao<Product, Integer>{
 	void updateProductStock(Integer productId, Integer newStock);
 
 	void toggleProductStatus(Integer id);
+
+	List<Product> getOrderByStatus(Integer productStatus);
+
+	List<Product> getOrderByStatusAndVendorId(Integer productStatus, String VendorId);
 }

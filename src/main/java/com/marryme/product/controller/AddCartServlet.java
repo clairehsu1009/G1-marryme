@@ -22,6 +22,8 @@ public class AddCartServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// 獲取得到傳遞過來的id
 		Integer id = Integer.valueOf(req.getParameter("productId"));
+		Integer productQty = Integer.valueOf(req.getParameter("productQty"));
+
 		// 把使用者想要買的商品放到購物車上
 		Cart cart = (Cart) req.getSession().getAttribute("cart");
 
@@ -31,12 +33,9 @@ public class AddCartServlet extends HttpServlet {
 			req.getSession().setAttribute("cart", cart);
 		}
 
-	
 		ProductServiceImpl productSvc = new ProductServiceImpl();
-		productSvc.buyProduct(id, cart);
+		productSvc.buyProduct(id, cart, productQty);
 
-		// 跳轉到購物車顯示的頁面上
-//		req.getRequestDispatcher("/front-end/product/shoppingCart.jsp").forward(req, res);
 	}
 
 }

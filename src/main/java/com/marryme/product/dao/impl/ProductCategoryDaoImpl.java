@@ -2,6 +2,8 @@ package com.marryme.product.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.query.Query;
+
 import com.marryme.product.dao.ProductCategoryDao;
 import com.marryme.product.entity.ProductCategory;
 
@@ -22,23 +24,27 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 	public ProductCategory selectById(Integer id) {
 		return getSession().get(ProductCategory.class, id);
 	}
+	
+	@Override
+	public String getCategoryNameByCategoryId(Integer categoryId) {
+        String hql = "SELECT pc.productCategoryName FROM ProductCategory pc WHERE pc.productCategoryId = :categoryId";
+        Query<String> query = getSession().createQuery(hql, String.class);
+        query.setParameter("categoryId", categoryId);
+        return query.uniqueResult();
+    }
+
 
 	@Override
 	public Integer insert(ProductCategory pojo) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void update(Integer id, ProductCategory pojo) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

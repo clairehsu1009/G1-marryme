@@ -3,6 +3,8 @@
 
 <jsp:useBean id="product" scope="request"
 	class="com.marryme.product.entity.Product" />
+	
+<!DOCTYPE html>
 <html lang="zh-tw">
 <%@include file="/front-end/vendor/common/vendorHead.jsp"%>
 
@@ -21,11 +23,11 @@
 			<ul class="app-breadcrumb breadcrumb">
 				<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
 				<li class="breadcrumb-item"><a
-					href="<%=request.getContextPath()%>/product/findAll?vendorId=${vendorId}">商品管理</a></li>
+					href="<%=request.getContextPath()%>/product/findAll?vendorId=${vendor.vendorId}">商品管理</a></li>
 			</ul>
 		</div>
-		<!-- 之後這邊要改取得登入廠商的ID 才是正確的 -->
-		<c:if test="${vendorId == product.vendorId}">
+
+		<c:if test="${vendor.vendorId == product.vendorId}">
 			<div class="tab-item-content">
 				<div class="tab-content">
 					<table class="table">

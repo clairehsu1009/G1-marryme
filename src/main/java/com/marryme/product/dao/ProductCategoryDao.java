@@ -11,4 +11,6 @@ import com.marryme.product.entity.ProductCategory;
 
 public interface ProductCategoryDao extends CoreDao<ProductCategory, Integer>{
 
+	String getCategoryNameByCategoryId(Integer categoryId);
+
 }

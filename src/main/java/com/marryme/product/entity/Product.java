@@ -17,6 +17,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.marryme.vendor.vo.Vendor;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,7 +35,6 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Integer productId;
-	// 廠商ID 尚未加關聯
 	@Column(name = "vendor_id")
     private String vendorId;
 	@Column(name = "product_category_id")
@@ -56,4 +57,7 @@ public class Product {
 	@ManyToOne
 	@JoinColumn(name = "product_category_id", insertable = false, updatable = false)
 	private ProductCategory productCategory;
+	@ManyToOne
+	@JoinColumn(name = "vendor_id", insertable = false, updatable = false)
+	private Vendor vendor;
 }

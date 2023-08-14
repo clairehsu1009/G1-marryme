@@ -3,9 +3,6 @@ package com.marryme.product.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.marryme.activity.dao.ActivityDao;
-import com.marryme.activity.dao.impl.ActivityDaoImpl;
-import com.marryme.activity.entity.Activity;
 import com.marryme.product.dao.ProductCategoryDao;
 import com.marryme.product.dao.impl.ProductCategoryDaoImpl;
 import com.marryme.product.entity.ProductCategory;
@@ -24,7 +21,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 		dao = new ProductCategoryDaoImpl();
 	}
 
-	// 取得所有活動
+	// 取得所有商品類別	
 	@Override
 	public List<ProductCategory> findAll() {
 		List<ProductCategory> productCategoryList = new ArrayList<>();
@@ -51,6 +48,20 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 			e.printStackTrace();
 		}
 		return productCategory;
+	}
+
+	@Override
+	public String getCategoryNameByCategoryId(Integer productCategoryId) {
+		String productCategoryName = null;
+		try {
+			beginTransaction();
+			productCategoryName = dao.getCategoryNameByCategoryId(productCategoryId);
+			commit();
+		} catch (Exception e) {
+			rollback();
+			e.printStackTrace();
+		}
+		return productCategoryName;
 	}
 
 }

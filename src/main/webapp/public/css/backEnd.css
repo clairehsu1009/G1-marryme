@@ -1679,7 +1679,7 @@ pre code {
 .table th,
 .table td {
   padding: 0.75rem;
-  vertical-align: top;
+  vertical-align: middle;
   border-top: 1px solid #dee2e6;
 }
 
@@ -15454,6 +15454,7 @@ max-height:100%;
 
 .productList .table thead th, .productList .table th, .productList .table td{
     border:none;
+    width: 10%;
 }
 .productList tr {
     text-align: center;

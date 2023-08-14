@@ -1,0 +1,292 @@
+.product-details {
+	margin-left: 30px;
+}
+.product-details .entry-title {
+	margin: 0 0 5px;
+}
+.product-details .subheader {
+	font-size: 0.925em;
+	font-weight: 600;
+	margin: 10px 0;
+}
+.product-details .entry-title,
+.product-details .subheader,
+.product-details a:not(.btn) {
+	color: #1f1f1f;
+}
+.product-details a:not(.btn):hover {
+	color: #fa6f57;
+}
+.product-details .entry-content {
+	font-size: 12px;
+}
+.product-details .entry-content p {
+	color: #919191;
+	line-height: 2;
+}
+.product-details .entry-price {
+	margin-right: 30px;
+	font-size: 2em;
+	font-weight: bold;
+	color: #fa6f57;
+}
+.product-details .entry-review-count {
+	color: #919191;
+	font-size: 0.925em;
+	margin-left: 5px;
+}
+.product-details .entry-meta {
+	margin: 15px 0;
+}
+.product-details .entry-meta > li {
+	margin-top: 4px;
+}
+.product-details .entry-meta > li:first-child {
+	margin-top: 0;
+}
+.product-details .entry-meta li > * {
+	display: inline-block;
+	vertical-align: middle;
+}
+.product-details .entry-meta .key {
+	width: 100px;
+}
+.product-details .entry-meta .value {
+	color: #fa6f57;
+}
+.product-details .styled-dd {
+	width: 220px;
+}
+.product-details .styled-dd select {
+	width: 250px;
+	font-size: 12px;
+	padding: 0.5em 1.5em;
+}
+
+.tbl-cart {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0 15px;
+}
+.tbl-cart th {
+	font-size: 14px;
+	font-weight: normal;
+	color: #919191;
+	text-align: center;
+}
+.tbl-cart td {
+	position: relative;
+	vertical-align: middle;
+	height: 80px;
+	padding: 0 10px;
+	background: #f2f2f2;
+	color: #1f1f1f;
+}
+.tbl-cart td > * {
+	display: inline-block;
+	vertical-align: middle;
+}
+.tbl-cart td:not(:last-child):after {
+	position: absolute;
+	top: 20%;
+	right: 0;
+	content: ' ';
+	width: 1px;
+	height: 60%;
+	background: #c8c8c8;
+}
+.tbl-cart td:not(:first-child) {
+	text-align: center;
+}
+.tbl-cart td:first-child {
+	padding-left: 0;
+}
+.tbl-cart .entry-thumbnail {
+	width: 60px;
+}
+.tbl-cart .entry-title {
+	margin-left: 1.25em;
+}
+.tbl-cart .close {
+	float: none;
+	background: #1f1f1f;
+	opacity: 1;
+	color: #FFF;
+	text-shadow: none;
+	width: 16px;
+	height: 16px;
+	font-size: 14px;
+	text-align: center;
+}
+.qty-btn-group {
+	color: #919191;
+	border: 2px solid #919191;
+	min-width: 85px;
+}
+.qty-btn-group > * {
+	display: inline-block;
+}
+.qty-btn-group button {
+	color: #919191;
+	background: none;
+	border: 0;
+	margin: 0;
+	width: 28px;
+	height: 28px;
+	text-align: center;
+}
+.qty-btn-group button:hover {
+	color: #1f1f1f;
+}
+.qty-btn-group input {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	width: 25px;
+	text-align: center;
+	background: none;
+	font-size: 16px;
+	color: #919191;
+}
+.empty-cart {
+	font-size: 12px;
+	text-align: center;
+}
+
+
+.shopcart-total {
+	width: 290px;
+	float: right;
+	background: #f2f2f2;
+	padding: 1.5em;
+}
+
+
+.panel-title .step {
+	display: inline-block;
+	border-radius: 50%;
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	background-color: #e3e3e3;
+	box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+	-webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+	text-align: center;
+	margin-right: 0.5em;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	-o-transition: all 0.2s ease-out;
+	-ms-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+.panel-title > a:hover > .step {
+	background: #1f1f1f;
+	color: #fff;
+}
+
+
+.checkout {
+	margin: 55px 0 0 0;
+}
+.checkout .stylish-input input[type="text"],
+.checkout .stylish-input input[type="password"],
+.checkout .stylish-input input[type="email"],
+.checkout .stylish-input input[type="tel"],
+.checkout .stylish-input select,
+.checkout .stylish-input textarea {
+	height: 26px;
+}
+.checkout .panel-body {
+	padding: 20px;
+	border: 1px solid #f2f2f2;
+	border-top: 0 !important;
+	background: #e3e3e3;
+	font-size: 12px;
+	color: #1f1f1f;
+}
+.checkout legend {
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-bottom: 5px;
+}
+.checkout fieldset > .inner {
+	padding: 15px;
+}
+.paymethod label {
+	font-weight: 600;
+}
+
+
+/*翻页共用部分*/
+.pagenav {
+	font-size: 12px;
+	text-align: center;
+	margin: 20px 0px;
+}
+
+.pagenav span, .pagenav a:link, .pagenav a:visited {
+	display: inline-block;
+	*display: inline;
+	width: 24px;
+	height: 24px;
+	margin: 0px 1px;
+	color: #666;
+	line-height: 24px;
+	vertical-align: middle;
+	zoom: 1;
+}
+
+.pagenav a:hover, .pagenav a:active {
+	background: #e4eaee;
+	text-decoration: none;
+}
+
+.pagenav a.page-prev:link, .pagenav a.page-prev:visited, .pagenav a.page-next:link,
+	.pagenav a.page-next:visited {
+	width: auto;
+	padding: 0 10px;
+}
+
+.pagenav .active {
+	color: #fff;
+	background-color: #488fcd;
+}
+
+.pagenav .page-prev.disable:link, .pagenav .page-next.disable:visited,
+	.pagenav .page-next.disable:hover, .pagenav .page-next.disable:active {
+	color: #999;
+	background-color: #fff;
+}
+/*pagenav-02样式2——强显示*/
+.pagenav-02 span, .pagenav-02 a:link, .pagenav-02 a:visited {
+	margin: 0 2px;
+	border: 1px solid #dedede;
+}
+
+.pagenav-02 a:hover, .pagenav-02 a:active {
+	background-color: #fff;
+	border-color: #2a68bc;
+}
+
+.pagenav-02 .active {
+	background-color: #428cdf;
+}
+
+.pagenav-02 .page-prev.disable:link, .pagenav-02 .page-next.disable:visited,
+	.pagenav-02 .page-next.disable:hover, .pagenav-02 .page-next.disable:active
+	{
+	border: none;
+}
+
+.pagenav-02 span.total {
+    border: 0 none;
+    margin: 0 0 0 50px;
+    width:250px;
+}
+.pagenav-02 .total-font{
+	font-weight: bold;
+	color: #ff0000;
+}
+.pagewapper{
+	clear: both;border-top:2px solid #ccc;margin:10px 15px;padding-top:20px;
+}

@@ -73,17 +73,9 @@ public class PlanOrder {
     /** 餘額 */
     @Column(name = "grant_amount")
     private Integer grantAmount;
-    /** 原價 */
-    @Column(name = "original_price")
-    private Integer originalPrice;
-    /** 折扣價 */
-    @Column(name = "discount_price")
-    private Integer discountPrice;
-    /** 優惠代碼 */
-    @Column(name = "discount_code")
-    private Integer discountCode;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "plan_order_id", referencedColumnName = "plan_order_id")
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "plan_order_id")
     private List<PlanOrderDetail> PlanOrderDetail = new ArrayList<>();
 
 

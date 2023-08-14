@@ -20,6 +20,7 @@ public class CommonString {
     public static final String GET_ONE_FOR_UPDATE = "getOneForUpdate";
     public static final String UPDATE = "update";
     public static final String DELETE = "delete";
+    public static final String CHECK = "check";
 
     public static final String ERROR_MSG = "目前異常，請稍後再試";
     public static final String INSERT_ERROR = "新增資料失敗，請稍後再試";

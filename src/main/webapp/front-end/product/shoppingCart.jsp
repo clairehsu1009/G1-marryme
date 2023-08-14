@@ -10,9 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Marry Me</title>
-    	<link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/innerpage.css" />
+    	<link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/product/css/innerpage.css" />
     <link rel="icon" href="${pageContext.request.contextPath}/public/images/front-end/marrymelittle.ico" type="image/x-icon">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/client-index.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/product/css/client-index.css" />
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/bootstrap/bootstrap.min.css" type="text/css" />

@@ -3,10 +3,10 @@
 <%@ page import="com.marryme.plan.service.PlaceService" %>
 <%@ page import="com.marryme.plan.service.ItemService" %>
 <%@ page import="com.marryme.plan.service.impl.ItemServiceImpl" %>
-<%@ page import="com.marryme.vendor.vo.Vendor" %>
 <%@ page import="static com.marryme.common.CommonString.ACTIVE" %>
 <%@ page import="com.marryme.plan.vo.Item" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.marryme.vendor.vo.Vendor" %>
 <%--
   Created by IntelliJ IDEA.
   User: T14 Gen 3
@@ -30,6 +30,7 @@
   ItemService itemService = new ItemServiceImpl();
   List<Item> itemList = itemService.findAllVendorIdAndOrderByType(plan.getVendorId(), ACTIVE);
   pageContext.setAttribute("itemList", itemList);
+
 %>
 
 <!DOCTYPE html>
@@ -102,7 +103,6 @@
 <%--    <a class="ask btn_common btn_primary add_ask" href="<%=request.getContextPath()%>/plan/plan-order?planProductId=${plan.planProductId}">立即訂購 </a>--%>
 <%--  </div>--%>
 </section>
-<c:if test="${vendorId == plan.vendorId}">
   <section class="rwd_wrap group">
     <div class="favor_content">
       <div class="content_left">
@@ -202,7 +202,6 @@
          </div>
       </div>
   </section>
-</c:if>
 <br><br>
 <form METHOD="get" ACTION="<%=request.getContextPath()%>/plan/plan-order">
     <input type="hidden" name="planProductId" value="${plan.planProductId}">
@@ -270,9 +269,6 @@
       unavailableTime.add(optionNight);
     }
   }
-
-  // 頁面載入時執行一次，以生成初始的時段選項
-  generateTimeOptions();
 
 
 </script>

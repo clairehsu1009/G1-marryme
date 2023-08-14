@@ -25,4 +25,11 @@ public class PlanPages {
     public static final String ONE_PLAN_PRODUCT_PAGE = "/front-end/vendor/plan/plan/planProduct.jsp";
     public static final String LIST_PLAN_PRODUCT_PAGE = "/front-end/vendor/plan/plan/planProductList.jsp";
 
+    // 消費者瀏覽頁面 => 方案detail頁
+
+    public static final String LIST_PLAN_DETAIL_PAGE = "/front-end/plan/showPlan.jsp";
+    public static final String ADD_PLAN_DETAIL_PAGE = "/front-end/plan/addPlanOrder.jsp";
+    public static final String CHECK_PLAN_ORDER_PAGE = "/front-end/plan/checkOrder.jsp";
+    public static final String CREATE_ORDER_PAGE = "/front-end/plan/createOrder.jsp";
+
 }

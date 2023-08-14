@@ -31,6 +31,20 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public List<Item> findAllVendorIdAndOrderByType(String vendorId, String statusType) {
+        List<Item> itemList = new ArrayList<>();
+        try {
+            beginTransaction();
+            itemList = dao.selectAllVendorIdAndOrderByType(vendorId, statusType);
+            commit();
+        } catch (Exception e) {
+            rollback();
+            e.printStackTrace();
+        }
+        return itemList;
+    }
+
+    @Override
     public List<Item> findAll() {
         List<Item> itemList = new ArrayList<>();
         try {
@@ -56,6 +70,20 @@ public class ItemServiceImpl implements ItemService {
             e.printStackTrace();
         }
         return item;
+    }
+
+    @Override
+    public List<Item> getIds(List<Integer> planItemIdList) {
+        List<Item> items= null;
+        try {
+            beginTransaction();
+            items = dao.selectByIds(planItemIdList);
+            commit();
+        } catch (Exception e) {
+            rollback();
+            e.printStackTrace();
+        }
+        return items;
     }
 
     @Override

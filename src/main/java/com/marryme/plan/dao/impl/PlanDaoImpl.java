@@ -35,7 +35,8 @@ public class PlanDaoImpl implements PlanDao {
     public Integer insert(Plan vo) {
         vo.setStatus(vo.getStatus() == null ? 1 : vo.getStatus());
         vo.setEditStatus(vo.getEditStatus() == null ? 0 : 1);
-        return (Integer) getSession().save(vo);
+        getSession().merge(vo);
+        return vo.getPlanProductId();
     }
 
 

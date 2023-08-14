@@ -18,13 +18,9 @@
 <%@include file="/front-end/vendor/common/vendorSidebar.jsp" %>
 <style>
     .productList .btn.btn-danger {
-        margin-top: 0px;
+        margin-top: 0;
     }
     .productAddBtn {
-        /*position: absolute ;*/
-        /*bottom: 0;*/
-        /*left: 50%;*/
-        /*transform: translateX(-50%);*/
     margin: 0 auto;
     }
 </style>

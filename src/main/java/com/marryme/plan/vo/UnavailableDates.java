@@ -3,8 +3,8 @@ package com.marryme.plan.vo;
 import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.Date;
+import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * ClassName: UnavaliableDate
@@ -16,12 +16,12 @@ import java.util.Date;
  * @Version 1.0
  */
 @Entity
-@Table(name = "UnavailableDates", catalog = "marryme")
+@Table(name = "Unavailable_Dates", catalog = "marryme")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UnavailableDate {
+public class UnavailableDates implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "unavailable_dates_id")
@@ -31,10 +31,23 @@ public class UnavailableDate {
     private Integer placeId;
     /** 不可預定日期 */
     @Column(name = "unavailable_date")
-    private Date unavailableDate;
+    private String unavailableDate;
     /**
      * 不可預定時間，0中午、1晚上
      *  */
     @Column(name = "unavailable_time")
     private Integer unavailableTime;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UnavailableDates that = (UnavailableDates) o;
+        return Objects.equals(placeId, that.placeId) && Objects.equals(unavailableDate, that.unavailableDate) && Objects.equals(unavailableTime, that.unavailableTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(placeId, unavailableDate, unavailableTime);
+    }
 }

@@ -506,8 +506,8 @@ CREATE TABLE plan_product (
   plan_pictures2 longblob comment'圖片2',
   plan_picture_intro2 varchar(20) comment'圖片簡介2',
   plan_pictures3 longblob comment'圖片3',
-  plan_picture_intro3 varchar(20) comment'圖片簡介3',
-  FOREIGN KEY (vendor_id) REFERENCES vendor(vendor_id)
+  plan_picture_intro3 varchar(20) comment'圖片簡介3'
+#   FOREIGN KEY (vendor_id) REFERENCES vendor(vendor_id)
 )comment = '方案商品';
 
 
@@ -624,7 +624,7 @@ VALUES
 CREATE TABLE unavailable_dates (
   unavailable_dates_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT '不可預約時段_ID 流水號',
   place_id INT NOT NULL COMMENT '場地_id FK',
-  unavailable_date date not null comment'不可預約日期',
+  unavailable_date varchar(20) not null comment'不可預約日期',
   unavailable_time int not null comment'不可預約時間,0中午、1晚上',
   unique key UK_unavailable_dateAndTime(place_id,unavailable_date,unavailable_time),
   FOREIGN KEY (place_id) REFERENCES plan_place(place_id)
@@ -657,37 +657,31 @@ CREATE TABLE plan_order (
   unavailable_dates_id int not null comment'不可預約時段_ID{FK}',
   order_tables int not null comment'實際桌數',
   order_status int comment'訂單狀態,0已成立、1處理中、2已聯繫廠商、3廠商已確認訂購品項、4已完成、5已取消',
-  payment_method int not null comment'付款方式, 0轉帳、1刷卡',
+  payment_method int comment'付款方式, 0轉帳、1刷卡',
   payment_state int comment'付款狀態,0未付款、1已付訂、2已付清、3取消',
   total_amount int comment'總金額',
   order_dateTime Timestamp not null comment'訂單時間',
   grant_amount int not null comment'餘額',
-  original_price int comment'原價',
-  discount_price DECIMAL comment'折扣價',
-  discount_code char(10) comment'優惠代碼{FK}',
   FOREIGN KEY (member_id) REFERENCES member(member_id),
   FOREIGN KEY (plan_product_id) REFERENCES plan_product(plan_product_id),
-  FOREIGN KEY (place_id) REFERENCES plan_place(place_id),
-  FOREIGN KEY (unavailable_dates_id) REFERENCES unavailable_dates(unavailable_dates_id),
-  FOREIGN KEY (discount_code) REFERENCES member_coupon_list  (discount_code)
+  FOREIGN KEY (unavailable_dates_id) REFERENCES unavailable_dates(unavailable_dates_id)
 )comment = '方案訂單';
 
 INSERT INTO plan_order (member_id, plan_product_id, place_id, unavailable_dates_id, order_tables,
-order_status, payment_method, payment_state, total_amount, order_dateTime, grant_amount)
+order_status, payment_state, total_amount, order_dateTime, grant_amount)
 VALUES
-    ('member1@gmail.com', 1, 1, 1, 21, 0, 1, 1, 100000, NOW(), 60000),
-    ('member2@gmail.com', 2, 1, 2, 22, 1, 1, 1, 100000, NOW(), 60000),
-    ('member3@gmail.com', 3, 1, 3, 23, 2, 0, 2, 100000, NOW(), 60000),
-    ('member4@gmail.com', 4, 1, 4, 24, 3, 1, 2, 100000, NOW(), 60000),
-    ('member5@gmail.com', 5, 1, 5, 25, 4, 0, 3, 100000, NOW(), 60000);
+    ('member1@gmail.com', 1, 1, 1, 21, 0, 1, 100000, NOW(), 60000),
+    ('member2@gmail.com', 2, 1, 2, 22, 1, 1, 100000, NOW(), 60000),
+    ('member3@gmail.com', 3, 1, 3, 23, 2, 2, 100000, NOW(), 60000),
+    ('member4@gmail.com', 4, 1, 4, 24, 3, 2, 100000, NOW(), 60000),
+    ('member5@gmail.com', 5, 1, 5, 25, 4, 3, 100000, NOW(), 60000);
     
     
 CREATE TABLE plan_order_detail (
   plan_order_detail_id int primary key not null auto_increment comment'方案訂購明細_ID',
   plan_order_id int not null comment'方案訂單_ID',
   plan_item_id int not null comment'方案加購項目_ID',
-  FOREIGN KEY (plan_order_id) REFERENCES plan_order(plan_order_id),
-  FOREIGN KEY (plan_item_id) REFERENCES plan_item(plan_item_id)
+  FOREIGN KEY (plan_order_id) REFERENCES plan_order(plan_order_id)
 )comment = '方案加購項目訂購明細';
 
 

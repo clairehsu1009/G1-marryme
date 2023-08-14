@@ -46,7 +46,8 @@ public class ShowPhotoController extends HttpServlet {
             // 可接受的圖片欄位名稱字串
             List<String> isValidPhotoFieldsName = new ArrayList<>(
                     List.of("placePicture", "placePicture1", "placePictures2", "placePictures3", "placePictures4", "placePictures5",
-                            "planPicture", "planPictures1", "planPictures2", "planPictures3", "planPic")
+                            "planPicture", "planPictures1", "planPictures2", "planPictures3", "planPic",
+                            "showPlan")
             );
 
             // 若不包含在內則結束流程

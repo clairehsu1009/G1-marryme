@@ -1,11 +1,10 @@
 package com.marryme.plan.service.impl;
 
-import com.marryme.plan.dao.PlaceDao;
 import com.marryme.plan.dao.PlanDao;
-import com.marryme.plan.dao.impl.PlaceDaoImpl;
+import com.marryme.plan.dao.UnavailableDateDao;
 import com.marryme.plan.dao.impl.PlanDaoImpl;
+import com.marryme.plan.dao.impl.UnavailableDateDaoImpl;
 import com.marryme.plan.service.PlanService;
-import com.marryme.plan.vo.Place;
 import com.marryme.plan.vo.Plan;
 import com.marryme.plan.vo.PlanDetail;
 
@@ -23,9 +22,11 @@ import java.util.List;
  */
 public class PlanServiceImpl implements PlanService {
     private final PlanDao dao;
+    private  final UnavailableDateDao unavailableDateDao;
 
     public PlanServiceImpl(){
         dao = new PlanDaoImpl();
+        unavailableDateDao = new UnavailableDateDaoImpl();
     }
 
     @Override
@@ -83,16 +84,50 @@ public class PlanServiceImpl implements PlanService {
         return plan;
     }
 
+    @Override
+    public List<Integer> getOneForAvailableDates(List<Integer> placeIds, String unavailableDate, Integer unavailableTime) {
+        List<Integer> availablePlaceIds = new ArrayList<>();
 
+        try {
+            beginTransaction();
+            // 替換日期的符號
+            unavailableDate = unavailableDate.replaceAll("-", "");
+
+            List<Integer> unavailablePlaceIds = unavailableDateDao.getUnavailablePlaceIds(placeIds, unavailableDate, unavailableTime);
+
+            if(unavailablePlaceIds != null && !unavailablePlaceIds.isEmpty()){
+                // 若有符合條件的數據，則從placeIds中排除
+                for (Integer placeId : placeIds) {
+                    boolean found = false;
+                    for (Integer result : unavailablePlaceIds) {
+                        if (result.equals(placeId)) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        availablePlaceIds.add(placeId);
+                    }
+                }
+            } else {
+            // 若無符合條件的數據，則全部都可用
+            availablePlaceIds.addAll(placeIds);
+            }
+            commit();
+        } catch (Exception e) {
+            rollback();
+            e.printStackTrace();
+        }
+        return availablePlaceIds;
+    }
 
     @Override
     public Integer insertPlanWithDetails(Plan plan, List<Integer> places) {
-        Integer planId = null;
+        Integer planProductId = null;
         try {
             beginTransaction();
         // 創建對應數量的 PlanDetail
             List<PlanDetail> planDetails = new ArrayList<>();
-
 
         for (int i = 0; i < places.size(); i++) {
             PlanDetail planDetail = new PlanDetail();
@@ -106,13 +141,13 @@ public class PlanServiceImpl implements PlanService {
             plan.setPlanDetail(planDetails);
 
         // 儲存 Plan 物件，Hibernate 會自動處理 PlanDetail 的保存
-            planId = dao.insert(plan);
+            planProductId = dao.insert(plan);
             commit();
         } catch (Exception e) {
             rollback();
             e.printStackTrace();
         }
-        return planId;
+        return planProductId;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.marryme.plan.service;
 
 import com.marryme.core.service.CoreService;
+import com.marryme.plan.vo.Place;
 import com.marryme.plan.vo.Plan;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public interface PlanService extends CoreService {
     List<Plan> findAll();
 
     Plan getOne(Integer id);
+    List<Integer> getOneForAvailableDates(List<Integer> placeIds, String unavailableDate, Integer unavailableTime);
     Integer insertPlanWithDetails(Plan plan, List<Integer> places);
     boolean update(Integer id, Plan plan);
     /** 修改方案狀態為下架 */

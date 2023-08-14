@@ -1,3 +1,12 @@
+
+<%@ page import="com.marryme.plan.service.impl.PlaceServiceImpl" %>
+<%@ page import="com.marryme.plan.service.PlaceService" %>
+<%@ page import="com.marryme.plan.service.ItemService" %>
+<%@ page import="com.marryme.plan.service.impl.ItemServiceImpl" %>
+<%@ page import="com.marryme.vendor.vo.Vendor" %>
+<%@ page import="static com.marryme.common.CommonString.ACTIVE" %>
+<%@ page import="com.marryme.plan.vo.Item" %>
+<%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
   User: T14 Gen 3
@@ -8,18 +17,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%--<jsp:useBean id="planDetail" scope="request" class="com.marryme.plan.vo.Plan" />--%>
-<%@ page import="com.marryme.plan.vo.Plan" %>
-<%@ page import="com.marryme.plan.service.PlanService" %>
-<%@ page import="com.marryme.plan.service.impl.PlanServiceImpl" %>
 
-<jsp:useBean id="planList" scope="request" class="java.util.ArrayList" />
+<jsp:useBean id="plan" scope="request" class="com.marryme.plan.vo.Plan" />
+<jsp:useBean id="place" scope="request" class="com.marryme.plan.vo.Place" />
+<%--<jsp:useBean id="item" scope="request" class="com.marryme.plan.vo.Item" />--%>
+<jsp:useBean id="unavailableDate" scope="request" class="com.marryme.plan.vo.UnavailableDates"/>
+
 <%
-  int fixedPlanId = 1;
-  PlanService planService = new PlanServiceImpl();
-  Plan plan = planService.getOne(fixedPlanId);
-%>
+  PlaceService placeService = new PlaceServiceImpl();
+  request.setAttribute("placeService", placeService);
 
+  ItemService itemService = new ItemServiceImpl();
+  List<Item> itemList = itemService.findAllVendorIdAndOrderByType(plan.getVendorId(), ACTIVE);
+  pageContext.setAttribute("itemList", itemList);
+%>
 
 <!DOCTYPE html>
 <html>
@@ -37,6 +48,28 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/product/css/product_rate.css" type="text/css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/product/css/product_detail.css" type="text/css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.min.css">
+
+  <style>
+    .content_left {
+      width: 56%;
+      padding-right: 30px;
+      padding-left: 30px;
+      box-sizing: border-box;
+      margin-right: 0;
+    }
+    .table th, .table td {
+      text-align: center;
+      padding-left: 40px;
+      padding-right: 20px;
+      box-sizing: border-box;
+      vertical-align: middle;
+    }
+    .placeTitle{
+      text-align: left;
+      color: #B766AD;
+    }
+  </style>
+  <title>方案商品</title>
 </head>
 
 <body>
@@ -46,12 +79,9 @@
 <div class="rwd_wrap group">
   <div class="col lg_12 md_6 sm_12">
     <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="bread_list">
-      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" href="#" title="Marryme首頁"> <span itemprop="name">首頁</span></a>
-        <meta itemprop="position" content="1"></li>
-      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><span itemprop="name">瀏覽方案頁</span></a>
-        <meta itemprop="position" content="2" /></li>
-      <li><span itemprop="name">${product.productName}</span>
-        <meta itemprop="position" content="3" /></li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" href="#" title="Marryme首頁"> <span itemprop="name">首頁</span></a><meta itemprop="position" content="1"></li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><span itemprop="name">瀏覽方案頁</span><meta itemprop="position" content="2" /></li>
+      <li><span itemprop="name">${product.productName}</span><meta itemprop="position" content="3" /></li>
     </ol>
   </div>
 </div>
@@ -68,146 +98,183 @@
       </div>
     </div>
   </div>
-  <div class="toolbar">
-    <a class="ask btn_common btn_primary add_ask" href="javascript:;" rel_m_id="MktGdnBZVk82L2U0THMwOGZB" rel_s_id="17411" rel_a_id="760">立即訂購 </a>
-  </div>
+<%--  <div class="toolbar">--%>
+<%--    <a class="ask btn_common btn_primary add_ask" href="<%=request.getContextPath()%>/plan/plan-order?planProductId=${plan.planProductId}">立即訂購 </a>--%>
+<%--  </div>--%>
 </section>
-<c:set var="fixedPlanId" value="1"/>
-<c:set var="plan" value="${planService.getOne(fixedPlanId)}" />
-<section class="rwd_wrap group">
-  <div class="favor_content">
-    <div class="content_left">
-<%--      <a href="javascript:" class="album lightbox">--%>
-        <img width="200px" height="200px" src="${pageContext.request.contextPath}/ShowPhoto?planProductId=${plan.planProductId}&photoFieldName=planPicture" class="rounded mx-auto d-block" alt="方案主圖片">
-            <c:out value="planProductId=${plan.planProductId}"></c:out>
-<%--      </a>--%>
-    </div>
-    <div class="content_right">
-      <h1 class="title">${product.productName}</h1>
-      <p class="price">平台價 NT$ <span id="platformPrice">${product.platformPrice}</span></p>
-      <p class="price_original">原價 NT$ <span id="originalPrice">${product.originalPrice}</span></p>
-      <button class="product_report" data-bs-toggle="modal" data-bs-target="#reportModal">匿名檢舉商品</button>
-      <div class="d_line"></div>
-      <ul class="good_info clearfix" style="padding-left: 0">
-        <li><span>優惠券</span>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            <button class="btn btn-outline-danger me-md-2" type="button">現打8折</button>
-            <button class="btn btn-outline-danger" type="button">-10%OFF</button>
-          </div></li>
-        <li><span>銷量</span>
-          <p>30</p></li>
-        <li><span>庫存量</span>
-          <p>${product.stockQuantity}</p></li>
-        <li><span>評價</span>
-          <p><img src="<%=request.getContextPath()%>/public/images/front-end/selected.svg"> 5.0&nbsp;</p>
-        </li>
-        <li><span>數量</span>
-          <div class="qty-input">
-            <input class="product-qty" type="number" name="product-qty" min="1" value="1">
-          </div></li>
-      </ul>
-      <div class="action">
-        <ul style="padding-left: 0">
-          <li class="btn_wrap"><a class="btn add_ask" href="javascript:" >立即訂購</a></li>
-        </ul>
+<c:if test="${vendorId == plan.vendorId}">
+  <section class="rwd_wrap group">
+    <div class="favor_content">
+      <div class="content_left">
+          <img width="80%" src="${pageContext.request.contextPath}/ShowPhoto?planProductId=${plan.planProductId}&photoFieldName=planPicture" class="rounded mx-auto d-block" alt="方案主圖片">
       </div>
-      </ul>
-    </div>
-    <div class="good_copyright">
-      <div class="d_line"></div>
-      <div class="desc">${product.productDescription}</div>
-    </div>
-</section>
-<!-- Modal -->
-<div class="modal fade" id="reportModal" tabindex="-1"
-     aria-labelledby="reportModalLabel" style="display: block;margin-left: auto;margin-right: auto;margin-top: -500;padding-right: 17px;" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="reportModalLabel">匿名檢舉商品</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                aria-label="Close"></button>
+      <div class="content_right">
+        <h1 class="title">${plan.planTitle}</h1>
+        <br>
+        <p></p>
+        <br><br>
+          <div class="d_line">
+            <br><br><br>
+            <h2 class="title text-center">方案介紹</h2>
+            <br><br>
+              <p>${plan.planIntroduction}</p>
+            <br><br><br><br>
+              <form METHOD="get" ACTION="<%=request.getContextPath()%>/plan/plan-order">
+                <p style="text-align: center" >
+                  <label for="unavailableDate">結婚日期為: </label>
+                  <input type="date" id="unavailableDate" name="unavailableDate" min="<%= java.time.LocalDate.now() %>" />
+                  <c:if test="${responseMsgMap.containsKey('unavailableDate')}">
+                    <span class="errorMsg">${responseMsgMap['unavailableDate']}</span>
+                  </c:if>
+                  <label for="unavailableTime">時段: </label>
+                  <select id="unavailableTime" name="unavailableTime">
+                  </select>
+                  <c:if test="${responseMsgMap.containsKey('unavailableTime')}">
+                    <span class="errorMsg">${responseMsgMap['unavailableTime']}</span>
+                  </c:if>
+                </p>
+            <br><br><br><br>
+              <input type="hidden" name="planProductId" value="${plan.planProductId}">
+              <input type="hidden" name="unavailableDate" value="${unavailableDate.unavailableDate}">
+              <input type="hidden" name="unavailableTime" value="${unavailableDate.unavailableTime}">
+              <input type="hidden" name="vendorId" value="${plan.vendorId}">
+              <button type="submit" class="ask btn_common btn_primary add_ask btn_wrap" style="width: 500px; border: none; padding-left: 0">立即訂購 </button>
+             </form>
+          </div>
       </div>
-      <div class="modal-body">
-        <textarea class="form-control" rows="4" placeholder="請輸入檢舉內容"></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"
-                data-bs-dismiss="modal">關閉</button>
-        <button type="button" class="btn btn-primary">儲存</button>
-      </div>
+      <br><br><br>
     </div>
-  </div>
-</div>
-<section id="studio_reviews_main" class="rwd_wrap group">
-  <div class="title_studio_main">
-  </div>
-</section>
+      <div class="content_right placeTitle">
+        <h1 class="title" >可選擇的場地：</h1>
+      </div>
+      <table class="table">
+        <thead class="thead">
+          <tr>
+            <th scope="col">場地圖片</th>
+            <th scope="col">場地標題</th>
+            <th scope="col">建議桌數區間</th>
+            <th scope="col" >場地介紹</th>
+          </tr>
+        </thead>
+        <tbody>
+          <c:forEach var="planDetail" items="${plan.planDetail}" begin="0" end="${plan.planDetail.size()}">
+            <c:if test="${planDetail.placeId != null}">
+              <tr>
+                <td>
+                  <img width="200px" height="200px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${planDetail.placeId}&photoFieldName=placePicture" class="rounded mx-auto d-block" alt="場地主圖片">
+                </td>
+                <td class="place" style="text-align: center">${placeService.getOne(planDetail.placeId).placeTitle}</td>
+                <td style="text-align: center">${placeService.getOne(planDetail.placeId).numbeOfTables}</td>
+                <td STYLE="text-align: left">${placeService.getOne(planDetail.placeId).placeIntroduction}</td>
+              </tr>
+            </c:if>
+          </c:forEach>
+        </tbody>
+      </table>
 
+    <div class="content_right placeTitle">
+      <h1 class="title" >可選擇的加購項目：</h1>
+    </div>
+      <div class="tab-item-content">
+        <div class="tab-content">
+            <table class="table">
+              <thead class="thead">
+                <tr>
+                  <th scope="col">項目種類</th>
+                  <th scope="col">項目名稱</th>
+                  <th scope="col">項目說明</th>
+                  <th scope="col">訂金</th>
+                  <th scope="col" style="margin-right: 20px">金額</th>
+                </tr>
+              </thead>
+              <tbody>
+                <c:forEach var="item" items="${itemList}" begin="0" end="${itemList.size()}">
+                  <tr>
+                    <td>${item.itemTypeName}</td>
+                    <td>${item.itemSelect}</td>
+                    <td>${item.itemDescription}</td>
+                    <td>${item.itemDeposit}</td>
+                    <td style="margin-right: 20px">${item.itemTotal}</td>
+                  </tr>
+                </c:forEach>
+              </tbody>
+            </table>
+         </div>
+      </div>
+  </section>
+</c:if>
+<br><br>
+<form METHOD="get" ACTION="<%=request.getContextPath()%>/plan/plan-order">
+    <input type="hidden" name="planProductId" value="${plan.planProductId}">
+    <input type="hidden" name="unavailableDate" value="${unavailableDate.unavailableDate}">
+    <input type="hidden" name="unavailableTime" value="${unavailableDate.unavailableTime}">
+    <input type="hidden" name="vendorId" value="${plan.vendorId}">
+    <button class="ask btn_common btn_primary add_ask" style="width: 500px; border: none;" type="submit">立即訂購 </button>
+</form>
 
-
+<br><br><br><br>
 
 <!-- Footer Section Begin -->
 <%@include file="/front-end/footer.jsp"%>
 <!-- Footer Section End -->
 
 <!-- Js Plugins -->
-<script type="text/javascript"
-        src="${pageContext.request.contextPath}/public/js/template/jquery-3.7.0.min.js"></script>
-<script type="text/javascript"
-        src="${pageContext.request.contextPath}/public/js/template/bootstrap.bundle.js"></script>
-<script type="text/javascript"
-        src="${pageContext.request.contextPath}/public/js/template/bootstrap.js"></script>
-<script type="text/javascript"
-        src="${pageContext.request.contextPath}/public/js/marryme.js"></script>
-<script type="text/javascript"
-        src="${pageContext.request.contextPath}/front-end/product/js/productDetail.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/public/js/template/jquery-3.7.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/public/js/template/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/public/js/template/bootstrap.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/public/js/marryme.js"></script>
+<%--<script type="text/javascript" src="${pageContext.request.contextPath}/front-end/product/js/productDetail.js"></script>--%>
 <!-- 載入 Bootstrap 5 的 JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 <!-- 引入SweetAlert2的JS程式碼 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.all.min.js"></script>
+
 <script>
-  // 獲取 URL 中的 productId 參數
-  const urlParams = new URLSearchParams(window.location.search);
-  const productId = urlParams.get('productId');
-  // 使用Fetch API呼叫後端Servlet取得商品資料
-  const currentDomain = window.location.origin;
-  const apiUrl = `${currentDomain}/marryme/product/addCart`;
 
-  $(document).ready(function() {
-    // 監聽加入購物車按鈕的點擊事件
-    $(".add_ask").on("click", function() {
-      // 獲取數量
-      var quantity = $(".product-qty").val();
+  $("#unavailableDate").change(() => {
+    generateTimeOptions();
+  })
 
-      // 發送POST請求到後端Servlet
-      $.ajax({
-        type: "POST",
-        url: apiUrl, // 根據您的後端Servlet的路徑來設置
-        data: {
-          productId: productId, // 將商品ID和數量作為POST請求的數據傳遞
-          productQty: quantity
-        },
-        success: function(response) {
-          // 這裡可以處理加入購物車成功的提示，您可以使用Swal.fire或其他方法
-          Swal.fire({
-            icon: 'success',
-            title: '成功加入購物車!',
-            text: '商品已經添加到購物車中。',
-          }).then(function() {
-            // 成功提示後自動跳轉到購物車頁面
-            window.location.href = '/marryme/front-end/product/shoppingCart.jsp';
-          });
-        },
-        error: function(xhr, status, error) {
-          // 這裡可以處理加入購物車失敗的提示，您可以使用Swal.fire或其他方法
-          Swal.fire("加入購物車失敗!", "請稍後再試。", "error");
-        }
-      });
-    });
-  });
+  function generateTimeOptions() {
+    const unavailableTime = document.getElementById('unavailableTime');
+    const unavailableDate = new Date(document.getElementById('unavailableDate').value);
+    const currentDate = new Date();
+
+    // 清空下拉式選單中的選項
+    unavailableTime.innerHTML = '';
+    if (unavailableDate.toDateString() === currentDate.toDateString()) {
+
+      // 若選擇日期與當前日期相同，則限制選項為中午或晚上
+      const currentHour = currentDate.getHours();
+      if (currentHour < 12) {
+        const option = document.createElement('option');
+        option.text = '中午';
+        option.value = '0';
+        unavailableTime.add(option);
+      } else {
+        const option = document.createElement('option');
+        option.text = '晚上';
+        option.value = '1';
+        unavailableTime.add(option);
+      }
+    } else {
+      // 若選擇日期不是當前日期，則提供完整的時段選項
+      const optionNoon = document.createElement('option');
+      optionNoon.text = '中午';
+      optionNoon.value = '0';
+      unavailableTime.add(optionNoon);
+
+      const optionNight = document.createElement('option');
+      optionNight.text = '晚上';
+      optionNight.value = '1';
+      unavailableTime.add(optionNight);
+    }
+  }
+
+  // 頁面載入時執行一次，以生成初始的時段選項
+  generateTimeOptions();
+
+
 </script>
 
 </body>

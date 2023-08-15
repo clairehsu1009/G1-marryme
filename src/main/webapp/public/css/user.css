@@ -15442,6 +15442,10 @@ max-height:100%;
   content: "";
   opacity: 0;
 }
+
+.productList .product-tab .tab-content .table td {
+  vertical-align: middle;
+}
 /*textarea表格寬高*/
 /* .productList .productInfo { */
 /* 	width:300px; */

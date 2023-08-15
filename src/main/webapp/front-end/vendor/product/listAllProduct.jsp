@@ -6,7 +6,7 @@
 <jsp:useBean id="productList" scope="request"
 	class="java.util.ArrayList" />
 
-
+<!DOCTYPE html>
 <html>
 <%@include file="/front-end/vendor/common/vendorHead.jsp"%>
 
@@ -24,11 +24,11 @@
 			<form method="post"
 				action="<%=request.getContextPath()%>/product/findAll"
 				style="margin-bottom: 0px;">
-				<input type="hidden" name="vendorId" value="${vendorId}" />
+				<input type="hidden" name="vendorId" value="${vendor.vendorId}" />
 				<ul class="app-breadcrumb breadcrumb">
 					<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
 					<li class="breadcrumb-item"><a
-						href="<%=request.getContextPath()%>/product/findAll?vendorId=${vendorId}">商品管理</a></li>
+						href="<%=request.getContextPath()%>/product/findAll?vendorId=${vendor.vendorId}">商品管理</a></li>
 				</ul>
 			</form>
 		</div>
@@ -39,8 +39,6 @@
 						<li><a class="active" data-toggle="tab" href="#tab-0"
 							role="tab">未上架</a></li>
 						<li><a data-toggle="tab" href="#tab-1" role="tab">上架中</a></li>
-<!-- 						<li><a data-toggle="tab" href="#tab-2" role="tab">已售完</a></li> -->
-<!-- 						<li><a data-toggle="tab" href="#tab-3" role="tab">已下架</a></li> -->
 					</ul>
 				</div>
 				<div class="tab-item-content">
@@ -69,22 +67,39 @@
 												<tr>
 													<td>${product.productCategory.productCategoryName}</td>
 													<td>${product.productName}</td>
-													<td>
-														<img src="<%=request.getContextPath()%>/ProductShowPhoto?productId=${product.productId}" alt="Product Image" width = "70px" height = "70px" class="rounded mx-auto d-block">
-													</td>
-													<td>${product.originalPrice}</td>
-													<td>${product.platformPrice}</td>
+													<td><img
+														src="<%=request.getContextPath()%>/ProductShowPhoto?productId=${product.productId}"
+														alt="Product Image" width="70px" height="70px"
+														class="rounded mx-auto d-block"></td>
+													<td><fmt:formatNumber value="${product.originalPrice}"
+															type="number" pattern="$#,##0" /></td>
+													<td><fmt:formatNumber value="${product.platformPrice}"
+															type="number" pattern="$#,##0" /></td>
+
 													<td>${product.stockQuantity}</td>
 													<td>${product.productDescription}</td>
 													<td>
-														<form method="post" action="<%=request.getContextPath()%>/product/findAll" style="margin-bottom: 0px;">
-															<input type="hidden" name="productId" value="${product.productId}" />
-															<input type="hidden" name="vendorId" value="${product.vendorId}" />
-															<c:if test="${product.productStatus == 0 || product.productStatus == 1 || product.productStatus == 2}">
-																<button type="submit" class="btn btn-info" formaction="<%=request.getContextPath()%>/product/getOneForUpdate">編輯</button>
+														<form method="post"
+															action="<%=request.getContextPath()%>/product/findAll"
+															style="margin-bottom: 0px;">
+															<input type="hidden" name="productId"
+																value="${product.productId}" /> <input type="hidden"
+																name="vendorId" value="${product.vendorId}" />
+															<c:if
+																test="${product.productStatus == 0 || product.productStatus == 1 || product.productStatus == 2}">
+																<button type="submit" class="btn btn-info"
+																	formaction="<%=request.getContextPath()%>/product/getOneForUpdate">編輯</button>
 															</c:if>
-															<button type="submit" class="btn btn-warning"
-															formaction="<%=request.getContextPath()%>/product/changeStatusToInactive">下架</button>
+															<c:choose>
+																<c:when test="${product.productStatus == 1}">
+																	<button type="submit" class="btn btn-warning"
+																		formaction="<%=request.getContextPath()%>/product/changeStatus">下架</button>
+																</c:when>
+																<c:when test="${product.productStatus == 0}">
+																	<button type="submit" class="btn btn-success"
+																		formaction="<%=request.getContextPath()%>/product/changeStatus">上架</button>
+																</c:when>
+															</c:choose>
 														</form>
 													</td>
 												</tr>

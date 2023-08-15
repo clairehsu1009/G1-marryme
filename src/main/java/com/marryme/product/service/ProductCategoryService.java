@@ -16,4 +16,6 @@ public interface ProductCategoryService extends CoreService {
 	List<ProductCategory> findAll();
 
 	ProductCategory getOne(Integer id);
+
+	String getCategoryNameByCategoryId(Integer productCategoryId);
 }

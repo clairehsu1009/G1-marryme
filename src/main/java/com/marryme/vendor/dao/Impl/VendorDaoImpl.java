@@ -3,14 +3,7 @@ package com.marryme.vendor.dao.Impl;
 
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
 import org.hibernate.Session;
-import org.hibernate.query.Query;
-
-
 import com.marryme.vendor.dao.VendorDao;
 import com.marryme.vendor.vo.Vendor;
 
@@ -30,54 +23,79 @@ public class VendorDaoImpl implements VendorDao {
 		return 1;
 	}
 	
-	@Override
-	public int update(Vendor vendor) {
-		final StringBuilder hql = new StringBuilder()
-				.append("UPDATE Vendor SET ");
-		final String password = vendor.getVendorPassword();
-		if (password != null && !password.isEmpty()) {
-			hql.append("password = :password,");
-		}
-		hql.append("vendorName = :vendorName, ")
-			.append("vendorPhone = :vendorPhone, ")
-			.append("vendorEmail = :vendorEmail, ")
-			.append("vendorLocation = :vendorLocation, ")
-			.append("vendorAddress = :vendorAddress, ")
-			.append("vendorWebsite = :vendorWebsite, ")
-			.append("vendorFb = :vendorFb, ")
-			.append("vendorIg = :vendorIg, ")
-			.append("companyId = :companyId, ")
-			.append("contactPerson = :contactPerson, ")
-			.append("basicIntroduction = :basicIntroduction, ")
-			.append("googlemap = :googlemap, ")
-			.append("vendorRegistrationTime = NOW() ")
-			.append("WHERE vendorId = :vendorId");
-		Query query = getSession().createQuery(hql.toString());
-		if (password != null && !password.isEmpty()) {
-			query.setParameter("password", vendor.getVendorPassword());
-		}
-		return query.setParameter("vendorName", vendor.getVendorName())
-		        .setParameter("vendorPhone", vendor.getVendorPhone())
-		        .setParameter("vendorEmail", vendor.getVendorEmail())
-		        .setParameter("vendorLocation", vendor.getVendorLocation())
-		        .setParameter("vendorAddress", vendor.getVendorAddress())
-		        .setParameter("vendorWebsite", vendor.getVendorWebsite())
-		        .setParameter("vendorFb", vendor.getVendorFb())
-		        .setParameter("vendorIg", vendor.getVendorIg())
-		        .setParameter("companyId", vendor.getCompanyId())
-		        .setParameter("contactPerson", vendor.getContactPerson())
-		        .setParameter("basicIntroduction", vendor.getBasicIntroduction())
-		        .setParameter("googlemap", vendor.getGooglemap())
-		        .setParameter("vendorId", vendor.getVendorId())
-				.executeUpdate();
+//	public void update(Vendor vendor) {
+//        // 只set 可以修改的欄位
+//		vendor.setVendorName(vendor.getVendorName());
+//		vendor.setVendorPhone(vendor.getVendorPhone());
+//		vendor.setVendorAddress(vendor.getVendorAddress());
+//		vendor.setVendorLocation(vendor.getVendorLocation());
+//		vendor.setCompanyId(vendor.getCompanyId());
+//		vendor.setContactPerson(vendor.getContactPerson());
+//		vendor.setVendorWebsite(vendor.getVendorWebsite());
+//		vendor.setVendorFb(vendor.getVendorFb());
+//		vendor.setVendorIg(vendor.getVendorIg());
+//		vendor.setGooglemap(vendor.getGooglemap());
+//
+//        getSession().merge(vendor);
+//
+//    }
+	
+	public void update(Vendor vendor) {
+	    if (vendor == null || vendor.getVendorId() == null) {
+	        return;
+	    }
+	    
+	    Vendor existingVendor = getSession().get(Vendor.class, vendor.getVendorId());
+	    
+	    if (existingVendor == null) {
+	        return;
+	    }
+	    
+	    if (vendor.getVendorName() != null) {
+	    	existingVendor.setVendorName(vendor.getVendorName());
+	    }
+	    
+	    if (vendor.getVendorPhone() != null) {
+	    	existingVendor.setVendorPhone(vendor.getVendorPhone());
+	    }
+	    
+	    if (vendor.getVendorAddress() != null) {
+	    	existingVendor.setVendorAddress(vendor.getVendorAddress());
+	    }
+	    
+	    if (vendor.getVendorLocation() != null) {
+	    	existingVendor.setVendorLocation(vendor.getVendorLocation());
+	    }
+	    
+	    if (vendor.getVendorPassword() != null) {
+	    	existingVendor.setVendorPassword(vendor.getVendorPassword());
+	    }
+	    
+	    if (vendor.getVendorWebsite() != null) {
+	    	existingVendor.setVendorWebsite(vendor.getVendorWebsite());
+	    }
+	    
+	    if (vendor.getVendorFb() != null) {
+	    	existingVendor.setVendorFb(vendor.getVendorFb());
+	    }
+	    
+	    if (vendor.getVendorIg() != null) {
+	    	existingVendor.setVendorIg(vendor.getVendorIg());
+	    }
+	    
+	    if (vendor.getCompanyId() != null) {
+	    	existingVendor.setCompanyId(vendor.getCompanyId());
+	    }
+	    
+	    if (vendor.getContactPerson() != null) {
+	    	existingVendor.setContactPerson(vendor.getContactPerson());
+	    }
+	    
+	    getSession().merge(existingVendor);
 	}
 	
 	
 	
-	@Override
-	public Vendor selectById(String vendorId) {
-		return getSession().get(Vendor.class, vendorId);
-	}
 
 	@Override
 	public List<Vendor> selectAll() {
@@ -87,21 +105,17 @@ public class VendorDaoImpl implements VendorDao {
 				.getResultList();
 	}
 	
+	
 	@Override
 	public Vendor selectByVendorId(String vendorId) {
-		Session session = getSession();
-		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-		CriteriaQuery<Vendor> criteriaQuery = criteriaBuilder.createQuery(Vendor.class);
-		Root<Vendor> root = criteriaQuery.from(Vendor.class);
-		criteriaQuery.where(criteriaBuilder.equal(root.get("vendorId"), vendorId));
-		return session.createQuery(criteriaQuery).uniqueResult();
+		return getSession().get(Vendor.class, vendorId);
 	}
 	
 	
 	@Override
 	public Vendor selectForLogin(String vendorId, String vendorPassword) {
 		final String sql = "select * from Vendor "
-				+ "where vendorId = :vendorId and vendorPassword = :vendorPassword";
+				+ "where vendor_id = :vendorId and vendor_password = :vendorPassword";
 		return getSession().createNativeQuery(sql, Vendor.class)
 				.setParameter("vendorId", vendorId)
 				.setParameter("vendorPassword", vendorPassword)

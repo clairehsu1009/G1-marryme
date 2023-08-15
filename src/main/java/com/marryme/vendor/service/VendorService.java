@@ -10,6 +10,12 @@ public interface VendorService extends CoreService{
 	
 
 	List<Vendor> findAll();
+	
+	Vendor login(Vendor vendor);
+	
+	Vendor register(Vendor vendor);
+	
+	Vendor edit(Vendor vendor);
 
 
 }

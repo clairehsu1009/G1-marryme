@@ -1,12 +1,9 @@
 package com.marryme.vendor.vo;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,7 +11,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.*;
 
 @Entity
 @Table(name = "vendor", catalog = "marryme")
@@ -25,7 +21,6 @@ import lombok.*;
 public class Vendor {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "vendor_id")
 	private String vendorId; 
 	/** 品牌名稱 */
@@ -34,9 +29,6 @@ public class Vendor {
 	/** 廠商電話 */
 	@Column(name = "vendor_phone")
 	private String vendorPhone; 
-	/** 廠商信箱 */
-	@Column(name = "vendor_email")
-	private String vendorEmail;
 	/** 廠商密碼 */
 	@Column(name = "vendor_password")
 	private String vendorPassword; 
@@ -47,15 +39,14 @@ public class Vendor {
 	@Column(name = "vendor_address")
 	private String vendorAddress;
 	/** 廠商類別(必填 讓廠商進入不同類別頁面 確定好類別就不可變更) 
-	 * 狀態 0商品 1服務<br>
-     * 預設0 商品 <br>
-     * 1服務
+	 * 狀態 0未選擇 1商品 2服務<br>
      * */
 	@Column(name = "manufacturer_category")
 	private Integer manufacturerCategory;
+	
 	/** 廠商註冊時間 */
 	@Column(name = "vendor_registration_time")
-	private Date vendorRegistrationTime;
+	private LocalDate vendorRegistrationTime;
 	/** 廠商官方網址 */
 	@Column(name = "vendor_website")
 	private String vendorWebsite;
@@ -67,7 +58,7 @@ public class Vendor {
 	private String vendorIg; 
 	/** 廠商統編 */
 	@Column(name = "company_id")
-	private Integer companyId;
+	private String companyId;
 	/** 廠商聯絡人 */
 	@Column(name = "contact_person")
 	private String contactPerson;

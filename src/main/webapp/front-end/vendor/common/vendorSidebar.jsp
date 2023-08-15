@@ -8,7 +8,7 @@
                                         alt="User Image">
         <div>
             <p class="app-sidebar__user-designation" style="font-size:20px;">Welcome</p>
-            <p class="app-sidebar__user-name">會員名字</p>
+            <p class="app-sidebar__user-name" style="font-size:8px;">${vendor.vendorId}</p>
         </div>
     </div>
     <ul class="app-menu">

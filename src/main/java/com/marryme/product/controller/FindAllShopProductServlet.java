@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.marryme.product.entity.Product;
+import com.marryme.product.service.impl.ProductCategoryServiceImpl;
 import com.marryme.product.service.impl.ProductServiceImpl;
 
 @WebServlet("/product/findAllShopProduct")
@@ -27,36 +28,32 @@ public class FindAllShopProductServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private ProductServiceImpl service;
+	private ProductCategoryServiceImpl categoryService;
 
 	@Override
 	public void init() throws ServletException {
 		service = new ProductServiceImpl();
+		categoryService = new ProductCategoryServiceImpl();
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 測試用 之後上線要刪除
-		resp.setHeader("Access-Control-Allow-Origin", "*"); // 允許來自所有網域的請求
-		resp.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE"); // 允許的 HTTP 方法
-		resp.setHeader("Access-Control-Allow-Headers", "Content-Type"); // 允許的請求Header
-		resp.setHeader("Access-Control-Allow-Credentials", "true"); // 是否允許帶有憑證的請求
-
-	    String productCategoryIdParam = req.getParameter("productCategoryId");
-	    System.out.println(productCategoryIdParam);
-	    Integer productCategoryId = null;
-	    if (productCategoryIdParam != null && !productCategoryIdParam.isEmpty()) {
-	        try {
-	            productCategoryId = Integer.valueOf(productCategoryIdParam);
-	        } catch (NumberFormatException e) {
-	            // 轉換失敗，設定預設的產品類別編號
-	            productCategoryId = 1; // 預設的產品類別編號
-	        }
-	    } else {
-	        // 如果productCategoryId為null或空字串，也設定預設的產品類別編號
-	        productCategoryId = 1; // 預設的產品類別編號
-	    }
+		String productCategoryIdParam = req.getParameter("productCategoryId");
+		Integer productCategoryId = null;
+		if (productCategoryIdParam != null && !productCategoryIdParam.isEmpty()) {
+			try {
+				productCategoryId = Integer.valueOf(productCategoryIdParam);
+			} catch (NumberFormatException e) {
+				// 轉換失敗，設定預設的產品類別編號
+				productCategoryId = 1; // 預設的產品類別編號
+			}
+		} else {
+			// 如果productCategoryId為null或空字串，也設定預設的產品類別編號
+			productCategoryId = 1; // 預設的產品類別編號
+		}
 
 		List<Product> products = service.findAllByProductCategoryId(productCategoryId);
+		String productCategoryName = categoryService.getCategoryNameByCategoryId(productCategoryId);
 
 		resp.setContentType("application/json; charset=utf-8");
 		try (PrintWriter out = resp.getWriter()) {
@@ -73,7 +70,10 @@ public class FindAllShopProductServlet extends HttpServlet {
 				jsonObject.addProperty("id", product.getProductId());
 				jsonObject.addProperty("image", imageBase64);
 				jsonObject.addProperty("title", product.getProductName());
-				jsonObject.addProperty("price", formattedPrice);
+				jsonObject.addProperty("vendorName", product.getVendor().getVendorName());
+				jsonObject.addProperty("price", formattedPrice); // 格式化後的價格
+				jsonObject.addProperty("platformPrice", product.getPlatformPrice()); // 原始價格
+				jsonObject.addProperty("productCategoryName", productCategoryName);
 
 				// 將商品 JSON 物件添加到列表中
 				jsonObjects.add(jsonObject);
@@ -101,7 +101,6 @@ public class FindAllShopProductServlet extends HttpServlet {
 			if (product.isPresent()) {
 				byte[] imageData = product.get().getImage();
 				if (imageData != null) {
-//					System.out.println(imageData);
 					imageBase64 = Base64.getEncoder().encodeToString(imageData);
 				} else {
 					// 若該欄位無圖片則顯示預設圖片

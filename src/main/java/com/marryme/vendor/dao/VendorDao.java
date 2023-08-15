@@ -5,8 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 
 import com.marryme.core.util.HibernateUtil;
-import com.marryme.member.dao.MemberDao;
-import com.marryme.member.vo.Member;
+
 import com.marryme.vendor.vo.Vendor;
 
 public interface VendorDao{
@@ -14,19 +13,17 @@ public interface VendorDao{
 	List<Vendor> selectAll();
 	
 	void insert(Vendor vendor);
-	
-	int update(Vendor vendor);
+
+	void update(Vendor vendor);
 	
 	int deleteById(Integer id);
 	
-	/** 搜尋會員帳號 */
+	/** 搜尋廠商帳號 */
 	Vendor selectByVendorId(String vendorId);
 	
-	/** 搜尋登入會員帳號密碼 */
+	/** 搜尋登入廠商帳號密碼 */
 	Vendor selectForLogin(String vendorId, String vendorPassword);
 
-	Vendor selectById(String vendorId);
-	
 	
 	
 	 default Session getSession() {

@@ -38,7 +38,6 @@ public class GetOneForUpdateServlet extends HttpServlet {
 			return;
 		}
 		req.setAttribute("product", product);
-		System.out.println(product.getImage());
 		req.getRequestDispatcher("/front-end/vendor/product/editProduct.jsp").forward(req, res);
 	}
 

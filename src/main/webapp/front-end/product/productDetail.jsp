@@ -27,9 +27,6 @@
 	href="${pageContext.request.contextPath}/public/css/style.css"
 	type="text/css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/front-end/product/css/product_rate.css"
-	type="text/css">
-<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/front-end/product/css/product_detail.css"
 	type="text/css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.min.css">
@@ -50,8 +47,7 @@
 					href="#" title="Marryme首頁"> <span itemprop="name">首頁</span></a>
 					<meta itemprop="position" content="1"></li>
 				<li itemprop="itemListElement" itemscope
-					itemtype="https://schema.org/ListItem"><span itemprop="name">穎川堂手工巧克力
-						婚禮小物</span></a>
+					itemtype="https://schema.org/ListItem"><span itemprop="name">${product.vendor.vendorName}</span></a>
 					<meta itemprop="position" content="2" /></li>
 				<li><span itemprop="name">${product.productName}</span>
 					<meta itemprop="position" content="3" /></li>
@@ -63,13 +59,14 @@
 			<div class="detail">
 				<div class="name">
 					<h2>
-						穎川堂手工巧克力 婚禮小物
+						${product.vendor.vendorName}
 					</h2>
 				</div>
 				<div>
 					<a class="evaluate"
 						href="#"> 
-						<span class="bg_star"></span> 5.0&nbsp;
+						<span class="bg_star" style="width: 64px">
+						</span> 5.0&nbsp;
 						<span class="counts" id="evaluate_counts_basic">(39)</span></a>
 				</div>
 			</div>
@@ -155,143 +152,6 @@
 			</div>
 		</div>
 	</div>
-	<section id="studio_reviews_main" class="rwd_wrap group">
-		<div class="title_studio_main">
-			<h2>
-				<a name="studio_reviews"></a> 評價
-			</h2>
-			<span class="title_count" id="evaluate_count_main" style=""> <b
-				id="evaluate_count"><a
-					href="https://www.marry.com.tw/studio-reviews-56748">39</a></b> 則
-			</span><span class="d_line"></span>
-		</div>
-		<div id="evaluate_list_html">
-			<div class="rate_box clearfix">
-				<a name="reviews_1124724"></a>
-				<div class="rate_basic clearfix">
-					<div class="rate_pic">
-						<img
-							src="https://statics.marry.com.tw/img/public/MarryBar_default_avatar_20200827_4.jpg"
-							class="review_profile_photo"
-							data-real-src="https://statics.marry.com.tw/img/public/MarryBar_default_avatar_20200827_4.jpg">
-					</div>
-					<div class="rate_what">
-						<div class="rate_who">
-							<b>蔡宗烜</b>
-						</div>
-						<div class="evaluate">
-							<span class=""></span><span class=""></span><span class=""></span><span
-								class=""></span><span class=""></span>
-						</div>
-					</div>
-				</div>
-				<div class="rate_info">
-					<div id="descri_evaluate_all_temp_1124724">
-						<a
-							href="https://www.marry.com.tw/studio-reviews_detail-kwmi56748mmri1124724mm.html"
-							title="" style="color: #333; text-decoration: none;">首先，很謝謝店家願意花這時間、花這精神去設計我想要的糖果。這在我婚禮達到的效果爆炸好！店家每一隻手工的巧克力都非常巧手、美味（賓客的回饋），甚至是貨物的包裝上都能感受到店家用心！我也非常開心找到這間用...</a><a
-							href="https://www.marry.com.tw/studio-reviews_detail-kwmi56748mmri1124724mm.html"><span>繼續閱讀</span></a>
-					</div>
-					<div class="descri_all" style="display: none"
-						id="descri_evaluate_all_1124724">
-						<a
-							href="https://www.marry.com.tw/studio-reviews_detail-kwmi56748mmri1124724mm.html"
-							title="" style="color: #333; text-decoration: none;">首先，很謝謝店家願意花這時間、花這精神去設計我想要的糖果。這在我婚禮達到的效果爆炸好！店家每一隻手工的巧克力都非常巧手、美味（賓客的回饋），甚至是貨物的包裝上都能感受到店家用心！我也非常開心找到這間用心的店家！</a>
-					</div>
-				</div>
-			</div>
-			<div class="rate_box clearfix">
-				<a name="reviews_1121695"></a>
-				<div class="rate_basic clearfix">
-					<div class="rate_pic">
-						<img
-							src="https://statics.marry.com.tw/img/public/MarryBar_default_avatar_20200827_0.jpg"
-							class="review_profile_photo"
-							data-real-src="https://statics.marry.com.tw/img/public/MarryBar_default_avatar_20200827_0.jpg">
-					</div>
-					<div class="rate_what">
-						<div class="rate_who">
-							<b>Abby Yu</b>
-						</div>
-						<div class="evaluate">
-							<span class=""></span><span class=""></span><span class=""></span><span
-								class=""></span><span class=""></span>
-						</div>
-					</div>
-				</div>
-				<div class="rate_info">
-					<div id="descri_evaluate_all_temp_1121695">
-						<a
-							href="https://www.marry.com.tw/studio-reviews_detail-kwmi56748mmri1121695mm.html"
-							title="" style="color: #333; text-decoration: none;">去年結婚時就是訂購了穎川堂手工巧克力<br>
-							有狗狗有貓貓<br> 每隻都好可愛<br> 老闆娘還很貼心的幫我準備了女生柴犬及男生柴犬<br>
-							溝通過程也都很積極<br> 好後悔當時自己沒有留一些下來🥲<br> 超級推薦👍👍👍
-						</a>
-					</div>
-					<div class="descri_all" style="display: none"
-						id="descri_evaluate_all_1121695">
-						<a
-							href="https://www.marry.com.tw/studio-reviews_detail-kwmi56748mmri1121695mm.html"
-							title="" style="color: #333; text-decoration: none;">去年結婚時就是訂購了穎川堂手工巧克力<br>
-							有狗狗有貓貓<br> 每隻都好可愛<br> 老闆娘還很貼心的幫我準備了女生柴犬及男生柴犬<br>
-							溝通過程也都很積極<br> 好後悔當時自己沒有留一些下來🥲<br> 超級推薦👍👍👍
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="rate_box clearfix">
-				<a name="reviews_1121301"></a>
-				<div class="rate_basic clearfix">
-					<div class="rate_pic">
-						<img
-							src="https://statics.marry.com.tw/img/public/MarryBar_default_avatar_20200827_1.jpg"
-							class="review_profile_photo"
-							data-real-src="https://statics.marry.com.tw/img/public/MarryBar_default_avatar_20200827_1.jpg">
-					</div>
-					<div class="rate_what">
-						<div class="rate_who">
-							<b>Yayin Chen</b>
-						</div>
-						<div class="evaluate">
-							<span class=""></span><span class=""></span><span class=""></span><span
-								class=""></span><span class=""></span>
-						</div>
-					</div>
-				</div>
-				<div class="rate_info">
-					<div id="descri_evaluate_all_temp_1121301">
-						<a
-							href="https://www.marry.com.tw/studio-reviews_detail-kwmi56748mmri1121301mm.html"
-							title="" style="color: #333; text-decoration: none;">超可愛的，結婚拿來發大家都搶著要<br>
-							<br> 我自己只留下了幾隻做紀念，非常感謝
-						</a>
-					</div>
-					<div class="descri_all" style="display: none"
-						id="descri_evaluate_all_1121301">
-						<a
-							href="https://www.marry.com.tw/studio-reviews_detail-kwmi56748mmri1121301mm.html"
-							title="" style="color: #333; text-decoration: none;">超可愛的，結婚拿來發大家都搶著要<br>
-							<br> 我自己只留下了幾隻做紀念，非常感謝
-						</a>
-					</div>
-				</div>
-			</div>
-			<br>
-			<div class="load_more" id="load_more">
-				<input type="hidden" id="now_evaluate_c" value="20"> <input
-					type="hidden" id="now_page_c" value="2"><input
-					type="hidden" id="evaluate_page_c" value="10"> <a
-					id="evaluate_next" href="#" class="radius_2">載入更多(尚有19則評價)</a> <input
-					type="hidden" id="m_id" value="56748">
-			</div>
-		</div>
-	</section>
-
-
-
-
-
-
 	<!-- body End -->
 
 
@@ -317,45 +177,41 @@
     <!-- 引入SweetAlert2的JS程式碼 -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.all.min.js"></script>
     <script>
- 	// 獲取 URL 中的 productId 參數
-		const urlParams = new URLSearchParams(window.location.search);
-		const productId = urlParams.get('productId');
-	// 使用Fetch API呼叫後端Servlet取得商品資料
-		const currentDomain = window.location.origin;
-		const apiUrl = `${currentDomain}/marryme/product/addCart`;
+	 	// 獲取 URL 中的 productId 參數
+			const urlParams = new URLSearchParams(window.location.search);
+			const productId = urlParams.get('productId');
+			const memberId = urlParams.get('memberId');
+			const currentDomain = window.location.origin;
+			const apiUrl = `${currentDomain}/marryme/product/addCart`;
+		
+	    $(document).ready(function() {
+	        // 監聽加入購物車按鈕的點擊事件
+	        $(".add_ask").on("click", function() {
+	          // 獲取數量
+	          var quantity = $(".product-qty").val();
 	
-    $(document).ready(function() {
-        // 監聽加入購物車按鈕的點擊事件
-        $(".add_ask").on("click", function() {
-          // 獲取數量
-          var quantity = $(".product-qty").val();
-
-          // 發送POST請求到後端Servlet
-          $.ajax({
-            type: "POST",
-            url: apiUrl, // 根據您的後端Servlet的路徑來設置
-            data: {
-              productId: productId, // 將商品ID和數量作為POST請求的數據傳遞
-              productQty: quantity
-            },
-            success: function(response) {
-            	 // 這裡可以處理加入購物車成功的提示，您可以使用Swal.fire或其他方法
-                Swal.fire({
-                    icon: 'success',
-                    title: '成功加入購物車!',
-                    text: '商品已經添加到購物車中。',
-                }).then(function() {
-                    // 成功提示後自動跳轉到購物車頁面
-                    window.location.href = '/marryme/front-end/product/shoppingCart.jsp';
-                });
-            },
-            error: function(xhr, status, error) {
-              // 這裡可以處理加入購物車失敗的提示，您可以使用Swal.fire或其他方法
-              Swal.fire("加入購物車失敗!", "請稍後再試。", "error");
-            }
-          });
-        });
-      });
+	          // 發送POST請求到後端Servlet
+	          $.ajax({
+	            type: "POST",
+	            url: apiUrl, 
+	            data: {
+	              productId: productId, // 將商品ID和數量作為POST請求的數據傳遞
+	              productQty: quantity,
+	              memberId: memberId
+	            },
+	            success: function(response) {
+	                Swal.fire({
+	                    icon: 'success',
+	                    title: '成功加入購物車!',
+	                    text: '商品已經添加到購物車中。',
+	                });
+	            },
+	            error: function(xhr, status, error) {
+	              Swal.fire("加入購物車失敗!", "請稍後再試。", "error");
+	            }
+	          });
+	        });
+	      });
     </script>
 
 </body>

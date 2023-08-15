@@ -59,31 +59,73 @@ public class ProductDaoImpl implements ProductDao {
 		query.setParameter("vendorId", vendorId);
 		return query.list();
 	}
-	
+
 	@Override
 	public List<Product> selectAllByProductCategoryId(Integer productCategoryId) {
-		String hql = "FROM Product WHERE productCategoryId = :productCategoryId";
+		String hql = "FROM Product WHERE productCategoryId = :productCategoryId AND productStatus = 1";
 		Query<Product> query = getSession().createQuery(hql, Product.class);
 		query.setParameter("productCategoryId", productCategoryId);
+		return query.list();
+	}
+	
+	@Override
+	public List<Product> getOrderByStatus(Integer productStatus) {
+		String hql = "FROM Product WHERE productStatus = :productStatus ORDER BY productId DESC";
+		Query<Product> query = getSession().createQuery(hql, Product.class);
+		query.setParameter("productStatus", productStatus);
+		return query.list();
+	}
+	
+	@Override
+	public List<Product> getOrderByStatusAndVendorId(Integer productStatus, String vendorId) {
+		String hql = "FROM Product WHERE productStatus = :productStatus AND vendorId = :vendorId ORDER BY productId DESC";
+		Query<Product> query = getSession().createQuery(hql, Product.class);
+		query.setParameter("productStatus", productStatus);
+		query.setParameter("vendorId", vendorId);
 		return query.list();
 	}
 
 	@Override
 	public Product findProductPic(Integer productId) {
-	    Session session = getSession();
-	    String hql = "FROM Product WHERE productId = :productId";
-	    Query<Product> query = session.createQuery(hql, Product.class);
-	    query.setParameter("productId", productId);
-	    return query.uniqueResult();
+		Session session = getSession();
+		String hql = "FROM Product WHERE productId = :productId";
+		Query<Product> query = session.createQuery(hql, Product.class);
+		query.setParameter("productId", productId);
+		return query.uniqueResult();
 	}
 
-
-	
-	
 	@Override
-	public void changeStatusToInactive(Integer id) {
-		Product product = getSession().get(Product.class, id);
-		product.setProductStatus(0); // 狀態改為下架
-		getSession().merge(product);
+	public void toggleProductStatus(Integer id) {
+	    Product product = getSession().get(Product.class, id);
+
+	    if (product.getProductStatus() == 0) {
+	        // 當前狀態是下架，改為上架
+	        product.setProductStatus(1);
+	    } else {
+	        //當前狀態是上架，改為下架
+	        product.setProductStatus(0);
+	    }
+
+	    getSession().merge(product);
 	}
+
+	@Override
+	public void updateProductStock(Integer productId, Integer newStock) {
+		try {
+			Session session = getSession();
+
+			// 獲取商品
+			Product product = session.get(Product.class, productId);
+			if (product == null) {
+				throw new RuntimeException("商品不存在");
+			}
+
+			// 更新庫存
+			product.setStockQuantity(newStock);
+			session.merge(product);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

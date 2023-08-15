@@ -1,0 +1,17 @@
+.more_tools div .default {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    color: #777;
+    font-size: 13px;
+    position: absolute;
+    top: 8px;
+    right: 40px;
+    padding: 8px 0;
+    min-width: 220px;
+    text-indent: 10px;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    z-index: 6
+}

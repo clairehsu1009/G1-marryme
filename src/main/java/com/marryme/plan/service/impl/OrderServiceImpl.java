@@ -39,7 +39,6 @@ public class OrderServiceImpl implements OrderService {
             Integer unavailableDatesId = unavailableDateDao.insertValues(unavailableDates);
             planOrder.setUnavailableDatesId(unavailableDatesId);
 
-            // gpt
             planOrderId = dao.insert(planOrder);
             planOrder.setPlanOrderId(planOrderId);
 

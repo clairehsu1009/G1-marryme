@@ -124,7 +124,7 @@ public class PlanOrderController extends HttpServlet {
         String unavailableDate = req.getParameter("unavailableDate");
         Integer unavailableTime = Integer.valueOf(req.getParameter("unavailableTime"));
         Integer orderTables = Integer.valueOf(req.getParameter("orderTables"));
-        Integer totalAmount = Integer.valueOf(req.getParameter("total"));
+        String totalAmount = req.getParameter("total");
         String [] planItemIds = req.getParameterValues("planItemId");
 
         List<Integer> planItemIdList = new ArrayList<>();
@@ -176,7 +176,7 @@ public class PlanOrderController extends HttpServlet {
         String unavailableTime = req.getParameter("unavailableTime");
         Integer orderTables = Integer.parseInt(req.getParameter("tables"));
         Integer tablePrice = Integer.parseInt(req.getParameter("tablePrice"));
-        Integer total = Integer.parseInt(req.getParameter("total"));
+        String total = req.getParameter("total");
         String[] planItemIdArray = req.getParameterValues("planItemId");
         List<Integer> planItemIdList = new ArrayList<>();
         for (String itemId : planItemIdArray) {

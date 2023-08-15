@@ -41,7 +41,7 @@ public class PlanCheckOrder {
     /** 餐價 */
     private Integer tablePrice;
     /** 總金額 */
-    private Integer total;
+    private String total;
     /** 加購項目id陣列 */
     private List<Integer> planItemId;
 

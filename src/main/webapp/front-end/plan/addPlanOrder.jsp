@@ -98,7 +98,6 @@
     </div>
 </section>
 <form METHOD="post" ACTION="<%=request.getContextPath()%>/plan/plan-order">
-<c:if test="${vendorId == plan.vendorId}">
     <table class="table">
         <thead class="thead">
         <tr>
@@ -247,7 +246,7 @@
             </table>
         </div>
     </div>
-</c:if>
+
 <br><br>
 
 
@@ -269,7 +268,7 @@
 <br><br>
 <div class="content_right placeTitle" style="text-align: center">
     <div class="ask btn_common btn_primary add_ask" style="width: 200px; border: none">
-        <span>總金額： </span>
+        <span>總金額：$ </span>
         <span id="total">0</span>
     </div>
 </div>
@@ -321,6 +320,7 @@
         });
         $("#totalAmount").html(totalAmount);
         let total = totalAmount + $('input[name="tablePrice"]:checked').data("table") * $('#tables').val();
+        total = total.toLocaleString();
         $("#totalHidden").val(total);
         $("#total").html(total);
     }
@@ -339,6 +339,7 @@
             totalAmount += $(this).data("money");
         });
         let total = totalAmount + totalTablesMoney;
+        total = total.toLocaleString();
         $("#totalHidden").val(total);
         $("#total").html(total);
     }

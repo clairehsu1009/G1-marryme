@@ -3,7 +3,7 @@ package com.marryme.member.controller;
 import static com.marryme.common.CommonString.*;
 import java.io.IOException;
 
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,14 +14,15 @@ import javax.servlet.http.HttpSession;
 import com.marryme.member.service.MemberService;
 import com.marryme.member.service.Impl.MemberServiceImpl;
 import com.marryme.member.vo.Member;
-
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/user/userBasicinformation")
 public class BasicinformationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private final MemberService service = new MemberServiceImpl();
-	
+	Map<String, String> responseMsgMap = new HashMap<>();
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException {
@@ -59,8 +60,16 @@ public class BasicinformationServlet extends HttpServlet {
 	            // 更新成功後，從資料庫中重新查詢該會員的資料
 //	            Member updatedMember = service.findById(member.getMemberId());
 	        
-	            session.setAttribute("member", newMember);
-	            response.sendRedirect("../index"); 
+	        // 更新 session 中的資料
+	        session.setAttribute("member", newMember);
+	        
+	        // 轉發回原網頁
+	        request.setAttribute("responseMsgMap", responseMsgMap);
+	        responseMsgMap.put(SUCCESS, "資料已更新成功");
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("/front-end/user/userBasicinformation.jsp");
+	        dispatcher.forward(request, response);
+//	            session.setAttribute("member", newMember);
+//	            response.sendRedirect("../index"); 
 //	            request.getRequestDispatcher("../user/userM").forward(request, response);// 更新成功後跳回會員中心
 //	        }else {
 //				

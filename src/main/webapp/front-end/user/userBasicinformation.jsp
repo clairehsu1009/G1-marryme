@@ -29,6 +29,9 @@
         <div>
             <h1><i class="fa fa-user fa-lg"></i>會員基本資料</h1>
         </div>
+        <c:if test="${not empty responseMsgMap.success}">
+				 ${responseMsgMap.success}
+		</c:if>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/front-end/user/userIndex.jsp"><i
                     class="fa fa-home fa-lg"></i></a></li>
@@ -88,6 +91,8 @@
 					<div class="col-sm-10 productAddBtn">
 						<button type="submit" class="btn btn-info" name="action" value="update">儲存</button>
 					</div>
+					
+					
 					</form>
 	
     

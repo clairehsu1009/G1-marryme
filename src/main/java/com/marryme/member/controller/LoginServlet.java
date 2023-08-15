@@ -36,18 +36,21 @@ public class LoginServlet extends HttpServlet {
 		String action = request.getParameter("action");
 
 		if (action.equals("memberLogin")) {
+			String account = request.getParameter("memberAccount");
+			String pwd = request.getParameter("memberPwd");
 			HttpSession session = request.getSession();
 			 // 如果已有使用者登入，先執行登出操作
 		    if (session.getAttribute("vendor") != null || session.getAttribute("member") != null) {
 		        session.invalidate(); // 執行登出操作，使原使用者登出並清除資料
+		        session = request.getSession(); //重新獲取新的session
 		    }
-			String account = request.getParameter("memberAccount");
-			String pwd = request.getParameter("memberPwd");
+//			String account = request.getParameter("memberAccount");
+//			String pwd = request.getParameter("memberPwd");
 //			// 對輸入的密碼進行 SHA-256 加密
-		    String encryptedPassword = encryptPassword(pwd);
-			Member member = new Member();
+//		    String encryptedPassword = encryptPassword(pwd);
+			Member member = new Member();			
 			member.setMemberId(account);
-		
+			String encryptedPassword = encryptPassword(pwd);
 			// 對輸入的密碼進行 SHA-256 加密
 //		    String encryptedPassword = encryptPassword(pwd);
 			member.setMemberPassword(encryptedPassword);
@@ -69,29 +72,28 @@ public class LoginServlet extends HttpServlet {
 			}
 			}
 		} else if (action.equals("vendorLogin")) {
-			HttpSession session = request.getSession();
-			// 如果已有使用者登入，先執行登出操作
-		    if (session.getAttribute("vendor") != null || session.getAttribute("member") != null) {
-		        session.invalidate(); // 執行登出操作，使原使用者登出並清除資料
-		    }
 			String account = request.getParameter("vendorAccount");
 			String pwd = request.getParameter("vendorPwd");
+			HttpSession session = request.getSession();
+			 // 如果已有使用者登入，先執行登出操作
+		    if (session.getAttribute("vendor") != null || session.getAttribute("member") != null) {
+		        session.invalidate(); // 執行登出操作，使原使用者登出並清除資料
+		        session = request.getSession(); //重新獲取新的session
+		    }
+		    Vendor vendor = new Vendor();
+		    vendor.setVendorId(account);
 			// 對輸入的密碼進行 SHA-256 加密
 		    String encryptedPassword = encryptPassword(pwd);
-			Vendor vendor = new Vendor();
-			vendor.setVendorId(account);
 			vendor.setVendorPassword(encryptedPassword);
 			Vendor loggedInVendor = SERVICE2.login(vendor);
 			if (loggedInVendor != null && loggedInVendor.getVendorPassword().equals(encryptedPassword)) {
 //			if (loggedInVendor != null) {
-//			    HttpSession session = request.getSession();
 			    session.setAttribute("vendor", loggedInVendor);
 				response.sendRedirect("../index"); // 登入成功轉預覽首頁 待處理
 			} else {
 				 vendor.setVendorPassword(pwd);
 				 loggedInVendor = SERVICE2.login(vendor);
 				 if (loggedInVendor != null) {
-//					  HttpSession session = request.getSession();
 					    session.setAttribute("vendor", loggedInVendor);
 					    response.sendRedirect("../index"); // 登入成功轉預覽首頁 待處理  
 				 } else {

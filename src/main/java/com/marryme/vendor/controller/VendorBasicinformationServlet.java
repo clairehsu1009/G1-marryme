@@ -1,9 +1,14 @@
 package com.marryme.vendor.controller;
 
+import static com.marryme.common.CommonString.SUCCESS;
 import static com.marryme.common.CommonString.UTF_8;
 import static com.marryme.vendor.util.Constants.VENDOR_BASICINFORMATION_PAGE;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +25,7 @@ public class VendorBasicinformationServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	private final VendorService service = new VendorServiceImpl();
-	
+	Map<String, String> responseMsgMap = new HashMap<>();
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -70,7 +75,11 @@ public class VendorBasicinformationServlet extends HttpServlet{
 	        vendor = service.edit(newVendor);
 //            if (updatedVendor != null) {
                 session.setAttribute("vendor", newVendor);
-                response.sendRedirect("../index"); // 更新成功，重定向到供应商主页
+                request.setAttribute("responseMsgMap", responseMsgMap);
+    	        responseMsgMap.put(SUCCESS, "資料已更新成功");
+    	        RequestDispatcher dispatcher = request.getRequestDispatcher("/front-end/vendor/vendorBasicinformation.jsp");
+    	        dispatcher.forward(request, response);
+//                response.sendRedirect("../index"); // 更新成功，重定向到供应商主页
 //                request.getRequestDispatcher(VENDOR_BASICINFORMATION_PAGE).forward(request, response);
 //            } else {
                 // 更新失败，可以添加相应的处理，例如显示错误消息

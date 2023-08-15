@@ -47,7 +47,7 @@
 	    <div class="col lg_12 md_6 sm_12">
 	        <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="bread_list">
 	            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-	                <a itemprop="item" href="#" title="Marryme首頁">
+	                <a itemprop="item" href="${pageContext.request.contextPath}/index" title="Marryme首頁">
 	                    <span itemprop="name">首頁</span></a>
 	                <meta itemprop="position" content="1">
 	            </li>
@@ -96,7 +96,7 @@
 	                      ${me.value.product.productName} x ${me.value.quantity} <span><fmt:formatNumber type="number" value="${me.value.price}" pattern="$#,###" /></span>
 	                    </li>
 	                    </c:forEach>
-	                    <li class="fw-normal">Subtotal <span><fmt:formatNumber type="number" value="${sessionScope.cart.price}" pattern="$#,###" /></span></li>
+	                    <li class="fw-normal">小計(不含運費)<span><fmt:formatNumber type="number" value="${sessionScope.cart.price}" pattern="$#,###" /></span></li>
 						<!-- 設置 productMap 到 sessionScope -->
 						<c:set var="productMap" value="${sessionScope.cart.productMap}" />
 						    

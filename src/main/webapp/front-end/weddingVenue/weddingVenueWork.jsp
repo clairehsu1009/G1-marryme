@@ -240,14 +240,16 @@
                 </li>
             </ul>
         </div>
+            <div>  
+		      ${googleMap};
+		
+		    </div>
+        
         <div class="line"></div>
     </section>
     
 
-    <div>  
-      ${googleMap};
 
-    </div>
 
 
 

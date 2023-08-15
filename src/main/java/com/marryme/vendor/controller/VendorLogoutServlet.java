@@ -1,4 +1,4 @@
-package com.marryme.member.controller;
+package com.marryme.vendor.controller;
 
 import java.io.IOException;
 
@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/user/userLogout")
-public class LogoutServlet extends HttpServlet{
+@WebServlet("/vendor/vnedorLogout")
+public class VendorLogoutServlet extends HttpServlet{
+
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -18,11 +19,9 @@ public class LogoutServlet extends HttpServlet{
 		request.getSession().invalidate();
 		
 		 HttpSession session = request.getSession();
-	     session.removeAttribute("member");
+	     session.removeAttribute("vendor");
 
 		
 		response.sendRedirect("../index"); // 登入成功轉預覽首頁 待處理
 	}
-	
-	
 }

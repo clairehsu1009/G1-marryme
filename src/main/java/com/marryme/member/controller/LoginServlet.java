@@ -36,6 +36,11 @@ public class LoginServlet extends HttpServlet {
 		String action = request.getParameter("action");
 
 		if (action.equals("memberLogin")) {
+			HttpSession session = request.getSession();
+			 // 如果已有使用者登入，先執行登出操作
+		    if (session.getAttribute("vendor") != null || session.getAttribute("member") != null) {
+		        session.invalidate(); // 執行登出操作，使原使用者登出並清除資料
+		    }
 			String account = request.getParameter("memberAccount");
 			String pwd = request.getParameter("memberPwd");
 //			// 對輸入的密碼進行 SHA-256 加密
@@ -49,16 +54,12 @@ public class LoginServlet extends HttpServlet {
 			Member loggedInMember = SERVICE.login(member);
 			if (loggedInMember != null && loggedInMember.getMemberPassword().equals(encryptedPassword)) {
 //			if (loggedInMember != null) {
-
-			    HttpSession session = request.getSession();
 			    session.setAttribute("member", loggedInMember);
 			    response.sendRedirect("../index"); // 登入成功轉預覽首頁 待處理
 			} else  {
 				 member.setMemberPassword(pwd);
 			     loggedInMember = SERVICE.login(member);
 			     if (loggedInMember != null) {
-
-					    HttpSession session = request.getSession();
 					    session.setAttribute("member", loggedInMember);
 					    response.sendRedirect("../index"); // 登入成功轉預覽首頁 待處理  
 			     } else  {
@@ -68,6 +69,11 @@ public class LoginServlet extends HttpServlet {
 			}
 			}
 		} else if (action.equals("vendorLogin")) {
+			HttpSession session = request.getSession();
+			// 如果已有使用者登入，先執行登出操作
+		    if (session.getAttribute("vendor") != null || session.getAttribute("member") != null) {
+		        session.invalidate(); // 執行登出操作，使原使用者登出並清除資料
+		    }
 			String account = request.getParameter("vendorAccount");
 			String pwd = request.getParameter("vendorPwd");
 			// 對輸入的密碼進行 SHA-256 加密
@@ -78,14 +84,14 @@ public class LoginServlet extends HttpServlet {
 			Vendor loggedInVendor = SERVICE2.login(vendor);
 			if (loggedInVendor != null && loggedInVendor.getVendorPassword().equals(encryptedPassword)) {
 //			if (loggedInVendor != null) {
-			    HttpSession session = request.getSession();
+//			    HttpSession session = request.getSession();
 			    session.setAttribute("vendor", loggedInVendor);
 				response.sendRedirect("../index"); // 登入成功轉預覽首頁 待處理
 			} else {
 				 vendor.setVendorPassword(pwd);
 				 loggedInVendor = SERVICE2.login(vendor);
 				 if (loggedInVendor != null) {
-					  HttpSession session = request.getSession();
+//					  HttpSession session = request.getSession();
 					    session.setAttribute("vendor", loggedInVendor);
 					    response.sendRedirect("../index"); // 登入成功轉預覽首頁 待處理  
 				 } else {

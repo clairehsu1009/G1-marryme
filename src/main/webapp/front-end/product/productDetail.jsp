@@ -65,7 +65,7 @@
 				<div>
 					<a class="evaluate"
 						href="#"> 
-						<span class="bg_star" style="width: 64px">
+						<span class="bg_star">
 						</span> 5.0&nbsp;
 						<span class="counts" id="evaluate_counts_basic">(39)</span></a>
 				</div>

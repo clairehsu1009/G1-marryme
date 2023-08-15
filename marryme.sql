@@ -185,11 +185,11 @@ CREATE TABLE product (
 INSERT INTO product (vendor_id, product_category_id, product_name, image, original_price, platform_price, stock_quantity, product_description, created_time, product_status)
 VALUES ('vendor6@gmail.com', 1, '婚戒1', NULL, 5000, 4000, 50, NULL, NOW(), 1),
 	   ('vendor7@gmail.com', 2, '喜餅1', NULL, 3000, 1500, 100, NULL, NOW(), 1),
-	   ('vendor8@gmail.com', 3, '婚禮小物1', NULL, 1000, 800, 30, NULL, NOW(), 0),
+	   ('vendor8@gmail.com', 3, '婚禮小物1', NULL, 1000, 800, 30, NULL, NOW(), 1),
 	   ('vendor9@gmail.com', 4, '婚紗/禮服1', NULL, 8000, 7000, 20, NULL, NOW(), 1),
 	   ('vendor10@gmail.com', 5, '高跟鞋/西裝鞋1', NULL, 3000, 2500, 40, NULL, NOW(), 1),
 	   ('vendor6@gmail.com', 2, '喜餅2', NULL, 1800, 1600, 80, '超好吃的喜餅喔', NOW(), 1),
-	   ('vendor7@gmail.com', 3, '婚禮小物2', NULL, 900, 700, 15, '可愛的婚禮巧克力', NOW(), 0),
+	   ('vendor7@gmail.com', 3, '婚禮小物2', NULL, 900, 700, 15, '可愛的婚禮巧克力', NOW(), 1),
 	   ('vendor8@gmail.com', 4, '婚紗/禮服2', NULL, 7500, 6000, 25, '新娘穿上會超美', NOW(), 1),
 	   ('vendor9@gmail.com', 5, '高跟鞋/西裝鞋2', NULL, 2800, 2200, 60, '超美的高跟鞋', NOW(), 1),
 	   ('vendor10@gmail.com', 1, '婚戒2', NULL, 4800, 4200, 35, '超讚的婚戒', NOW(), 1);

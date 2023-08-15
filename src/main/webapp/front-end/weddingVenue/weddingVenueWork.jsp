@@ -73,7 +73,7 @@
 
 <!-- 	<div class="filter_pc on_pc"> 做服務or商品的才需要加，這段先保留畫面位置因為有JS功能+還有功能選項尚待確認 -->
 	<div class="filter_pc on_pc">
-		<section class="rwd_wrap group">
+		<section class="rwd_wrap group" style="height:50px;">
 			<div id="service_filter_obt_html">
 				<dl id="show_pr" class="show_filter">
 					<dt>
@@ -132,14 +132,14 @@
 
 
 
-<section class="rwd_wrap profile_detail">
-        <div class="info">
+<section class="rwd_wrap profile_detail"  style="height:100px;">
+        <div class="info"  >
 <%-- <form method="post" action="<%=request.getContextPath()%>/weddingVenueWork">	 --%>
 <input type="hidden" name="placeId" value=1/>
 		
             <div class="avatar">
             	<a href="#" title="${weddingVenueWork.placeTitle}">
-            		<img alt="${weddingVenueWork.placeTitle}" title="${weddingVenueWork.placeTitle}" src="<%=request.getContextPath()%>/weddingVenue?id=${weddingVenueWork.placeId}">
+            		<img style="border-redius:50%;width:50px;height:50px;" alt="${weddingVenueWork.placeTitle}" title="${weddingVenueWork.placeTitle}" src="<%=request.getContextPath()%>/weddingVenue?id=${weddingVenueWork.placeId}">
                 </a>
                 <a class="flagship_tag" href="#" target="_blank">${weddingVenueWork.placeTitle}</a>
             </div>
@@ -242,6 +242,18 @@
         </div>
         <div class="line"></div>
     </section>
+    
+
+    <div>  
+      ${googleMap};
+
+    </div>
+
+
+
+
+
+
 
 
 <style>
@@ -374,11 +386,11 @@
      event.preventDefault();
     
      if (typeof memberId === 'undefined' || memberId == null || memberId == "") { 
+    	
         window.location.href = "<%=request.getContextPath()%>/front-end/user/userLogin.jsp";
     } else {
-<%--         window.location.href = "<%=request.getContextPath()%>/front-end/reservation/addReservation.jsp"; --%>
-<%-- window.location.href = "<%=request.getContextPath()%>/front-end/reservation/addReservation.jsp?placeId=" + placeId; --%>
-window.location.href = "<%=request.getContextPath()%>/addReservation?action=getOne&placeId=" + placeId;
+
+		window.location.href = "<%=request.getContextPath()%>/addReservation?action=getOne&placeId=" + placeId;
 
 
      }

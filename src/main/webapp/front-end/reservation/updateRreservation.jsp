@@ -25,7 +25,7 @@
 		</ul>
 	</div>
 	<!-- 之後這邊要改取得登入廠商的ID 才是正確的 -->
-	<c:if test="${vendorId == reservation.vendorId}">
+<%-- 	<c:if test="${vendorId == reservation.vendorId}"> --%>
 		<div class="row">
 			<div class="col-md-12 productsAdd">
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/reservation">
@@ -74,15 +74,7 @@
 					</div>
 
 
-						
 
-
-
-
-
-
-					
-					
 					
 					
 					<div class="form-group">
@@ -120,16 +112,18 @@
 							<option value="20:00:00">20:00</option>
 						</select>
 					</div>
-					
-					
-					
-					
+							
 					
 					
 					<div class="form-group">
 						<label for="itemDescription" class="col-sm-2 col-form-label">備註</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="reservationNotes" name="reservationNotes" placeholder="請輸入備註資訊" value="${reservation.reservationNotes}">
+<%-- 							<textarea type="text" class="form-control" id="reservationNotes" name="reservationNotes" placeholder="請輸入備註資訊" value="${reservation.reservationNotes}"> --%>
+<!-- 							</textarea> -->
+							<textarea type="text" class="form-control" id="reservationNotes" name="reservationNotes" placeholder="請輸入備註資訊">
+							${reservation.reservationNotes}
+							</textarea>
+
 						</div>
 					</div>
 					
@@ -145,7 +139,7 @@
 						<a href="<%=request.getContextPath()%>/reservation?vendorId=${vendorId}">
 							<button type="button" class="btn btn-danger">取消</button>
 						</a>
-<!-- 						<button type="submit" class="btn btn-info" name="action" value="update">儲存</button> -->
+
 							<button type="submit" class="btn btn-info" name="action" value="update" 
 							 id="update" onclick="assembleDateTime()">儲存</button>
 							
@@ -155,12 +149,13 @@
 				</FORM>
 			</div>
 		</div>
-	</c:if>
+<%-- 	</c:if> --%>
 </main>
 <%@include file="/front-end/vendor/common/vendorFooterScript.jsp"%>
 
 
 <script type="text/javascript">
+
 		//獲取當前日期
 		var currentDate = new Date().toISOString().split("T")[0];
 		
@@ -189,12 +184,54 @@
 		var reservationTimeSelect = document.getElementById("reservationTime");
 
 		// 根據宴客日期的值選中對應的宴客時段選項
-		if (eventDateTime.getHours() < 12) {
+		if (eventDateTime.getHours() == 12) {
 		    eventTimeSelect.value = "12:00:00";
 		} else {
 		    eventTimeSelect.value = "18:00:00";
 		}
-					
+		
+		
+		//取得預約時段的時間	
+		let hours = reservationDateTime.getHours();
+		let minutes = reservationDateTime.getMinutes();
+
+		let combinedTime = hours + ":" + (minutes < 10 ? "0" : "") + minutes;
+
+		if (combinedTime === "12:00") {
+		    reservationTimeSelect.value = "12:00:00";
+		} else if (combinedTime === "12:30") {
+		    reservationTimeSelect.value = "12:30:00";
+		} else if (combinedTime === "13:00") {
+		    reservationTimeSelect.value = "13:00:00";
+		} else if (combinedTime === "13:30") {
+		    reservationTimeSelect.value = "13:30:00";
+		} else if (combinedTime === "14:00") {
+		    reservationTimeSelect.value = "14:00:00";
+		} else if (combinedTime === "14:30") {
+		    reservationTimeSelect.value = "14:30:00";
+		} else if (combinedTime === "15:00") {
+		    reservationTimeSelect.value = "15:00:00";
+		} else if (combinedTime === "15:30") {
+		    reservationTimeSelect.value = "15:30:00";
+		} else if (combinedTime === "16:00") {
+		    reservationTimeSelect.value = "16:00:00";
+		} else if (combinedTime === "16:30") {
+		    reservationTimeSelect.value = "16:30:00";
+		} else if (combinedTime === "17:00") {
+		    reservationTimeSelect.value = "17:00:00";
+		} else if (combinedTime === "17:30") {
+		    reservationTimeSelect.value = "17:30:00";
+		} else if (combinedTime === "18:00") {
+		    reservationTimeSelect.value = "18:00:00";
+		} else if (combinedTime === "18:30") {
+		    reservationTimeSelect.value = "18:30:00";
+		} else if (combinedTime === "19:00") {
+		    reservationTimeSelect.value = "19:00:00";
+		} else if (combinedTime === "19:30") {
+		    reservationTimeSelect.value = "19:30:00";
+		} else if (combinedTime === "20:00") {
+		    reservationTimeSelect.value = "20:00:00";
+		} 			
 
 		// 函數：格式化日期時間為 yyyy-mm-dd 格式
 		function formatDate(date) {

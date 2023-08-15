@@ -69,6 +69,21 @@ public class WeddingVenueServiceImpl implements WeddingVenueService{
 	    	
 	    	return ProductList;
 	    }
+	    
+	    @Override
+	    public List<Vendor> findVendorAllByVendorId(String vendorId) {
+	    	List<Vendor> VendorList = new ArrayList<>();
+	    	try {
+	    		beginTransaction();
+	    		VendorList = dao.selectVendorAllByVendorId(vendorId);
+	    		commit();
+	    	} catch (Exception e) {
+	    		rollback();
+	    		e.printStackTrace();
+	    	}
+	    	
+	    	return VendorList;
+	    }
 
 	   
 
@@ -162,6 +177,25 @@ public class WeddingVenueServiceImpl implements WeddingVenueService{
 		    } else {
 		        return null; // 或是回傳其他預設值，例如 "位置未知"
 		    }
+		}
+		
+		@Override
+		public String findVendorAllString(String id) {
+			Vendor vendor = null;
+			try {
+				beginTransaction();
+				vendor = dao.getVendorbyId(id);
+				commit();
+			} catch (Exception e) {
+				rollback();
+				e.printStackTrace();
+			}
+			
+			if (vendor != null) {
+				return vendor.getVendorLocation();
+			} else {
+				return null; // 或是回傳其他預設值，例如 "位置未知"
+			}
 		}
 
 		@Override

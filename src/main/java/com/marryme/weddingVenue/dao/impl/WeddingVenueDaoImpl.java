@@ -196,7 +196,8 @@ public class WeddingVenueDaoImpl implements WeddingVenueDao{
 		public String getVendorLocationByVendorId(String vendorId) {
 		    String vendorLocation = null;
 		    try {
-		        String sql = "SELECT v.vendorLocation FROM Vendor v WHERE v.vendorId = :vendorId\r\n";
+		        String sql = "SELECT v.vendorLocation FROM Vendor v WHERE v.vendorId = :vendorId";
+//		        String sql = "SELECT v.* FROM Vendor v WHERE v.vendorId = :vendorId";
 		        Query<String> query = getSession().createQuery(sql, String.class);
 		        query.setParameter("vendorId", vendorId);
 		        vendorLocation = query.uniqueResult();
@@ -205,6 +206,17 @@ public class WeddingVenueDaoImpl implements WeddingVenueDao{
 		    }
 		    return vendorLocation;
 		}
+		
+		
+		
+		
+		   @Override
+		    public List<Vendor> selectVendorAllByVendorId(String vendorId) {
+		        String hql = "FROM Vendor WHERE vendorId = :vendorId";
+		        Query<Vendor> query = getSession().createQuery(hql, Vendor.class);
+		        query.setParameter("vendorId", vendorId);
+		        return query.list();
+		    }
 
 		
 	}

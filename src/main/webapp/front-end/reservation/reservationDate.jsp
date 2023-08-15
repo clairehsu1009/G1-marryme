@@ -14,7 +14,7 @@
     <div class="app-title">
         <div>
             <h1>
-                <i class="fa fa-edit"></i>方案加購項目
+                <i class="fa fa-edit"></i>預約賞廳
             </h1>
         </div>
         <ul class="app-breadcrumb breadcrumb">
@@ -23,7 +23,7 @@
         </ul>
     </div>
     <!-- 之後這邊要改取得登入廠商的ID 才是正確的 -->
-    <c:if test="${vendorId == reservation.vendorId}">
+<%--     <c:if test="${vendorId == reservation.vendorId}"> --%>
     <div class="row">
         <div class="col-md-12 productsAdd productList">
         <div class="tab-item-content">
@@ -56,7 +56,7 @@
         </div>
         </div>
     </div>
-    </c:if>
+<%--     </c:if> --%>
 </main>
 <%@include file="/front-end/vendor/common/vendorFooterScript.jsp"%>
 

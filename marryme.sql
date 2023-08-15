@@ -40,8 +40,6 @@ CREATE TABLE member (
   `member_gender` int null comment '性別(0:男; 1:女)',
   `member_registration_time` date null comment '註冊時間',
   `member_last_login_time` date null comment '最後登入時間',
-  `member_registration_ip` varchar(50) null comment '註冊IP',
-  `member_login_ip` varchar(50) null comment '最後登入IP',
   `verification_status` int null comment '驗證狀態(0:未驗證, 1:驗證成功,2:驗證失敗)',
   PRIMARY KEY (member_id))
   comment '會員資料表';

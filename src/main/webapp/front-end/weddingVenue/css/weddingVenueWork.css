@@ -9543,7 +9543,7 @@ a.reserveVenue_btn:hover {
     left: 50%;
     transform: translateX(-50%);
     position: absolute;
-    bottom: 0;
+    bottom: -20px;
     color: #ff6687;
     font-size: 12px;
     padding: 2px 6px 2px 6px;

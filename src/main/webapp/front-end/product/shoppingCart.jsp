@@ -2,6 +2,17 @@
          pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="com.marryme.member.vo.Member" %>
+
+
+<%
+// 檢查是否登錄
+Member member = (Member) session.getAttribute("member");
+if (member == null) {
+    // 若未登錄，導向登入畫面
+    response.sendRedirect(request.getContextPath() + "/front-end/user/userLogin.jsp");
+}
+%>
 
 <!DOCTYPE html>
 <html>
@@ -24,6 +35,8 @@
 </head>
 
 <body>
+<input type="hidden" name="memberId" value="${member.memberId}" />
+<% if (member != null) { %>
 <!-- Header Section Begin -->
 <%@include file="/front-end/header.jsp"%>
 <!-- Header End -->
@@ -104,7 +117,7 @@
 	            <div class="row">
 	              <div class="col-lg-4">
 	                <div class="cart-buttons">
-	                  <a href="/marryme/front-end/product/product.jsp" class="primary-btn continue-shop">繼續購物</a>
+	                  <a href="${pageContext.request.contextPath}/front-end/product/product.jsp" class="primary-btn continue-shop">繼續購物</a>
 	                  <a href="${pageContext.request.contextPath}/product/clearCart" id="clearCartBtn" class="primary-btn up-cart">清空購物車</a>
 	                </div>
 	                <div class="discount-coupon">
@@ -133,7 +146,7 @@
 	    </section>
 	    <!-- Shopping Cart Section End -->
 <!-- body End -->
-
+ <% } %>
 
 <!-- Footer Section Begin -->
 <%@include file="/front-end/footer.jsp"%>

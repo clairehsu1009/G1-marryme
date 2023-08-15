@@ -6,6 +6,8 @@ import java.util.Arrays;
 
 import javax.persistence.*;
 
+import com.marryme.vendor.vo.Vendor;
+
 
 @Entity
 @Table(name = "plan_place", schema = "marryme")
@@ -73,8 +75,9 @@ public class WeddingVenue {
 		@Column(name = "edit_status")
 		private Integer editStatus;
 		
-//		@Column(name = "vendor_location")
-//		private Integer vendorLocation;
+		@ManyToOne
+		@JoinColumn(name = "vendor_id", insertable = false, updatable = false)
+		private Vendor vendor;
 		
 		
 		public WeddingVenue(Integer placeId, byte[] placePicture) {

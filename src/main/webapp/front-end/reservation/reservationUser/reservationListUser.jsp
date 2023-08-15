@@ -101,7 +101,7 @@
 <!-- 			                                                <button type="submit" class="btn btn-info" name="action" value="getOneForUpdate">更新</button> -->
 <%-- 			                                            </c:if> --%>
 		                                           
-			                                            	<button type="submit" class="btn btn-warning" name="action" value="changeStatusToCancel">取消</button>
+<!-- 			                                            	<button type="submit" class="btn btn-warning" name="action" value="changeStatusToCancel">取消</button> -->
 		                                               		
 		                                        </form>
 		                                    </td>

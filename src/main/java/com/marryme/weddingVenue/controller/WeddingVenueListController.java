@@ -66,7 +66,10 @@ public class WeddingVenueListController extends HttpServlet{
 
         
         List<WeddingVenue> currentWeddingVenuesList = weddingVenuesList.subList(startIndex, endIndex);
+        
+        
 
+        
         List<String> locations = new ArrayList<>();
         
         for (WeddingVenue venue : currentWeddingVenuesList) {
@@ -75,22 +78,25 @@ public class WeddingVenueListController extends HttpServlet{
             String vendorId = service.findVendorIdByPlaceId(placeId); 
             String location = service.findVendorLocationByPlaceId(vendorId);
             
-            
             List<Plan> planList = planservice.findAllByVendorIdAndStatus(vendorId, ACTIVE);
     	      req.setAttribute("planList", planList);
     	      int totalPlans = planList.size();
             req.setAttribute("totalPlans", totalPlans);
+            
+            req.setAttribute("vendorName", venue.getVendor().getVendorName());
+
 
             if (location == null) {
                 resp.sendError(HttpServletResponse.SC_NOT_FOUND, "未找到該供應商ID的位置");
                 return;
             }
 
-          
-            System.out.println("Location for vendor " + vendorId + ": " + location);
+            
             req.setAttribute("location", location);
 
         }
+        
+        
         req.getRequestDispatcher("/front-end/weddingVenue/weddingVenue.jsp").forward(req, resp);
     }
 	        

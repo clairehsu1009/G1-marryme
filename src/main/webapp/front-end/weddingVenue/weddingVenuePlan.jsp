@@ -172,7 +172,7 @@
 
                   <ul class="shop_box" id="data-cltk-id_6167">
                     <li class="shop_pic">
-                        <a class="shop_pic_a cltk_click" data-cltk-id="data-cltk-id_6167" href="#"
+                        <a class="shop_pic_a cltk_click" data-cltk-id="data-cltk-id_6167" href="<%=request.getContextPath()%>/plan/plan-product?planProductId=${weddingPlan.planProductId}"
                             title="${weddingPlan.planTitle}">
                                     <img class="shop_pic_img" title="${weddingPlan.planTitle}" alt="${weddingPlan.planTitle}"
                                     src="<%=request.getContextPath()%>/weddingPlanPic?id=${weddingPlan.planProductId}">

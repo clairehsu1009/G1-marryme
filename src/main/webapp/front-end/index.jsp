@@ -178,32 +178,35 @@
                     <i class="title_sort icon_prewedding"></i>
                     <h2>方案</h2>
                 </a>
-                <p>共${totalPlanAlls}作品集</p><span class="more_go"><a
-                        href="https://www.marry.com.tw/prewedding-photos?a_id=817">看更多<img class="arrow_more"
-                            src="https://statics.marry.com.tw/img/public/arrow_more.svg" alt="看更多"></a></span>
+                <p>共${totalPlanAlls}作品集</p>
+                	<span class="more_go">
+                      <a href="${pageContext.request.contextPath}/weddingPlanList">看更多</a>
+                     </span>
             </div>
             
             
-    <form method="post" action="<%=request.getContextPath()%>/index">
+    <form method="post" action="<%=request.getContextPath()%>/plan/plan-product">
             <div class="photos_wall clearfix">
-      <c:forEach var="plan" items="${planAllList}" begin="0" end="2">
+      <c:forEach var="plan" items="${planList}" begin="0" end="2">
                 <ul class="album_box radius_2" id="data-cltk-home_works-21365"
                     data-cltk="aUtNOG9kQkR0cW5zSXMweVB6ZmtqMnJQaE5PMHhwMFFNS0FpOHNMdzQ3SzhNbmg1bWkwSDhLYkJoZWlwMGhMVCtjU05IQTNOMVdaNWRBOEFGc3RNZVpCMU5IaWtpRDc1TVI4UlZNcTJ1OWVKOE5HR0lWWWNqanJFS3dhZG9OU1Z1UmlKTEd4Umk1MjU4NEZNQkJBU1AvNUNmYWhoTFBVdDBUeXJvaUgzZFd3ZTcyR2VTZTNvQm5DdVVvZ29GR2xIbktIUDBDZzJuejE2L1pkNE9ZbVJSY250YnZZcnZXZUxENWd2VFY4TXBpY0k3ZXhvM1ZRYVZR"
                     itemscope="" itemtype="https://schema.org/ImageObject">
-                    <li class="photos_pic"><a class="cltk_click" data-cltk-id="data-cltk-home_works-21365"
-                            href="#"
-                            title="${plan.planTitle}">
-                            <picture>
-                                <source
-                                    data-srcset="<%=request.getContextPath()%>/weddingPlan?id=${plan.planProductId}"
-                                    type="image/webp">
-                                <source
-                                    data-srcset="<%=request.getContextPath()%>/weddingPlan?id=${plan.planProductId}"
-                                    type="image/jpg"><img class="lazy" itemprop="contentUrl" 
-                                    title="${plan.planTitle}" alt="${plan.planTitle}"
-                                    data-src="<%=request.getContextPath()%>/weddingPlan?id=${plan.planProductId}">
-                            </picture>
-                        </a><span class="photos_counts"></span></li>
+                     <li class="photos_pic">
+                        <%-- <a class="cltk_click" data-cltk-id="data-cltk-home_works-21365" --%>
+                            <%-- href="#" --%>
+                                <%-- title="${plan.planTitle}">--%>
+                                    <a class="shop_pic_a cltk_click"
+                                        data-cltk-id="data-cltk-home_basic-9033"
+                                        href="<%=request.getContextPath()%>/plan/plan-product?planProductId=${plan.planProductId}"
+                                        title="">
+                                        <picture>
+                                            <img class="lazy shop_pic_img" title="${plan.planTitle}"
+                                                alt="${plan.planTitle}" width="80%"
+                                                data-src="${pageContext.request.contextPath}/ShowPhoto?planProductId=${plan.planProductId}&photoFieldName=planPicture">
+                                        </picture>
+                                    </a>
+                                    <span class="photos_counts"></span>
+                    </li>
                     <li class="photos_name">
                         <h3 class="boxsize nobr"><a class="cltk_click" data-cltk-id="data-cltk-home_works-21365"
                                 href="#"

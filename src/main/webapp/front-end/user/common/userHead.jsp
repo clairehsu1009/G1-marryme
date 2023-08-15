@@ -21,6 +21,6 @@
 <%
   //TODO 之後這邊要改取得登入廠商的ID 才是正確的
 //   String memberId = "member2@gmail.com";
-  Member memberId = (Member) session.getAttribute("memdor");
+  Member memberId = (Member) session.getAttribute("member");
   session.setAttribute("memberId", memberId);
 %>

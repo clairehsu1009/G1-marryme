@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<title>Merry Me</title>
+<title>Marry Me</title>
 <link rel="icon"
 	href="${pageContext.request.contextPath}/public/images/front-end/marrymelittle.ico" type="image/x-icon">
 
@@ -129,6 +129,10 @@
                                 href="#" title="${weddingVenue.placeTitle}">${weddingVenue.placeTitle}
                             </a>
                         </h3>
+                        <p>
+                        	<a class="shop_name" style="text-decoration: none;color: black;font-size: 7px;" data-cltk-id="data-cltk-id_6167" href="#"
+                                title="${vendorName}">${vendorName}</a>
+                        </p>
                         <div class="shop_title">
                         	<a class="evaluate cltk_click" data-cltk-id="data-cltk-home_basic-9033" href="#">
                                 <img src="https://statics.marry.com.tw/img/public/selected.svg" alt="${weddingVenue.placeTitle}" title="${weddingVenue.placeTitle}">5.0&nbsp;
@@ -169,7 +173,8 @@
 
 <!-- ====================================方案================================================ -->
         <div class="lg_12 md_12 sm_12 clearfix">
-            <div class="index_title"><a href="https://www.marry.com.tw/prewedding-photos?a_id=811">
+            <div class="index_title">
+            	<a href="${pageContext.request.contextPath}/weddingPlanList">
                     <i class="title_sort icon_prewedding"></i>
                     <h2>方案</h2>
                 </a>
@@ -263,6 +268,10 @@
                     <li class="shop_info">
                         <h3><a class="shop_name cltk_click" data-cltk-id="data-cltk-home_basic-9033"
                                 href="#" title="${product.productName}">${product.productName}
+                            </a>
+                        </h3>
+                        <h3><a class="shop_name cltk_click" data-cltk-id="data-cltk-home_basic-9033"
+                                href="#" title="${vendorName}">${vendorName}
                             </a>
                         </h3>
                         <div class="shop_title">

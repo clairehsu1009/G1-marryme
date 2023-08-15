@@ -86,7 +86,7 @@ public class ReservationController extends HttpServlet {
 			case "changeStatusToCancel":
 				changeStatusToCancel(req, resp, responseMsgMap);
 				break; // 取得狀態為下架的加購項目清單
-			case "getPlanItemInactiveList":
+			case "getReservationItemInactiveList":
 				getCancelReservationList(req, resp);
 				break;
 			default:
@@ -115,6 +115,7 @@ public class ReservationController extends HttpServlet {
 		if (StringUtils.isNotBlank(reqMap.get("memberId")[0])) {
 			vo.setMemberId(reqMap.get("memberId")[0]);
 		}
+		
 		if (StringUtils.isNotBlank(reqMap.get("contactName")[0])) {
 			vo.setContactName(reqMap.get("contactName")[0]);
 		} else {
@@ -181,6 +182,10 @@ public class ReservationController extends HttpServlet {
 			responseMsgMap.put(EXCEPTION, "請輸入預約日期");
 			req.getRequestDispatcher(ADD_RESERVATION_STRING).forward(req, resp);
 			return; // 阻止程式繼續執行
+		};
+		
+		if (StringUtils.isNotBlank(reqMap.get("reservationNotes")[0])) {
+			vo.setReservationNotes(reqMap.get("reservationNotes")[0]);
 		};
 
 		vo.setStatus(1);
@@ -313,6 +318,10 @@ public class ReservationController extends HttpServlet {
 			return; // 阻止程式繼續執行
 		}
 		;
+		
+		if (StringUtils.isNotBlank(reqMap.get("reservationNotes")[0])) {
+			reservation.setReservationNotes(reqMap.get("reservationNotes")[0]);
+		}
 		reservation.setStatus(1);
 		boolean result = service.update(reservationId, reservation);
 		// 更新成功

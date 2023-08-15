@@ -7405,6 +7405,10 @@ section {
     color: #5ca1f5
 }
 
+.textColorChange{
+    color: hsla(0, 100%, 50%, 0.5); /* This is red with 50% opacity */
+}
+
 .list_by ul li+li:before {
     color: #e2e2e2;
     content: "|";
@@ -7555,6 +7559,19 @@ section {
     color: rgba(0, 0, 0, 0.4);
     font-size: 13px
 }
+
+.shop_name2 {
+    color: rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+    font-size: 10px;
+}
+
+a.shop_name2 {
+    text-decoration: none;
+    color: black;
+}
+
+
 
 .good_box .price {
     color: #FF6687;

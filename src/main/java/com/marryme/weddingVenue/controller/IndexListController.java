@@ -79,7 +79,9 @@ public class IndexListController extends HttpServlet{
               req.setAttribute("productList", productList);
               int totalProducts = productList.size();
               req.setAttribute("totalProducts", totalProducts);
-                
+              
+              req.setAttribute("vendorName", venue.getVendor().getVendorName());
+                System.out.println(venue.getVendor().getVendorName());
 
                 if (location == null) {
                     resp.sendError(HttpServletResponse.SC_NOT_FOUND, "未找到該供應商ID的位置");

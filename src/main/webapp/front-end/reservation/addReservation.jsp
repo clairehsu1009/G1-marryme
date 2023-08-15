@@ -176,12 +176,13 @@ String placeId = request.getParameter("placeId");
 							</div>
 							<div>
 								<input type="hidden" name="vendorId" value="${vendorId}">
-								<a href="${pageContext.request.contextPath}/front-end/reservation/addReservation.jsp"  class="submitBtn">
-									<button type="button" class="submitBtn">取消</button>
-								</a>
-						
-								<a  class="submitBtn">
-								<button type="submit" class="submitBtn" name="action" value="insert" id="insert">儲存</button>
+								<a href="${pageContext.request.contextPath}/front-end/reservation/addReservation.jsp"  class="">
+									<button type="button" class="submitBtn" >取消</button>
+								</a>							 
+							  
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a  class="">
+								<button  type="submit" class="submitBtn" name="action" value="insert" id="insert">儲存</button>
 								</a>
 							</div>
 							

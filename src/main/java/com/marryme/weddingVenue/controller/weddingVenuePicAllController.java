@@ -20,7 +20,7 @@ import com.marryme.weddingVenue.service.WeddingVenueService;
 import com.marryme.weddingVenue.service.impl.WeddingVenueServiceImpl;
 
 @WebServlet("/weddingVenuePicAll")
-public class FindPicAllVenueController extends HttpServlet {
+public class weddingVenuePicAllController extends HttpServlet {
     private static final long serialVersionUID = 12L;
 
     private final WeddingVenueService service = new WeddingVenueServiceImpl();
@@ -46,9 +46,6 @@ public class FindPicAllVenueController extends HttpServlet {
                 if (optionalImages.isPresent()) {
                     List<byte[]> images = optionalImages.get();
                     
-//                    int size = images.size();
-//                    resp.setContentType("text/plain");
-//                    resp.getWriter().write(String.valueOf(size));
 
                     
                     if (imageIndex >= 0 && imageIndex < images.size()) {

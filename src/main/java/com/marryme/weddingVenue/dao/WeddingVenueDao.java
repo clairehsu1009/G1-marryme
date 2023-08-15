@@ -19,6 +19,9 @@ public interface WeddingVenueDao extends CoreDao<WeddingVenue, Integer>  {
 	    /** 取得方案符合狀態的資料 */
 	    List<Plan> selectPlanAllAndStatus(String statusType);
 	    
+	    /*取得廠商vendor資料*/
+		List<Vendor> selectVendorAllByVendorId(String vendorId);
+	    
 	    
 	    /** 取得周邊符合狀態的資料 */
 	    List<Product> selectProductAllAndStatus(String statusType);

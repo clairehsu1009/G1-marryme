@@ -17,7 +17,7 @@
 </head>
 <body >
 <%@include file="/front-end/header.jsp"%>
-<%@include file="/front-end/vendor/common/vendorSidebar.jsp"%>
+<%@include file="/back-end/common/backSidebar.jsp" %>>
 
 
 <main class="app-content">

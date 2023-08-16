@@ -332,11 +332,11 @@ CREATE TABLE `reservation` (
 INSERT INTO reservation (vendor_id, member_id, contact_name, contact_number, event_date, reservation_date,status)
 VALUES
     ('vendor1@gmail.com', 'member2@gmail.com', 'Jane Smith', '0923456789', '2023-07-11 12:00:00', '2023-07-06 14:30:00',1),
-    ('vendor1@gmail.com', 'member2@gmail.com', 'Jane Smith', '0923456789', '2023-07-11 12:00:00', '2023-07-06 14:30:00',1),
-    ('vendor1@gmail.com', 'member3@gmail.com', 'Michael Johnson', '0934567890', '2023-07-12 12:00:00', '2023-07-07 19:30:00',1),
-    ('vendor1@gmail.com', 'member4@gmail.com', 'Emily Davis', '0945678901', '2023-07-13 12:00:00', '2023-07-08 09:30:00',1),
+    ('vendor1@gmail.com', 'member2@gmail.com', 'Jane Smith', '0923456789', '2023-07-11 18:00:00', '2023-07-06 14:30:00',1),
+    ('vendor1@gmail.com', 'member3@gmail.com', 'Michael Johnson', '0934567890', '2023-07-12 18:00:00', '2023-07-07 19:30:00',1),
+    ('vendor1@gmail.com', 'member4@gmail.com', 'Emily Davis', '0945678901', '2023-07-13 12:00:00', '2023-07-08 19:30:00',1),
     ('vendor1@gmail.com', 'member5@gmail.com', 'David Brown', '0956789012', '2023-07-14 12:00:00', '2023-07-09 16:00:00',1),
-    ('vendor1@gmail.com', 'member6@gmail.com', 'Jennifer Wilson', '0967890123', '2023-07-15 12:00:00', '2023-07-10 11:30:00',1),
+    ('vendor1@gmail.com', 'member6@gmail.com', 'Jennifer Wilson', '0967890123', '2023-07-15 12:00:00', '2023-07-10 12:30:00',1),
     ('vendor1@gmail.com', 'member7@gmail.com', 'Andrew Miller', '0978901234', '2023-07-16 12:00:00', '2023-07-11 13:30:00',1),
     ('vendor1@gmail.com', 'member8@gmail.com', 'Olivia Taylor', '0989012345', '2023-07-17 12:00:00', '2023-07-12 18:30:00',1),
     ('vendor1@gmail.com', 'member9@gmail.com', 'Daniel Anderson', '0990123456', '2023-07-18 12:00:00', '2023-07-13 15:30:00',1),

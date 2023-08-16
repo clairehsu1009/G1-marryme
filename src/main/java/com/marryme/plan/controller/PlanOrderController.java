@@ -160,7 +160,7 @@ public class PlanOrderController extends HttpServlet {
             doGet(req, resp);
             return;
         }
-        responseMsgMap.put(SUCCESS, INSERT_SUCCESS);
+        responseMsgMap.put(SUCCESS, "訂單已成立");
         PlanOrder planOrder = service.getOne(id);
         req.setAttribute("planOrder", planOrder);
         req.getRequestDispatcher(MEMBER_OWN_ORDER_PAGE).forward(req, resp);

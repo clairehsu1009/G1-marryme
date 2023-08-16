@@ -172,8 +172,8 @@
                     <th scope="col">項目種類</th>
                     <th scope="col">項目名稱</th>
                     <th scope="col">項目說明</th>
-                    <th scope="col">訂金</th>
-                    <th scope="col" class="price" style="margin-right: 20px">金額</th>
+                    <th scope="col" class="price" style="text-align: right">金額</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -189,14 +189,16 @@
                             <td>${item.itemTypeName}</td>
                             <td>${item.itemSelect}</td>
                             <td>${item.itemDescription}</td>
-                            <td>${item.itemDeposit}</td>
-                            <td style="margin-right: 20px">${item.itemTotal}</td>
+                            <td style="text-align: right">
+                                $ <fmt:formatNumber value="${item.itemTotal}" type="number" pattern="#,##0" />
+                            </td>
+                            <td></td>
                         </tr>
                     </c:if>
                 </c:forEach>
                 <tr>
                     <td colspan="5" style="text-align: right;"><strong>總計：</strong></td>
-                    <td id="totalTablesMoney" style="margin-right: 20px">0</td>
+                    <td id="totalTablesMoney" style="text-align: left">0</td>
                 </tr>
                 </tbody>
             </table>
@@ -214,8 +216,8 @@
                     <th scope="col">項目種類</th>
                     <th scope="col">項目名稱</th>
                     <th scope="col">項目說明</th>
-                    <th scope="col">訂金</th>
-                    <th scope="col" class="price" style="margin-right: 20px">金額</th>
+                    <th scope="col" class="price" style="text-align: right">金額</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -231,40 +233,22 @@
                             <td>${item.itemTypeName}</td>
                             <td>${item.itemSelect}</td>
                             <td>${item.itemDescription}</td>
-                            <td>${item.itemDeposit}</td>
-                            <td style="margin-right: 20px">
-                                <span id="platformPrice">${item.itemTotal}</span>
+                            <td style="text-align: right">
+                                $ <fmt:formatNumber value="${item.itemTotal}" type="number" pattern="#,##0" />
                             </td>
+                            <td></td>
                         </tr>
                     </c:if>
                 </c:forEach>
                 <tr>
                     <td colspan="5" style="text-align: right;"><strong>總計：</strong></td>
-                    <td id="totalAmount" style="margin-right: 20px">0</td>
+                    <td id="totalAmount" style="text-align: left ">0</td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
-
 <br><br>
-
-
-
-<%--<div class="content_right placeTitle">--%>
-<%--    <h1 class="title" style="text-align: center">訂購人資料：</h1>--%>
-<%--</div>--%>
-<%--<div>--%>
-<%--    <p>--%>
-<%--        <span>姓名：</span>--%>
-<%--    </p>--%>
-<%--    <p>--%>
-<%--        <span>電話：</span>--%>
-<%--    </p>--%>
-<%--    <p>--%>
-<%--        <span>地址：</span>--%>
-<%--    </p>--%>
-<%--</div>--%>
 <br><br>
 <div class="content_right placeTitle" style="text-align: center">
     <div class="ask btn_common btn_primary add_ask" style="width: 200px; border: none">
@@ -273,9 +257,7 @@
     </div>
 </div>
     <br><br>
-<%--<div class="content_right placeTitle">--%>
-<%--    <button class="ask btn_common btn_primary add_ask" style="width: 500px; border: none;" type="submit">訂購 </button>--%>
-<%--</div>--%>
+
 
     <div class="content_right placeTitle">
         <input type="hidden" name="planProductId" value="${plan.planProductId}">
@@ -285,26 +267,18 @@
         <input type="hidden" id="totalHidden" name="total" value="">
 
         <button class="ask btn_common btn_primary add_ask" style="width: 500px; border: none;" type="submit" name="action" value="check">下一頁：確認訂購資訊 </button>
-        <%--        <a class="ask btn_common btn_primary add_ask" style="width: 500px" type="submit"  name="action" value="insert" href="<%=request.getContextPath()%>/plan/plan-product?vendorId=${vendorId}" rel_m_id="MktGdnBZVk82L2U0THMwOGZB" rel_s_id="17411" rel_a_id="760">立即訂購 </a>--%>
-        <%--  <a href="<%=request.getContextPath()%>/plan/plan-product?vendorId=${vendorId}"><button type="button" class="btn btn-danger">取消</button></a>--%>
-        <%--    <button type="submit" class="btn btn-info" name="action" value="update">儲存</button>--%>
     </div>
 </form>
 
 <br><br><br><br>
-<!-- Footer Section Begin -->
-<%@include file="/front-end/footer.jsp"%>
-<!-- Footer Section End -->
 
-<!-- Js Plugins -->
+<%@include file="/front-end/footer.jsp"%>
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/js/template/jquery-3.7.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/js/template/bootstrap.bundle.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/js/template/bootstrap.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/js/marryme.js"></script>
-<%--<script type="text/javascript" src="${pageContext.request.contextPath}/front-end/product/js/productDetail.js"></script>--%>
-<!-- 載入 Bootstrap 5 的 JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
-<!-- 引入SweetAlert2的JS程式碼 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.all.min.js"></script>
 <script>
 

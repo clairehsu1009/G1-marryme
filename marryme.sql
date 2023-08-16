@@ -660,7 +660,7 @@ CREATE TABLE plan_order (
   order_status int comment'訂單狀態,0已成立、1處理中、2已聯繫廠商、3廠商已確認訂購品項、4已完成、5已取消',
   payment_method int comment'付款方式, 0轉帳、1刷卡',
   payment_state int comment'付款狀態,0未付款、1已付訂、2已付清、3取消',
-  total_amount int comment'總金額',
+  total_amount bigint comment'總金額',
   order_dateTime Timestamp not null comment'訂單時間',
   grant_amount int not null comment'餘額',
   FOREIGN KEY (member_id) REFERENCES member(member_id),

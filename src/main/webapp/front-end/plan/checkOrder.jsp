@@ -107,7 +107,6 @@
   </div>
 </section>
 <form METHOD="post" ACTION="<%=request.getContextPath()%>/plan/plan-order" >
-<c:if test="${vendorId == plan.vendorId}">
 <div class="content_right placeTitle">
   <h1 class="title" style="text-align: center">請確認方案商品明細：</h1>
 </div>
@@ -133,7 +132,7 @@
   </table>
   <br><br>
   <div class="content_right placeTitle">
-    <h1 class="title" style="text-align: left">場地：</h1>
+    <h1 class="title" style="text-align: center">場地</h1>
   </div>
   <table class="table">
     <thead class="thead">
@@ -145,15 +144,7 @@
     </tr>
     </thead>
     <tbody>
-<%--    <c:forEach var="placeIdList" items="${placeId}" begin="0" end="${placeId.size()}">--%>
-<%--      <c:if test="${placeIdList != null}">--%>
         <tr>
-<%--          <td>--%>
-<%--            <label for="${placeService.getOne(planCheckOrder.placeId)}" class="col-sm-2 col-form-label">--%>
-<%--              <input type="radio"  id="${placeService.getOne(placeId)}" name="placeId" value="${placeService.getOne(placeId)}" />--%>
-<%--              <span class="checkmark"></span>--%>
-<%--            </label>--%>
-<%--          </td>--%>
           <td>
             <img width="200px" height="200px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${place.placeId}&photoFieldName=placePicture" class="rounded mx-auto d-block" alt="場地主圖片">
           </td>
@@ -161,21 +152,20 @@
           <td style="text-align: center">${place.numbeOfTables}</td>
           <td STYLE="text-align: left">${place.placeIntroduction}</td>
         </tr>
-<%--      </c:if>--%>
-<%--    </c:forEach>--%>
     </tbody>
   </table>
+  <br><br>
   <div class="content_left placeTitle">
-    <h1 class="title" style="text-align: left; font-size: 20px; margin-left: 30px">
+    <h1 class="title" style="text-align: center; font-size: 25px">
       婚宴餐價：
-      <span style="font-size: 18px">
+      <span style="font-size: 23px">
         <c:out value="${planCheckOrder.orderTables}" />
         桌 x $<c:out value="${itemService.getOne(planCheckOrder.tablePrice).itemTotal}" />
         / (桌數x單價)
       </span>
     </h1>
-    <br>
-    <h1 class="title" style="text-align: left; font-size: 20px; margin-left: 30px">
+    <br><br><br><br>
+    <h1 class="title" style="text-align: center; font-size: 20px; margin-left: 30px">
       您的加購項目如下：
     </h1>
   </div>
@@ -198,12 +188,6 @@
           <c:if test="${item.itemType != 1}">
             <input type="hidden" name="planItemId" value="${item.planItemId}">
             <tr>
-<%--              <td>--%>
-<%--                <label class="col-sm-2 col-form-label">--%>
-<%--                  <input type="checkbox" name="planItemId" value="${itemService.getOne(item)}" data-money="${itemService.getOne(item).itemTotal}"/>--%>
-<%--                  <span class="checkmark"></span>--%>
-<%--                </label>--%>
-<%--              </td>--%>
               <td>${item.itemTypeName}</td>
               <td>${item.itemSelect}</td>
               <td>${item.itemDescription}</td>
@@ -215,24 +199,15 @@
           </c:if>
           </c:if>
         </c:forEach>
-<%--        <tr>--%>
-<%--          <td colspan="5" style="text-align: right;"><strong>總計：</strong></td>--%>
-<%--          <td id="totalAmount" style="margin-right: 20px">0</td>--%>
-<%--        </tr>--%>
         </tbody>
       </table>
     </div>
   </div>
-</c:if>
 <br><br>
 <div class="content_left placeTitle">
   <h1 class="title" style="text-align: center; font-size: 35px; margin-left: 30px">付款資訊</h1>
   <div class="input-group mb-3">
-    <label for="pay_name" class="input-group-text" id="basic-addon1">持卡人姓名</label>
-    <input name="pay_name" id="pay_name" type="text" class="form-control" placeholder="yourName" aria-label="yourName" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <label for="pay_card" class="input-group-text" id="basic-addon2">卡號</label>
+    <label for="pay_card" class="input-group-text" id="basic-addon2">信用卡號</label>
     <input name="pay_card" id="pay_card" type="text" class="form-control" placeholder="1111 2222 3333 4444" aria-label="cardNumber" aria-describedby="basic-addon2">
   </div>
   <div class="input-group mb-3">
@@ -245,8 +220,6 @@
   </div>
 </div>
 
-
-
 <br><br>
 <div class="content_right placeTitle" style="text-align: center">
   <div class="ask btn_common btn_primary add_ask" style="width: 200px; border: none">
@@ -254,11 +227,7 @@
     <span id="total">${planCheckOrder.total}</span>
   </div>
 </div>
-<%-- todo 帶入會員基本資料--%>
 <br><br>
-<%--<div class="content_right placeTitle">--%>
-<%--    <button class="ask btn_common btn_primary add_ask" style="width: 500px; border: none;" type="submit">訂購 </button>--%>
-<%--</div>--%>
 
 
   <div class="content_right placeTitle">
@@ -272,58 +241,75 @@
     <input type="hidden" name="orderTables" value="${planCheckOrder.orderTables}">
     <input type="hidden" name="total" value="${planCheckOrder.total}">
 
-    <button class="ask btn_common btn_primary add_ask" style="width: 500px; border: none;" type="submit" name="action" value="insert" href="<%=request.getContextPath()%>/plan/plan-order?vendorId=${vendorId}">確認訂購 </button>
+    <button class="ask btn_common btn_primary add_ask" id="submit" style="width: 500px; border: none;" type="submit" name="action" value="insert" href="<%=request.getContextPath()%>/plan/plan-order?vendorId=${vendorId}">確認付款 </button>
   </div>
 </form>
 
 <br><br><br><br>
-<!-- Footer Section Begin -->
-<%@include file="/front-end/footer.jsp"%>
-<!-- Footer Section End -->
 
-<!-- Js Plugins -->
+<%@include file="/front-end/footer.jsp"%>
+
+
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/js/template/jquery-3.7.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/js/template/bootstrap.bundle.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/js/template/bootstrap.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/js/marryme.js"></script>
-<%--<script type="text/javascript" src="${pageContext.request.contextPath}/front-end/product/js/productDetail.js"></script>--%>
-<!-- 載入 Bootstrap 5 的 JavaScript -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
-<!-- 引入SweetAlert2的JS程式碼 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.all.min.js"></script>
+<%@include file="/front-end/vendor/common/vendorFooterScript.jsp"%>
+
 <script>
-  // var total = 0;
-  //
-  // $('input[name="planItemId"]').on("change", () => {
-  //   updateTotalAmount();
-  // });
-  //
-  // function updateTotalAmount() {
-  //   let totalAmount = 0;
-  //   $('input[name="planItemId"]:checked').each(function() {
-  //     totalAmount += $(this).data("money");
-  //     total += totalAmount;
-  //   });
-  //   $("#totalAmount").html(totalAmount);
-  //   $("#total").html(total);
-  // }
-  //
-  //
-  //
-  //
-  // $('input[name="tablePrice"]').on("change", () => {
-  //   updateTotalTablesMoney();
-  // });
-  //
-  // function updateTotalTablesMoney() {
-  //   let totalTablesMoney = 0;
-  //   totalTablesMoney += $('input[name="tablePrice"]:checked').data("table") * $('#tables').val();
-  //   total += totalTablesMoney
-  //
-  //   $("#totalTablesMoney").html(totalTablesMoney);
-  //   $("#total").html(total);
-  //
-  // }
+  $("#submit").click(function() { //綁定sumbit提交訂單按鈕，添加點擊事件
+    var num = /^\d*$/; //全數字
+    var title = $.trim($("#pay_card").val());
+
+    if (title == "") {
+      Swal.fire({
+        icon: 'error',
+        title: '請輸入信用卡卡號！',
+        text: '請稍後再試。',
+      });
+      return false;
+    }
+    if (title.length != 16 || !num.exec(title)) {
+      Swal.fire({
+        icon: 'error',
+        title: '信用卡卡號長度必須為16位且為數字！',
+        text: '請稍後再試。',
+      });
+      return false;
+    }
+
+    var exp = $.trim($("#pay_exp").val());
+    if (exp == "") {  //為空
+      Swal.fire({
+        icon: 'error',
+        title: '請輸入信用卡有效期限！',
+        text: '請稍後再試。',
+      });
+      return false;
+    }
+    var cvv = $.trim($("#pay_code").val());
+    if (cvv == "") {  //為空
+      Swal.fire({
+        icon: 'error',
+        title: '請輸入信用卡背面末三碼(檢查碼)！',
+        text: '請稍後再試。',
+      });
+      return false;
+    }
+    if (cvv.length != 3 || !num.exec(cvv)) {
+      Swal.fire({
+        icon: 'error',
+        title: '信用卡背面末三碼(檢查碼)長度必須為3位且為數字！',
+        text: '請稍後再試。',
+      });
+      return false;
+    }
+  })
+
 
 
 </script>

@@ -6,7 +6,6 @@
 <%@ page import="static com.marryme.common.CommonString.ACTIVE" %>
 <%@ page import="com.marryme.plan.vo.Item" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.marryme.vendor.vo.Vendor" %>
 <%--
   Created by IntelliJ IDEA.
   User: T14 Gen 3
@@ -20,7 +19,6 @@
 
 <jsp:useBean id="plan" scope="request" class="com.marryme.plan.vo.Plan" />
 <jsp:useBean id="place" scope="request" class="com.marryme.plan.vo.Place" />
-<%--<jsp:useBean id="item" scope="request" class="com.marryme.plan.vo.Item" />--%>
 <jsp:useBean id="unavailableDate" scope="request" class="com.marryme.plan.vo.UnavailableDates"/>
 
 <%
@@ -99,9 +97,6 @@
       </div>
     </div>
   </div>
-<%--  <div class="toolbar">--%>
-<%--    <a class="ask btn_common btn_primary add_ask" href="<%=request.getContextPath()%>/plan/plan-order?planProductId=${plan.planProductId}">立即訂購 </a>--%>
-<%--  </div>--%>
 </section>
   <section class="rwd_wrap group">
     <div class="favor_content">
@@ -183,8 +178,8 @@
                   <th scope="col">項目種類</th>
                   <th scope="col">項目名稱</th>
                   <th scope="col">項目說明</th>
-                  <th scope="col">訂金</th>
-                  <th scope="col" style="margin-right: 20px">金額</th>
+                  <th scope="col" style="text-align: right">金額</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -193,8 +188,10 @@
                     <td>${item.itemTypeName}</td>
                     <td>${item.itemSelect}</td>
                     <td>${item.itemDescription}</td>
-                    <td>${item.itemDeposit}</td>
-                    <td style="margin-right: 20px">${item.itemTotal}</td>
+                    <td style="text-align: right">
+                      $ <fmt:formatNumber value="${item.itemTotal}" type="number" pattern="#,##0" />
+                    </td>
+                    <td></td>
                   </tr>
                 </c:forEach>
               </tbody>

@@ -44,7 +44,7 @@
 				class="bread_list">
 				<li itemprop="itemListElement" itemscope
 					itemtype="https://schema.org/ListItem"><a itemprop="item"
-					href="#" title="Marryme首頁"> <span itemprop="name">首頁</span></a>
+					href="${pageContext.request.contextPath}/index" title="Marryme首頁"> <span itemprop="name">首頁</span></a>
 					<meta itemprop="position" content="1"></li>
 				<li itemprop="itemListElement" itemscope
 					itemtype="https://schema.org/ListItem"><span itemprop="name">${product.vendor.vendorName}</span></a>

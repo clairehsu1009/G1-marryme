@@ -6,10 +6,10 @@
 
 
 <%
-// 檢查是否登錄
+// 檢查是否登入
 Member member = (Member) session.getAttribute("member");
 if (member == null) {
-    // 若未登錄，導向登入畫面
+    // 若未登入，導向登入畫面
     response.sendRedirect(request.getContextPath() + "/front-end/user/userLogin.jsp");
 }
 %>
@@ -46,7 +46,7 @@ if (member == null) {
     <div class="col lg_12 md_6 sm_12">
         <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="bread_list">
             <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <a itemprop="item" href="#" title="Marryme首頁">
+                <a itemprop="item" href="${pageContext.request.contextPath}/index" title="Marryme首頁">
                     <span itemprop="name">首頁</span></a>
                 <meta itemprop="position" content="1">
             </li>

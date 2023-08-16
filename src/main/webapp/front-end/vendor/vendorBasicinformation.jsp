@@ -30,6 +30,9 @@
         <div>
             <h1><i class="fa fa-user fa-lg"></i> 廠商基本資料</h1>
         </div>
+        <c:if test="${not empty responseMsgMap.success}">
+								    ${responseMsgMap.success}
+		</c:if>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/front-end/vendor/vendorIndex.jsp"><i
                     class="fa fa-home fa-lg"></i></a></li>

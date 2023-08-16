@@ -77,7 +77,7 @@ if (member == null) {
                 <thead>
                   <tr>
                     <th>商品圖片</th>
-                    <th class="p-name">商品名稱</th>
+                    <th>商品名稱</th>
                     <th>價格</th>
                     <th>數量</th>
                     <th>總計</th>
@@ -133,7 +133,7 @@ if (member == null) {
 	              <div class="col-lg-4 offset-lg-4">
 	                <div class="proceed-checkout">
 	                  <ul>
-	                    <li class="cart-total">合計(不含運費) <span style="color: #e7ab3c;font-size: 16px;font-weight: 700">$<em data-type="total"><fmt:formatNumber value="${cart.price}" type="number" pattern="#,###" /></em></span></li>
+	                    <li class="cart-total">合計(不含運費) <span style="color: #e7ab3c;font-size: 16px;font-weight: 700">$<em data-type="total" style="font-weight: 700"><fmt:formatNumber value="${cart.price}" type="number" pattern="#,###" /></em></span></li>
 	                  </ul>
 	                  <a href="${pageContext.request.contextPath}/front-end/product/checkOut.jsp" class="proceed-btn">前往結帳</a>
 	                </div>

@@ -59,6 +59,10 @@
         <li class="pc_list"><a href="<%=request.getContextPath()%>/user/userLogout" title="登出" class="no_block">登出</a></li>
         <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/user/userBasicinformation.jsp" title="客戶資訊" class="no_block">客戶資訊</a></li>
     </c:when>
+     <c:when test="${not empty emp.empId}">
+        <!-- 員工已登入 -->
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/emp/empLogout" title="登出" class="no_block">登出</a></li>
+    </c:when>
     <c:otherwise>
         <!-- 未登入 -->
         <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/product/shoppingCart.jsp"><i class="fas fa-cart-shopping"></i></a></li>

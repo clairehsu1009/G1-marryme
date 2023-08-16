@@ -59,8 +59,13 @@
                 class="app-menu__icon fa fa-cogs"></i><span class="app-menu__label">訂單管理</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
+
                 <li><a class="treeview-item" href="#"><i class="icon fa fa-th-list"></i>商品訂單</a></li>
                 <li><a class="treeview-item" href="#"><i class="icon fa fa-th-list"></i>方案訂單</a></li>
+
+                <li><a class="treeview-item" href="<%=request.getContextPath()%>/order/getOrderByStatus?vendorId=${vendor.vendorId}&orderStatus=1"><i class="icon fa fa-th-list"></i>商品訂單</a></li>
+                <li><a class="treeview-item" href="<%=request.getContextPath()%>/front-end/vendor/plan/order/order.jsp"><i class="icon fa fa-th-list"></i>方案訂單</a></li>
+
             </ul>
         </li>
         

@@ -117,7 +117,6 @@ public class PlanOrderController extends HttpServlet {
         }
     }
     private void insert(HttpServletRequest req, HttpServletResponse resp, Map<String, String> responseMsgMap) throws ServletException, IOException {
-
         String memberId = req.getParameter("memberId");
         Integer planProductId = Integer.valueOf(req.getParameter("planProductId"));
         Integer placeId = Integer.valueOf(req.getParameter("placeId"));
@@ -163,7 +162,7 @@ public class PlanOrderController extends HttpServlet {
         PlanOrder planOrder = service.getOne(id);
         req.setAttribute("planOrder", planOrder);
         // 要傳遞到哪頁勒
-        req.getRequestDispatcher(CREATE_ORDER_PAGE).forward(req, resp);
+        req.getRequestDispatcher(MY_ORDER_PAGE).forward(req, resp);
 
     }
     private void check(HttpServletRequest req, HttpServletResponse resp, Map<String, String> responseMsgMap) throws ServletException, IOException {

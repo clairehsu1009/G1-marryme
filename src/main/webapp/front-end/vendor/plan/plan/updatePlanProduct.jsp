@@ -13,7 +13,7 @@
 
 <%
     PlaceService placeService = new PlaceServiceImpl();
-    List<Place> placeList = placeService.findAllByVendorId(vendorId);
+    List<Place> placeList = placeService.findAllByVendorId(String.valueOf(vendorId));
     pageContext.setAttribute("placeList", placeList);
 %>
 

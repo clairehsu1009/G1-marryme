@@ -22,12 +22,11 @@
                 <li><a class="treeview-item" href="#"><i class="icon fa fa-edit"></i>新增商品</a></li>
             </ul>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
-                class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">商品管理</span><i
+		 <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+                class="app-menu__icon fa fa-cogs"></i><span class="app-menu__label">商品訂單</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-archive"></i>我的商品</a></li>
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-edit"></i>新增商品</a></li>
+                <li><a class="treeview-item" href="<%=request.getContextPath()%>/order/findOrderByMemberId?memberId=${member.memberId}&orderStatus=1"><i class="icon fa fa-th-list"></i>我的購買訂單</a></li>
             </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
@@ -39,6 +38,7 @@
             </ul>
         </li>
 
+
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                 class="app-menu__icon fa fa-credit-card"></i><span class="app-menu__label">我的訂單</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
@@ -46,6 +46,7 @@
                 <li><a class="treeview-item" href="<%=request.getContextPath()%>/plan?memberId=${memberId}"><i class="icon fa fa-th-list"></i>結婚方案訂單</a></li>
             </ul>
         </li>
+
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                 class="app-menu__icon fa fa-cogs"></i><span class="app-menu__label">直播訂單管理</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>

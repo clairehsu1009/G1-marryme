@@ -17,7 +17,7 @@ import java.util.List;
  */
 public interface OrderDao extends CoreDao<PlanOrder, Integer> {
     /** 廠商的訂單 */
-//    public List<PlanOrder> selectAllByVendorId(String vendorId);
+    List<PlanOrder> selectAllByVendorId(String vendorId);
     /** 會員的訂單 */
-    public List<PlanOrder> selectAllByMemberId(String memberId);
+    List<PlanOrder> selectAllByMemberId(String memberId);
 }

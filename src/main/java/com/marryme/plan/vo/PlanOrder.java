@@ -34,6 +34,9 @@ public class PlanOrder {
     /** 會員ID */
     @Column(name = "member_id")
     private String memberId;
+    /** 廠商ID */
+    @Column(name = "vendor_id")
+    private String vendorId;
     /** 方案商品ID */
     @Column(name = "plan_product_id")
     private Integer planProductId;

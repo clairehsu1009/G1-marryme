@@ -22,7 +22,7 @@ public class EmpLogoutServlet extends HttpServlet{
 	     session.removeAttribute("emp");
 
 		
-		response.sendRedirect("../emp/empLogin.jsp"); // 登入成功轉預覽首頁 待處理
+		response.sendRedirect("../back-end/emp/empLogin.jsp"); // 登入成功轉預覽首頁 待處理
 	}
 
 

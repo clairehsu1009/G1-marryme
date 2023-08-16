@@ -11,7 +11,7 @@
 </head>
 <body class="app sidebar-mini rtl">
 <%@include file="/front-end/header.jsp" %>
-<%@include file="/front-end/user/common/userSidebar.jsp" %>
+<%@include file="/back-end/common/backSidebar.jsp" %>
 
 
 <main class="app-content">

@@ -14,7 +14,9 @@ import com.marryme.emp.vo.Emp;
 
 
 @WebFilter({
-	"/back-end/emp/empMaterial.jsp"
+	"/back-end/emp/empMaterial.jsp",
+	"/front-end/user/userMaterial",
+	"/front-end/vendor/vendorMaterial.jsp"
 })
 
 public class EmpLoginFilter extends HttpFilter {

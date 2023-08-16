@@ -90,8 +90,8 @@ public class PlanServiceImpl implements PlanService {
 
         try {
             beginTransaction();
-            // 替換日期的符號
-            unavailableDate = unavailableDate.replaceAll("-", "");
+//            // 替換日期的符號
+//            unavailableDate = unavailableDate.replaceAll("-", "");
 
             List<Integer> unavailablePlaceIds = unavailableDateDao.getUnavailablePlaceIds(placeIds, unavailableDate, unavailableTime);
 

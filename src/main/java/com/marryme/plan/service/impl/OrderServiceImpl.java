@@ -1,13 +1,18 @@
 package com.marryme.plan.service.impl;
 
 import com.marryme.plan.dao.OrderDao;
+import com.marryme.plan.dao.PlanOrderDetailDao;
 import com.marryme.plan.dao.UnavailableDateDao;
 import com.marryme.plan.dao.impl.OrderDaoImpl;
+import com.marryme.plan.dao.impl.PlanOrderDetailDaoImpl;
 import com.marryme.plan.dao.impl.UnavailableDateDaoImpl;
 import com.marryme.plan.service.OrderService;
 import com.marryme.plan.vo.PlanOrder;
 import com.marryme.plan.vo.PlanOrderDetail;
 import com.marryme.plan.vo.UnavailableDates;
+import com.marryme.vendor.dao.Impl.VendorDaoImpl;
+import com.marryme.vendor.dao.VendorDao;
+import com.marryme.vendor.vo.Vendor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +29,14 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     private final OrderDao dao;
     private final UnavailableDateDao unavailableDateDao;
+    private final VendorDao vendorDao;
+    private final PlanOrderDetailDao planOrderDetailDao;
 
     public OrderServiceImpl(){
         dao = new OrderDaoImpl();
         unavailableDateDao = new UnavailableDateDaoImpl();
+        vendorDao = new VendorDaoImpl();
+        planOrderDetailDao = new PlanOrderDetailDaoImpl();
     }
 
 
@@ -36,6 +45,9 @@ public class OrderServiceImpl implements OrderService {
         Integer planOrderId = null;
         try {
             beginTransaction();
+            // 替換日期的符號
+//            String unavailableDate = unavailableDates.getUnavailableDate().replaceAll("-", "");
+//            unavailableDates.setUnavailableDate(unavailableDate);
             Integer unavailableDatesId = unavailableDateDao.insertValues(unavailableDates);
             planOrder.setUnavailableDatesId(unavailableDatesId);
 
@@ -66,6 +78,34 @@ public class OrderServiceImpl implements OrderService {
             e.printStackTrace();
         }
         return planOrderId;
+    }
+
+    @Override
+    public List<PlanOrder> findAllByVendorId(String vendorId) {
+        List<PlanOrder> orderList = new ArrayList<>();
+        try {
+            beginTransaction();
+            orderList = dao.selectAllByVendorId(vendorId);
+            commit();
+        } catch (Exception e) {
+            rollback();
+            e.printStackTrace();
+        }
+        return orderList;
+    }
+
+    @Override
+    public String getOneByVendorId(String vendorId) {
+        Vendor vendor = new Vendor();
+        try {
+            beginTransaction();
+            vendor = vendorDao.selectByVendorId(vendorId);
+            commit();
+        } catch (Exception e) {
+            rollback();
+            e.printStackTrace();
+        }
+        return vendor.getVendorName();
     }
 
     @Override
@@ -108,5 +148,35 @@ public class OrderServiceImpl implements OrderService {
             e.printStackTrace();
         }
         return planOrder;
+    }
+
+    @Override
+    public List<PlanOrderDetail> findAllByOrderId(Integer id) {
+        List<PlanOrderDetail> detailList = new ArrayList<>();
+        try {
+            beginTransaction();
+            detailList = planOrderDetailDao.selectAllByOrderId(id);
+            commit();
+        } catch (Exception e) {
+            rollback();
+            e.printStackTrace();
+        }
+        return detailList;
+    }
+
+    @Override
+    public UnavailableDates getUnavailableDate(Integer id) {
+        PlanOrder planOrder = null;
+        UnavailableDates unavailableDate = null;
+        try {
+            beginTransaction();
+            planOrder = dao.selectById(id);
+            unavailableDate = unavailableDateDao.selectById(planOrder.getUnavailableDatesId());
+            commit();
+        } catch (Exception e) {
+            rollback();
+            e.printStackTrace();
+        }
+        return unavailableDate;
     }
 }

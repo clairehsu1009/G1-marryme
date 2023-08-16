@@ -309,7 +309,7 @@
                 <div id="service_swiper_list" class="swiper-wrapper" aria-live="polite"
                     style="transform: translate3d(0px, 0px, 0px);">
                    
-	<form method="post" action="<%=request.getContextPath()%>/plan" style="margin-bottom: 0;">
+<%-- 	<form method="post" action="<%=request.getContextPath()%>/plan" style="margin-bottom: 0;"> --%>
          <input type="hidden" name="vendorId" value="${vendorId}" />
               
            <div class="tab-item-content"  >
@@ -350,13 +350,22 @@
                                                 <img width="50px" height="50px" src="${pageContext.request.contextPath}/ShowPhoto?planProductId=${plan.planProductId}&photoFieldName=planPictures3" class="rounded mx-auto d-block" alt="方案圖片3">
                                             </td>
                                            
-                                            <td>
-                                                <form method="post" action="<%=request.getContextPath()%>/plan" style="margin-bottom: 0 ;">
-                                                    <input type="hidden" name="planProductId" value="${plan.planProductId}" />
-                                                    <input type="hidden" name="vendorId" value="${plan.vendorId}" />
-                                                    <button type="submit" class="btn btn-info" name="action" value="getOne">查看</button>                                                  
-                                                </form>
-                                            </td>
+
+<!-- <td> -->
+<%--     <form method="get" action="${pageContext.request.contextPath}/plan/plan-product?planProductId=${plan.planProductId}" style="margin-bottom: 0;"> --%>
+<%--         <input type="hidden" name="planProductId" value="${plan.planProductId}" /> --%>
+<%--         <input type="hidden" name="vendorId" value="${plan.vendorId}" /> --%>
+<!--         <button type="submit" class="btn btn-info" >查看</button>                                                   -->
+<!--     </form> -->
+<!-- </td> -->
+
+    <td>
+                <form method="get" action="${pageContext.request.contextPath}/plan/plan-product" style="margin-bottom: 0;">
+                    <input type="hidden" name="planProductId" value="${plan.planProductId}" />
+                    <input type="hidden" name="vendorId" value="${plan.vendorId}" />
+                    <button type="submit" class="btn btn-info" >查看</button>                                                  
+                </form>
+            </td>
                                         </tr>
                                     </c:if>
                                 </c:forEach>
@@ -366,7 +375,7 @@
                     </c:forEach>
                 </div>
            </div>
-        </form>                
+<!--         </form>                 -->
        </div>
 </section>
     

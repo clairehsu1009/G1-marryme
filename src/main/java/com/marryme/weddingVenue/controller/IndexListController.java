@@ -3,8 +3,9 @@ package com.marryme.weddingVenue.controller;
 import static com.marryme.common.CommonString.ACTIVE;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +22,7 @@ import com.marryme.plan.vo.Plan;
 import com.marryme.product.entity.Product;
 import com.marryme.product.service.ProductService;
 import com.marryme.product.service.impl.ProductServiceImpl;
+import com.marryme.vendor.vo.Vendor;
 
 
 
@@ -30,13 +32,11 @@ public class IndexListController extends HttpServlet{
 	private static final long serialVersionUID = 13L;
 	private WeddingVenueService service;
 	private PlanService planservice;
-	private ProductService productservice;
 	
 	@Override
 	public void init() throws ServletException {
 		service = new WeddingVenueServiceImpl();
 		planservice = new PlanServiceImpl();
-		productservice = new ProductServiceImpl();
 
 	}
 	
@@ -46,9 +46,9 @@ public class IndexListController extends HttpServlet{
 	        int totalVenues = weddingVenuesList.size();
             req.setAttribute("totalVenues", totalVenues);
          
-            List<Plan> planAllList = service.findPlanAllAndStatus(ACTIVE);
-            req.setAttribute("planAllList", planAllList);
-            int totalPlanAlls = planAllList.size();
+            List<Plan> planList = service.findPlanAllAndStatus(ACTIVE);
+            req.setAttribute("planList", planList);
+            int totalPlanAlls = planList.size();
             req.setAttribute("totalPlanAlls", totalPlanAlls);
             
             
@@ -56,11 +56,26 @@ public class IndexListController extends HttpServlet{
             req.setAttribute("productAllList", productAllList);
             int totalProductAlls = productAllList.size();
             req.setAttribute("totalProductAlls", totalProductAlls);
-          
-   
             
   
-    	 List<WeddingVenue> currentWeddingVenuesList = weddingVenuesList.subList(0, 3);
+    	 List<WeddingVenue> currentWeddingVenuesList = weddingVenuesList.subList(0, 4);
+    	 
+         Map<WeddingVenue, String> venueToVendorName = new HashMap<>();
+         Map<WeddingVenue, String> venueToLocation = new HashMap<>();
+         Map<WeddingVenue, Integer> venueToTotalPlansMap = new HashMap<>();
+         Map<Product, String> productToVendorName = new HashMap<>();
+         
+         
+         for (Product product : productAllList) {
+        	    Vendor vendor = product.getVendor();
+        	    if (vendor != null) {  
+        	        String vendorName = vendor.getVendorName();
+        	        productToVendorName.put(product, vendorName);
+        	    }
+        	}
+
+         req.setAttribute("productToVendorName", productToVendorName);
+
            
             
             for (WeddingVenue venue : currentWeddingVenuesList) {
@@ -68,20 +83,22 @@ public class IndexListController extends HttpServlet{
 
                 String vendorId = service.findVendorIdByPlaceId(placeId); 
                 String location = service.findVendorLocationByPlaceId(vendorId);
+                String vendorName = venue.getVendor().getVendorName();
                 
-                
-              List<Plan> planList = planservice.findAllByVendorIdAndStatus(vendorId, ACTIVE);
-      	      req.setAttribute("planList", planList);
-      	      int totalPlans = planList.size();
-              req.setAttribute("totalPlans", totalPlans);
+              List<Plan> planListByVendor = planservice.findAllByVendorIdAndStatus(vendorId, ACTIVE);
               
-              List<Product> productList = productservice.findAll();
-              req.setAttribute("productList", productList);
-              int totalProducts = productList.size();
-              req.setAttribute("totalProducts", totalProducts);
+            
+              int totalPlansForCurrentVenue = planListByVendor.size();
+              System.out.println(totalPlansForCurrentVenue);
+              venueToTotalPlansMap.put(venue, totalPlansForCurrentVenue);
+    
               
-              req.setAttribute("vendorName", venue.getVendor().getVendorName());
-                System.out.println(venue.getVendor().getVendorName());
+              venueToVendorName.put(venue, vendorName);
+              venueToLocation.put(venue, location);
+              
+              req.setAttribute("venueToVendorName", venueToVendorName);
+              req.setAttribute("venueToLocation", venueToLocation);
+              req.setAttribute("venueToTotalPlansMap", venueToTotalPlansMap);
 
                 if (location == null) {
                     resp.sendError(HttpServletResponse.SC_NOT_FOUND, "未找到該供應商ID的位置");
@@ -89,8 +106,6 @@ public class IndexListController extends HttpServlet{
                 }
 
               
-                System.out.println("Location for vendor " + vendorId + ": " + location);
-                req.setAttribute("location", location);
 
             }
         req.getRequestDispatcher("/front-end/index.jsp").forward(req, resp);

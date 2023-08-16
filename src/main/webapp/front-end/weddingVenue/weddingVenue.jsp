@@ -186,10 +186,12 @@
                         	<a class="shop_name cltk_click" data-cltk-id="data-cltk-id_6167" href="#"
                                 title="${weddingVenue.placeTitle}">${weddingVenue.placeTitle}</a>
                         </h2>
+
                         <h3>
                         	<a class="shop_name2" data-cltk-id="data-cltk-id_6167" href="#"
-                                title="${vendorName}">${vendorName}</a>
+                                title="${venueToVendorName[weddingVenue]}">${venueToVendorName[weddingVenue]}</a>
                         </h3>
+
                         <div class="shop_title">
                         	<a class="evaluate cltk_click" data-cltk-id="data-cltk-id_6167" href="#">
                         		<img src="https://statics.marry.com.tw/img/public/selected.svg"> 5.0&nbsp;
@@ -197,7 +199,8 @@
                         	</a>
                         	<span class="shop_work_wrap">
                             	<a class="shop_work cltk_click" data-cltk-id="data-cltk-id_6167" href="#">廳房 ${weddingVenue.numbeOfTables}</a>
-                            	<a class="shop_work cltk_click" data-cltk-id="data-cltk-id_6167" href="#">方案&nbsp;${totalPlans}</a>
+                            	<a class="shop_work cltk_click" data-cltk-id="data-cltk-id_6167" href="#">方案&nbsp;${venueToTotalPlansMap[weddingVenue]}
+</a>
 
 <%--                             	<a class="shop_work cltk_click" data-cltk-id="data-cltk-id_6167" data-size="${weddingPlanList.size()}" href="#">方案&nbsp;</a> --%>
                          	
@@ -208,12 +211,12 @@
                         </ul>
                                         
    
- <c:forEach var="location" items="${location}">
+
     <div class="shop_add">
         <img src="https://statics.marry.com.tw/img/public/vendorprofile/location_gray_20.svg">
-        <span>${location}</span>
+        <span>${venueToLocation[weddingVenue]}</span>
     </div>
-</c:forEach>
+
 
           
                         

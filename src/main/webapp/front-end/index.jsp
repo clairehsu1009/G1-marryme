@@ -118,10 +118,6 @@
                                     data-src="<%=request.getContextPath()%>/weddingVenue?id=${weddingVenue.placeId}">
                             </picture>
                         </a>
-<!--  小圖                       <a class="shop_profPic shop_profPic_four cltk_click" data-cltk-id="data-cltk-home_basic-9033" href="#" title=""> -->
-<%-- 	                         <img class="lazy" title="${weddingVenue.placeTitle}" alt="${weddingVenue.placeTitle}" --%>
-<%-- 	                                data-src="<%=request.getContextPath()%>/weddingVenue?id=${weddingVenue.placeId}"> --%>
-<!--                         </a> -->
                     </li>
                     <li class="shop_info">
                         <h3>
@@ -131,7 +127,7 @@
                         </h3>
                         <p>
                         	<a class="shop_name" style="text-decoration: none;color: black;font-size: 7px;" data-cltk-id="data-cltk-id_6167" href="#"
-                                title="${vendorName}">${vendorName}</a>
+                                title="${venueToVendorName[weddingVenue]}">${venueToVendorName[weddingVenue]}</a>
                         </p>
                         <div class="shop_title">
                         	<a class="evaluate cltk_click" data-cltk-id="data-cltk-home_basic-9033" href="#">
@@ -142,19 +138,17 @@
                                 <a class="shop_work cltk_click" data-cltk-id="data-cltk-home_basic-9033"
                                     href="#">廳房&nbsp;${weddingVenue.numbeOfTables}</a>
                                 <a class="shop_work cltk_click" data-cltk-id="data-cltk-home_basic-9033"
-                                    href="#">方案&nbsp;${totalPlans}</a>
-<!--                                 <a class="shop_work cltk_click" data-cltk-id="data-cltk-home_basic-9033" -->
-<!--                                     href="#">影片&nbsp;7</a> -->
+                                    href="#">方案&nbsp;${venueToTotalPlansMap[weddingVenue]}</a>
                                 </span>
                         </div>
                         <ul class="tag_row">
                             <li class="general">安心防疫</li>
                         </ul>
                         
-                         <c:forEach var="location" items="${location}">
+                         <c:forEach var="location" items="${venueToLocation[weddingVenue]}">
 						    <div class="shop_add">
 						        <img src="https://statics.marry.com.tw/img/public/vendorprofile/location_gray_20.svg">
-						        <span>${location}</span>
+						        <span>${venueToLocation[weddingVenue]}</span>
 						    </div>
 						</c:forEach>
                     </li>                    
@@ -184,34 +178,29 @@
                      </span>
             </div>
             
-            
-    <form method="post" action="<%=request.getContextPath()%>/plan/plan-product">
-            <div class="photos_wall clearfix">
-      <c:forEach var="plan" items="${planList}" begin="0" end="2">
-                <ul class="album_box radius_2" id="data-cltk-home_works-21365"
-                    data-cltk="aUtNOG9kQkR0cW5zSXMweVB6ZmtqMnJQaE5PMHhwMFFNS0FpOHNMdzQ3SzhNbmg1bWkwSDhLYkJoZWlwMGhMVCtjU05IQTNOMVdaNWRBOEFGc3RNZVpCMU5IaWtpRDc1TVI4UlZNcTJ1OWVKOE5HR0lWWWNqanJFS3dhZG9OU1Z1UmlKTEd4Umk1MjU4NEZNQkJBU1AvNUNmYWhoTFBVdDBUeXJvaUgzZFd3ZTcyR2VTZTNvQm5DdVVvZ29GR2xIbktIUDBDZzJuejE2L1pkNE9ZbVJSY250YnZZcnZXZUxENWd2VFY4TXBpY0k3ZXhvM1ZRYVZR"
-                    itemscope="" itemtype="https://schema.org/ImageObject">
-                     <li class="photos_pic">
-                        <%-- <a class="cltk_click" data-cltk-id="data-cltk-home_works-21365" --%>
-                            <%-- href="#" --%>
-                                <%-- title="${plan.planTitle}">--%>
-                                    <a class="shop_pic_a cltk_click"
-                                        data-cltk-id="data-cltk-home_basic-9033"
-                                        href="<%=request.getContextPath()%>/plan/plan-product?planProductId=${plan.planProductId}"
-                                        title="">
-                                        <picture>
-                                            <img class="lazy shop_pic_img" title="${plan.planTitle}"
-                                                alt="${plan.planTitle}" width="80%"
-                                                data-src="${pageContext.request.contextPath}/ShowPhoto?planProductId=${plan.planProductId}&photoFieldName=planPicture">
-                                        </picture>
-                                    </a>
+        
+			 <form method="get" action="<%=request.getContextPath()%>/plan/plan-product">
+			            <div class="photos_wall clearfix">
+			                <c:forEach var="plan" items="${planList}" begin="0" end="2">
+			                    <ul class="album_box radius_2" id="data-cltk-home_works-21365"
+			                        data-cltk="aUtNOG9kQkR0cW5zSXMweVB6ZmtqMnJQaE5PMHhwMFFNS0FpOHNMdzQ3SzhNbmg1bWkwSDhLYkJoZWlwMGhMVCtjU05IQTNOMVdaNWRBOEFGc3RNZVpCMU5IaWtpRDc1TVI4UlZNcTJ1OWVKOE5HR0lWWWNqanJFS3dhZG9OU1Z1UmlKTEd4Umk1MjU4NEZNQkJBU1AvNUNmYWhoTFBVdDBUeXJvaUgzZFd3ZTcyR2VTZTNvQm5DdVVvZ29GR2xIbktIUDBDZzJuejE2L1pkNE9ZbVJSY250YnZZcnZXZUxENWd2VFY4TXBpY0k3ZXhvM1ZRYVZR"
+			                        itemscope="" itemtype="https://schema.org/ImageObject">
+			                        <li class="photos_pic">
+                            <a class="shop_pic_a cltk_click" data-cltk-id="data-cltk-home_basic-9033"
+                               href="<%=request.getContextPath()%>/plan/plan-product?planProductId=${plan.planProductId}" title="">
+                                <picture>
+                                    <img class="lazy shop_pic_img" title="${plan.planTitle}" alt="${plan.planTitle}"
+                                         width="80%" data-src="${pageContext.request.contextPath}/ShowPhoto?planProductId=${plan.planProductId}&photoFieldName=planPicture" >
+                                </picture>
+                            </a>
                                     <span class="photos_counts"></span>
-                    </li>
+                    				</li>
                     <li class="photos_name">
-                        <h3 class="boxsize nobr"><a class="cltk_click" data-cltk-id="data-cltk-home_works-21365"
-                                href="#"
-                                title="${plan.planTitle}"><span itemprop="name">
-                                    ${plan.planTitle}</span></a></h3>
+                        <h3 class="boxsize nobr">
+                        	<a class="cltk_click" data-cltk-id="data-cltk-home_works-21365" href="<%=request.getContextPath()%>/plan/plan-product?planProductId=${plan.planProductId}" title="${plan.planTitle}">
+                                <span itemprop="name"> ${plan.planTitle}</span>
+                            </a>
+                        </h3>
                     </li>
                     <li class="photos_studio nobr boxsize">
 	                    <a class="cltk_click" data-cltk-id="data-cltk-home_works-21365" href="#" itemprop="author">
@@ -223,6 +212,8 @@
           </c:forEach>
             </div>            
          </form>
+         
+         
        </div>
 
 
@@ -232,10 +223,7 @@
 
 <section class="rwd_wrap group">
         <div class="col lg_12 md_12 sm_12">
-        
 
-        
-        
             <div class="index_title">
              		<a href="${pageContext.request.contextPath}/front-end/product/product.jsp?productCategoryId=1">
                     <i class="title_sort icon_venue"></i>
@@ -249,8 +237,9 @@
   
             <div class="shop_wall clearfix">
             
-     <form method="post" action="<%=request.getContextPath()%>/index">
-      <c:forEach var="product" items="${productAllList}" begin="0" end="8">
+
+      <c:forEach var="product" items="${productAllList}" begin="0" end="7">
+      
                 <ul class="shop_box" id="data-cltk-home_basic-9033" "
                     data-cltk="aWZWaDh0SWV1YXpzSXMweVB6ZmtqMnJQaE5PMHhwMFFNS0FpOGNMdzQ3SzhNbmg1bWkwSDhLTGFndWV6bnd1YnNNbUFCRWJReEc1TFFnSkdENWtGY1pkOElIeXJ6VFg1UFI5YVNJUG45WnlXOFlEVUpnVkgyanFYTjFITXVNMk83RUxXTENSTnc5N2N1SllCVFExM1o2RVRmUEpoUDcwc2d5MnE4MmkwS0hRSDl5ekdEdWFuQUdXekVvbDFTR1plaktxTTNuRmhuMjErbzlCZ0lKSGNFWUR0ZDc1aXQyV1REOU05RUFKRjdTME1xTEp5amhoRUNxSzhaeEFpN3c=">
                     <li class="shop_pic">
@@ -260,13 +249,9 @@
                             <picture>
                                     <img class="lazy shop_pic_img" title="${product.productName}"
                                     alt="${product.productName}"
-                                    data-src="<%=request.getContextPath()%>/weddingProduct?id=${product.productId}">
+                                    data-src="<%=request.getContextPath()%>/weddingProduct?id=${product.productId}&productStatus=${product.productStatus}">
                             </picture>
                         </a>
-<!-- 小圖                        <a class="shop_profPic shop_profPic_four cltk_click" data-cltk-id="data-cltk-home_basic-9033" href="#" title=""> -->
-<%-- 	                         <img class="lazy" title="${product.productName}" alt="${product.productName}" --%>
-<%-- 	                                data-src="<%=request.getContextPath()%>/weddingProduct?id=${product.productId}"> --%>
-<!--                         </a> -->
                     </li>
                     <li class="shop_info">
                         <h3><a class="shop_name cltk_click" data-cltk-id="data-cltk-home_basic-9033"
@@ -274,14 +259,14 @@
                             </a>
                         </h3>
                         <h3><a class="shop_name cltk_click" data-cltk-id="data-cltk-home_basic-9033"
-                                href="#" title="${vendorName}">${vendorName}
+                                href="#" title=" ${productToVendorName[product]}"> ${productToVendorName[product]}
                             </a>
                         </h3>
                         <div class="shop_title">
                         	<a class="evaluate cltk_click" data-cltk-id="data-cltk-home_basic-9033" href="#">
                                 <img src="https://statics.marry.com.tw/img/public/selected.svg" alt="${product.productName}" title="${product.productName}">5.0&nbsp;
                                 <span class="evaluate_counts">(190)</span>
-                            </a>
+                            </a>vendorName
                                 <span class="shop_work_wrap">
                                 <a class="shop_work cltk_click" data-cltk-id="data-cltk-home_basic-9033"
                                     href="#">原價&nbsp;${product.originalPrice}</a>
@@ -297,7 +282,7 @@
                     </li>                    
                 </ul>               
          </c:forEach>
-      </form>
+
             </div>
         </div>
     </section>

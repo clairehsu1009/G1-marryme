@@ -56,36 +56,13 @@ public class WeddingVenueWorkController extends HttpServlet{
         List<Plan> planList = planService.findAllByVendorId(vendorId);
         
 
-        /******************************取得經緯度*****************************/
+        /******************************取得googleMap*****************************/
         
         List<Vendor> vendorList = service.findVendorAllByVendorId(vendorId);
         req.setAttribute("vendorList", vendorList);
         
         //  用 getGooglemap() 方法來取得 Google Maps 的 URL
-        String googleMap = vendorList.get(0).getGooglemap();
-
-        String latitude = "";
-        String longitude = "";
-
-        // 第一種模式：ll=
-        Pattern pattern1 = Pattern.compile("ll=([-\\d.]+),([-\\d.]+)");
-        Matcher matcher1 = pattern1.matcher(googleMap);
-
-        // 第二種模式：/@
-        Pattern pattern2 = Pattern.compile("/@([-\\d.]+),([-\\d.]+),");
-        Matcher matcher2 = pattern2.matcher(googleMap);
-
-        if (matcher1.find()) {
-            latitude = matcher1.group(1);
-            longitude = matcher1.group(2);
-        } else if (matcher2.find()) {
-            latitude = matcher2.group(1);
-            longitude = matcher2.group(2);
-        }
-
-        req.setAttribute("latitude", latitude);
-        req.setAttribute("longitude", longitude);
-        
+        String googleMap = vendorList.get(0).getGooglemap();  
         req.setAttribute("googleMap", googleMap);
    
         /*************************** 3.查詢完成,準備轉交 ************/

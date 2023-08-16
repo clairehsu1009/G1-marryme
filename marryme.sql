@@ -633,25 +633,26 @@ CREATE TABLE unavailable_dates (
   
 INSERT INTO unavailable_dates (place_id, unavailable_date, unavailable_time)
 VALUES
-('1', '20230711', '1'),
-('1', '20240314', '0'),
-('1', '20241114', '0'),
-('1', '20240112', '0'),
-('1', '20240314', '1'),
-('2', '20240911', '0'),
-('2', '20240612', '0'),
-('2', '20241124', '0'),
-('3', '20250514', '0'),
-('3', '20251114', '0'),
-('3', '20260112', '0'),
-('3', '20240811', '0'),
-('3', '20240511', '1'),
-('3', '20250224', '0'),
-('3', '20240927', '0');
+('1', '2023-07-11', '1'),
+('1', '2024-03-14', '0'),
+('1', '2024-11-14', '0'),
+('1', '2024-01-12', '0'),
+('1', '2024-03-14', '1'),
+('2', '2024-09-11', '0'),
+('2', '2024-06-12', '0'),
+('2', '2024-11-24', '0'),
+('3', '2025-05-14', '0'),
+('3', '2025-11-14', '0'),
+('3', '2026-01-12', '0'),
+('3', '2024-08-11', '0'),
+('3', '2024-05-11', '1'),
+('3', '2025-02-24', '0'),
+('3', '2024-09-27', '0');
 
 CREATE TABLE plan_order (
   plan_order_id int primary key not null auto_increment comment'方案訂單_ID',
   member_id varchar(50) not null comment '會員_ID=信箱{FK}',
+  vendor_id varchar(50) not null comment '廠商_ID=信箱{FK}',
   plan_product_id int not null comment'方案商品_ID{FK}',
   place_id int not null comment'場地_ID{FK}',
   unavailable_dates_id int not null comment'不可預約時段_ID{FK}',
@@ -663,18 +664,19 @@ CREATE TABLE plan_order (
   order_dateTime Timestamp not null comment'訂單時間',
   grant_amount int not null comment'餘額',
   FOREIGN KEY (member_id) REFERENCES member(member_id),
+  FOREIGN KEY (vendor_id) REFERENCES vendor(vendor_id),
   FOREIGN KEY (plan_product_id) REFERENCES plan_product(plan_product_id),
   FOREIGN KEY (unavailable_dates_id) REFERENCES unavailable_dates(unavailable_dates_id)
 )comment = '方案訂單';
 
-INSERT INTO plan_order (member_id, plan_product_id, place_id, unavailable_dates_id, order_tables,
+INSERT INTO plan_order (member_id, vendor_id, plan_product_id, place_id, unavailable_dates_id, order_tables,
 order_status, payment_state, total_amount, order_dateTime, grant_amount)
 VALUES
-    ('member1@gmail.com', 1, 1, 1, 21, 0, 1, 100000, NOW(), 60000),
-    ('member2@gmail.com', 2, 1, 2, 22, 1, 1, 100000, NOW(), 60000),
-    ('member3@gmail.com', 3, 1, 3, 23, 2, 2, 100000, NOW(), 60000),
-    ('member4@gmail.com', 4, 1, 4, 24, 3, 2, 100000, NOW(), 60000),
-    ('member5@gmail.com', 5, 1, 5, 25, 4, 3, 100000, NOW(), 60000);
+    ('member1@gmail.com', 'vendor1@gmail.com', 1, 1, 1, 21, 0, 1, 100000, NOW(), 60000),
+    ('member2@gmail.com', 'vendor1@gmail.com', 2, 1, 2, 22, 1, 1, 100000, NOW(), 60000),
+    ('member3@gmail.com', 'vendor1@gmail.com', 3, 1, 3, 23, 2, 2, 100000, NOW(), 60000),
+    ('member4@gmail.com', 'vendor2@gmail.com', 4, 1, 4, 24, 3, 2, 100000, NOW(), 60000),
+    ('member5@gmail.com', 'vendor2@gmail.com', 5, 1, 5, 25, 4, 3, 100000, NOW(), 60000);
     
     
 CREATE TABLE plan_order_detail (

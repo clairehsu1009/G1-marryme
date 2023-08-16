@@ -117,8 +117,8 @@ public class PlanOrderController extends HttpServlet {
         }
     }
     private void insert(HttpServletRequest req, HttpServletResponse resp, Map<String, String> responseMsgMap) throws ServletException, IOException {
-
         String memberId = req.getParameter("memberId");
+        String vendorId = req.getParameter("vendorId");
         Integer planProductId = Integer.valueOf(req.getParameter("planProductId"));
         Integer placeId = Integer.valueOf(req.getParameter("placeId"));
         String unavailableDate = req.getParameter("unavailableDate");
@@ -149,6 +149,7 @@ public class PlanOrderController extends HttpServlet {
         // 訂單主檔的service insert(連同子訂單一起insert)
         PlanOrder planOrderVo = new PlanOrder();
         planOrderVo.setMemberId(memberId);
+        planOrderVo.setVendorId(vendorId);
         planOrderVo.setPlanProductId(planProductId);
         planOrderVo.setPlaceId(placeId);
         planOrderVo.setOrderTables(orderTables);
@@ -162,8 +163,7 @@ public class PlanOrderController extends HttpServlet {
         responseMsgMap.put(SUCCESS, INSERT_SUCCESS);
         PlanOrder planOrder = service.getOne(id);
         req.setAttribute("planOrder", planOrder);
-        // 要傳遞到哪頁勒
-        req.getRequestDispatcher(CREATE_ORDER_PAGE).forward(req, resp);
+        req.getRequestDispatcher(MEMBER_OWN_ORDER_PAGE).forward(req, resp);
 
     }
     private void check(HttpServletRequest req, HttpServletResponse resp, Map<String, String> responseMsgMap) throws ServletException, IOException {

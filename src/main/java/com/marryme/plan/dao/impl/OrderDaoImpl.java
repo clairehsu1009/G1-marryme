@@ -27,6 +27,14 @@ public class OrderDaoImpl implements OrderDao {
         return getSession().createQuery(hql, PlanOrder.class).list();
     }
 
+    @Override
+    public List<PlanOrder> selectAllByVendorId(String vendorId) {
+        String hql = "SELECT po FROM PlanOrder po WHERE po.planProductId IN (SELECT pp.planProductId FROM Plan pp WHERE pp.vendorId = :vendorId)";
+
+        Query<PlanOrder> query = getSession().createQuery(hql, PlanOrder.class);
+        query.setParameter("vendorId", vendorId);
+        return query.list();
+    }
 
     @Override
     public List<PlanOrder> selectAllByMemberId(String memberId) {

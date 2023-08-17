@@ -17,8 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import static com.marryme.common.CommonString.RESPONSE_MSG_MAP;
+import static com.marryme.common.CommonString.SUCCESS;
 import static com.marryme.plan.common.PlanPages.MEMBER_OWN_ORDER_PAGE;
 import static com.marryme.plan.common.PlanPages.VENDOR_OWN_ORDER_PAGE;
 
@@ -46,6 +50,7 @@ public class OrderController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Map<String, String> responseMsgMap = new HashMap<>();
         String vendorId = req.getParameter("vendorId");
         String memberId = req.getParameter("memberId");
         if(vendorId == null){
@@ -62,6 +67,8 @@ public class OrderController extends HttpServlet {
                 Item one = itemService.getOne(item.getPlanItemId());
                 items.add(one);
             }
+            responseMsgMap.put(SUCCESS, "訂單已成立");
+            req.setAttribute(RESPONSE_MSG_MAP, responseMsgMap);
             req.setAttribute("items", items);
             req.setAttribute("unavailableDate", unavailableDate);
             req.setAttribute("planOrder", planOrder);

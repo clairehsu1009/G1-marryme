@@ -282,7 +282,6 @@
       });
       return false;
     }
-
     var exp = $.trim($("#pay_exp").val());
     if (exp == "") {  //為空
       Swal.fire({
@@ -292,6 +291,34 @@
       });
       return false;
     }
+    var currentDate = new Date();
+    var currentYear = currentDate.getFullYear();
+    var currentMonth = currentDate.getMonth() + 1; // 注意：JavaScript 的月份是從 0 開始計算的，所以需要加 1
+
+    var expParts = exp.split('/');
+    var expMonth = parseInt(expParts[0]);
+    var expYear = parseInt("20" + expParts[1]);
+
+    if (expParts.length !== 2 || isNaN(expMonth) || isNaN(expYear)) {
+      Swal.fire({
+        icon: 'error',
+        title: '信用卡有效期限格式不正確！',
+        text: '請輸入正確的 MM/YY 格式。',
+      });
+      return false;
+    }
+
+    if (expYear < currentYear || (expYear === currentYear && expMonth < currentMonth)) {
+      Swal.fire({
+        icon: 'error',
+        title: '信用卡有效期限已過期！',
+        text: '請輸入有效的日期。',
+      });
+      return false;
+    }
+
+
+
     var cvv = $.trim($("#pay_code").val());
     if (cvv == "") {  //為空
       Swal.fire({

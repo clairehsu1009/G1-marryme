@@ -244,7 +244,6 @@
     <button class="ask btn_common btn_primary add_ask" id="submit" style="width: 500px; border: none;" type="submit" name="action" value="insert" href="<%=request.getContextPath()%>/plan/plan-order?vendorId=${vendorId}">確認付款 </button>
   </div>
 </form>
-
 <br><br><br><br>
 
 <%@include file="/front-end/footer.jsp"%>
@@ -261,6 +260,8 @@
 <%@include file="/front-end/vendor/common/vendorFooterScript.jsp"%>
 
 <script>
+
+
   $("#submit").click(function() { //綁定sumbit提交訂單按鈕，添加點擊事件
     var num = /^\d*$/; //全數字
     var title = $.trim($("#pay_card").val());
@@ -309,6 +310,8 @@
       return false;
     }
   })
+
+
 
 
 

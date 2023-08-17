@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static com.marryme.common.CommonString.*;
 import static com.marryme.common.ControllerUtils.parameterMapToVo;
@@ -93,7 +92,7 @@ public class PlanOrderController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding(UTF_8);
         Map<String, String> responseMsgMap = new HashMap<>();
-                req.setAttribute(RESPONSE_MSG_MAP, responseMsgMap);
+        req.setAttribute(RESPONSE_MSG_MAP, responseMsgMap);
         try {
             String action = req.getParameter(ACTION);
             if(StringUtils.isBlank(action)) {
@@ -129,19 +128,15 @@ public class PlanOrderController extends HttpServlet {
         String [] planItemIds = req.getParameterValues("planItemId");
 
         List<Integer> planItemIdList = new ArrayList<>();
-//        if(StringUtils.isNotBlank(planItemIds)){
-//            String[] planItemIdsArr = planItemIds.split(",");
             for (String planItemId : planItemIds) {
                 try {
                     Integer value = Integer.parseInt(planItemId.trim());
                     planItemIdList.add(value);
                 } catch (NumberFormatException e) {
-                    // 如果需要，處理無效的整數值
+                    e.printStackTrace();
                 }
             }
-//        }
 
-        // 不可預約table的insert
         UnavailableDates unavailableDates = new UnavailableDates();
         unavailableDates.setPlaceId(placeId);
         unavailableDates.setUnavailableDate(unavailableDate);
@@ -157,23 +152,21 @@ public class PlanOrderController extends HttpServlet {
         planOrderVo.setTotalAmount(Integer.valueOf(totalAmount));
         Integer id = service.insertUnavailableDateAndOrder(unavailableDates, planOrderVo, planItemIdList);
         if (id == null) {
-            responseMsgMap.put(EXCEPTION, INSERT_ERROR);
+            responseMsgMap.put(EXCEPTION, "訂單成立失敗，請重新選擇");
             doGet(req, resp);
-            return;
+        }else {
+            responseMsgMap.put(SUCCESS, "訂單已成立");
+            PlanOrder planOrder = service.getOne(id);
+            req.setAttribute("planOrder", planOrder);
+            req.setAttribute("memberId", memberId);
+
+            String redirectUrl = req.getContextPath() + "/plan-order?memberId=" + memberId;
+            resp.sendRedirect(redirectUrl);
         }
-        responseMsgMap.put(SUCCESS, "訂單已成立");
-        PlanOrder planOrder = service.getOne(id);
-        req.setAttribute("planOrder", planOrder);
-        req.setAttribute("memberId", memberId);
-//        req.getRequestDispatcher(MEMBER_OWN_ORDER_PAGE).forward(req, resp);
-        String redirectUrl = req.getContextPath() + "/plan-order?memberId=" + memberId;
-        resp.sendRedirect(redirectUrl);
 
     }
     private void check(HttpServletRequest req, HttpServletResponse resp, Map<String, String> responseMsgMap) throws ServletException, IOException {
 
-
-//        String memberId = req.getParameter("memberId");
         Integer planProductId = Integer.parseInt(req.getParameter("planProductId"));
         Integer placeId = Integer.valueOf(req.getParameter("placeId"));
         String unavailableDate = req.getParameter("unavailableDate");
@@ -188,7 +181,6 @@ public class PlanOrderController extends HttpServlet {
         }
 
         PlanCheckOrder planCheckOrder = new PlanCheckOrder();
-//        planCheckOrder.setMemberId(memberId);
         planCheckOrder.setPlanProductId(planProductId);
         planCheckOrder.setPlaceId(placeId);
         planCheckOrder.setUnavailableDate(unavailableDate);
@@ -217,9 +209,5 @@ public class PlanOrderController extends HttpServlet {
         }
 
 
-//        responseMsgMap.put(SUCCESS, INSERT_SUCCESS);
-//        Item item = service.getOne(id);
-//        req.setAttribute("item", item);
-//        req.getRequestDispatcher(ONE_PLAN_ITEM_PAGE).forward(req, resp);
     }
 }

@@ -20,7 +20,7 @@
 		</div>
 		<ul class="app-breadcrumb breadcrumb">
 			<li class="breadcrumb-place"><i class="fa fa-home fa-lg"></i></li>
-			<li class="breadcrumb-place"><a href="<%=request.getContextPath()%>/plan-place?vendorId=${vendorId}">方案場地管理</a></li>
+			<li class="breadcrumb-place"><a href="<%=request.getContextPath()%>/plan-place?vendorId=${vendor.vendorId}">方案場地管理</a></li>
 		</ul>
 	</div>
 	<div class="row">
@@ -94,8 +94,8 @@
 					</div>
 				</div>
 				<div class="col-sm-10 productAddBtn">
-					<input type="hidden" name="vendorId" value="${vendorId}">
-					<a href="<%=request.getContextPath()%>/plan-place?vendorId=${vendorId}"><button type="button" class="btn btn-danger">取消</button></a>
+					<input type="hidden" name="vendorId" value="${vendor.vendorId}">
+					<a href="<%=request.getContextPath()%>/plan-place?vendorId=${vendor.vendorId}"><button type="button" class="btn btn-danger">取消</button></a>
 					<button type="submit" class="btn btn-info" name="action" value="insert">儲存</button>
 				</div>
 			</form>

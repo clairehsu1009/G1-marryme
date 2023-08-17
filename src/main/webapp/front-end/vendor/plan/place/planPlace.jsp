@@ -19,11 +19,11 @@
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-place"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-place"><a href="<%=request.getContextPath()%>/plan-place?vendorId=${vendorId}">方案場地管理</a></li>
+            <li class="breadcrumb-place"><a href="<%=request.getContextPath()%>/plan-place?vendorId=${vendor.vendorId}">方案場地管理</a></li>
         </ul>
     </div>
     <!-- 之後這邊要改取得登入廠商的ID 才是正確的 -->
-    <c:if test="${vendorId == place.vendorId}">
+    <c:if test="${vendor.vendorId == place.vendorId}">
     <div class="row">
         <div class="col-md-12 productsAdd productList">
         <div class="tab-place-content">

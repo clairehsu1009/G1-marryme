@@ -17,10 +17,10 @@
             <h1><i class="fa fa-archive">&nbsp;</i>方案場地</h1>
         </div>
         <form method="post" action="<%=request.getContextPath()%>/plan-place" style="margin-bottom: 0;">
-            <input type="hidden" name="vendorId" value="${vendorId}" />
+            <input type="hidden" name="vendorId" value="${vendor.vendorId}" />
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/plan-place?vendorId=${vendorId}">方案場地管理</a></li>
+            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/plan-place?vendorId=${vendor.vendorId}">方案場地管理</a></li>
         </ul>
         </form>
     </div>
@@ -52,9 +52,7 @@
                             </thead>
                             <tbody>
                             <c:forEach var="place" items="${placeList}" begin="0" end="${placeList.size()}">
-<%--                                <c:out value="loop.index: ${loop.index}, place.status: ${place.status}" /><br>--%>
                                 <c:if test="${place.status == loop.index}">
-
                                 <tr>
                                     <td>
                                         <img width="200px" height="200px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${place.placeId}&photoFieldName=placePicture" class="rounded mx-auto d-block" alt="場地主圖片">

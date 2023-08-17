@@ -155,7 +155,6 @@ public class PlanOrderController extends HttpServlet {
             responseMsgMap.put(EXCEPTION, "訂單成立失敗，請重新選擇");
             doGet(req, resp);
         }else {
-            responseMsgMap.put(SUCCESS, "訂單已成立");
             PlanOrder planOrder = service.getOne(id);
             req.setAttribute("planOrder", planOrder);
             req.setAttribute("memberId", memberId);

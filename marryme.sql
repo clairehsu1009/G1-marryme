@@ -339,7 +339,7 @@ INSERT INTO plan_item (vendor_id, item_type, item_select, item_description, item
 ('vendor1@gmail.com', 0, '兩桌', '可討論想試的菜色，第一次試菜完畢後可供二次試菜並定案', 12000, 30000, 1, 0),
 ('vendor1@gmail.com', 1, '基本菜色', '一桌的價格', 6400, 16000, 1, 0),
 ('vendor1@gmail.com', 1, '豪華澎拜甲吼飽飽飽', '一桌的價格', 8000, 20000, 1, 0),
-('vendor1@gmail.com', 2, '基本企劃', '簡易流程規劃', 40000, 100000, 1, 0),
+('vendor1@gmail.com', 2, '基本企劃', '為你客製化量身打造', 40000, 100000, 1, 0),
 ('vendor1@gmail.com', 2, '豪華浪漫企劃', '豪華浪漫企劃從頭到尾幫你包辦', 80000, 200000, 1, 0),
 ('vendor1@gmail.com', 3, '花草主題', '大自然的元素', 6400, 16000, 1, 0),
 ('vendor1@gmail.com', 3, '仙女風格', '看過住城堡的公主嗎？', 12800, 32000, 1, 0),
@@ -352,7 +352,7 @@ INSERT INTO plan_item (vendor_id, item_type, item_select, item_description, item
 ('vendor1@gmail.com', 6, '西式證婚', ' 證婚儀式', 12000, 30000, 1, 0),
 ('vendor1@gmail.com', 6, '輕食吧', '內含：麵包棒、香橙磅蛋糕、手工餅乾、水果兩款、果汁暢飲', 4000, 10000, 1, 0),
 ('vendor1@gmail.com', 1, '一桌', '一套試完口味、菜色可調整', 4800, 12000, 1, 0),
-('vendor1@gmail.com', 2, '基本', '菜價', 4800, 12000, 1, 0),
+('vendor1@gmail.com', 2, '基本', '基本流程', 4800, 12000, 1, 0),
 ('vendor1@gmail.com', 3, '基本', '婚禮企劃團隊服務', 4000, 10000, 1, 0),
 ('vendor1@gmail.com', 4, '基本', '婚禮佈置', 8000, 20000, 1, 0);
 

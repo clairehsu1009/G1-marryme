@@ -21,11 +21,10 @@
 		</div>
 		<ul class="app-breadcrumb breadcrumb">
 			<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-			<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/plan-item?vendorId=${vendorId}">方案加購項目管理</a></li>
+			<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/plan-item?vendorId=${vendor.vendorId}">方案加購項目管理</a></li>
 		</ul>
 	</div>
-	<!-- 之後這邊要改取得登入廠商的ID 才是正確的 -->
-	<c:if test="${vendorId == item.vendorId}">
+	<c:if test="${vendor.vendorId == item.vendorId}">
 		<div class="row">
 			<div class="col-md-12 productsAdd">
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/plan-item">
@@ -83,7 +82,7 @@
 					<div class="col-sm-10 productAddBtn">
 						<input type="hidden" name="planItemId" value="${item.planItemId}">
 						<input type="hidden" name="vendorId" value="${item.vendorId}">
-						<a href="<%=request.getContextPath()%>/plan-item?vendorId=${vendorId}"><button type="button" class="btn btn-danger">取消</button></a>
+						<a href="<%=request.getContextPath()%>/plan-item?vendorId=${vendor.vendorId}"><button type="button" class="btn btn-danger">取消</button></a>
 						<button type="submit" class="btn btn-info" name="action" value="update">儲存</button>
 					</div>
 				</FORM>

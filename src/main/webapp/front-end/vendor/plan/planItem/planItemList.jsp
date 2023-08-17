@@ -18,11 +18,11 @@
             <h1><i class="fa fa-archive">&nbsp;</i>上架中-方案加購項目</h1>
         </div>
         <form method="post" action="<%=request.getContextPath()%>/plan-item" style="margin-bottom: 0;">
-            <input type="hidden" name="vendorId" value="${vendorId}" />
+            <input type="hidden" name="vendorId" value="${vendor.vendorId}" />
         <ul class="app-breadcrumb breadcrumb">
             <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已下架方案加購項目</button></li>
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/plan-item?vendorId=${vendorId}">方案加購項目管理</a></li>
+            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/plan-item?vendorId=${vendor.vendorId}">方案加購項目管理</a></li>
         </ul>
         </form>
     </div>

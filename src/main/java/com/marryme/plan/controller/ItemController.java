@@ -163,6 +163,8 @@ public class ItemController extends HttpServlet {
             responseMsgMap.put(EXCEPTION, "下架加購項目失敗");
         }
         // 回到list清單頁
+        String vendorId = req.getParameter("vendorId");
+        req.setAttribute("vendorId",vendorId);
         doGet(req, resp);
     }
     /** 取得狀態為下架的加購項目清單 */

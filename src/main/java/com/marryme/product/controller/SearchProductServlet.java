@@ -37,7 +37,7 @@ public class SearchProductServlet extends HttpServlet {
         Integer productStatus = Integer.valueOf(req.getParameter("productStatus"));
         List<Product> productList = productService.getProductByStatusAndVendorId(productStatus, vendorId);
         req.setAttribute("productList", productList);
-        req.setAttribute("productStatus", productStatus);
+        req.setAttribute("status", productStatus);
         req.setAttribute("vendorId", vendorId);
         req.getRequestDispatcher("/back-end/product/listAllProduct.jsp").forward(req, res);
 

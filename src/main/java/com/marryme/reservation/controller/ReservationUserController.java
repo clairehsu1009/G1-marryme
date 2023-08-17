@@ -1,12 +1,6 @@
 package com.marryme.reservation.controller;
 
-import static com.marryme.common.CommonString.ACTION;
-import static com.marryme.common.CommonString.ERROR_MSG;
-import static com.marryme.common.CommonString.EXCEPTION;
-import static com.marryme.common.CommonString.GET_ERROR;
-import static com.marryme.common.CommonString.RESPONSE_MSG_MAP;
-import static com.marryme.common.CommonString.SUCCESS;
-import static com.marryme.common.CommonString.UTF_8;
+import static com.marryme.common.CommonString.*;
 import static com.marryme.reservation.common.ReservationPages.RESERVATION_ITEM_USER_PAGE;
 
 import java.io.IOException;

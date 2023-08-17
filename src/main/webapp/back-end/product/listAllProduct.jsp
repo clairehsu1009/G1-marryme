@@ -57,7 +57,7 @@
 							<div class="strip <c:if test="${s1.index==0}">mt50</c:if>"> 
 								<span style="display: inline-block; width: 20%;">商品ID：${p.productId}</span>
 								<span style="display: inline-block; width: 20%;">廠商ID：${p.vendorId}</span>
-								<span style="display: inline-block; width: 30%;">創建時間：${p.createdTime}</span>
+								<span style="display: inline-block; width: 30%;">商品新增時間：${p.createdTime}</span>
 							</div>
 							<div class="tab-pane fade-in active"
 								 role="tabpanel">

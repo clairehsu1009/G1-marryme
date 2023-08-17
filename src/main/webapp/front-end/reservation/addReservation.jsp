@@ -176,12 +176,13 @@ String placeId = request.getParameter("placeId");
 							</div>
 							<div>
 								<input type="hidden" name="vendorId" value="${vendorId}">
-								<a href="${pageContext.request.contextPath}/front-end/reservation/addReservation.jsp"  class="submitBtn">
-									<button type="button" class="submitBtn">取消</button>
-								</a>
-						
-								<a  class="submitBtn">
-								<button type="submit" class="submitBtn" name="action" value="insert" id="insert">儲存</button>
+								<a href="${pageContext.request.contextPath}/front-end/reservation/addReservation.jsp"  class="">
+									<button type="button" class="submitBtn" >取消</button>
+								</a>							 
+							  
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a  class="">
+								<button  type="submit" class="submitBtn" name="action" value="insert" id="insert">儲存</button>
 								</a>
 							</div>
 							
@@ -196,27 +197,18 @@ String placeId = request.getParameter("placeId");
 
 		</main>	
 		
-		
-		<script>
-		  // 獲取當前日期
-		  var currentDate = new Date().toISOString().split("T")[0];
-		  
-		
-		  // 將當前日期設定為最小日期
-		  document.getElementById("eventDate").min = currentDate;
-		  document.getElementById("reservationDate").min = currentDate;
-		  
-		  <%=request.getContextPath()%>/weddingVenueWork?id=${weddingVenue.placeId}
-		  var placeId = ${placeId};
-		  alert(${placeId});
-		  
-		  
-		</script>		
 
-	<script>
-	
-	
-	</script>	
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+	// 獲取當前日期
+    var currentDate = new Date().toISOString().split("T")[0];
+ 	// 將當前日期設定為最小日期
+    document.getElementById("eventDate").min = currentDate;
+    document.getElementById("reservationDate").min = currentDate;
+});
+
+</script>		
+
 	
 	<!-- body End -->
 

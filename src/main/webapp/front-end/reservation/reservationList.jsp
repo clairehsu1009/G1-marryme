@@ -23,15 +23,14 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-archive">&nbsp;</i>RRR預約賞聽</h1>
+                <h1><i class="fa fa-archive"></i>預約賞廳</h1>
             </div>
-            
 
             
             <form method="post" action="<%=request.getContextPath()%>/reservation" style="margin-bottom: 0px;">
             <input type="hidden" name="vendorId" value="${vendorId}" />
         <ul class="app-breadcrumb breadcrumb">
-            <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已取消日期</button></li>
+<!--             <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getReservationItemInactiveList">查看已取消日期</button></li> -->
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
             <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/reservation?vendorId=${vendorId}">預約賞聽管理</a></li>
         </ul>

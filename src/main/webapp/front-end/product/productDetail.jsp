@@ -44,7 +44,7 @@
 				class="bread_list">
 				<li itemprop="itemListElement" itemscope
 					itemtype="https://schema.org/ListItem"><a itemprop="item"
-					href="#" title="Marryme首頁"> <span itemprop="name">首頁</span></a>
+					href="${pageContext.request.contextPath}/index" title="Marryme首頁"> <span itemprop="name">首頁</span></a>
 					<meta itemprop="position" content="1"></li>
 				<li itemprop="itemListElement" itemscope
 					itemtype="https://schema.org/ListItem"><span itemprop="name">${product.vendor.vendorName}</span></a>
@@ -65,7 +65,7 @@
 				<div>
 					<a class="evaluate"
 						href="#"> 
-						<span class="bg_star" style="width: 64px">
+						<span class="bg_star">
 						</span> 5.0&nbsp;
 						<span class="counts" id="evaluate_counts_basic">(39)</span></a>
 				</div>

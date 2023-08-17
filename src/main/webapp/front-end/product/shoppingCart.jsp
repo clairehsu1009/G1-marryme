@@ -2,6 +2,17 @@
          pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="com.marryme.member.vo.Member" %>
+
+
+<%
+// 檢查是否登入
+Member member = (Member) session.getAttribute("member");
+if (member == null) {
+    // 若未登入，導向登入畫面
+    response.sendRedirect(request.getContextPath() + "/front-end/user/userLogin.jsp");
+}
+%>
 
 <!DOCTYPE html>
 <html>
@@ -24,6 +35,8 @@
 </head>
 
 <body>
+<input type="hidden" name="memberId" value="${member.memberId}" />
+<% if (member != null) { %>
 <!-- Header Section Begin -->
 <%@include file="/front-end/header.jsp"%>
 <!-- Header End -->
@@ -33,7 +46,7 @@
     <div class="col lg_12 md_6 sm_12">
         <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="bread_list">
             <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <a itemprop="item" href="#" title="Marryme首頁">
+                <a itemprop="item" href="${pageContext.request.contextPath}/index" title="Marryme首頁">
                     <span itemprop="name">首頁</span></a>
                 <meta itemprop="position" content="1">
             </li>
@@ -64,7 +77,7 @@
                 <thead>
                   <tr>
                     <th>商品圖片</th>
-                    <th class="p-name">商品名稱</th>
+                    <th>商品名稱</th>
                     <th>價格</th>
                     <th>數量</th>
                     <th>總計</th>
@@ -104,7 +117,7 @@
 	            <div class="row">
 	              <div class="col-lg-4">
 	                <div class="cart-buttons">
-	                  <a href="/marryme/front-end/product/product.jsp" class="primary-btn continue-shop">繼續購物</a>
+	                  <a href="${pageContext.request.contextPath}/front-end/product/product.jsp" class="primary-btn continue-shop">繼續購物</a>
 	                  <a href="${pageContext.request.contextPath}/product/clearCart" id="clearCartBtn" class="primary-btn up-cart">清空購物車</a>
 	                </div>
 	                <div class="discount-coupon">
@@ -120,7 +133,7 @@
 	              <div class="col-lg-4 offset-lg-4">
 	                <div class="proceed-checkout">
 	                  <ul>
-	                    <li class="cart-total">合計(不含運費) <span style="color: #e7ab3c;font-size: 16px;font-weight: 700">$<em data-type="total"><fmt:formatNumber value="${cart.price}" type="number" pattern="#,###" /></em></span></li>
+	                    <li class="cart-total">合計(不含運費) <span style="color: #e7ab3c;font-size: 16px;font-weight: 700">$<em data-type="total" style="font-weight: 700"><fmt:formatNumber value="${cart.price}" type="number" pattern="#,###" /></em></span></li>
 	                  </ul>
 	                  <a href="${pageContext.request.contextPath}/front-end/product/checkOut.jsp" class="proceed-btn">前往結帳</a>
 	                </div>
@@ -133,7 +146,7 @@
 	    </section>
 	    <!-- Shopping Cart Section End -->
 <!-- body End -->
-
+ <% } %>
 
 <!-- Footer Section Begin -->
 <%@include file="/front-end/footer.jsp"%>

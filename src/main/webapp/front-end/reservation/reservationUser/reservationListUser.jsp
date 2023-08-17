@@ -23,7 +23,7 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-archive">&nbsp;</i>RRR預約賞聽</h1>
+                <h1><i class="fa fa-archive">&nbsp;</i>預約賞廳</h1>
             </div>
             
 
@@ -31,8 +31,6 @@
             <form method="post" action="<%=request.getContextPath()%>/reservationUser" style="margin-bottom: 0px;">
             <input type="hidden" name="memberId" value="${memberId}" />
         <ul class="app-breadcrumb breadcrumb">
-            <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已取消日期</button></li>
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
             <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/reservationUser?memberId=${memberId}">預約賞聽管理</a></li>
         </ul>
             
@@ -101,7 +99,7 @@
 <!-- 			                                                <button type="submit" class="btn btn-info" name="action" value="getOneForUpdate">更新</button> -->
 <%-- 			                                            </c:if> --%>
 		                                           
-			                                            	<button type="submit" class="btn btn-warning" name="action" value="changeStatusToCancel">取消</button>
+<!-- 			                                            	<button type="submit" class="btn btn-warning" name="action" value="changeStatusToCancel">取消</button> -->
 		                                               		
 		                                        </form>
 		                                    </td>

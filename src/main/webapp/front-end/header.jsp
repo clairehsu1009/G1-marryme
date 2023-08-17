@@ -21,8 +21,6 @@
 				</li>
 			</ul>
 			<ul class="on_pc right_toolbar">
-				<li class="pc_list"><a href="/marryme/front-end/product/shoppingCart.jsp"><i
-						class="fas fa-cart-shopping"></i></a></li>
 <!-- 				<li class="pc_list"> -->
 <%-- 				<a href="<%=request.getContextPath()%>/front-end/vendor/vendorRegister.jsp" title="店家入駐" class="no_block">店家入駐</a> --%>
 <!-- 				</li> -->
@@ -51,17 +49,23 @@
     <c:when test="${not empty vendor.vendorId}">
         <!-- 廠商已登入 -->
         <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/vendor/vendorRegister.jsp" title="店家入駐" class="no_block">店家入駐</a></li>
-        <li class="pc_list"><a href="<%=request.getContextPath()%>/user/userLogout" title="登出" class="no_block">登出</a></li>
-        <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/vendor/vendorMaterial.jsp" title="廠商資訊" class="no_block">廠商資訊</a></li>
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/vendor/vendorLogout" title="登出" class="no_block">登出</a></li>
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/vendor/vendorBasicinformation.jsp" title="廠商資訊" class="no_block">廠商資訊</a></li>
     </c:when>
     <c:when test="${not empty member.memberId}">
         <!-- 會員已登入 -->
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/product/shoppingCart.jsp"><i class="fas fa-cart-shopping"></i></a></li>
         <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/vendor/vendorRegister.jsp" title="店家入駐" class="no_block">店家入駐</a></li>
         <li class="pc_list"><a href="<%=request.getContextPath()%>/user/userLogout" title="登出" class="no_block">登出</a></li>
-        <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/user/userMaterial.jsp" title="客戶資訊" class="no_block">客戶資訊</a></li>
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/user/userBasicinformation.jsp" title="客戶資訊" class="no_block">客戶資訊</a></li>
+    </c:when>
+     <c:when test="${not empty emp.empId}">
+        <!-- 員工已登入 -->
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/emp/empLogout" title="登出" class="no_block">登出</a></li>
     </c:when>
     <c:otherwise>
         <!-- 未登入 -->
+        <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/product/shoppingCart.jsp"><i class="fas fa-cart-shopping"></i></a></li>
         <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/vendor/vendorRegister.jsp" title="店家入駐" class="no_block">店家入駐</a></li>
         <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/user/userLogin.jsp" title="登入" class="no_block">登入</a></li>
         <li class="pc_list"><a href="<%=request.getContextPath()%>/front-end/user/userRegister.jsp" title="免費註冊" class="no_block">註冊</a></li>

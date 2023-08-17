@@ -9,7 +9,7 @@
 
 <body class="app sidebar-mini rtl">
 <%@include file="/front-end/header.jsp" %>
-<%@include file="/front-end/user/common/userSidebar.jsp" %>
+<%@include file="/back-end/common/backSidebar.jsp" %>
 
 
 <main class="app-content">
@@ -18,7 +18,7 @@
             <h1><i class="fa fa-archive">&nbsp;</i>員工資料列表</h1>
         </div>
         <form method="post" action="<%=request.getContextPath()%>/emp/empMaterial" style="margin-bottom: 0px;">
-            <input type="hidden" name="vendorId" value="${vendorId}" />
+            <input type="hidden" name="empId" value="${emp.empId}" />
 <!--         <ul class="app-breadcrumb breadcrumb"> -->
 <!--             <li><button type="submit" class="btn btn-Success mr-5" name="action" value="getPlanItemInactiveList">查看已下架方案加購項目</button></li> -->
 <!--             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li> -->
@@ -72,12 +72,12 @@
                                     <td>${emp.hiredate}</td>
                                     <td>${emp.empStatus}</td>
                                     <td>
-                                        <form method="post" action="<%=request.getContextPath()%>/emp/empMaterial" style="margin-bottom: 0px;">
+                                        <form method="post" action="<%=request.getContextPath()%>/emp/empRemove" style="margin-bottom: 0px;">
                                             <input type="hidden" name="empId" value="${emp.empId}" />
 <%--                                             <c:if test="${item.editStatus == 0}"> --%>
 <!--                                                 <button type="submit" class="btn btn-info" name="action" value="getOneForUpdate">編輯</button> -->
 <%--                                             </c:if> --%>
-                                            <button type="submit" class="btn btn-warning" name="action" value="changeStatusToInactive">移除</button>
+<!--                                             <button type="submit" class="btn btn-warning" name="action" value="romove">移除</button> -->
                                         </form>
                                     </td>
                                 </tr>

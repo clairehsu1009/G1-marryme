@@ -67,7 +67,12 @@ public class WeddingVenueListController extends HttpServlet{
         
         List<WeddingVenue> currentWeddingVenuesList = weddingVenuesList.subList(startIndex, endIndex);
 
-        List<String> locations = new ArrayList<>();
+
+        Map<WeddingVenue, String> venueToVendorName = new HashMap<>();
+        Map<WeddingVenue, String> venueToLocation = new HashMap<>();
+        Map<WeddingVenue, Integer> venueToTotalPlansMap = new HashMap<>();
+
+
         
         for (WeddingVenue venue : currentWeddingVenuesList) {
             int placeId = venue.getPlaceId();
@@ -75,23 +80,36 @@ public class WeddingVenueListController extends HttpServlet{
             String vendorId = service.findVendorIdByPlaceId(placeId); 
             String location = service.findVendorLocationByPlaceId(vendorId);
             
-            
+            String vendorName = venue.getVendor().getVendorName();
+          
             List<Plan> planList = planservice.findAllByVendorIdAndStatus(vendorId, ACTIVE);
-    	      req.setAttribute("planList", planList);
-    	      int totalPlans = planList.size();
-            req.setAttribute("totalPlans", totalPlans);
+//    	      req.setAttribute("planList", planList);
+//    	      int totalPlans = planList.size();
+//            req.setAttribute("totalPlans", totalPlans);
+            
+            int totalPlansForCurrentVenue = planList.size();
+            venueToTotalPlansMap.put(venue, totalPlansForCurrentVenue);
+        
+                       
+            venueToVendorName.put(venue, vendorName);
+            venueToLocation.put(venue, location);
+
+            req.setAttribute("venueToVendorName", venueToVendorName);
+            req.setAttribute("venueToLocation", venueToLocation);
+            req.setAttribute("venueToTotalPlansMap", venueToTotalPlansMap);
+
+
 
             if (location == null) {
                 resp.sendError(HttpServletResponse.SC_NOT_FOUND, "未找到該供應商ID的位置");
                 return;
             }
-
-          
-            System.out.println("Location for vendor " + vendorId + ": " + location);
-            req.setAttribute("location", location);
-
+    
         }
+        
+        
         req.getRequestDispatcher("/front-end/weddingVenue/weddingVenue.jsp").forward(req, resp);
+        
     }
 	        
 	    

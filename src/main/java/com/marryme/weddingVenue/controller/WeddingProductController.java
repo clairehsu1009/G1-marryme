@@ -17,33 +17,44 @@ import javax.servlet.http.HttpServletResponse;
 import com.marryme.product.entity.Product;
 import com.marryme.weddingVenue.service.WeddingVenueService;
 import com.marryme.weddingVenue.service.impl.WeddingVenueServiceImpl;
+import com.marryme.product.service.ProductService;
+import com.marryme.product.service.impl.ProductServiceImpl;
 
 @WebServlet("/weddingProduct")
 public class WeddingProductController extends HttpServlet{
 	
 		private static final long serialVersionUID = 12L;
 	   private final WeddingVenueService service = new WeddingVenueServiceImpl();
+	   private final ProductService productservice = new ProductServiceImpl();
+	   
+	   
 	   
 	   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
 		   
 		   resp.setContentType("image/jpeg");
 
-		    String productIdStr = req.getParameter("id");
+		    String productIdStr = req.getParameter("id");		    
 		    byte[] objectData = null;
 
 		    if (productIdStr != null) {
-		        try {
-		            int productId = Integer.parseInt(productIdStr);
-		            List<Product> ProductList = service.findProductAllAndStatus(ACTIVE);
-		            
-		            if (productId > 0 && productId <= ProductList.size()) {
-		                objectData = ProductList.get(productId - 1).getImage();
-		                
-		            }
-		        } catch (NumberFormatException e) {
-		            // Ignore exception, we will use default image
-		        }
-		    }
+	            try {
+	            	Integer productStatus = Integer.valueOf(req.getParameter("productStatus"));
+	        		
+	            	
+	                int productId = Integer.parseInt(productIdStr);
+	                List<Product> products = productservice.getProductByStatus(productStatus);
+
+	                for (Product product : products) {
+	                    if (product.getProductId() == productId) {
+	                        objectData = product.getImage();
+	                        break;
+	                    }
+	                }
+
+	            } catch (NumberFormatException e) {
+	                // Ignore exception, we will use default image
+	            }
+	        }
 
 		    // Check if objectData is null or empty, if so, use default image
 		    if (objectData == null || objectData.length == 0) {

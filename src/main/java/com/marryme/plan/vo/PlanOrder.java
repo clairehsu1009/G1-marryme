@@ -69,7 +69,7 @@ public class PlanOrder {
     private Integer paymentState;
     /** 總金額 */
     @Column(name = "total_amount")
-    private String totalAmount;
+    private Integer totalAmount;
     /** 訂單時間 */
     @Column(name = "order_dateTime")
     private Date orderDateTime;

@@ -5,9 +5,9 @@
         username="root"
         password="password"
         driverClassName="com.mysql.cj.jdbc.Driver"
-        maxActive="8"
+              maxTotal="8"
        maxIdle="4"
-       maxWait="5000"
+              maxWaitMillis="5000"
     />
 
 </Context>

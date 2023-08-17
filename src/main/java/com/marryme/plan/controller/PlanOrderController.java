@@ -125,6 +125,7 @@ public class PlanOrderController extends HttpServlet {
         Integer unavailableTime = Integer.valueOf(req.getParameter("unavailableTime"));
         Integer orderTables = Integer.valueOf(req.getParameter("orderTables"));
         String totalAmount = req.getParameter("total");
+        totalAmount = totalAmount.replace(",", ""); // 移除千位符號逗號
         String [] planItemIds = req.getParameterValues("planItemId");
 
         List<Integer> planItemIdList = new ArrayList<>();
@@ -153,7 +154,7 @@ public class PlanOrderController extends HttpServlet {
         planOrderVo.setPlanProductId(planProductId);
         planOrderVo.setPlaceId(placeId);
         planOrderVo.setOrderTables(orderTables);
-        planOrderVo.setTotalAmount(totalAmount);
+        planOrderVo.setTotalAmount(Integer.valueOf(totalAmount));
         Integer id = service.insertUnavailableDateAndOrder(unavailableDates, planOrderVo, planItemIdList);
         if (id == null) {
             responseMsgMap.put(EXCEPTION, INSERT_ERROR);
@@ -163,7 +164,10 @@ public class PlanOrderController extends HttpServlet {
         responseMsgMap.put(SUCCESS, "訂單已成立");
         PlanOrder planOrder = service.getOne(id);
         req.setAttribute("planOrder", planOrder);
-        req.getRequestDispatcher(MEMBER_OWN_ORDER_PAGE).forward(req, resp);
+        req.setAttribute("memberId", memberId);
+//        req.getRequestDispatcher(MEMBER_OWN_ORDER_PAGE).forward(req, resp);
+        String redirectUrl = req.getContextPath() + "/plan-order?memberId=" + memberId;
+        resp.sendRedirect(redirectUrl);
 
     }
     private void check(HttpServletRequest req, HttpServletResponse resp, Map<String, String> responseMsgMap) throws ServletException, IOException {

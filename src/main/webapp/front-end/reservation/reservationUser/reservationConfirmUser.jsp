@@ -21,7 +21,7 @@
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-place"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-place"><a href="<%=request.getContextPath()%>/reservation?vendorId=${vendorId}">預約日期</a></li>
+            <li class="breadcrumb-place"><a href="<%=request.getContextPath()%>/reservationUser?memberId=${memberId}">預約日期</a></li>
         </ul>
     </div>
     <!-- 之後這邊要改取得登入廠商的ID 才是正確的 -->

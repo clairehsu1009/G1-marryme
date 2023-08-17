@@ -31,7 +31,7 @@
             <div class="tab-item">
                 <ul class="nav" role="tablist">
                     <li><a class="active" data-toggle="tab" href="#tab-0" role="tab">試菜</a></li>
-                    <li><a data-toggle="tab" href="#tab-1" role="tab">菜價</a></li>
+                    <li><a data-toggle="tab" href="#tab-1" role="tab">餐價</a></li>
                     <li><a data-toggle="tab" href="#tab-2" role="tab">婚禮企劃團隊服務</a></li>
                     <li><a data-toggle="tab" href="#tab-3" role="tab">婚禮佈置</a></li>
                     <li><a data-toggle="tab" href="#tab-4" role="tab">婚禮主持人</a></li>

@@ -4,15 +4,9 @@ use marryme;
 
 DROP TABLE IF EXISTS order_detail;
 DROP TABLE IF EXISTS orders;
-DROP TABLE IF EXISTS member_coupon_list;
 
-DROP TABLE IF EXISTS activity;
-DROP TABLE IF EXISTS album;
-DROP TABLE IF EXISTS assess;
 DROP TABLE IF EXISTS notification;
-DROP TABLE IF EXISTS online_report;
 DROP TABLE IF EXISTS reservation;
-DROP TABLE IF EXISTS redis;
 
 DROP TABLE IF EXISTS plan_place;
 DROP TABLE IF EXISTS unavailable_dates;
@@ -28,7 +22,6 @@ DROP TABLE IF EXISTS vendor;
 DROP TABLE IF EXISTS emp;
 DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS product_category;
-DROP TABLE IF EXISTS report;
   
 
 CREATE TABLE member (
@@ -121,34 +114,7 @@ VALUES('蜘蛛人', '2000-12-29', 0, '1998-09-12', 'emp1@gmail.com', '0930843864
       ('黑豹', '2007-05-19', 0, '1984-02-17', 'emp8@gmail.com', '0937395093', 'wone6739', '台北市松山區民生東路五段69巷4弄10號3樓', 0),
       ('雷神索爾', '2008-04-30', 0, '1999-05-29', 'emp9@gmail.com', '0938870248', 'vene7793', '台北市內湖區環山路三段30巷181號1樓', 1),
       ('X戰警', '2009-03-14', 0, '1941-06-25', 'emp10@gmail.com', '0939902769', 'rtyn8930', '台北市南港區東明街1巷210號12樓', 0);
-     
 
-set auto_increment_offset=1;
-set auto_increment_increment=1;
-
-CREATE TABLE redis (
-  `redis_ID` int auto_increment not null comment '聊天編號_ID',
-  `member_id` varchar(50) not null comment '會員_ID FK',
-  `vendor_id` varchar(50) not null comment '廠商_ID FK',
-  `time` timestamp not null comment '發送時間',
-  `message` varchar(200) not null comment '訊息內容',
-  CONSTRAINT redis_member_id_FK FOREIGN KEY (member_id) REFERENCES member (member_id),
-  CONSTRAINT redis_vendor_id_FK FOREIGN KEY (vendor_id) REFERENCES vendor (vendor_id),
-  PRIMARY KEY (redis_ID) comment '1對1 聊聊') AUTO_INCREMENT = 1;   
-
-
-INSERT INTO redis(member_id, vendor_id, time, message)
-VALUES('member1@gmail.com', 'vendor1@gmail.com', '2023-08-01 10:00:00', '請問xxx訂單出貨了嗎?我想取消  好的,這邊幫你取消'),
- 	  ('member2@gmail.com', 'vendor2@gmail.com', '2023-08-01 11:00:00', '你們婚宴場地可以帶狗參加嗎?  可以,我們目前還有配合狗狗的服裝,可以參考'),
-	  ('member3@gmail.com', 'vendor3@gmail.com', '2023-08-01 12:00:00', '請問xxx訂單出貨了嗎?我想要再加購  你好,目前還未出貨,可以直接加購幫你併單'),
-	  ('member4@gmail.com', 'vendor4@gmail.com', '2023-08-01 13:00:00', '請問我們有跟場地做大活動,遊覽車的部分,可以有什麼優惠嗎?  你好,目前我們只有針對季節做活動,遊覽車目前沒有配合'),
-      ('member5@gmail.com', 'vendor5@gmail.com', '2023-08-01 14:00:00', '請問可以幫我確認你們有配合某某主持人嗎?我想找她做我的婚宴主持人  你好,有的,還有需要什麼服務嗎?'),
-      ('member6@gmail.com', 'vendor6@gmail.com', '2023-08-01 15:00:00', '你好,我們是某某婚宴場地,我們有收到您的2023/10/31的預約訂單,但是,我們那天場地還有做其他活動,可否改其它天,我給你8折優惠  那我在看看,後面回覆你'),
-      ('member7@gmail.com', 'vendor7@gmail.com', '2023-08-01 16:00:00', '你好,可以幫我取消2023/11/11的場地預約嗎?我們討論想改期   你好,我們這邊幫你做調整,你在將調整時間跟我們說即可'),
-	  ('member8@gmail.com', 'vendor8@gmail.com', '2023-08-01 17:00:00', '請問你們婚宴場地跟商品都用你們家的,可以有優惠嗎?  你好,如果都使用我們家的,可以給你打7折'),
-      ('member9@gmail.com', 'vendor9@gmail.com', '2023-08-01 18:00:00', '請問你們除了網站上的場地照片,還有其他的場地照片可以參考嗎?  你好,目前就網站上的照片,還是您方便約什麼時候來看場地?隨時歡迎'),
-      ('member10@gmail.com', 'vendor10@gmail.com', '2023-08-01 19:00:00','你好,我看你們10月的預約都滿了,是否有其他時段有人取消嗎?目前就安排在10月舉辦  你好,目前還未有客戶取消,如果有客戶近期取消在幫你留意並通知你');
-      
 
 -- 建立商品類別表
 CREATE TABLE product_category (
@@ -196,59 +162,6 @@ VALUES ('vendor6@gmail.com', 1, '婚戒1', NULL, 5000, 4000, 50, NULL, NOW(), 1)
 
 
 
--- 建立檢舉資料表
-CREATE TABLE report (
-	report_id INT NOT NULL AUTO_INCREMENT COMMENT '檢舉_ID' PRIMARY KEY,
-	member_id VARCHAR(50) NOT NULL COMMENT '會員_ID(信箱)',
-	product_id INT NOT NULL COMMENT'商品_ID',
-    report_content VARCHAR(200) NOT NULL COMMENT '檢舉內容',
-    emp_id INT,
-    review_status TINYINT NOT NULL DEFAULT 0 COMMENT '檢舉狀態(0-未審核, 1-審核中, 2-已成立(檢舉成功), 3-已取消, 4-不成立(檢舉失敗))',
-	CONSTRAINT fk_report_member_id FOREIGN KEY (member_id) REFERENCES member (member_id),
-    CONSTRAINT fk_report_product_id FOREIGN KEY (product_id) REFERENCES product (product_id),
-    CONSTRAINT fk_report_emp_id FOREIGN KEY (emp_id) REFERENCES emp (emp_id)
-) COMMENT '檢舉資料表';
-
-INSERT INTO report (member_id, product_id, report_content, emp_id, review_status) 
-VALUES ('member1@gmail.com', 1, '這個商品質量差，有瑕疵', NULL, 1),
-	   ('member2@gmail.com', 3, '廣告中所示商品與實際不符', NULL, 0),
-       ('member3@gmail.com', 2, '該商品沒有提供售後服務', NULL, 2),
-       ('member4@gmail.com', 5, '收到的商品破損了', NULL, 1),
-       ('member5@gmail.com', 4, '該商品被宣傳得太好，實際不值得購買', NULL, 0),
-       ('member6@gmail.com', 1, '未收到訂單中的某件商品', NULL, 1),
-       ('member7@gmail.com', 2, '該商品尺寸不符合描述', NULL, 2),
-       ('member8@gmail.com', 3, '商品配送時間延遲', NULL, 1),
-       ('member9@gmail.com', 4, '收到的商品與圖片中不同顏色', NULL, 0),
-       ('member10@gmail.com', 5, '該商品質量堪憂', NULL, 2);
-       
-       
-       
-CREATE TABLE online_report (
-  `online_report_serial_number` int auto_increment not null comment '線上問題回報_ID',
-  `member_id` varchar(50) null comment '會員_ID FK',
-  `vendor_id` varchar(50) null comment '廠商_ID FK',
-  `emp_id` int null comment'員工_ID FK',
-  `email` varchar(50) not null comment'信箱',
-  `qna` varchar(200) not null comment '問題或建議',
-   CONSTRAINT online_report_member_id_FK FOREIGN KEY (member_id) REFERENCES member (member_id),
-   CONSTRAINT online_report_vendor_id_FK FOREIGN KEY (vendor_id) REFERENCES vendor (vendor_id),
-  PRIMARY KEY (online_report_serial_number) comment '線上問題回報')AUTO_INCREMENT = 1;
-
-
-INSERT INTO online_report (member_id, vendor_id, emp_id, email, qna)
-VALUES
-    ('member1@gmail.com', null, 1, 'member1@gmail.com', '想了解關於結婚的流程推薦'),
-    (null, 'vendor1@gmail.com', 2, 'vendor1@gmail.com', '除了論壇,還有哪裏可以分享?'),
-    (null, 'vendor2@gmail.com', null, 'vendor2@gmail.com', '有遇到客戶態度不佳,可否提供檢舉客戶?'),
-    ('member2@gmail.com', null, null, 'member2@gmail.com', '想知道訂單紀錄,是否可以看到貨運狀態?'),
-    (null, 'vendor3@gmail.com', 3, 'vendor3@gmail.com', '我想提供給優惠碼給客戶,請問是在哪裡辦理?'),
-    ('member7@gmail.com', null, 4, 'member7@gmail.com', '請問你們最推薦的婚宴場地,可以容納多少人?'),
-    (null, 'vendor4@gmail.com', null, 'vendor4@gmail.com', '請問會舉辦優質廠商比賽嗎?'),
-    ('member10@gmail.com', null, null, 'member10@gmail.com', '請問有哪個場地是可以配合帶寵物的嗎?'),
-    (null, 'vendor8@gmail.com', 5, 'vendor8@gmail.com', '廠商跟廠商之間想配合合作,你們有這方面的方案嗎?'),
-    ('member5@gmail.com', null, 6, 'member5@gmail.com', '每個場地都會配合遊覽車地點接送嗎?');
-    
-
 
 set auto_increment_offset=1;
 set auto_increment_increment=1;
@@ -282,35 +195,6 @@ VALUES
     ('member7@gmail.com', 1, '在2023/10月買婚禮小物,滿300免運費', '2023-07-01 19:00:00', 1, null, 'member7@gmail.com', null);
     
 
-
--- 建立優惠活動表
-CREATE TABLE activity (
-	discount_code VARCHAR(10) NOT NULL COMMENT '優惠代碼' PRIMARY KEY,
-	vendor_id VARCHAR(50) COMMENT '廠商_ID(信箱)',
-	activity_name VARCHAR(50) NOT NULL COMMENT '活動名稱',
-    discount DECIMAL(8, 2) NOT NULL COMMENT '折扣',
-    activity_start_time TIMESTAMP NOT NULL COMMENT '活動開始時間',
-    activity_end_time TIMESTAMP NOT NULL COMMENT '活動結束時間',
-	activity_detail VARCHAR(100) COMMENT '活動內容',
-	`status` int not null default 1 comment '0下架, 1上架',
-    edit_status int not null default 0 comment '0可修改, 1不可修改',
-    CONSTRAINT fk_activity_vendor_id FOREIGN KEY (vendor_id) REFERENCES vendor (vendor_id)
-) COMMENT '優惠活動表';
-
-
-INSERT INTO activity (discount_code, vendor_id, activity_name, discount, activity_start_time, activity_end_time, activity_detail, `status`, edit_status)
-VALUES 
-    ('CODE001', NULL, '夏日優惠', -1000, '2023-07-01 10:00:00', '2023-07-07 23:59:59', '享受1000元折扣。', 1, 0),
-    ('CODE002', NULL, '限時特賣', -850, '2023-07-02 09:00:00', '2023-07-02 12:00:00', '3小時限定特價：只要滿850元就可折850元。', 1, 0),
-    ('CODE003', NULL, '婚禮特惠', -300, '2023-07-08 18:00:00', '2023-07-10 23:59:59', '結婚相關商品獨家優惠。', 1, 0),
-    ('CODE004', NULL, '清倉大拍賣', -50, '2023-07-05 12:00:00', '2023-07-15 23:59:59', '大量商品低至半價，為您的特殊日子提供優惠。', 1, 0),
-    ('CODE005', NULL, '節慶促銷', -25, '2023-07-20 08:00:00', '2023-07-25 23:59:59', '慶祝節日，結婚必備品通通折25元。', 1, 0),
-    ('CODE006', 'vendor6@gmail.com', '婚禮必備品特賣', 0.2, '2023-07-10 09:00:00', '2023-07-15 23:59:59', '婚禮必備品全線八折優惠。', 1, 0),
-    ('CODE007', 'vendor7@gmail.com', '新娘美妝特惠', 0.25, '2023-07-12 10:00:00', '2023-07-18 23:59:59', '讓您在重要的一天展現最佳狀態！新娘美妝產品享受25%折扣。', 1, 0),
-    ('CODE008', 'vendor8@gmail.com', '婚禮佈置清倉', 0.4, '2023-07-20 12:00:00', '2023-07-25 23:59:59', '打造完美氛圍，婚禮佈置產品清倉大拍賣，享受40%優惠。', 1, 0),
-    ('CODE009', 'vendor9@gmail.com', '婚禮服飾特賣', 0.1, '2023-07-15 09:00:00', '2023-07-20 23:59:59', '婚禮完美服飾享受10%優惠。', 1, 0),
-    ('CODE010', 'vendor10@gmail.com', '喜餅優惠', 0.15, '2023-07-25 10:00:00', '2023-07-31 23:59:59', '獨家美味喜餅享受15%優惠。', 1, 0);
-       
        
 
 CREATE TABLE `reservation` (
@@ -343,89 +227,6 @@ VALUES
     ('vendor1@gmail.com', 'member10@gmail.com', 'Sophia Martinez', '0911234567', '2023-07-19 12:00:00', '2023-07-14 12:30:00',1);
 
 
-
-CREATE TABLE `marryme`.`favorites_product` (
- `vendor_id` VARCHAR(50) NOT NULL COMMENT '場商_id 信箱 FK',
-  `member_id` VARCHAR(50) NOT NULL COMMENT '會員_id 信箱 FK',
-  FOREIGN KEY (`vendor_id`) REFERENCES `vendor` (`vendor_id`),
-  FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`)
-  )COMMENT = '追蹤廠商';
-
-
-INSERT INTO `favorites_product` (`vendor_id`, `member_id`) VALUES
- ('vendor1@gmail.com', 'member1@gmail.com'),
-  ('vendor2@gmail.com', 'member2@gmail.com'), 
-  ('vendor3@gmail.com', 'member3@gmail.com'), 
-  ('vendor4@gmail.com', 'member4@gmail.com'), 
-  ('vendor5@gmail.com', 'member5@gmail.com'), 
-  ('vendor6@gmail.com', 'member6@gmail.com');
-    
-CREATE TABLE `assess` (
-  `rating_id` INT NOT NULL AUTO_INCREMENT COMMENT '評價_id 流水號 ',
-  `vendor_id` VARCHAR(50) NOT NULL COMMENT '廠商_id 信箱 FK',
-  `member_id` VARCHAR(50) NOT NULL COMMENT '會員_id 信箱 FK',
-  `assess_score` INT NOT NULL COMMENT '評分',
-  `assess_title` VARCHAR(200) NOT NULL COMMENT '標題',
-  `assess_context` VARCHAR(500) NULL COMMENT '內容',
-  PRIMARY KEY (`rating_id`),
-  FOREIGN KEY (`vendor_id`) REFERENCES `vendor` (`vendor_id`)
-)COMMENT = '廠商評價';
-
-INSERT INTO `assess` (`vendor_id`, `member_id`, `assess_score`, `assess_title`, `assess_context`) VALUES
-  ('vendor1@gmail.com', 'member1@gmail.com', 4, '非常好的體驗', '他們的服務非常出色，產品品質也很好。強烈推薦給大家！'),
-  ('vendor2@gmail.com', 'member2@gmail.com', 5, '服務優秀', '這家店的服務簡直是無可挑剔的，他們總是能夠迅速解決我的問題。'),
-  ('vendor3@gmail.com', 'member3@gmail.com', 3, '一般的體驗', '他們的產品質量一般，價格稍微有些高。'),
-  ('vendor4@gmail.com', 'member4@gmail.com', 4, '對產品滿意', '這款產品的性能很出色，我對它感到非常滿意。'),
-  ('vendor5@gmail.com', 'member5@gmail.com', 2, '客戶支援差', '每次我詢問問題時，他們的客戶支援都沒有給我滿意的答案。'),
-  ('vendor6@gmail.com', 'member6@gmail.com', 5, '強烈推薦', '我非常喜歡這家店的產品，他們的服務也非常好。絕對值得推薦！'),
-  ('vendor7@gmail.com', 'member7@gmail.com', 4, '產品品質好', '他們的產品質量非常好，堅固耐用，使用起來很舒適。'),
-  ('vendor8@gmail.com', 'member8@gmail.com', 3, '價格公道', '這個價格對於所提供的產品來說是公道的，但有些功能稍微有所欠缺。'),
-  ('vendor9@gmail.com', 'member9@gmail.com', 4, '送貨迅速', '他們的送貨速度很快，產品到達時都是完好無損的。'),
-  ('vendor10@gmail.com', 'member10@gmail.com', 5, '表現卓越', '這家店的產品表現真的非常出色，我非常滿意他們的服務。');
-  
-  
-  
-CREATE TABLE `album` (
-  `album_id` INT NOT NULL AUTO_INCREMENT  COMMENT '廠商相簿_id 流水號',
-  `vendor_id` VARCHAR(50) NOT NULL COMMENT '廠商_id 信箱 FK',
-  `album_video` VARCHAR(200) NULL COMMENT '廠商影片 用連接',
-  `album_picture01` LONGBLOB NULL COMMENT '圖片1',
-  `album_picture02` LONGBLOB NULL COMMENT '圖片2',
-  `album_picture03` LONGBLOB NULL COMMENT '圖片3',
-  `album_picture04` LONGBLOB NULL COMMENT '圖片4',
-  `album_picture05` LONGBLOB NULL COMMENT '圖片5',
-  `album_picture06` LONGBLOB NULL COMMENT '圖片6',
-  `album_picture07` LONGBLOB NULL COMMENT '圖片7',
-  `album_picture08` LONGBLOB NULL COMMENT '圖片8',
-  `album_picture09` LONGBLOB NULL COMMENT '圖片9',
-  `album_picture10` LONGBLOB NULL COMMENT '圖片10',
-  `album_picture11` LONGBLOB NULL COMMENT '圖片11',
-  `album_picture12` LONGBLOB NULL COMMENT '圖片12',
-  `album_picture13` LONGBLOB NULL COMMENT '圖片13',
-  `album_picture14` LONGBLOB NULL COMMENT '圖片14',
-  `album_picture15` LONGBLOB NULL COMMENT '圖片15',
-  `album_picture16` LONGBLOB NULL COMMENT '圖片16',
-  `album_picture17` LONGBLOB NULL COMMENT '圖片17',
-  `album_picture18` LONGBLOB NULL COMMENT '圖片18',
-  `album_picture19` LONGBLOB NULL COMMENT '圖片19',
-  `album_picture20` LONGBLOB NULL COMMENT '圖片20',
-  PRIMARY KEY (`album_id`),
-  FOREIGN KEY (`vendor_id`) REFERENCES `vendor` (`vendor_id`)
-)COMMENT = '廠商相簿';
-
-
-
-INSERT INTO `album` (`vendor_id`) VALUES
-  ('vendor1@gmail.com'),
-  ('vendor2@gmail.com'),
-  ('vendor3@gmail.com'),
-  ('vendor4@gmail.com'),
-  ('vendor5@gmail.com'),
-  ('vendor6@gmail.com'),
-  ('vendor7@gmail.com'),
-  ('vendor8@gmail.com'),
-  ('vendor9@gmail.com'),
-  ('vendor10@gmail.com');
 
 
 -- 建立商品訂單--
@@ -461,7 +262,7 @@ CREATE TABLE plan_place (
   place_id int primary key not null auto_increment comment'場地_ID',
   vendor_id varchar(50) not null comment '廠商_ID為信箱,{FK}',
   place_picture Blob comment '主圖片',
-  place_title varchar(10) not null comment '標題', 
+  place_title varchar(10) not null comment '標題',
   numbeOfTables varchar(10) not null comment '建議桌數',
   place_Introduction varchar(1000) not null comment'廳別簡介',
   place_pictures2 longblob comment '圖片',
@@ -575,29 +376,6 @@ VALUES
     (3, 2),
     (3, null);
 
-
-CREATE TABLE member_coupon_list (
-  `member_id` varchar(50) not null comment '會員_ID FK',
-  `discount_code` varchar(10) null comment '優惠代碼  FK',
-  `coupon_status` int null comment '使用狀態(0:已使用, 1:已過期,2:未使用)',
-  CONSTRAINT member_coupon_list_member_id_FK FOREIGN KEY (member_id) REFERENCES member (member_id),
-  CONSTRAINT member_coupon_list_discount_code_FK FOREIGN KEY (discount_code) REFERENCES activity (discount_code),
-  PRIMARY KEY (member_id) comment '會員所擁有的優惠');
-  
-  
-INSERT INTO member_coupon_list(member_id, discount_code, coupon_status)
-VALUES('member1@gmail.com', 'CODE001', 1),
-	  ('member2@gmail.com', 'CODE002', 0),
-      ('member3@gmail.com', 'CODE003', 0),
-      ('member4@gmail.com', 'CODE004', 0),
-      ('member5@gmail.com', 'CODE005', 2),
-      ('member6@gmail.com', 'CODE006', 2),
-      ('member7@gmail.com', 'CODE007', 0),
-      ('member8@gmail.com', 'CODE008', 1),
-      ('member9@gmail.com', 'CODE009', 0),
-      ('member10@gmail.com', 'CODE010', 2);
-      
-      
       
 -- 建立商品訂單明細
 CREATE TABLE order_detail (

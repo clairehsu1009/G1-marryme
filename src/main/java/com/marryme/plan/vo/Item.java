@@ -65,7 +65,7 @@ public class Item {
             case 0:
                 return "試菜";
             case 1:
-                return "菜價";
+                return "餐價";
             case 2:
                 return "婚禮企劃團隊服務";
             case 3:

@@ -197,27 +197,18 @@ String placeId = request.getParameter("placeId");
 
 		</main>	
 		
-		
-		<script>
-		  // 獲取當前日期
-		  var currentDate = new Date().toISOString().split("T")[0];
-		  
-		
-		  // 將當前日期設定為最小日期
-		  document.getElementById("eventDate").min = currentDate;
-		  document.getElementById("reservationDate").min = currentDate;
-		  
-		  <%=request.getContextPath()%>/weddingVenueWork?id=${weddingVenue.placeId}
-		  var placeId = ${placeId};
-		  alert(${placeId});
-		  
-		  
-		</script>		
 
-	<script>
-	
-	
-	</script>	
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+	// 獲取當前日期
+    var currentDate = new Date().toISOString().split("T")[0];
+ 	// 將當前日期設定為最小日期
+    document.getElementById("eventDate").min = currentDate;
+    document.getElementById("reservationDate").min = currentDate;
+});
+
+</script>		
+
 	
 	<!-- body End -->
 

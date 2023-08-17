@@ -14,9 +14,10 @@
 <%@include file="/front-end/vendor/common/vendorHead.jsp"%>
 
 <%
-    String id = request.getParameter("vendorId");
+    Vendor vendor = (Vendor) session.getAttribute("vendor");
+    session.setAttribute("vendor", vendor);
     PlaceService placeService = new PlaceServiceImpl();
-    List<Place> placeList = placeService.findAllByVendorId(String.valueOf(id));
+    List<Place> placeList = placeService.findAllByVendorId(vendor.getVendorId());
     pageContext.setAttribute("placeList", placeList);
 %>
 

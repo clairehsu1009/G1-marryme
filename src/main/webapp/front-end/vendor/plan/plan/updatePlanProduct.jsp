@@ -12,8 +12,10 @@
 <%@include file="/front-end/vendor/common/vendorHead.jsp"%>
 
 <%
+    Vendor vendor = (Vendor) session.getAttribute("vendor");
+    session.setAttribute("vendor", vendor);
     PlaceService placeService = new PlaceServiceImpl();
-    List<Place> placeList = placeService.findAllByVendorId(String.valueOf(vendorId));
+    List<Place> placeList = placeService.findAllByVendorId(vendor.getVendorId());
     pageContext.setAttribute("placeList", placeList);
 %>
 
@@ -198,7 +200,6 @@ margin: 0 5px; /* 可自行調整間距大小 */
                                 </thead>
                                 <tbody>
                                 <c:forEach var="place" items="${placeList}" begin="0" end="${placeList.size()}">
-<%--                                    <c:if test="${vendor.vendorId == place.vendorId}">--%>
                                     <tr>
                                         <td>
                                             <label for="${place.placeId}" class="col-sm-2 col-form-label">
@@ -213,7 +214,6 @@ margin: 0 5px; /* 可自行調整間距大小 */
                                         <td>${place.numbeOfTables}</td>
                                         <td>${place.placeIntroduction}</td>
                                     </tr>
-<%--                                    </c:if>--%>
                                 </c:forEach>
                                 </tbody>
                             </table>

@@ -506,8 +506,8 @@ CREATE TABLE plan_product (
   plan_pictures2 longblob comment'圖片2',
   plan_picture_intro2 varchar(20) comment'圖片簡介2',
   plan_pictures3 longblob comment'圖片3',
-  plan_picture_intro3 varchar(20) comment'圖片簡介3'
-#   FOREIGN KEY (vendor_id) REFERENCES vendor(vendor_id)
+  plan_picture_intro3 varchar(20) comment'圖片簡介3',
+  FOREIGN KEY (vendor_id) REFERENCES vendor(vendor_id)
 )comment = '方案商品';
 
 

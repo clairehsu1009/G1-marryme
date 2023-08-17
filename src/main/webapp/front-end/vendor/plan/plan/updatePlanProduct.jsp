@@ -46,7 +46,7 @@ margin: 0 5px; /* 可自行調整間距大小 */
         </ul>
     </div>
     <!-- 之後這邊要改取得登入廠商的ID 才是正確的 -->
-    <c:if test="${vendorId == plan.vendorId}">
+    <c:if test="${vendor.vendorId == plan.vendorId}">
         <div class="row">
             <div class="col-md-12 productsAdd">
                 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/plan" enctype="multipart/form-data">
@@ -198,6 +198,7 @@ margin: 0 5px; /* 可自行調整間距大小 */
                                 </thead>
                                 <tbody>
                                 <c:forEach var="place" items="${placeList}" begin="0" end="${placeList.size()}">
+<%--                                    <c:if test="${vendor.vendorId == place.vendorId}">--%>
                                     <tr>
                                         <td>
                                             <label for="${place.placeId}" class="col-sm-2 col-form-label">
@@ -212,6 +213,7 @@ margin: 0 5px; /* 可自行調整間距大小 */
                                         <td>${place.numbeOfTables}</td>
                                         <td>${place.placeIntroduction}</td>
                                     </tr>
+<%--                                    </c:if>--%>
                                 </c:forEach>
                                 </tbody>
                             </table>

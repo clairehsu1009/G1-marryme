@@ -7,14 +7,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:useBean id="plan" scope="request" class="com.marryme.plan.vo.Plan" />
+<jsp:useBean id="place" scope="request" class="com.marryme.plan.vo.Place" />
 
 
 <html lang="zh-tw">
 <%@include file="/front-end/vendor/common/vendorHead.jsp"%>
 
 <%
+    String id = request.getParameter("vendorId");
     PlaceService placeService = new PlaceServiceImpl();
-    List<Place> placeList = placeService.findAllByVendorId(String.valueOf(vendorId));
+    List<Place> placeList = placeService.findAllByVendorId(String.valueOf(id));
     pageContext.setAttribute("placeList", placeList);
 %>
 
@@ -32,7 +34,7 @@
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-plan"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-plan"><a href="<%=request.getContextPath()%>/plan?vendorId=${vendorId}">方案商品管理</a></li>
+            <li class="breadcrumb-plan"><a href="<%=request.getContextPath()%>/plan?vendorId=${vendor.vendorId}">方案商品管理</a></li>
         </ul>
     </div>
     <div class="row">
@@ -111,9 +113,6 @@
                 </div>
                 <div class="form-group mt-5">
                     <h3>請選擇方案場地</h3>
-                    <c:if test="${responseMsgMap.containsKey('placeList')}">
-                        <span class="errorMsg">${responseMsgMap['placeList']}</span>
-                    </c:if>
                     <div class="col-sm-10">
                         <table class="table">
                             <thead class="thead">
@@ -126,6 +125,7 @@
                             </tr>
                             </thead>
                             <tbody>
+
                             <c:forEach var="place" items="${placeList}" begin="0" end="${placeList.size()}">
                                 <tr>
                                     <td>
@@ -149,7 +149,7 @@
                 <div class="col-sm-10 productAddBtn">
                     <input type="hidden" name="planProductId" value="${plan.planProductId}">
                     <input type="hidden" name="vendorId" value="${plan.vendorId}">
-                    <a href="<%=request.getContextPath()%>/plan?vendorId=${vendorId}"><button type="button" class="btn btn-danger">取消</button></a>
+                    <a href="<%=request.getContextPath()%>/plan?vendorId=${vendor.vendorId}"><button type="button" class="btn btn-danger">取消</button></a>
                     <button type="submit" class="btn btn-info" name="action" value="insert">儲存</button>
                 </div>
             </form>

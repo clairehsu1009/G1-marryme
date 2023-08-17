@@ -33,11 +33,11 @@
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-place"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-place"><a href="<%=request.getContextPath()%>/plan?vendorId=${vendorId}">方案場地管理</a></li>
+            <li class="breadcrumb-place"><a href="<%=request.getContextPath()%>/plan?vendorId=${vendor.vendorId}">方案場地管理</a></li>
         </ul>
     </div>
     <!-- 之後這邊要改取得登入廠商的ID 才是正確的 -->
-    <c:if test="${vendorId == plan.vendorId}">
+    <c:if test="${vendor.vendorId == plan.vendorId}">
         <div class="row">
             <div class="col-md-12 productsAdd productList">
                 <div class="tab-place-content">
@@ -121,7 +121,7 @@
                                 <c:if test="${plan.editStatus == 0}">
                                     <button type="submit" class="btn btn-info" name="action" value="getOneForUpdate">編輯</button>
                                 </c:if>
-                                <a href="<%=request.getContextPath()%>/plan?vendorId=${vendorId}"><button type="button" class="btn btn-danger">取消</button></a>
+                                <a href="<%=request.getContextPath()%>/plan?vendorId=${vendor.vendorId}"><button type="button" class="btn btn-danger">取消</button></a>
                             </div>
                         </form>
                     </div>

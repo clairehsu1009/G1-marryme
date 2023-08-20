@@ -105,15 +105,13 @@
       </div>
       <div class="content_right">
         <h1 class="title">${plan.planTitle}</h1>
-        <br>
         <p></p>
-        <br><br>
           <div class="d_line">
-            <br><br><br>
-            <h2 class="title text-center">方案介紹</h2>
             <br><br>
+            <h2 class="title text-center">方案介紹</h2>
+            <br>
               <p>${plan.planIntroduction}</p>
-            <br><br><br><br>
+            <br><br>
               <form METHOD="get" ACTION="<%=request.getContextPath()%>/plan/plan-order">
                 <p style="text-align: center" >
                   <label for="unavailableDate">結婚日期為: </label>
@@ -139,8 +137,9 @@
       </div>
       <br><br><br>
     </div>
+    <br><br>
       <div class="content_right placeTitle">
-        <h1 class="title" >可選擇的場地：</h1>
+        <h1 class="title" style="text-align: center; font-size: 30px">可選擇的場地：</h1>
       </div>
       <table class="table">
         <thead class="thead">
@@ -166,9 +165,9 @@
           </c:forEach>
         </tbody>
       </table>
-
+    <br><br>
     <div class="content_right placeTitle">
-      <h1 class="title" >可選擇的加購項目：</h1>
+      <h1 class="title" style="text-align: center; font-size: 30px">可選擇的加購項目：</h1>
     </div>
       <div class="tab-item-content">
         <div class="tab-content">

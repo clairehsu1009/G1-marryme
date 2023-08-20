@@ -54,6 +54,11 @@ public class OrderController extends HttpServlet {
         String vendorId = req.getParameter("vendorId");
         String memberId = req.getParameter("memberId");
         if(vendorId == null){
+            // 成立訂單與會員查詢訂單都是進入此doGet方法，加一個判斷區分
+            String order = req.getParameter("planOrder");
+            if(order != null){
+                responseMsgMap.put(SUCCESS, "訂單已成立");
+            }
             List<PlanOrder> orderList = service.findAllByMemberId(memberId);
             PlanOrder planOrder = new PlanOrder();
             for(PlanOrder orderId : orderList){
@@ -67,7 +72,7 @@ public class OrderController extends HttpServlet {
                 Item one = itemService.getOne(item.getPlanItemId());
                 items.add(one);
             }
-            responseMsgMap.put(SUCCESS, "訂單已成立");
+
             req.setAttribute(RESPONSE_MSG_MAP, responseMsgMap);
             req.setAttribute("items", items);
             req.setAttribute("unavailableDate", unavailableDate);

@@ -35,7 +35,7 @@
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="<%=request.getContextPath()%>/plan?vendorId=${vendor.vendorId}"><i class="icon fa fa-archive"></i>我的方案</a></li>
-                <li><a class="treeview-item" href="<%=request.getContextPath()%>/front-end/vendor/plan/plan/addPlanProduct.jsp"><i class="icon fa fa-edit"></i>新增方案</a></li>
+                <li><a class="treeview-item" href="<%=request.getContextPath()%>/front-end/vendor/plan/plan/addPlanProduct.jsp?vendorId=${vendor.vendorId}"><i class="icon fa fa-edit"></i>新增方案</a></li>
             </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
@@ -51,7 +51,7 @@
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="<%=request.getContextPath()%>/plan-item?vendorId=${vendor.vendorId}"><i class="icon fa fa-archive"></i>方案加購項目</a></li>
-                <li><a class="treeview-item" href="<%=request.getContextPath()%>/front-end/vendor/plan/planItem/addPlanItem.jsp"><i class="icon fa fa-edit"></i>新增加購項目</a></li>
+                <li><a class="treeview-item" href="<%=request.getContextPath()%>/front-end/vendor/plan/planItem/addPlanItem.jsp?vendorId=${vendor.vendorId}"><i class="icon fa fa-edit"></i>新增加購項目</a></li>
             </ul>
         </li>
 

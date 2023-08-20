@@ -40,7 +40,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 productsAdd">
-            <form method="post" action="<%=request.getContextPath()%>/plan" enctype="multipart/form-data">
+            <form method="post" action="<%=request.getContextPath()%>/plan?vendorId=${vendor.vendorId}" enctype="multipart/form-data">
                 <div class="col-lg-4 col-sm-6 pic1">
                     <label for="planPicture1" id="upload-img1" class="card mb-2 productcard">方案主圖片
                         <input class="form-control" id="planPicture1" type="file" name="planPicture" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  value="${plan == null  ? "" : plan.planPicture}">

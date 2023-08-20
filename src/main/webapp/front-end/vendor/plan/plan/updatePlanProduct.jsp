@@ -157,7 +157,7 @@ margin: 0 5px; /* 可自行調整間距大小 */
                                 <c:when test="${not empty plan.planPictures3}">
                                     <div class="col-lg-4 col-sm-6 mr-5">
                                         <label for="placePicture${i}" id="upload-img${i}" class="card mb-2 productcard">圖片3
-                                            <input class="form-control" id="placePicture${i}" type="file" name="placePictures3" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" value="${plan == null ? '' : plan.planPictures3}">
+                                            <input class="form-control" id="placePicture${i}" type="file" name="planPictures3" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" value="${plan == null ? '' : plan.planPictures3}">
                                             <img width="300px" height="300px" src="${pageContext.request.contextPath}/ShowPhoto?planProductId=${plan.planProductId}&photoFieldName=planPictures3" class="rounded mx-auto d-block" alt="方案圖片3">
                                             <i class="fa-regular fa-image" id="iconcamera${i}" style="display: none;"></i>
                                             <i class="delAvatar${i} fa fa-times-circle-o" title="移除圖片"></i>
@@ -167,7 +167,7 @@ margin: 0 5px; /* 可自行調整間距大小 */
                                 <c:otherwise>
                                     <div class="col-lg-4 col-sm-6 mr-5">
                                         <label for="placePicture${i}" id="upload-img${i}" class="card mb-2 productcard">圖片3
-                                            <input class="form-control" id="placePicture${i}" type="file" name="placePictures3" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" value="${plan == null ? '' : plan.planPictures3}">
+                                            <input class="form-control" id="placePicture${i}" type="file" name="planPictures3" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" value="${plan == null ? '' : plan.planPictures3}">
                                             <i class="fa-regular fa-image" id="iconcamera${i}"></i>
                                             <i class="delAvatar${i} fa fa-times-circle-o" title="移除圖片"></i>
                                         </label>
@@ -222,7 +222,7 @@ margin: 0 5px; /* 可自行調整間距大小 */
                 <div class="col-sm-10 productAddBtn">
                     <input type="hidden" name="planProductId" value="${plan.planProductId}">
                     <input type="hidden" name="vendorId" value="${plan.vendorId}">
-                    <a href="<%=request.getContextPath()%>/plan?vendorId=${vendorId}"><button type="button" class="btn btn-danger">取消</button></a>
+                    <a href="<%=request.getContextPath()%>/plan?vendorId=${vendor.vendorId}"><button type="button" class="btn btn-danger">取消</button></a>
                     <button type="submit" class="btn btn-info" name="action" value="update">儲存</button>
                 </div>
             </form>

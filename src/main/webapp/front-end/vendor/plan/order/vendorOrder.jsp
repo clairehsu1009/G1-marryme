@@ -55,18 +55,15 @@
       </ul>
     </form>
   </div>
-<%--  <c:if test="${plan.vendorId} == ${vendorId}">--%>
   <div class="row productList" id="productList">
     <div class="product-tab col-lg-12 col-12">
       <div class="tab-item">
         <ul class="nav" role="tablist">
           <li><a class="active" data-toggle="tab" href="#tab-0" role="tab">結婚明細</a></li>
-<%--          <li><a class="active" data-toggle="tab" href="#tab-1" role="tab">上架中</a></li>--%>
         </ul>
       </div>
       <div class="tab-item-content">
         <div class="tab-content">
-<%--          <div class="tab-pane" >--%>
           <table class="table">
             <thead class="thead">
             <tr>
@@ -96,67 +93,9 @@
           </table>
         </div>
       </div>
-<%--      <div class="tab-item-content">--%>
-<%--        <div class="tab-content">--%>
-
-<%--              <table class="table">--%>
-<%--                <thead class="thead">--%>
-<%--                <tr>--%>
-<%--                  <th scope="col">場地圖片</th>--%>
-<%--                  <th scope="col">場地標題</th>--%>
-<%--                  <th scope="col">建議桌數區間</th>--%>
-<%--                  <th scope="col" >場地介紹</th>--%>
-<%--                </tr>--%>
-<%--                </thead>--%>
-<%--                <tbody>--%>
-
-<%--                    <tr>--%>
-<%--                      <td>--%>
-<%--                        <img width="200px" height="200px" src="${pageContext.request.contextPath}/ShowPhoto?placeId=${order.placeId}&photoFieldName=placePicture" class="rounded mx-auto d-block" alt="場地主圖片">--%>
-<%--                      </td>--%>
-<%--                      <td>${placeService.getOne(order.placeId).placeTitle}</td>--%>
-<%--                      <td>${placeService.getOne(order.placeId).numbeOfTables}</td>--%>
-<%--                      <td>${placeService.getOne(order.placeId).placeIntroduction}</td>--%>
-<%--                    </tr>--%>
-<%--                </tbody>--%>
-<%--              </table>--%>
-<%--        </div>--%>
-<%--      </div>--%>
-<%--              <div class="tab-item-content">--%>
-<%--                <div class="tab-content">--%>
-<%--                  <table class="table">--%>
-<%--                    <thead class="thead">--%>
-<%--                    <tr>--%>
-<%--                      <th scope="col">項目種類</th>--%>
-<%--                      <th scope="col">項目名稱</th>--%>
-<%--                      <th scope="col">項目說明</th>--%>
-<%--                      <th scope="col">訂金</th>--%>
-<%--                      <th scope="col">金額</th>--%>
-<%--                      <th scope="col">編輯</th>--%>
-<%--                    </tr>--%>
-<%--                    </thead>--%>
-<%--                    <tbody>--%>
-<%--                    <c:forEach var="item" items="${order.planOrderDetail.contains(item.planItemId)}" begin="0" end="${order.planOrderDetail.size()}" >--%>
-<%--                    <c:if test="${order.planOrderId == planOrderDetail.planOrderId}">--%>
-<%--                    <tr>--%>
-<%--                      <td>${item.itemTypeName}</td>--%>
-<%--                      <td>${item.itemSelect}</td>--%>
-<%--                      <td>${item.itemDescription}</td>--%>
-<%--                      <td>${item.itemDeposit}</td>--%>
-<%--                      <td>${item.itemTotal}</td>--%>
-
-<%--                    </tr>--%>
-
-<%--                </tbody>--%>
-<%--              </table>--%>
-<%--                  </c:if>--%>
-<%--                  </c:forEach>--%>
-<%--            </div>--%>
-<%--          </div>--%>
-
         </div>
       </div>
-<%--  </c:if>--%>
+
 
 
 </main>

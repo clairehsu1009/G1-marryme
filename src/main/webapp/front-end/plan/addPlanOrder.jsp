@@ -124,7 +124,7 @@
 
     <br><br>
     <div class="content_right placeTitle">
-        <h1 class="title" >可選擇的場地：</h1>
+        <h1 class="title" style="text-align: center; font-size: 30px">可選擇的場地：</h1>
     </div>
     <table class="table">
         <thead class="thead">
@@ -158,9 +158,9 @@
         </tbody>
     </table>
     <div class="content_right placeTitle">
-        <h1 class="title" style="text-align: left">輸入桌數後選擇餐價：
+        <h1 class="title" style="text-align: left; font-size: 21px">輸入桌數後選擇餐價：
             <input type="text" style="text-align: center" id="tables" name="tables" value="" required/>
-            <span>桌</span>
+            <span style="font-size: 21px">桌</span>
         </h1>
     </div>
     <div class="tab-item-content">
@@ -197,7 +197,7 @@
                     </c:if>
                 </c:forEach>
                 <tr>
-                    <td colspan="5" style="text-align: right;"><strong>總計：</strong></td>
+                    <td colspan="5" style="text-align: right;"><strong>小計：</strong></td>
                     <td id="totalTablesMoney" style="text-align: left">0</td>
                 </tr>
                 </tbody>
@@ -205,7 +205,7 @@
         </div>
     </div>
     <div class="content_right placeTitle">
-        <h1 class="title" >可選擇的加購項目：</h1>
+        <h1 class="title" style="text-align: center; font-size: 30px">可選擇的加購項目：</h1>
     </div>
     <div class="tab-item-content">
         <div class="tab-content">
@@ -241,7 +241,7 @@
                     </c:if>
                 </c:forEach>
                 <tr>
-                    <td colspan="5" style="text-align: right;"><strong>總計：</strong></td>
+                    <td colspan="5" style="text-align: right;"><strong>小計：</strong></td>
                     <td id="totalAmount" style="text-align: left ">0</td>
                 </tr>
                 </tbody>

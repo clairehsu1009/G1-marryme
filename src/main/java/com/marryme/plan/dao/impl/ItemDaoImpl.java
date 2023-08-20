@@ -73,6 +73,7 @@ public class ItemDaoImpl implements ItemDao {
         return query.list();
     }
 
+
     @Override
     public List<Item> selectAllVendorIdAndOrderByType(String vendorId,String statusType) {
             // 狀態 0下架 INACTIVE /  1上架 ACTIVE

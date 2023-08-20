@@ -45,12 +45,10 @@ public class OrderServiceImpl implements OrderService {
         Integer planOrderId = null;
         try {
             beginTransaction();
-            // 替換日期的符號
-//            String unavailableDate = unavailableDates.getUnavailableDate().replaceAll("-", "");
-//            unavailableDates.setUnavailableDate(unavailableDate);
             Integer unavailableDatesId = unavailableDateDao.insertValues(unavailableDates);
             planOrder.setUnavailableDatesId(unavailableDatesId);
 
+            // 儲存 PlanOrder 物件，Hibernate 會自動處理 planOrderDetail 的保存
             planOrderId = dao.insert(planOrder);
             planOrder.setPlanOrderId(planOrderId);
 
@@ -67,11 +65,8 @@ public class OrderServiceImpl implements OrderService {
                 planOrderDetails.add(planOrderDetail);
             }
             // 把 planOrderDetails 加入到 PlanOrder 的 planOrderDetail 屬性中
-
             planOrder.setPlanOrderDetail(planOrderDetails);
 
-            // 儲存 PlanOrder 物件，Hibernate 會自動處理 planOrderDetail 的保存
-//            planOrderId = dao.insert(planOrder); 暫時先註解
             commit();
         } catch (Exception e) {
             rollback();

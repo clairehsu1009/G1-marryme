@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * ClassName: UnavaliableDate
+ * ClassName: UnavaliablesDate
  * Package: marryme.plan.vo
  * Description:
  *

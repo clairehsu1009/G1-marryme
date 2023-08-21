@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ClassName: UnavailableDateDaoImpl
+ * ClassName: UnavailableDatesDaoImpl
  * Package: com.marryme.plan.dao.impl
  * Description:
  *

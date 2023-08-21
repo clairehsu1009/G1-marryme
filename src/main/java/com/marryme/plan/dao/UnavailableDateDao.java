@@ -6,7 +6,7 @@ import com.marryme.plan.vo.UnavailableDates;
 import java.util.List;
 
 /**
- * ClassName: UnavailableDateDao
+ * ClassName: UnavailableDatesDao
  * Package: com.marryme.plan.dao
  * Description:
  *

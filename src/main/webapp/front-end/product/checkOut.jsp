@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/product/css/nice-select.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/product/css/jquery-ui.min.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/product/css/slicknav.min.css" type="text/css" />
-    <link rel="stylesheet" href="http://localhost:8080/marryme/front-end/product/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/product/css/style.css" type="text/css" />
 
 </head>
 

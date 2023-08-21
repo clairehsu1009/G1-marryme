@@ -12211,9 +12211,9 @@ h5::before {
         height: 250px
     }
 
-    .action {
-        display: none
-    }
+/*     .action { */
+/*         display: none */
+/*     } */
 
     .action_mobile {
         display: block;

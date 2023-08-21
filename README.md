@@ -8,7 +8,7 @@ _結婚一條龍服務網站_
 
 不用找多個網站搜尋，可一次在我們網站上尋找有關結婚的內容，如: 婚宴場地、喜餅、婚戒...等，讓現在想結婚卻又求於效率快的伴侶們，省下許多時間來讓婚禮更完整
 
-![網站地圖](https://github.com/clairehsu1009/G1-marryme/blob/main/img/image.png | width=100)
+<img src="https://github.com/clairehsu1009/G1-marryme" data-canonical-src="https://github.com/clairehsu1009/G1-marryme/blob/main/img/image.png" width="100"/>
 
 ## 功能
 

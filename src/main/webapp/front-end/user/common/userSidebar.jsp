@@ -49,31 +49,7 @@
             </ul>
         </li>
 
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
-                class="app-menu__icon fa fa-cogs"></i><span class="app-menu__label">直播訂單管理</span><i
-                class="treeview-indicator fa fa-angle-right"></i></a>
-            <ul class="treeview-menu">
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-th-list"></i>我的購買訂單</a></li>
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-th-list"></i>我的販賣訂單</a></li>
-            </ul>
-        </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
-                class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">直播專案管理</span><i
-                class="treeview-indicator fa fa-angle-right"></i></a>
-            <ul class="treeview-menu">
-                <li>
-                    <a class="treeview-item" href="#"><i class="icon fa fa-edit"></i>新增直播專案</a>
-                <li>
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-th-list"></i>我的直播專案</a></li>
-                <li>
-                    <a class="treeview-item" href="#"><i class="icon fa fa-archive"></i>我的歷史專案</a>
-                <li>
-            </ul>
-        </li>
-        <li class="treeview">
-            <a class="app-menu__item" href="#" target="_blank"><i class="app-menu__icon fa fa-diamond"></i><span
-                    class="app-menu__label">前往我的賣場</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-        </li>
+      
         <li class="treeview">
             <form id="myForm" action=""
                   method="POST">

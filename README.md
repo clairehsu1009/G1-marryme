@@ -1,6 +1,7 @@
 # Marry Me
 
-marryme.ddns.net/marryme/index
+[Marry Me](http://marryme.ddns.net/marryme/index)
+
 
 ## 簡介
 
